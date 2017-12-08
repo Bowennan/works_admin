@@ -2,7 +2,7 @@
   <div id="app">
     <head-comp></head-comp>
     <div class="aside-and-contents">
-      <aside-comp class="aside"></aside-comp>
+     <!--  <aside-comp class="aside"></aside-comp> -->
       <div class="search">
           <router-view></router-view> 
       </div>
@@ -13,12 +13,11 @@
 
 <script>
 import headComp from '@/components/head-comp'
-import asideComp from '@/components/aside-comp'
+
 
 export default {
   components: {
-    headComp,
-    asideComp
+    headComp
   }
 }
 </script>
@@ -38,18 +37,10 @@ export default {
     top:86px;
     left:0;
   }
-  .aside {
-    position: absolute;
-    left:0;
-    top:0;
-  }
-  .search {
-    position:absolute;
-    top:0;
-    right:0;
-    box-sizing: border-box;
+    .search {
     width:100%;
-    padding-left:240px;
+    height:100%;
   }
+
 
 </style>

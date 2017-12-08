@@ -60,6 +60,7 @@
 	.search-box {
 		box-sizing:border-box;
 		width:100%;
+		min-width:1250px;
 		height:78px;
 		border-right:1px solid #dddee1;
 		border-bottom:1px solid #dddee1;
