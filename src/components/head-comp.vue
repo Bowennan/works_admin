@@ -7,7 +7,6 @@
        <ul class="main-menu">
        	<li><router-link class="main-links"  to="/datas">数据</router-link></li>
        	<li><router-link class="main-links"  to="/users">用户管理</router-link></li>
-       	<li><router-link class="main-links"  to="/tips">通用帖子评论</router-link></li>
        	<li><router-link class="main-links"  to="/communities">社区</router-link></li>
        	<li><router-link class="main-links"  to="/wikis">百科</router-link></li>
        	<li><router-link class="main-links"  to="/labs">实验室</router-link></li>

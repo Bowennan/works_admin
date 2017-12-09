@@ -9,7 +9,7 @@
 <script>
     import umSearchComp from '@/components/usersmanage/um-search-comp'
 	import umTitleComp from '@/components/usersmanage/um-title-comp'
-	import tableComp from '@/components/table-comp'
+	import tableComp from '@/components/usersmanage/table-comp'
 
 	export default {
              components: {
@@ -22,6 +22,7 @@
 
 <style scoped>
 	  .tables {
+	  	height: 100%;
 	    width:96%;
 	    min-width:1052px;
 	    margin:0 10px;

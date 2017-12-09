@@ -9,7 +9,7 @@
 </template>
 
 <script>
-	import tableComp from '@/components/table-comp'
+	import tableComp from '@/components/tobetreated/table-comp'
     import taggedSearchComp from '@/components/tobetreated/tagged-search-comp'
     import taggedTitleComp from '@/components/tobetreated/tagged-title-comp'
 	export default {

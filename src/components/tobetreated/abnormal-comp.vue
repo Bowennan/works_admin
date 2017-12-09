@@ -9,7 +9,7 @@
 </template>
 
 <script>
-	import tableComp from '@/components/table-comp'
+	import tableComp from '@/components/tobetreated/table-comp'
     import abnormalSearchComp from '@/components/tobetreated/abnormal-search-comp'
     import abnormalTitleComp from '@/components/tobetreated/abnormal-title-comp'
 	export default {

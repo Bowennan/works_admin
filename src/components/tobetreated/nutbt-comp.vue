@@ -9,7 +9,7 @@
 </template>
 
 <script>
-	import tableComp from '@/components/table-comp'
+	import tableComp from '@/components/tobetreated/table-comp'
     import nutbtSearchComp from '@/components/tobetreated/nutbt-search-comp'
     import nutbtTitleComp from '@/components/tobetreated/nutbt-title-comp'
 	export default {
