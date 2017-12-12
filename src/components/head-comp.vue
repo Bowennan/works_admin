@@ -1,7 +1,7 @@
 <template>
 	<div class="head-comp">
 	   <h1 class="title">
-	   	<img src="/static/images/logo.png" width="90" alt="bestkit">
+	   	<img src="../assets/logo.png" width="90" alt="bestkit">
 	   </h1>
 
        <ul class="main-menu">
@@ -18,7 +18,7 @@
 	   	 <Badge class="tip">
 	        <Icon type="ios-bell-outline" color="#fff" size="20"></Icon>
 	     </Badge>
-	   	 <img class="avator" src="/static/images/login.png" width="24" height="24" alt="头像">
+	   	 <img class="avator" src="../assets/login.png" width="24" height="24" alt="头像">
 	   	 <Icon class="down" type="chevron-down" color="#fff" size="14"></Icon>
 	   </div>
 	</div>

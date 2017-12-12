@@ -116,19 +116,19 @@
 					<li class="header-item05 items">
 						<div class="position-box">
 							<p>
-								<span class="other-col">社交绑定:</span>
+								<span class="other-col" style="cursor:pointer" @click="showUserWindow01" >社交绑定:</span>
 								<span>3</span>
 							</p>
 							<p>
-								<span class="other-col">自媒体:</span>
+								<span class="other-col" style="cursor:pointer" @click="showUserWindow02" >自媒体:</span>
 								<span>12</span>
 							</p>
 							<p>
-								<span class="other-col">实名认证:</span>
+								<span class="other-col" style="cursor:pointer" @click="showUserWindow03" >实名认证:</span>
 								<span>未绑定</span>
 							</p>
 							<p>
-								<span class="other-col">收货地址:</span>
+								<span class="other-col" style="cursor:pointer" @click="showUserWindow04" >收货地址:</span>
 								<span>5</span>
 							</p>
 						</div>
@@ -149,22 +149,22 @@
 									<span style="cursor:pointer" @click="showAuthorityWindow">权限设置</span>
 								</span>
 								<span>
-									<span style="vertical-align:middle">标注
+									<span style="vertical-align:middle; cursor:pointer" @click="showTaggingWindow">标注
                                        <Icon type="ios-pricetags" style="vertical-align:middle" size=14></Icon>
 									</span>
 								</span>
 							</p>
 							<p class="sub-items">
 								<span>
-									<span>操作日志</span>
+									<span style="cursor:pointer" @click="showLogWindow">操作日志</span>
 								</span>
 								<span>
-									<span>禁用</span>
+									<span style="cursor:pointer" @click="showForbiddenWindow">禁用</span>
 								</span>
 							</p>
 							<p class="sub-items">
 								<span>
-									<span>私信查看</span>
+									<span style="cursor:pointer" @click="showPrivateWindow">私信查看</span>
 								</span>
 								<span>
 									
@@ -193,6 +193,26 @@
 		    <div class="pop-box" v-show="switchBtn02">
 		      <authority-window @closeAuthorityWindow="showAuthorityWindow"></authority-window>
 		    </div>
+
+		    <div class="pop-box" v-show="switchBtn03">
+		      <log-window @closeLogWindow="showLogWindow"></log-window>
+		    </div>
+
+		    <div class="pop-box" v-show="switchBtn04">
+		      <private-window @closePrivateWindow="showPrivateWindow"></private-window>
+		    </div>
+
+		    <div class="pop-box" v-show="switchBtn05">
+		      <tagging-window @closeTaggingWindow="showTaggingWindow"></tagging-window>
+		    </div>
+
+		    <div class="pop-box" v-show="switchBtn06">
+		      <forbidden-window @closeForbiddenWindow="showForbiddenWindow"></forbidden-window>
+		    </div>
+
+		    <div class="pop-box" v-show="switchBtn07">
+		      <user-window :outter="nameNum" @closeUserWindow="showUserWindow"></user-window>
+		    </div>
 		
 	</div>
 </template>
@@ -202,6 +222,12 @@
     import nickWindow from '@/components/pop/nick-pop'
     import sendWindow from '@/components/pop/send-pop'
     import authorityWindow from '@/components/pop/authority-pop'
+    import logWindow from '@/components/pop/logs-pop'
+    import privateWindow from '@/components/pop/private-pop'
+    import taggingWindow from '@/components/pop/tagging-pop'
+    import forbiddenWindow from '@/components/pop/forbidden-pop'
+    import userWindow from '@/components/pop/user-pop'
+
 	export default {
         data() {
         	return {
@@ -213,7 +239,13 @@
         		switchBtn: false,
         		switchBtn01: false,
         		switchBtn02: false,
-        		bg:false
+        		switchBtn03: false,
+        		switchBtn04: false,
+        		switchBtn05: false,
+        		switchBtn06: false,
+        		switchBtn07: false,
+        		bg:false,
+        		nameNum:''
         	}
         },
         methods: {
@@ -228,12 +260,57 @@
         	showAuthorityWindow() {
                 this.switchBtn02 = !this.switchBtn02;
         		this.bg = !this.bg;
+        	},
+        	showLogWindow() {
+        		this.switchBtn03 = !this.switchBtn03;
+        		this.bg = !this.bg;
+        	},
+        	showPrivateWindow() {
+        		this.switchBtn04 = !this.switchBtn04;
+        		this.bg = !this.bg;
+        	},
+        	showTaggingWindow() {
+        		this.switchBtn05 = !this.switchBtn05;
+        		this.bg = !this.bg;
+        	},
+        	showForbiddenWindow() {
+        		this.switchBtn06 = !this.switchBtn06;
+        		this.bg = !this.bg;
+        	},
+        	showUserWindow() {
+        		this.switchBtn07 = !this.switchBtn07;
+        		this.bg = !this.bg;
+        	},
+        	showUserWindow01() {
+        		this.nameNum = "name1";
+        		this.switchBtn07 = !this.switchBtn07;
+        		this.bg = !this.bg;
+        	},
+        	showUserWindow02() {
+        		this.nameNum = "name2";
+        		this.switchBtn07 = !this.switchBtn07;
+        		this.bg = !this.bg;
+        	},
+        	showUserWindow03() {
+        		this.nameNum = "name3";
+        		this.switchBtn07 = !this.switchBtn07;
+        		this.bg = !this.bg;
+        	},
+        	showUserWindow04() {
+        		this.nameNum = "name4";
+        		this.switchBtn07 = !this.switchBtn07;
+        		this.bg = !this.bg;
         	}
         },
         components: {
         	nickWindow,
         	sendWindow,
-        	authorityWindow
+        	authorityWindow,
+        	logWindow,
+        	privateWindow,
+        	taggingWindow,
+        	forbiddenWindow,
+        	userWindow
         }
 	}
 </script>

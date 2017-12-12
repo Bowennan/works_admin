@@ -125,6 +125,7 @@
 	padding:5px 10px;
 	height:82px;
 	border:none;
+	resize: none;
 }
 
 .bottom-box {
