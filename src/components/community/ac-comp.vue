@@ -7,9 +7,9 @@
 </template>
 
 <script>
-    import acSearchComp from '@/components/commonpostings/ac-search-comp'
-	import acTitleComp from '@/components/commonpostings/ac-title-comp'
-	import acListComp from '@/components/commonpostings/ac-list-comp'
+    import acSearchComp from '@/components/community/ac-search-comp'
+	import acTitleComp from '@/components/community/ac-title-comp'
+	import acListComp from '@/components/community/ac-list-comp'
 
 	export default {
              components: {

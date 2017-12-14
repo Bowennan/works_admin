@@ -7,9 +7,9 @@
 </template>
 
 <script>
-    import postingSearchComp from '@/components/commonpostings/posting-search-comp'
-	import postingTitleComp from '@/components/commonpostings/posting-title-comp'
-	import postingListComp from '@/components/commonpostings/posting-list-comp'
+    import postingSearchComp from '@/components/community/posting-search-comp'
+	import postingTitleComp from '@/components/community/posting-title-comp'
+	import postingListComp from '@/components/community/posting-list-comp'
 
 	export default {
              components: {

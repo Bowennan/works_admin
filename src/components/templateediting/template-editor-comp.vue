@@ -4,7 +4,7 @@
 			<span class="title">消息模板编辑</span>
 		</div>
 
-		<div class="textarea-box">
+		<div class="textarea-box01">
 			 <div class="textarea-con">
                 <div class="parameters">
                     <span class="para-choose">变量添加选择：</span>
@@ -59,7 +59,7 @@
     	color:#495060;
     	font-weight: bold;
     }
-    .textarea-box {
+    .textarea-box01 {
     	width:100%;
     }
     .textarea-con {

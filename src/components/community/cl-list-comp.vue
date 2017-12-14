@@ -1,55 +1,52 @@
 <template>
 	<div class="lists">
 		<ul class="header">
-			<li class="check-id">审核ID</li>
-			<li class="id-nickname">ID/昵称</li>
-			<li class="identity-info">身份信息</li>
-			<li class="identity-pic">身份证照片</li>
-			<li class="apply-info">申请信息</li>
+			<li class="id-nickname">
+                 <Checkbox v-model="single"></Checkbox>
+			评论ID/类型</li>
+			<li class="media-info">评论内容</li>
+			<li class="works">评论来源</li>
+			<li class="apply-info">评论信息</li>
 			<li class="action-status">操作</li>
 		</ul>
 
-		<ul v-for="item in 10">
+		<ul>
 			<li>
 				<ul class="con-header">
-					<li class="check-id">
-						<p>1025</p>
-					</li>
 					<li class="id-nickname more-line">
-						<p>
-						   <span>1025</span>
-						   <span>开灯的山洞</span>
+						<p class="f-col">
+						   <Checkbox class="checkbox" v-model="single"></Checkbox>
+						   <span>12121</span>
+						   <span>直评</span>
 						</p>
 					</li>
-					<li class="identity-info more-line">
-						<p>
-							<span>真是姓名：张三</span>
-							<span>身份证号：130205456899657820</span>
-							<span>联系电话：166699878856</span>
-						</p>
+					<li class="media-info more-line">
+						<p style="color:#2d8cf0; cursor:pointer">查看</p>
 					</li>
-					<li class="identity-pic">
-					    <p>身份照片</p>
+					<li class="works more-line">
+					    <p>
+					    	<span>评论者：<span class="values">影视，娱乐，体育</span></span>
+					    	<span>所属内容：<span class="values">作品1，作品2</span></span>
+					    	<span>标题：<span class="values">作品1，作品2</span></span>
+					    </p>
 					</li>
 					<li class="apply-info more-line">
 						<p>
-							<span>申请状态：待审核</span>
-							<span>申请时间：201665</span>
+							<span>社区：<span class="values">待审核</span></span>
+							<span>赞同：<span class="values">5</span></span>
+							<span>举报：<span class="values">56</span></span>
+							<span>时间：<span class="values">2017-12-12</span></span>
 						</p>
 					</li>
 					<li class="action-status more-line">
 						<p>
-							<span>审核</span>
-							<span class="con">说明：的jfk简实名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了</span>
+							<span>热门评论 | <span class="values">是</span></span>
+							<span>评论状态 | <span class="values">正常</span></span>
 						</p>
 					</li>
 				</ul>
 			</li>
 		</ul>
-
-		<div class="container">
-			
-		</div>
 	</div>
 </template>
 
@@ -58,6 +55,7 @@
        data() {
        	  return {
        	  	state: 0,
+       	  	single: ''
        	  }
        }
    }
@@ -65,19 +63,9 @@
 
 <style scoped>
 	.lists {
-		position: relative;
 		width:96%;
-		height: 100%;
 		margin-left:28px;
 		margin-top:20px;
-	}
-	.container {
-		position: absolute;
-		top:-216px;
-		bottom:0;
-		left:-28px;
-		right:-32px;
-		background: #e9eaec9c;
 	}
 	.header {
 		box-sizing: border-box;
@@ -100,23 +88,20 @@
 		font-weight: bold;
 	}
 	.apply-info {
-		flex:0 0 180px;
-	}
-	.check-id {
-		flex:0 0 124px;
+		flex:0 0 197px;
 	}
 	.id-nickname {
-		flex:0 0 118px;
+		flex:0 0 158px;
 	}
-	.identity-info {
-		flex:0 0 246px;
+	.media-info {
+		flex:0 0 156px;
 	}
-	.identity-pic {
-		flex:0 0 132px;
+	.works {
+		min-width: 398px;
+		flex:1;
 	}
 	.action-status {
-		min-width:218px;
-		flex:1;
+		flex:0 0 120px;
 	}
 	.header li, .con-header li {
         box-sizing: border-box;
@@ -127,8 +112,12 @@
 		display: table-cell;
 		vertical-align: middle;
 	}
-	.more-line p span {
+	.con-header li p .values {
+		color:#80848f;
+	}
+	.more-line p > span {
 		display: block;
+		color:#bbbec4;
 	}
 	.con-box {
 		display: block;
@@ -153,11 +142,20 @@
 		text-align: right;
 		padding-left:20px;
 	}
-		.action-status p span.con {
+	.action-status p span.con {
 		display: -webkit-box;
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 3;
 		overflow: hidden;
+	}
+	.f-col {
+		position: relative;
+		padding-left:20px;
+	}
+	.checkbox {
+		    position: absolute;
+		    left: 0;
+		    top: 36px;
 	}
 </style>
 

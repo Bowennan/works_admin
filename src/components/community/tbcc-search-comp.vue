@@ -10,18 +10,6 @@
 			</div>
 
 			<div class="lev-search">
-				    <Select class="brand-group" v-model="model1">
-				        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
-				    </Select>
-			</div>
-
-			<div class="lev-search">
-				    <Select class="commity-group" v-model="model1">
-				        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
-				    </Select>
-			</div>
-
-			<div class="lev-search">
 				 <date-to-date></date-to-date>
 			</div>
 

@@ -87,7 +87,15 @@
 			        	</div>
                         
                         <span class="item-title">身份证照</span>
-
+                        <div class="img-container">
+                        	<div class="img-box" v-for="item in 3">
+                        		<img src="../../assets/001.jpg" alt="">
+                        		<span>点击查看大图</span>
+                        		<div class="opacity-box">
+                        			<Icon class="eyes" type="ios-eye"></Icon>
+                        		</div>
+                        	</div>
+                        </div>
 						<div class="bottom-box-small">
 	                    	<p class="btn-group">
 	                    		<Button type="ghost"  class="btn-size" style="border:1px solid #80848f" @click="closeUserWindow">取消</Button>
@@ -226,4 +234,45 @@
 
 	}
 
+	.img-container > div {
+		position: relative;
+		display: inline-block;
+		width:96px;
+		height: 68px;
+		text-align: center;
+		margin-right: 20px;
+	}
+	.opacity-box {
+		width:96px;
+		height: 68px;
+		position: absolute;
+		top:0;
+		left:0;
+		background: transparent;
+		opacity: 0;
+		cursor: pointer;
+	}
+    .img-container > div img{
+       display:block;
+       width:96px;
+       height: 68px;
+       border:1px solid #ccc;
+    }
+    .img-container > div span {
+    	display: block;
+    	font-size:12px;
+    	font-weight: 400;
+    	padding:5px 0;
+    }
+    .eyes {
+    	position: absolute;
+    	left:50%;
+    	top:50%;
+    	transform: translate(-50%,-50%);
+    	font-size:20px;
+    }
+    .opacity-box:hover {
+    	background: #ccc;
+    	opacity: 0.8;
+    }
 </style>

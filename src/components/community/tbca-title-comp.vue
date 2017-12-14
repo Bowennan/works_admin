@@ -1,14 +1,13 @@
 <template>
 	<div class="title-box">
-		<h3 class="title">异常评论列表</h3>
+		<h3 class="title">待审核回答列表</h3>
 		<refresh-btn class="refresh"></refresh-btn>
+		<Button class="re-btn" type="primary" shape="circle" icon="ios-trash-outline">批量不通</Button>
+		<Button class="re-btn01" type="primary" shape="circle" icon="ios-trash-outline">批量通过</Button>
 		<div class="search-and-result">
-			<span class="result">共
-	          <span class="res-num">1000</span>人被筛选
+			<span class="result">全部：
+	          <span class="res-num">1000</span>
 			</span>
-			<Select class="search-group" v-model="model1">
-		        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
-		    </Select>
 		</div>
 	</div>
 </template>
@@ -50,6 +49,24 @@
 		bottom:24px;
 		left:28px;
 	}
+	.re-btn {
+		position: absolute;
+		width:92px;
+		font-size:12px;
+		color:#fff;
+		bottom:24px;
+		left:138px;
+	}
+
+	.re-btn01 {
+		position: absolute;
+		width:92px;
+		font-size:12px;
+		color:#fff;
+		bottom:24px;
+		left:256px;
+	}
+
 	.search-group {
 		width:150px;
 		margin-top:20px;
@@ -59,8 +76,7 @@
 	.search-and-result {
 		position:absolute;
 		right:38px;
-		top:50%;
-		transform: translateY(-50%);
+		bottom:20px;
 		text-align: right;
 	}
 	.result {

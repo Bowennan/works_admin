@@ -16,12 +16,15 @@ import BestKit from '@/components/useridentityaudit/bestkit-comp'
 import TemplateEditing from '@/components/templateediting/template-comp'
 import Logs from '@/components/logs/logs-comp'
 
-import PostingList from '@/components/commonpostings/posting-comp'
-import ToBeCheckedPostings from '@/components/commonpostings/tbcp-comp'
-import AbnormalPostings from '@/components/commonpostings/ap-comp'
-import CommentsList from '@/components/commonpostings/cl-comp'
-import ToBeCheckedComment from '@/components/commonpostings/tbcc-comp'
-import AbnormalComment from '@/components/commonpostings/ac-comp'
+import PostingList from '@/components/community/posting-comp'
+import ToBeCheckedPostings from '@/components/community/tbcp-comp'
+import AbnormalPostings from '@/components/community/ap-comp'
+import CommentsList from '@/components/community/cl-comp'
+import ToBeCheckedComment from '@/components/community/tbcc-comp'
+import AbnormalComment from '@/components/community/ac-comp'
+import AnswerList from '@/components/community/al-comp'
+import ToBeAnswer from '@/components/community/tbca-comp'
+import AbnormalAnswer from '@/components/community/aa-comp'
 
 import asideComp01 from '@/components/aside01-comp'
 import asideComp02 from '@/components/aside02-comp'
@@ -131,6 +134,18 @@ export default new Router({
              {
                 path:'ac',
                 component: AbnormalComment
+             },
+             {
+                path:'al',
+                component: AnswerList
+             },
+             {
+                path:'tbca',
+                component: ToBeAnswer
+             },
+             {
+                path:'aa',
+                component: AbnormalAnswer
              }
       ]
      },

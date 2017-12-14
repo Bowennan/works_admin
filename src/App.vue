@@ -14,7 +14,6 @@
 <script>
 import headComp from '@/components/head-comp'
 
-
 export default {
   components: {
     headComp
@@ -37,7 +36,7 @@ export default {
     top:86px;
     left:0;
   }
-    .search {
+  .search {
     width:100%;
     height:100%;
   }

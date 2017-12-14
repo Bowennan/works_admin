@@ -7,9 +7,9 @@
 </template>
 
 <script>
-    import apSearchComp from '@/components/commonpostings/ap-search-comp'
-	import apTitleComp from '@/components/commonpostings/ap-title-comp'
-	import apListComp from '@/components/commonpostings/ap-list-comp'
+    import apSearchComp from '@/components/community/ap-search-comp'
+	import apTitleComp from '@/components/community/ap-title-comp'
+	import apListComp from '@/components/community/ap-list-comp'
 
 	export default {
              components: {

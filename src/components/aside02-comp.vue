@@ -32,16 +32,39 @@
                         	</span>
                         </div>
                     </template>
-	                    <MenuItem name="3-1" class="sublist">
+	                    <MenuItem name="2-1" class="sublist">
 	                      <router-link to="/communities/cl" class="list-icon sublist-sub">评论列表</router-link>
                           <Badge count="10" class="badge-scale"></Badge>
 	                    </MenuItem>
-	                    <MenuItem name="3-2" class="sublist">
+	                    <MenuItem name="2-2" class="sublist">
 	                      <router-link to="/communities/tbcc" class="list-icon sublist-sub">待审核评论</router-link>
                           <Badge count="10" class="badge-scale"></Badge>
 	                    </MenuItem>
-	                    <MenuItem name="3-3" class="sublist">
+	                    <MenuItem name="2-3" class="sublist">
 	                      <router-link to="/communities/ac" class="list-icon sublist-sub">异常评论</router-link>
+                          <Badge count="10" class="badge-scale"></Badge>
+	                    </MenuItem>
+                </Submenu>
+                <Submenu name="answer">
+                    <template slot="title">
+                        <div style="height:18px; display:inline-block">
+                        	<span class="list-icon checked">
+                        		
+                        		<Icon type="chatbubble-working" size=16 class="iconfont"></Icon>
+                        		<span class="icon-name">通用回答管理</span>
+                        	</span>
+                        </div>
+                    </template>
+	                    <MenuItem name="3-1" class="sublist">
+	                      <router-link to="/communities/al" class="list-icon sublist-sub">回答列表</router-link>
+                          <Badge count="10" class="badge-scale"></Badge>
+	                    </MenuItem>
+	                    <MenuItem name="3-2" class="sublist">
+	                      <router-link to="/communities/tbca" class="list-icon sublist-sub">待审核回答</router-link>
+                          <Badge count="10" class="badge-scale"></Badge>
+	                    </MenuItem>
+	                    <MenuItem name="3-3" class="sublist">
+	                      <router-link to="/communities/aa" class="list-icon sublist-sub">异常回答</router-link>
                           <Badge count="10" class="badge-scale"></Badge>
 	                    </MenuItem>
                 </Submenu>
@@ -138,6 +161,7 @@
 	i.iconfont.ivu-icon.ivu-icon-ios-cog,
 	i.iconfont.ivu-icon.ivu-icon-ios-paper,
 	i.iconfont.ivu-icon.ivu-icon-ios-email,
+	i.iconfont.ivu-icon.ivu-icon-chatbubble-working,
 	i.iconfont.ivu-icon.ivu-icon-chatbox-working,
 	i.iconfont.ivu-icon.ivu-icon-ios-compose,
 	i.iconfont.ivu-icon.ivu-icon-ios-list {

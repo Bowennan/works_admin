@@ -1,29 +1,25 @@
 <template>
 	<div class="title-box">
-		<h3 class="title">用户管理</h3>
-		<Button class="refresh" type="primary" shape="circle" icon="ios-loop" @click="refreshData">刷新</Button>
+		<h3 class="title">异常评论列表</h3>
+		<refresh-btn class="refresh"></refresh-btn>
 		<div class="search-and-result">
-			<span class="result">共
-	          <span class="res-num">1000</span>人被筛选
+			<span class="result">全部
+	          <span class="res-num">1000</span>
 			</span>
-			<Select class="search-group" v-model="model1">
-		        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
-		    </Select>
 		</div>
 	</div>
 </template>
 
 <script>
+    import refreshBtn from '@/components/base-comp/refresh-btn'
 	export default {
        data() {
        	return {
        		model1:''
        	}
        },
-       methods: {
-       	refreshData() {
-       		this.$emit("refreshData")
-       	}
+       components: {
+       	refreshBtn
        }
 	}
 </script>
@@ -60,8 +56,7 @@
 	.search-and-result {
 		position:absolute;
 		right:38px;
-		top:50%;
-		transform: translateY(-50%);
+        bottom:20px;
 		text-align: right;
 	}
 	.result {

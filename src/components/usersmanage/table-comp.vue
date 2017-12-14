@@ -8,29 +8,32 @@
 			<li class="header-item05">用户资料</li>
 			<li class="header-item06">操作</li>
 		</ul>
-		<ul class="contents" v-for="item in 10">
+        <div v-show="!userlistData.length">
+        	<loading></loading>
+        </div>
+		<ul class="contents" v-for="(item, index) in userlistData" :key="index">
 			<li>
 				<ul class="cons clear">
 					<li class="header-item01 items">
 						<div class="position-box">
-							<p class="action-col">106898</p>
-							<p class="action-col">会跳舞的车</p>
-							<p>😮</p>
+							<p class="action-col">{{item.user_id}}</p>
+							<p class="action-col"><a href="#">{{item.nickname}}</a></p>
+							<p>😎</p>
 						</div>
 					</li>
 					<li class="header-item02 items">
 						<div class="position-box">
 							<p>
 							   <span class="other-col">等级:</span>
-							   <span>6级</span>
+							   <span>{{item.level}}级</span>
 							</p>
 							<p>
 								<span class="other-col">积分:</span>
-								<span>13133</span>
+								<span>{{item.score}}</span>
 							</p>
 							<p>
 								<span class="other-col">信用:</span>
-								<span>56</span>
+								<span>{{item.credit}}</span>
 							</p>
 						</div>
 						
@@ -39,42 +42,42 @@
 						<div class="position-box">
 							<p class="sub-items">
 								<span>
-									<span class="other-col">帖子:</span>
-								    <span>33</span>
+									<span class="other-col">帖子：</span>
+								    <span>{{item.articles_count}}</span>
 								</span>
 								<span>
-									<span class="other-col">好价:</span>
-									<span>33</span>
-								</span>
-							</p>
-							<p class="sub-items">
-								<span>
-									<span class="other-col">作品:</span>
-								    <span>33</span>
-								</span>
-								<span>
-									<span class="other-col">装备:</span>
-									<span>33</span>
+									<span class="other-col">好价：</span>
+									<span>{{item.couponses_count}}</span>
 								</span>
 							</p>
 							<p class="sub-items">
 								<span>
-									<span class="other-col">问答:</span>
-								    <span>33</span>
+									<span class="other-col">作品：</span>
+								    <span>{{item.masterpieces_count}}</span>
 								</span>
 								<span>
-									<span class="other-col">爆料:</span>
-									<span>33</span>
+									<span class="other-col">装备：</span>
+									<span>{{item.discloses_count}}</span>
 								</span>
 							</p>
 							<p class="sub-items">
 								<span>
-									<span class="other-col">闲置:</span>
-								    <span>13</span>
+									<span class="other-col">问答：</span>
+								    <span>{{item.questions_count}}</span>
 								</span>
 								<span>
-									<span class="other-col">评论:</span>
-									<span>33</span>
+									<span class="other-col">爆料：</span>
+									<span>{{item.exhibitions_count}}</span>
+								</span>
+							</p>
+							<p class="sub-items">
+								<span>
+									<span class="other-col">闲置：</span>
+								    <span>{{item.idles_count}}</span>
+								</span>
+								<span>
+									<span class="other-col">评论：</span>
+									<span>{{item.comment_num}}</span>
 								</span>
 							</p>
 						</div>
@@ -84,28 +87,29 @@
 							<p>
 								
 									<span class="other-col">加入社区:</span>
-									<span>3</span>
+									<span>{{(item.join_communities).length}}</span>
 								
 							
 									
 								    <Poptip trigger="hover" placement="bottom-start">
 								        <span class="other-col">其他:</span>
-								        <span>粉丝、收获喜欢、文章总数、举报数、注册时间</span>
+								        <span>粉丝、收获喜欢、文章总分、举报数、注册时间</span>
 								        <div class="pop-style" slot="content">
 								        	<div class="pop-cons">
 								        		<p>
-								        		<span>加入的社区：</span> <span class="pop-nums">无人机，智能家居</span>
+								        		<span>加入的社区：</span> <span class="pop-nums" style="padding:0 5px" v-for="(inneritem, innerindex) in item.join_communities" :key="innerindex">{{inneritem.name}}</span>
+								        		     <span v-if="!(item.join_communities).length">无</span>
 									        	</p>
 									        	<p>
-									        		<span>粉丝量：</span> <span class="pop-nums">112</span>
-									        		<span class="pop-cols">收获喜欢：</span> <span class="pop-nums">3235</span>
+									        		<span>粉丝量：</span> <span class="pop-nums">{{item.fans_num}}</span>
+									        		<span class="pop-cols">收获喜欢：</span> <span class="pop-nums">{{item.praised_num}}</span>
 									        	</p>
 									        	<p>
-									        		<span>文章总数：</span> <span class="pop-nums">2325</span>
+									        		<span>文章总分：</span> <span class="pop-nums">暂无数据</span>
 									        		<span class="pop-cols">举报数：</span> <span class="pop-nums">232</span>
 									        	</p>
 									        	<p>
-									        		<span>注册时间：</span> <span class="pop-nums">2017-12-03</span>
+									        		<span>注册时间：</span> <span class="pop-nums">暂无数据</span>
 									        	</p>
 								        	</div>
 								        </div>
@@ -227,8 +231,14 @@
     import taggingWindow from '@/components/pop/tagging-pop'
     import forbiddenWindow from '@/components/pop/forbidden-pop'
     import userWindow from '@/components/pop/user-pop'
+    import Loading from '@/components/base-comp/loading'
 
 	export default {
+		props: {
+			userlistData:{
+				type:Array
+			}
+		},
         data() {
         	return {
         		single: 9,
@@ -310,7 +320,8 @@
         	privateWindow,
         	taggingWindow,
         	forbiddenWindow,
-        	userWindow
+        	userWindow,
+        	Loading
         }
 	}
 </script>
@@ -322,10 +333,10 @@
     }
     .container {
     	position: absolute;
-    	top:0;
+    	top:-196px;
     	bottom:0;
-    	left:0;
-    	right:0;
+    	left:-10px;
+    	right:-56px;
     	background: #e9eaec9c;
     }
     .header {

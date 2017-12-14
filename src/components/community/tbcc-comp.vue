@@ -7,9 +7,9 @@
 </template>
 
 <script>
-    import tbccSearchComp from '@/components/commonpostings/tbcc-search-comp'
-	import tbccTitleComp from '@/components/commonpostings/tbcc-title-comp'
-	import tbccListComp from '@/components/commonpostings/tbcc-list-comp'
+    import tbccSearchComp from '@/components/community/tbcc-search-comp'
+	import tbccTitleComp from '@/components/community/tbcc-title-comp'
+	import tbccListComp from '@/components/community/tbcc-list-comp'
 
 	export default {
              components: {

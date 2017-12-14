@@ -7,7 +7,7 @@
 		    </Select>
 		</div>
 
-		<div class="textarea-box">
+		<div class="textarea-box01">
 			 <div class="textarea-con">
 			 	<Input class="textarea" :rows="7"  v-model="value6" type="textarea" placeholder="输入发布内容..."></Input>
 
@@ -60,7 +60,7 @@
     	top:22px;
     	right:38px;
     }
-    .textarea-box {
+    .textarea-box01 {
     	width:100%;
     }
     .textarea-con {
