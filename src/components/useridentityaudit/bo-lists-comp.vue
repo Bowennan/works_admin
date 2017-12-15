@@ -5,6 +5,7 @@
 			<li class="id-nickname">ID/昵称</li>
 			<li class="identity-info">个人信息</li>
 			<li class="product">品牌产品关联</li>
+			<li class="letter">公函</li>
 			<li class="apply-info">申请信息</li>
 			<li class="action-status">操作</li>
 		</ul>
@@ -23,28 +24,40 @@
 					</li>
 					<li class="identity-info more-line">
 						<p>
-							<span>姓名：张三</span>
-							<span>联系电话：166699878856</span>
-							<span>岗位：产品经理</span>
-							<span>行业：智能家居</span>
+							<span><span class="title-nam">姓名：</span>张三</span>
+							<span><span class="title-nam">联系电话：</span>166699878856</span>
+							<span><span class="title-nam">岗位：</span>产品经理</span>
+							<span><span class="title-nam">行业：</span>智能家居</span>
 						</p>
 					</li>
 					<li class="product more-line">
 					    <p>
-					    	<span>品牌：大疆</span>
-					    	<span class="con">产品关联：的科技发达附近的链接发的到家乐福技发达附近的链接发的到
-					    	技发达附近的链接发的到技发达附近的链接发的到技发达附近的链接发的到技发达附近的链接发的到技发达附近的链接发的到</span>
+					    	<span><span class="title-nam">品牌：</span>大疆</span>
+					    	
+					    	<Poptip trigger="hover" placement = 'bottom' width="300">
+					    		<span class="con"><span class="title-nam">关联产品：</span>角度看jfk了的时间决定是否技术的家快来解放圣诞节快乐家快来解放圣诞节快乐家快来解放圣诞节快乐飞机</span>
+					    		<div slot="content" style="width:100%; height:150px; position:relative; white-space: normal;">
+					    			
+					    				<div style="width:100%; height:100%; position:absolute">
+					    					就离开房间的时间浪费觉得少了开发放手大家快来解放圣诞节快乐附件监考老师的飞机的思考逻辑分离技术的看来飞机螺丝钉解放
+					    				</div>
+					    		
+					    		</div>
+					    	</Poptip>
 					    </p>
+					</li>
+					<li class="letter">
+						<p>图片</p>
 					</li>
 					<li class="apply-info more-line">
 						<p>
-							<span>申请状态：待审核</span>
-							<span>申请时间：201665</span>
+							<span><span class="title-nam">申请状态：</span>待审核</span>
+							<span><span class="title-nam">申请时间：</span>201665</span>
 						</p>
 					</li>
 					<li class="action-status more-line">
 						<p>
-							<span>审核</span>
+							<span><span>审核</span><span>关联产品</span></span>
 							<span>说明：的jfk简单了领导jfk了</span>
 						</p>
 					</li>
@@ -88,7 +101,7 @@
 		display: flex;
 		border-bottom:1px solid #ccc;
 		color:#80848f;
-		font-weight: bold;
+		font-weight: 400;
 	}
 	.apply-info {
 		flex:0 0 180px;
@@ -100,10 +113,13 @@
 		flex:0 0 120px;
 	}
 	.identity-info {
-		flex:0 0 166px;
+		flex:0 0 180px;
 	}
 	.product {
 		flex:0 0 270px;
+	}
+	.letter {
+		flex:0 0 80px;
 	}
 	.action-status {
 		min-width:176px;
@@ -118,7 +134,7 @@
 		display: table-cell;
 		vertical-align: middle;
 	}
-	.more-line p span {
+	.more-line p > span {
 		display: block;
 	}
 	.con-box {
@@ -147,8 +163,16 @@
 	.product p span.con {
         display: -webkit-box;
 		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 3;
+		-webkit-line-clamp: 2;
 		overflow: hidden;
+	}
+	.title-nam {
+		color:#bbbec4
+	}
+	.show-down {
+		width:300px;
+		height: 150px;
+		position: relative;
 	}
 </style>
 

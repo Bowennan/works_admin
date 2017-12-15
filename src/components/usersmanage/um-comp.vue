@@ -3,7 +3,7 @@
 		<um-search-comp @findLevel="screenPage"></um-search-comp>
         <um-title-comp @refreshData="getData"></um-title-comp>
         <table-comp :userlistData="userlistData" class="tables"></table-comp>
-        <Page class="pages" :total="totalPages" show-sizer
+        <Page class="pages" :total="totalPages" show-sizer :page-size-opts="pageArray"
               @on-change="turnPage"
               @on-page-size-change="turnPages"
         ></Page>
@@ -23,25 +23,17 @@
 		     	return {
 		     		userlistData:[],
 		     		totalPages:0,
-		     		currentPage:0
+		     		pageArray:[10,20,30],
+		     		limitNum:10
 
 		     	}
 		     },
 		     created() {
-               userManage().then(res =>{
-               	if(_Ok===res.status) {
-               		console.log(res);
-               		let data = res.data.userList;
-               		this.userlistData = data.data;
-               		this.totalPages = data.total;
-               	}
-               }).catch(err =>{
-               	console.log(err,'请求失败')
-               })
+               this.getData()
 		     },
 		     methods: {
-                 getData() {
-                 	userManage().then(res =>{
+                 getData(para) {
+                 	userManage(para).then(res =>{
 	               	if(_Ok===res.status) {
 	               		console.log(res);
 	               		let data = res.data.userList;
@@ -54,46 +46,21 @@
 	           },
                 screenPage(condition) {
                    console.log(condition);
-                   userManage({
+                   this.getData({
                    	level: condition
-                   }).then(res =>{
-	               	if(_Ok===res.status) {
-	               		console.log(res);
-	               		let data = res.data.userList;
-	               		this.userlistData = data.data;
-	               		this.totalPages = data.total;
-	               	}
-	               }).catch(err =>{
-	               	console.log(err,'请求失败')
-	               })
+                   })
                 },
 		     	turnPage(pageNum){
-                   userManage({
-                   	 page:pageNum
-                   }).then(res =>{
-	               	if(_Ok===res.status) {
-	               		// console.log(res);
-	               		let data = res.data.userList;
-	               		this.userlistData = data.data;
-	               		this.totalPages = data.total;
-	               	}
-	               }).catch(err =>{
-	               	console.log(err,'请求失败')
-	               })
+                   this.getData({
+                   	page: pageNum,
+                   	limit: this.limitNum
+                   })
 		     	},
 		     	turnPages(pagesNum) {
-		     		userManage({
-                   	 limit:pagesNum
-                   }).then(res =>{
-	               	if(_Ok===res.status) {
-	               		// console.log(res);
-	               		let data = res.data.userList;
-	               		this.userlistData = data.data;
-	               		this.totalPages = data.total;
-	               	}
-	               }).catch(err =>{
-	               	console.log(err,'请求失败')
-	               })
+		     		this.limitNum = pagesNum
+		     	    this.getData({
+		     	    	limit: this.limitNum
+		     	    })
 		     	}
 		     },
              components: {

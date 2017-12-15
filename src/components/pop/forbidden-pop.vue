@@ -11,13 +11,13 @@
 
           <div>
             <p class="items">
-              <span style="color:#bbbec4">剩余禁用天数
-                <span style="color:#2d8cf0">10</span>天</span>
+              <span style="color:#bbbec4">禁用状态(天数)：
+                <span style="color:#2d8cf0">{{forbiddenDay===0? "不禁用" : forbiddenDay===-1? "永久禁用" : forbiddenDay}}</span></span>
               
             </p>
             <p class="items">
-               <Select size="small" v-model="model1" style="width:200px">
-                  <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
+              <Select v-model="forbiddenDay" style="width:200px">
+                  <Option v-for="item in forbiddenDays" :value="item.value" :key="item.value">{{ item.label }}</Option>
               </Select>
             </p>
           </div>
@@ -45,7 +45,7 @@
                         </p>
                         <p class="btn-group">
                           <Button type="ghost"  class="btn-size" style="border:1px solid #80848f" @click="closeTheForbidden">取消</Button>
-                          <Button type="primary" class="btn-size" >确认违规</Button>
+                          <Button type="primary" class="btn-size"  @click="submit">确认违规</Button>
                         </p>
                       </div>
 			</div>
@@ -60,12 +60,39 @@
         		value5: "我是输入框",
         		model11: "我是最后的选择框",
         		value:"我是认证框",
-        		switchBtn: false
+        		switchBtn: false,
+            forbiddenDays: [
+                    {
+                      value: 0,
+                      label: '不禁用'
+                    },
+                    {
+                        value: 1,
+                        label: '1天'
+                    },
+                    {
+                        value: 3,
+                        label: '3天'
+                    },
+                    {
+                        value: 5,
+                        label: '5天'
+                    },
+                    {
+                        value: -1,
+                        label: '永久禁用'
+                    }
+
+                ],
+                forbiddenDay: 0
         	}
         },
         methods: {
            closeTheForbidden() {
            	this.$emit("closeForbiddenWindow")
+           },
+           submit() {
+            this.$emit("confirmStoped", this.forbiddenDay);
            }
         }
 	}

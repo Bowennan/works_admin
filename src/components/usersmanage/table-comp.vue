@@ -163,7 +163,7 @@
 									<span style="cursor:pointer" @click="showLogWindow">操作日志</span>
 								</span>
 								<span>
-									<span style="cursor:pointer" @click="showForbiddenWindow">禁用</span>
+									<span style="cursor:pointer" @click="showForbiddenWindow(item.user_id)">{{freezeState? "已禁用" : "禁用"}}</span>
 								</span>
 							</p>
 							<p class="sub-items">
@@ -211,7 +211,7 @@
 		    </div>
 
 		    <div class="pop-box" v-show="switchBtn06">
-		      <forbidden-window @closeForbiddenWindow="showForbiddenWindow"></forbidden-window>
+		      <forbidden-window @closeForbiddenWindow="showForbiddenWindow" @confirmStoped="alertOne"></forbidden-window>
 		    </div>
 
 		    <div class="pop-box" v-show="switchBtn07">
@@ -232,6 +232,7 @@
     import forbiddenWindow from '@/components/pop/forbidden-pop'
     import userWindow from '@/components/pop/user-pop'
     import Loading from '@/components/base-comp/loading'
+    import {forbiddenUser} from '@/axios/api'
 
 	export default {
 		props: {
@@ -255,10 +256,27 @@
         		switchBtn06: false,
         		switchBtn07: false,
         		bg:false,
-        		nameNum:''
+        		nameNum:'',
+        		userId:'',
+        		freezeState: false
         	}
         },
         methods: {
+        	getForbiddenPara(para) {
+        		forbiddenUser(para).then(res =>{
+                   this.freezeState = res.data;
+        		}).catch(err =>{
+	               	console.log(err,'请求失败')
+	               })
+        	},
+        	alertOne(days) {
+        		this.switchBtn06 = !this.switchBtn06;
+        		this.bg = !this.bg;
+        		this.getForbiddenPara({
+        			user_id: this.userId,
+        			freezeTime: days
+        		})
+        	},
         	showNickWindow() {
         		this.switchBtn = !this.switchBtn;
         		this.bg = !this.bg;
@@ -283,9 +301,10 @@
         		this.switchBtn05 = !this.switchBtn05;
         		this.bg = !this.bg;
         	},
-        	showForbiddenWindow() {
+        	showForbiddenWindow(id) {
         		this.switchBtn06 = !this.switchBtn06;
         		this.bg = !this.bg;
+        		this.userId = id;
         	},
         	showUserWindow() {
         		this.switchBtn07 = !this.switchBtn07;
