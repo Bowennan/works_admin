@@ -25,6 +25,16 @@ import AbnormalComment from '@/components/community/ac-comp'
 import AnswerList from '@/components/community/al-comp'
 import ToBeAnswer from '@/components/community/tbca-comp'
 import AbnormalAnswer from '@/components/community/aa-comp'
+import OpusList from '@/components/community/opus-comp'
+import ToBeOpus from '@/components/community/tbco-comp'
+import AbnormalOpus from '@/components/community/ao-comp'
+import AskList from '@/components/community/asking-comp'
+import ToBeAsk from '@/components/community/tbcask-comp'
+import AbnormalAsk from '@/components/community/aask-comp'
+import PriceList from '@/components/community/price-comp'
+import ToBePrice from '@/components/community/tbcgp-comp'
+import AbnormalPrice from '@/components/community/agp-comp'
+
 
 import asideComp01 from '@/components/aside01-comp'
 import asideComp02 from '@/components/aside02-comp'
@@ -146,6 +156,42 @@ export default new Router({
              {
                 path:'aa',
                 component: AbnormalAnswer
+             },
+             {
+                path:'opus',
+                component: OpusList
+             },
+             {
+                path:'tbco',
+                component: ToBeOpus
+             },
+             {
+                path:'ao',
+                component: AbnormalOpus
+             },
+             {
+                path:'ask',
+                component: AskList
+             },
+             {
+                path:'tbcask',
+                component: ToBeAsk
+             },
+             {
+                path:'aask',
+                component: AbnormalAsk
+             },
+             {
+                path:'price',
+                component: PriceList
+             },
+             {
+                path:'tbcgp',
+                component: ToBePrice
+             },
+             {
+                path:'agp',
+                component: AbnormalPrice
              }
       ]
      },

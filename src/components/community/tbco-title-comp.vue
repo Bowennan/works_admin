@@ -1,10 +1,9 @@
 <template>
 	<div class="title-box">
-		<h3 class="title">通用回答列表</h3>
+		<h3 class="title">待审核作品列表</h3>
 		<refresh-btn class="refresh"></refresh-btn>
-		<Button class="display-btn" type="primary" shape="circle" icon="ios-trash-outline">批量隐藏</Button>
 		<div class="search-and-result">
-			<span class="result">全部回答：
+			<span class="result">待审核作品：
 	          <span class="res-num">1000</span>
 			</span>
 			<Select class="search-group" v-model="model1">
@@ -50,14 +49,6 @@
 		color:#fff;
 		bottom:24px;
 		left:28px;
-	}
-	.display-btn {
-		position: absolute;
-		width:92px;
-		font-size:12px;
-		color:#fff;
-		bottom:24px;
-		left:150px;
 	}
 	.search-group {
 		width:150px;

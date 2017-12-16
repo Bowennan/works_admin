@@ -7,7 +7,31 @@
        <ul class="main-menu">
        	<li><router-link class="main-links"  to="/datas">数据</router-link></li>
        	<li><router-link class="main-links"  to="/users">用户管理</router-link></li>
-       	<li><router-link class="main-links"  to="/communities">社区</router-link></li>
+       	<li class="main-links">社区
+           <ul>
+           	<li class="sub-menu">
+           		<router-link class="sub-menu-list" to="/communities">通用内容管理</router-link>
+           	</li>
+           	<li class="sub-menu">
+                <router-link class="sub-menu-list" to="/communities">通用模块管理</router-link>
+           	</li>
+           	<li class="sub-menu">
+                <router-link class="sub-menu-list" to="/communities">社区首页管理</router-link>
+           	</li>
+           	<li class="sub-menu">
+                <router-link class="sub-menu-list" to="/communities">品类社区管理</router-link>
+           	</li>
+           	<li class="sub-menu">
+                <router-link class="sub-menu-list" to="/communities">品牌社区管理</router-link>
+           	</li>
+           	<li class="sub-menu">
+                <router-link class="sub-menu-list" to="/communities">产品社区管理</router-link>
+           	</li>
+           	<li class="sub-menu">
+                <router-link class="sub-menu-list" to="/communities">社区新建与管理</router-link>
+           	</li>
+           </ul>
+       	</li>
        	<li><router-link class="main-links"  to="/wikis">百科</router-link></li>
        	<li><router-link class="main-links"  to="/labs">实验室</router-link></li>
         <li><router-link class="main-links"  to="/masters">达人志</router-link></li>
@@ -79,6 +103,7 @@ export default {
 		line-height: 86px;
 		text-align: center;
 		box-sizing: border-box;
+		cursor: pointer;
 	}
 	.main-links:hover {
         border-bottom:4px solid #e9eaec;
@@ -93,5 +118,48 @@ export default {
 	}
 	.tip {
 		margin-right:30px;
+	}
+	li.main-links {
+		position: relative;
+	}
+	li.main-links ul {
+		position: absolute;
+		z-index: 2000;
+		width:100%;
+		height: 210px;
+		background: #bbbec4;
+		top:86px;
+		left:50%;
+		transform: translateX(-50%);
+		border-bottom-left-radius: 5px;
+		border-bottom-right-radius: 5px;
+		display: none;
+	}
+	li.main-links:hover ul {
+		display: block;
+	}
+	li.sub-menu {
+		min-width: 140px;
+		width:100%;
+		height: 30px;
+		line-height: 30px;
+	    background: #2d8cf0;
+	    box-sizing: border-box;
+	    padding:2px;
+	}
+	li.sub-menu:last-child {
+		border-bottom-left-radius: 5px;
+		border-bottom-right-radius: 5px;	 
+	}
+	.sub-menu-list {
+		display: block;
+		color:#fff;
+		font-size: 12px;
+		font-weight: 400;
+		width:100%;
+		height: 100%;
+	}
+	.sub-menu-list:hover {
+       background: #5cadff;
 	}
 </style>

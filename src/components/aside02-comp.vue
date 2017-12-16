@@ -1,13 +1,13 @@
 <template>
 	<div class="aside-box">
 		 <Menu :theme="theme" class="lists-box">
-                <Submenu name="user">
+                <Submenu name="posting">
                     <template slot="title">
                         <div style="height:18px; display:inline-block">
                         	<span class="list-icon">
- 								<Icon type="ios-paper" size=16 class="iconfont"></Icon>
-						        <span class="icon-name">通用帖子管理</span>
- 							</span>
+ 								          <Icon type="ios-paper" size=16 class="iconfont"></Icon>
+						              <span class="icon-name">通用帖子管理</span>
+ 							            </span>
                         </div>
                     </template>
                     <MenuItem name="1-1" class="sublist">
@@ -23,7 +23,29 @@
                       <Badge count="10" class="badge-scale"></Badge>
                     </MenuItem>
                 </Submenu>
-                <Submenu name="check">
+                <Submenu name="opus">
+                    <template slot="title">
+                        <div style="height:18px; display:inline-block">
+                        	<span class="list-icon">
+                          <Icon type="images" size=16 class="iconfont"></Icon>
+						              <span class="icon-name">通用作品管理</span>
+ 							            </span>
+                        </div>
+                    </template>
+                    <MenuItem name="1-11" class="sublist">
+                      <router-link to="/communities/opus" class="list-icon sublist-sub">作品列表</router-link>
+                      <Badge count="10" class="badge-scale"></Badge>
+                    </MenuItem>
+                    <MenuItem name="1-22" class="sublist">
+                      <router-link to="/communities/tbco" class="list-icon sublist-sub">待审核作品</router-link>
+                      <Badge count="10" class="badge-scale"></Badge>
+                    </MenuItem>
+                    <MenuItem name="1-33" class="sublist">
+                      <router-link to="/communities/ao" class="list-icon sublist-sub">异常作品</router-link>
+                      <Badge count="10" class="badge-scale"></Badge>
+                    </MenuItem>
+                </Submenu>
+                <Submenu name="comment">
                     <template slot="title">
                         <div style="height:18px; display:inline-block">
                         	<span class="list-icon checked">
@@ -67,6 +89,50 @@
 	                      <router-link to="/communities/aa" class="list-icon sublist-sub">异常回答</router-link>
                           <Badge count="10" class="badge-scale"></Badge>
 	                    </MenuItem>
+                </Submenu>
+                <Submenu name="ask">
+                    <template slot="title">
+                        <div style="height:18px; display:inline-block">
+                          <span class="list-icon">
+                          <Icon type="help-circled"  size=16 class="iconfont"></Icon>
+                          <span class="icon-name">通用提问管理</span>
+                          </span>
+                        </div>
+                    </template>
+                    <MenuItem name="1-111" class="sublist">
+                      <router-link to="/communities/ask" class="list-icon sublist-sub">提问列表</router-link>
+                      <Badge count="10" class="badge-scale"></Badge>
+                    </MenuItem>
+                    <MenuItem name="1-222" class="sublist">
+                      <router-link to="/communities/tbcask" class="list-icon sublist-sub">待审核提问</router-link>
+                      <Badge count="10" class="badge-scale"></Badge>
+                    </MenuItem>
+                    <MenuItem name="1-333" class="sublist">
+                      <router-link to="/communities/aask" class="list-icon sublist-sub">异常提问</router-link>
+                      <Badge count="10" class="badge-scale"></Badge>
+                    </MenuItem>
+                </Submenu>
+                <Submenu name="price">
+                    <template slot="title">
+                        <div style="height:18px; display:inline-block">
+                          <span class="list-icon">
+                          <Icon type="social-bitcoin" size=16 class="iconfont"></Icon>
+                          <span class="icon-name">通用好价管理</span>
+                          </span>
+                        </div>
+                    </template>
+                    <MenuItem name="1-110" class="sublist">
+                      <router-link to="/communities/price" class="list-icon sublist-sub">好价列表</router-link>
+                      <Badge count="10" class="badge-scale"></Badge>
+                    </MenuItem>
+                    <MenuItem name="1-220" class="sublist">
+                      <router-link to="/communities/tbcgp" class="list-icon sublist-sub">待审核好价</router-link>
+                      <Badge count="10" class="badge-scale"></Badge>
+                    </MenuItem>
+                    <MenuItem name="1-330" class="sublist">
+                      <router-link to="/communities/agp" class="list-icon sublist-sub">异常好价</router-link>
+                      <Badge count="10" class="badge-scale"></Badge>
+                    </MenuItem>
                 </Submenu>
             </Menu>
 
@@ -159,11 +225,14 @@
 		vertical-align: middle;
 	}
 	i.iconfont.ivu-icon.ivu-icon-ios-cog,
-	i.iconfont.ivu-icon.ivu-icon-ios-paper,
+	i.iconfont.ivu-icon.ivu-icon-social-bitcoin,
+  i.iconfont.ivu-icon.ivu-icon-ios-paper,
 	i.iconfont.ivu-icon.ivu-icon-ios-email,
 	i.iconfont.ivu-icon.ivu-icon-chatbubble-working,
 	i.iconfont.ivu-icon.ivu-icon-chatbox-working,
 	i.iconfont.ivu-icon.ivu-icon-ios-compose,
+  i.iconfont.ivu-icon.ivu-icon-images,
+  i.iconfont.ivu-icon.ivu-icon-help-circled,
 	i.iconfont.ivu-icon.ivu-icon-ios-list {
 	    vertical-align: middle;
 	    margin-rgiht: 4px;

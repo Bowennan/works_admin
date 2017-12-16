@@ -1,10 +1,10 @@
 <template>
 	<div class="title-box">
-		<h3 class="title">通用评论管理</h3>
+		<h3 class="title">通用评论列表</h3>
 		<refresh-btn class="refresh"></refresh-btn>
 		<Button class="display-btn" type="primary" shape="circle" icon="ios-trash-outline">批量隐藏</Button>
 		<div class="search-and-result">
-			<span class="result">全部：
+			<span class="result">全部评论：
 	          <span class="res-num">1000</span>
 			</span>
 			<Select class="search-group" v-model="model1">

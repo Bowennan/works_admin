@@ -1,11 +1,11 @@
 <template>
 	<div class="title-box">
-		<h3 class="title">通用回答列表</h3>
-		<refresh-btn class="refresh"></refresh-btn>
-		<Button class="display-btn" type="primary" shape="circle" icon="ios-trash-outline">批量隐藏</Button>
+		<h3 class="title">通用问题列表</h3>
+		<Button type="primary" class="refresh" shape="circle" icon="ios-loop">刷新</Button>
+		<Button type="primary" class="disappeared" shape="circle" icon="ios-trash-outline">批量隐藏</Button>
 		<div class="search-and-result">
-			<span class="result">全部回答：
-	          <span class="res-num">1000</span>
+			<span class="result">全部问答：
+	          <span class="res-num">353216</span>
 			</span>
 			<Select class="search-group" v-model="model1">
 		        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
@@ -15,15 +15,11 @@
 </template>
 
 <script>
-    import refreshBtn from '@/components/base-comp/refresh-btn'
 	export default {
        data() {
        	return {
        		model1:''
        	}
-       },
-       components: {
-       	refreshBtn
        }
 	}
 </script>
@@ -46,18 +42,18 @@
 	.refresh {
 		position: absolute;
 		width:92px;
-		font-size:14px;
+		font-size:12px;
 		color:#fff;
 		bottom:24px;
 		left:28px;
 	}
-	.display-btn {
+	.disappeared {
 		position: absolute;
 		width:92px;
 		font-size:12px;
 		color:#fff;
 		bottom:24px;
-		left:150px;
+		left:138px;
 	}
 	.search-group {
 		width:150px;

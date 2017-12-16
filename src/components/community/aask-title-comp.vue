@@ -1,29 +1,21 @@
 <template>
 	<div class="title-box">
-		<h3 class="title">通用回答列表</h3>
-		<refresh-btn class="refresh"></refresh-btn>
-		<Button class="display-btn" type="primary" shape="circle" icon="ios-trash-outline">批量隐藏</Button>
+		<h3 class="title">异常问答列表</h3>
+		<Button type="primary" class="refresh" shape="circle" icon="ios-loop">刷新</Button>
 		<div class="search-and-result">
-			<span class="result">全部回答：
+			<span class="result">异常问答：
 	          <span class="res-num">1000</span>
 			</span>
-			<Select class="search-group" v-model="model1">
-		        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
-		    </Select>
 		</div>
 	</div>
 </template>
 
 <script>
-    import refreshBtn from '@/components/base-comp/refresh-btn'
 	export default {
        data() {
        	return {
        		model1:''
        	}
-       },
-       components: {
-       	refreshBtn
        }
 	}
 </script>
@@ -51,14 +43,6 @@
 		bottom:24px;
 		left:28px;
 	}
-	.display-btn {
-		position: absolute;
-		width:92px;
-		font-size:12px;
-		color:#fff;
-		bottom:24px;
-		left:150px;
-	}
 	.search-group {
 		width:150px;
 		margin-top:20px;
@@ -68,8 +52,7 @@
 	.search-and-result {
 		position:absolute;
 		right:38px;
-		top:50%;
-		transform: translateY(-50%);
+		bottom:30px;
 		text-align: right;
 	}
 	.result {

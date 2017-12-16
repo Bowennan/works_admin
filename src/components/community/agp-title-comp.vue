@@ -1,29 +1,23 @@
 <template>
 	<div class="title-box">
-		<h3 class="title">通用回答列表</h3>
-		<refresh-btn class="refresh"></refresh-btn>
-		<Button class="display-btn" type="primary" shape="circle" icon="ios-trash-outline">批量隐藏</Button>
+		<h3 class="title">异常好价列表</h3>
+		<Button type="primary" class="refresh" shape="circle" icon="ios-loop">刷新</Button>
+		<Button type="primary" class="disappeared" shape="circle" icon="ios-trash-outline">批量隐藏</Button>
+		<Button type="primary" class="passed" shape="circle" icon="ios-trash-outline">批量通过</Button>
 		<div class="search-and-result">
-			<span class="result">全部回答：
+			<span class="result">异常好价：
 	          <span class="res-num">1000</span>
 			</span>
-			<Select class="search-group" v-model="model1">
-		        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
-		    </Select>
 		</div>
 	</div>
 </template>
 
 <script>
-    import refreshBtn from '@/components/base-comp/refresh-btn'
 	export default {
        data() {
        	return {
        		model1:''
        	}
-       },
-       components: {
-       	refreshBtn
        }
 	}
 </script>
@@ -46,18 +40,26 @@
 	.refresh {
 		position: absolute;
 		width:92px;
-		font-size:14px;
+		font-size:12px;
 		color:#fff;
 		bottom:24px;
 		left:28px;
 	}
-	.display-btn {
+	.disappeared {
 		position: absolute;
 		width:92px;
 		font-size:12px;
 		color:#fff;
 		bottom:24px;
-		left:150px;
+		left:138px;
+	}
+	.passed {
+		position: absolute;
+		width:92px;
+		font-size:12px;
+		color:#fff;
+		bottom:24px;
+		left:248px;
 	}
 	.search-group {
 		width:150px;
@@ -68,8 +70,7 @@
 	.search-and-result {
 		position:absolute;
 		right:38px;
-		top:50%;
-		transform: translateY(-50%);
+		bottom:30px;
 		text-align: right;
 	}
 	.result {
