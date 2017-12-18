@@ -134,6 +134,72 @@
                       <Badge count="10" class="badge-scale"></Badge>
                     </MenuItem>
                 </Submenu>
+                <Submenu name="senhand">
+                    <template slot="title">
+                        <div style="height:18px; display:inline-block">
+                          <span class="list-icon">
+                          <Icon type="ios-box" size=16 class="iconfont"></Icon>
+                          <span class="icon-name">通用二手管理</span>
+                          </span>
+                        </div>
+                    </template>
+                    <MenuItem name="1-451" class="sublist">
+                      <router-link to="/communities/senhand" class="list-icon sublist-sub">二手列表</router-link>
+                      <Badge count="10" class="badge-scale"></Badge>
+                    </MenuItem>
+                    <MenuItem name="1-452" class="sublist">
+                      <router-link to="/communities/tbcsh" class="list-icon sublist-sub">待审核二手</router-link>
+                      <Badge count="10" class="badge-scale"></Badge>
+                    </MenuItem>
+                    <MenuItem name="1-453" class="sublist">
+                      <router-link to="/communities/ash" class="list-icon sublist-sub">异常二手</router-link>
+                      <Badge count="10" class="badge-scale"></Badge>
+                    </MenuItem>
+                </Submenu>
+                <Submenu name="qs">
+                    <template slot="title">
+                        <div style="height:18px; display:inline-block">
+                          <span class="list-icon">
+                          <Icon type="camera" size=16 class="iconfont"></Icon>
+                          <span class="icon-name">通用装备秀管理</span>
+                          </span>
+                        </div>
+                    </template>
+                    <MenuItem name="1-145" class="sublist">
+                      <router-link to="/communities/qs" class="list-icon sublist-sub">装备秀列表</router-link>
+                      <Badge count="10" class="badge-scale"></Badge>
+                    </MenuItem>
+                    <MenuItem name="1-256" class="sublist">
+                      <router-link to="/communities/tbcqs" class="list-icon sublist-sub">待审核装备秀</router-link>
+                      <Badge count="10" class="badge-scale"></Badge>
+                    </MenuItem>
+                    <MenuItem name="1-367" class="sublist">
+                      <router-link to="/communities/aqs" class="list-icon sublist-sub">异常装备秀</router-link>
+                      <Badge count="10" class="badge-scale"></Badge>
+                    </MenuItem>
+                </Submenu>
+                <Submenu name="disclo">
+                    <template slot="title">
+                        <div style="height:18px; display:inline-block">
+                          <span class="list-icon">
+                          <Icon type="speakerphone" size=16 class="iconfont"></Icon>
+                          <span class="icon-name">通用爆料管理</span>
+                          </span>
+                        </div>
+                    </template>
+                    <MenuItem name="1-189" class="sublist">
+                      <router-link to="/communities/disclo" class="list-icon sublist-sub">爆料列表</router-link>
+                      <Badge count="10" class="badge-scale"></Badge>
+                    </MenuItem>
+                    <MenuItem name="1-299" class="sublist">
+                      <router-link to="/communities/tbcdisclo" class="list-icon sublist-sub">待审核爆料</router-link>
+                      <Badge count="10" class="badge-scale"></Badge>
+                    </MenuItem>
+                    <MenuItem name="1-392" class="sublist">
+                      <router-link to="/communities/adisclo" class="list-icon sublist-sub">异常爆料</router-link>
+                      <Badge count="10" class="badge-scale"></Badge>
+                    </MenuItem>
+                </Submenu>
             </Menu>
 
             <div class="views">
@@ -232,6 +298,9 @@
 	i.iconfont.ivu-icon.ivu-icon-chatbox-working,
 	i.iconfont.ivu-icon.ivu-icon-ios-compose,
   i.iconfont.ivu-icon.ivu-icon-images,
+  i.iconfont.ivu-icon.ivu-icon-camera,
+  i.iconfont.ivu-icon.ivu-icon-speakerphone,
+  i.iconfont.ivu-icon.ivu-icon-ios-box,
   i.iconfont.ivu-icon.ivu-icon-help-circled,
 	i.iconfont.ivu-icon.ivu-icon-ios-list {
 	    vertical-align: middle;

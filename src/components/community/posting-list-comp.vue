@@ -7,66 +7,86 @@
 			<li class="posting-con">产品关联</li>
 			<li class="posting-action">帖子状态与操作</li>
 		</ul>
-
-		<ul>
+        <div v-show="!postingListData.length">
+        	<loading></loading>
+        </div>
+		<ul v-for="(item, index) in postingListData" :key="index">
 			<li>
 				<ul class="con-header">
 					<li class="posting-id more-line">
 						<p>
-							<span class="lines">13232</span>
-							<span class="lines">你知道你活的比狗惨吗？</span>
-							<span class="lines">2017-12-9</span>
+							<span class="lines values">{{item.id}}</span>
+							<span class="lines values">{{item.title}}</span>
+							<span class="lines">{{item.published_at}}</span>
 						</p>
 					</li>
 					<li class="posting-author more-line">
 						<p>
-							<span class="lines">1212</span>
-							<span class="lines">哈，你不配</span>
-							<span class="lines">😜</span>
+							<span class="lines values">{{(item.user).user_id}}</span>
+							<span class="lines values">{{(item.user).nickname}}</span>
+							<span class="lines values">😜</span>
 						</p>
 					</li>
 					<li class="posting-info more-line">
 						<p>
-							<span class="lines">评论: <span>12</span></span> 
-							<span class="lines">类别: <span>攻略、图文、社区</span></span> 
+							<span class="lines">评论: <span class="values">{{item.comment_num}}</span></span> 
+							<span class="lines">类别: <span class="values">{{item.article_type_name_cn}} | {{item.content_type==="image"? "纯图" : item.content_type==="video"? "视频" : "图文"}}</span></span> 
+
+							    <Poptip style="white-space: normal;" trigger='hover' placement="bottom" width="300">
+							        <span>社区、浏览、收藏等</span>
+							        <div class="pop-cons" slot="content" style="width:100%; height:130px;">
+							            <p class="posting-pop">
+								        		<span>加入的社区：</span> <span class="values" style="padding:0 3px"  v-for="(inneritem, innerindex) in item.communities" :key="innerindex">{{inneritem.name}}</span>
+								        		     <span v-if="!(item.communities).length">无</span>
+									        	</p>
+                                        <p class="posting-pop">
+                                        	浏览：<span class="values">{{item.read_num}}</span>
+                                        </p>
+                                        <p class="posting-pop">
+                                        	收藏：<span class="values">{{item.collect_num}}</span>
+                                        </p>
+							        </div>
+							    </Poptip>
 						</p>
 					</li>
 					<li class="posting-con">
-					    <p>产品ID： <span>12151</span></p>
+					    <p>产品ID： <span style="padding:0 3px"  v-for="(inneritem, innerindex) in item.products" :key="innerindex">{{inneritem.id}}</span>
+					<span v-if="!(item.products).length">无</span></p>
 					</li>
 					<li class="posting-action">
 						<p class="h-block01">
 							<span class="items">
-								<span>权重</span>
-								<span>|123</span>
+								<span>文章归类 | </span>
+								<span class="values">设置</span>
+							</span>
+							
+							<span class="items">
+								<span>文章状态 | </span>
+								<span class="values">{{item.status===0? "隐藏" : item.status===1? "正常" : "草稿"}}</span>
 							</span>
 							<span class="items">
-								<span>文章状态</span>
-								<span>|隐藏</span>
-							</span>
-							<span class="items">
-								<span>产品关联</span>
-								<span>|设置</span>
+								<span>产品关联 | </span>
+								<span class="values">设置</span>
 							</span>
 						</p>
 						<p class="h-block02">
 							<span class="items">
-								<span>推首</span>
-								<span>|设置</span>
+								<span>推首 | </span>
+								<span class="values">设置</span>
 							</span>
 							<span class="items">
-								<span>评分</span>
-								<span>|等级A</span>
+								<span>评分 | </span>
+								<span class="values">{{item.level===0? "等级A" : item.level===1? "等级B" : item.level===2? "等级C" : item.level===3? "等级D" : "设置" }}</span>
 							</span>
 							<span class="items">
-								<span>TAG</span>
-								<span>|设置</span>
+								<span>TAG | </span>
+								<span class="values">设置</span>
 							</span>
 						</p>
 						<p class="h-block03">
 							<span class="items">
-								<span>文章归类</span>
-								<span>|设置</span>
+								<span>权重 | </span>
+								<span class="values">{{item.heat}}</span>
 							</span>
 						</p>
 					</li>
@@ -77,11 +97,20 @@
 </template>
 
 <script>
+    import Loading from '@/components/base-comp/loading'
 	export default {
+		props:{
+			postingListData:{
+				type:Array
+			}
+		},
        data() {
        	  return {
        	  	state: 0,
        	  }
+       },
+       components: {
+       	Loading
        }
    }
 </script>
@@ -109,8 +138,8 @@
 		height: 96px;
 		display: flex;
 		border-bottom:1px solid #ccc;
-		color:#80848f;
-		font-weight: bold;
+		color:#bbbec4;
+		font-weight: 400;
 	}
 	.col {
 		line-height: 18px;
@@ -125,20 +154,20 @@
 		flex:0 0 146px;
 	}
 	.posting-action {
-		flex:0 0 296px;
+		flex:0 0 310px;
 		display: flex;
 	}
 	.posting-action p {
        padding-top:16px;
 	}
 	.posting-action .h-block01 {
-		flex:0 0 116px;
+		flex:0 0 120px;
 	}
 	.posting-action .h-block02 {
 		flex:0 0 86px;
 	}
 	.posting-action .h-block03 {
-		flex:0 0 92px;
+		flex:0 0 100px;
 	}
 	.items {
 		display: block;
@@ -188,6 +217,21 @@
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 3;
 		overflow: hidden;
+	}
+	.values {
+		color:#80848f;
+	}
+	.pop-cons {
+		width:100%;
+		height: 130px;
+        color:#80848f;
+	}
+	.pop-cons .posting-pop{
+		width:100%;
+		display: block;
+		color:#bbbec4;
+		height: 30px;
+		line-height: 30px;
 	}
 </style>
 

@@ -1,25 +1,10 @@
 <template>
 	<div class="search-box">
 		<div class="id-name-search">
-			    <Input v-model="searchVal">
-			        <Select v-model="defaultSelect" slot="prepend" style="width: 80px">
-			            <Option value="title">帖子</Option>
-			            <Option value="id">ID</Option>
-			        </Select>
-			        <Button slot="append" icon="ios-search" @click="subData"></Button>
-			    </Input>
+			<id-search-post></id-search-post>
 		</div>
 
 		<div class="range-search">
-			<div class="lev-search">
-				<level-search class="level-group"></level-search>
-			</div>
-
-			<div class="lev-search">
-				    <Select class="brand-group" v-model="model1">
-				        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
-				    </Select>
-			</div>
 
 			<div class="lev-search">
 				    <Select class="commity-group" v-model="model1">
@@ -39,30 +24,21 @@
 </template>
 
 <script>
+   import idSearchPost from '@/components/base-comp/id-search01'
    import dateToDate from '@/components/base-comp/date-to-date01'
    import confirmBtn from '@/components/base-comp/confirm-btn'
    import levelSearch from '@/components/base-comp/level-search'
 	export default {
        data() {
        	return {
-       		searchVal: '',
-       		defaultSelect: 'title',
+       		value13: '',
+       		select3: '0',
        		model1: ''
        	}
        },
-       methods: {
-       	 subData() {
-       	 	let paras = {};
-       	 	if(this.defaultSelect === 'title'){
-       	 		paras.title = this.searchVal;
-       	 	}else {
-       	 		paras.id = parseInt(this.searchVal);
-       	 	}
 
-       	 	this.$emit("searchResult", paras);
-       	 }
-       },
        components: {
+       	  idSearchPost,
        	  dateToDate,
        	  confirmBtn,
        	  levelSearch

@@ -34,7 +34,15 @@ import AbnormalAsk from '@/components/community/aask-comp'
 import PriceList from '@/components/community/price-comp'
 import ToBePrice from '@/components/community/tbcgp-comp'
 import AbnormalPrice from '@/components/community/agp-comp'
-
+import SenHandList from '@/components/community/senhand-comp'
+import ToBeSenHand from '@/components/community/tbcsh-comp'
+import AbnormalSenHand from '@/components/community/ash-comp'
+import disCloList from '@/components/community/disclo-comp'
+import ToBedisClo from '@/components/community/tbcdisclo-comp'
+import AbnormaldisClo from '@/components/community/adisclo-comp'
+import qsList from '@/components/community/qs-comp'
+import ToBeqs from '@/components/community/tbcqs-comp'
+import Abnormalqs from '@/components/community/aqs-comp'
 
 import asideComp01 from '@/components/aside01-comp'
 import asideComp02 from '@/components/aside02-comp'
@@ -192,6 +200,42 @@ export default new Router({
              {
                 path:'agp',
                 component: AbnormalPrice
+             },
+             {
+                path:'senhand',
+                component: SenHandList
+             },
+             {
+                path:'tbcsh',
+                component: ToBeSenHand
+             },
+             {
+                path:'ash',
+                component: AbnormalSenHand
+             },
+             {
+                path:'disclo',
+                component: disCloList
+             },
+             {
+                path:'tbcdisclo',
+                component: ToBedisClo
+             },
+             {
+                path:'adisclo',
+                component: AbnormaldisClo
+             },
+             {
+                path:'qs',
+                component: qsList
+             },
+             {
+                path:'tbcqs',
+                component: ToBeqs
+             },
+             {
+                path:'aqs',
+                component: Abnormalqs
              }
       ]
      },

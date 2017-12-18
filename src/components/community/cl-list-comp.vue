@@ -10,13 +10,13 @@
 			<li class="action-status">操作</li>
 		</ul>
 
-		<ul>
+		<ul v-for="(item, index) in commentData" :key="index">
 			<li>
 				<ul class="con-header">
 					<li class="id-nickname more-line">
 						<p class="f-col">
 						   <Checkbox class="checkbox" v-model="single"></Checkbox>
-						   <span>12121</span>
+						   <span>{{item.id}}</span>
 						   <span>直评</span>
 						</p>
 					</li>
@@ -25,23 +25,23 @@
 					</li>
 					<li class="works more-line">
 					    <p>
-					    	<span>评论者：<span class="values">影视，娱乐，体育</span></span>
-					    	<span>所属内容：<span class="values">作品1，作品2</span></span>
-					    	<span>标题：<span class="values">作品1，作品2</span></span>
+					    	<span>评论者：<span class="values">{{(item.user).nickname}}</span></span>
+					    	<span>所属内容：<span class="values">{{(item.article).article_type}}</span></span>
+					    	<span>标题：<span class="values">{{(item.article).title}}</span></span>
 					    </p>
 					</li>
 					<li class="apply-info more-line">
 						<p>
-							<span>社区：<span class="values">待审核</span></span>
-							<span>赞同：<span class="values">5</span></span>
-							<span>举报：<span class="values">56</span></span>
-							<span>时间：<span class="values">2017-12-12</span></span>
+							<span>回复：<span class="values">{{item.reply_num}}</span></span>
+							<span>赞同：<span class="values">{{item.agree_num}}</span></span>
+							<span>举报：<span class="values">0</span></span>
+							<span>时间：<span class="values">{{item.updated_at}}</span></span>
 						</p>
 					</li>
 					<li class="action-status more-line">
 						<p>
-							<span>热门评论 | <span class="values">是</span></span>
-							<span>评论状态 | <span class="values">正常</span></span>
+							<span>热门评论 | <span class="values">暂无</span></span>
+							<span>评论状态 | <span class="values">{{item.deleted_at===null? "正常" : "隐藏"}}</span></span>
 						</p>
 					</li>
 				</ul>
@@ -52,6 +52,11 @@
 
 <script>
 	export default {
+		props: {
+			commentData:{
+				type:Array
+			}
+		},
        data() {
        	  return {
        	  	state: 0,
@@ -85,7 +90,7 @@
 		display: flex;
 		border-bottom:1px solid #ccc;
 		color:#80848f;
-		font-weight: bold;
+		font-weight: 400;
 	}
 	.apply-info {
 		flex:0 0 197px;

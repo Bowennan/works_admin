@@ -125,6 +125,7 @@ export default {
 	li.main-links ul {
 		position: absolute;
 		z-index: 2000;
+		min-width:140px;
 		width:100%;
 		height: 210px;
 		background: #bbbec4;
