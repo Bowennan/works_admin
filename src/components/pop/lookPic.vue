@@ -43,10 +43,10 @@
 		height: 554px;
 		box-sizing: border-box;
 		border:1px solid #bbbec4;
-		position: absolute;
+		position: fixed;
 		left:50%;
-		top:50%;
-		transform: translate(-50% ,-50%);
+		top:230px;
+		transform: translateX(-50%);
 		background: #fff;
 		border-radius: 8px;
 	}

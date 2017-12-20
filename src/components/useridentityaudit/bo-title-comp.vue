@@ -1,9 +1,9 @@
 <template>
 	<div class="title-box01">
 		<span class="title">品牌官方身份审核</span>
-		<refresh-btn class="refresh"></refresh-btn>
+        <Button type="primary" class="refresh" shape="circle" icon="ios-loop">刷新</Button>
 		<div class="num">
-			<span style="color:#1c2438">待处理:
+			<span style="color:#1c2438">品牌官方身份审核：
               <span style="color:#bbbec4">
               	已处理
               </span>
@@ -14,7 +14,7 @@
               <span style="color:#bbbec4">
               	未处理
               </span>
-              <span style="color:#ff890f; font-weight:bold">
+              <span style="color:#f00; font-weight:bold">
               	100
               </span>
 			</span>
@@ -23,11 +23,8 @@
 </template>
 
 <script>
-    import refreshBtn from '@/components/base-comp/refresh-btn'
 	export default {
-      components: {
-      	refreshBtn
-      }
+      
 	}
 </script>
 
@@ -51,8 +48,9 @@
 		position: absolute;
 		bottom:24px;
 		left:28px;
-		font-size:14px;
+		font-size:12px;
 		color:#fff;
+		width:92px;
 	}
 	.num {
 		position:absolute;

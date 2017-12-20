@@ -1,14 +1,11 @@
 <template>
 	<div class="title-box01">
 		<span class="title">待处理新用户</span>
-		<refresh-btn class="refresh"></refresh-btn>
+		<Button class="refresh" type="primary" shape="circle" icon="ios-loop">刷新</Button>
 		<div class="num">
-			<span style="color:#1c2438">待处理:
-              <span style="color:#bbbec4">
-              	新用户
-              </span>
+			<span style="color:#1c2438">待处理新用户：
               <span style="color:#ff890f; font-weight:bold">
-              	45
+              	{{newUser}}
               </span>
 			</span>
 		</div>
@@ -16,11 +13,12 @@
 </template>
 
 <script>
-    import refreshBtn from '@/components/base-comp/refresh-btn'
 	export default {
-      components: {
-      	refreshBtn
-      }
+		data() {
+			return{
+				newUser:999
+			}
+		}
 	}
 </script>
 
@@ -44,8 +42,9 @@
 		position: absolute;
 		bottom:24px;
 		left:28px;
-		font-size:14px;
+		font-size:12px;
 		color:#fff;
+		width:92px;
 	}
 	.num {
 		position:absolute;

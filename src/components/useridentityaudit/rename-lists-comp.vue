@@ -13,34 +13,48 @@
 			<li>
 				<ul class="con-header">
 					<li class="check-id">
-						<p>1025</p>
+						<p>
+							<span class="values">1025</span>
+						</p>
 					</li>
 					<li class="id-nickname more-line">
 						<p>
-						   <span>1025</span>
-						   <span>开灯的山洞</span>
+						   <span class="values">1025</span>
+						   <span class="values">开灯的山洞</span>
 						</p>
 					</li>
 					<li class="identity-info more-line">
 						<p>
-							<span>真是姓名：张三</span>
-							<span>身份证号：130205456899657820</span>
-							<span>联系电话：166699878856</span>
+							<span>真是姓名：<span class="values">张三</span></span>
+							<span>身份证号：<span class="values">130205456899657820</span></span>
+							<span>联系电话：<span class="values">1526654955544</span></span>
 						</p>
 					</li>
 					<li class="identity-pic">
-					    <p @click="showPic">身份照片</p>
+					    <p @click="showPic">
+					    	<span class="values pointer">身份照片</span>
+					    </p>
 					</li>
 					<li class="apply-info more-line">
 						<p>
-							<span>申请状态：待审核</span>
-							<span>申请时间：201665</span>
+							<span>申请状态：<span class="values">待审核</span></span>
+							<span>申请时间：<span class="values">201665</span></span>
 						</p>
 					</li>
 					<li class="action-status more-line">
 						<p>
-							<span>审核</span>
-							<span class="con">说明：的jfk简实名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了</span>
+							<span class="pointer" @click="showCheck">审核</span>
+
+							    <Poptip trigger="hover" placement="bottom-end" width="300">
+								    <span class="con">说明：<span class='values'>
+										的jfk简实名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了
+									</span></span>
+								    <div  class="tip-style" slot="content">
+								        <span>
+								        	的jfk简实名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核f名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了名审核fk了
+								        </span>
+								    </div>
+								</Poptip>
 						</p>
 					</li>
 				</ul>
@@ -51,27 +65,35 @@
 			
 		</div>
 		<look-pic @close="showPic" v-show="showPicStatus"></look-pic>
+		<check-or-not @close="showCheck" v-show="showCheckStatus"></check-or-not>
 	</div>
 </template>
 
 <script>
     import lookPic from '@/components/pop/lookPic'
+    import checkOrNot from '@/components/pop/passing-pop'
 	export default {
        data() {
        	  return {
        	  	state: 0,
        	  	bg:false,
-       	  	showPicStatus:false
+       	  	showPicStatus:false,
+       	  	showCheckStatus:false
        	  }
        },
        methods: {
        	showPic() {
        		this.bg = !this.bg
        		this.showPicStatus = !this.showPicStatus
+       	},
+       	showCheck() {
+       		this.bg = !this.bg
+       		this.showCheckStatus = !this.showCheckStatus
        	}
        },
        components: {
-       	lookPic
+       	lookPic,
+       	checkOrNot
        }
    }
 </script>
@@ -109,8 +131,8 @@
 		height: 96px;
 		display: flex;
 		border-bottom:1px solid #ccc;
-		color:#80848f;
-		font-weight: bold;
+		color:#bbbec4;
+		font-weight: 400;
 	}
 	.apply-info {
 		flex:0 0 180px;
@@ -140,7 +162,7 @@
 		display: table-cell;
 		vertical-align: middle;
 	}
-	.more-line p span {
+	.more-line p > span {
 		display: block;
 	}
 	.con-box {
@@ -171,6 +193,15 @@
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 3;
 		overflow: hidden;
+	}
+	.values {
+		color:#80848f;
+	}
+	.tip-style {
+		white-space: normal;
+	}
+	.pointer {
+		cursor:pointer;
 	}
 </style>
 

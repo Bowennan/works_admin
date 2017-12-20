@@ -1,18 +1,28 @@
 <template>
 	<div class="search-box01">
-		<id-search class="id-name-search"></id-search>
-		<date-to-date class="data-select"></date-to-date>
+		<Input class="id-search" v-model="result">
+	        <Select v-model="result_doing" slot="prepend" style="width: 80px">
+	            <Option value="id">ID</Option>
+	            <Option value="nickname">昵称</Option>
+	        </Select>
+	        <Button slot="append" icon="ios-search"></Button>
+	    </Input>
+		<Row class="date-range">
+	        <Col span="12">
+	            <DatePicker type="daterange" placement="bottom-end" placeholder="Select date" style="width: 200px"></DatePicker>
+	        </Col>
+	    </Row>
 	</div>
 </template>
 
 <script>
-   import idSearch from '@/components/base-comp/id-search'
-   import dateToDate from '@/components/base-comp/date-to-date'
 	export default {
-      components: {
-      	idSearch,
-      	dateToDate
-      }
+		data() {
+			return {
+				result:"无",
+				result_doing:"id"
+			}
+		}
 	}
 </script>
 
@@ -25,12 +35,13 @@
 			border-bottom:1px solid #dddee1;
 			position:relative;
 		}
-		.id-name-search {
+		.id-search {
            position:absolute;
            top:20px;
            left:28px;
+           width:240px;
 		}
-		.data-select {
+		.date-range{
            position:absolute;
            right:38px;
            top:20px;

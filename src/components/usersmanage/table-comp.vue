@@ -170,11 +170,6 @@
 								<span>
 									<span style="cursor:pointer" @click="showPrivateWindow">私信查看</span>
 								</span>
-								<span>
-									
- 										<slot name="tbt"></slot>
-									
-								</span>
 							</p>
 						</div>
 						

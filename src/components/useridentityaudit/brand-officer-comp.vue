@@ -25,16 +25,4 @@
 	    min-width:1052px;
 	    margin:0 10px;
 	  }
-	  .tbt {
-	  	display: inline-block;
-	  	width:52px;
-	  	height:21px;
-	  	line-height: 21px;
-	  	text-align: center;
-	  	background: #f90;
-	  	border-radius: 5px;
-	  	color:#fff;
-	  	font-size:12px;
-	  	font-weight: bold;
-	  }
 </style>

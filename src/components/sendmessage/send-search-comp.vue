@@ -15,11 +15,17 @@
 		        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
 		    </Select>
 
-		    <level-search class="level-group"></level-search>
+		    <Select class="commity-group" v-model="model1">
+		        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
+		    </Select>
 
-		    <date-to-date class="date-range"></date-to-date>
 		
-			<confirm-btn class="confirm-group"></confirm-btn>
+		       
+		    <DatePicker class="date-range" type="daterange" placement="bottom-end" placeholder="Select date" style="width: 200px"></DatePicker>
+		       
+		  
+		
+			<Button type="primary" class="confirm-group">确认筛选</Button>
 
 			<div class="num">
 				<span class="result">
@@ -32,9 +38,7 @@
 </template>
 
 <script>
-   import dateToDate from '@/components/base-comp/date-to-date'
-   import confirmBtn from '@/components/base-comp/confirm-btn'
-   import levelSearch from '@/components/base-comp/level-search'
+   
 	export default {
        data() {
        	return {
@@ -42,12 +46,6 @@
        		select3: '0',
        		model1: ''
        	}
-       },
-
-       components: {
-       	  dateToDate,
-       	  confirmBtn,
-       	  levelSearch
        }
 
 	}

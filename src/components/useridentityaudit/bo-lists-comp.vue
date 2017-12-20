@@ -35,7 +35,7 @@
 					    	<span><span class="title-nam">品牌：</span>大疆</span>
 					    	
 					    	<Poptip trigger="hover" placement = 'bottom' width="300">
-					    		<span class="con"><span class="title-nam">关联产品：</span>角度看jfk了的时间决定是否技术的家快来解放圣诞节快乐家快来解放圣诞节快乐家快来解放圣诞节快乐飞机</span>
+					    		<span class="con"><span class="title-nam pointer">关联产品：</span>角度看jfk了的时间决定是否技术的家快来解放圣诞节快乐家快来解放圣诞节快乐家快来解放圣诞节快乐飞机</span>
 					    		<div slot="content" style="width:100%; height:150px; position:relative; white-space: normal;">
 					    			
 					    				<div style="width:100%; height:100%; position:absolute">
@@ -57,31 +57,78 @@
 					</li>
 					<li class="action-status more-line">
 						<p>
-							<span><span>审核</span><span>关联产品</span></span>
-							<span>说明：的jfk简单了领导jfk了</span>
+							<span><span class="pointer" @click="showCheck">审核</span><span style="margin-left:20px" class="pointer" @click="showConnect">关联产品</span></span>
+
+
+							<Poptip trigger="hover" placement="bottom-end" width="420">
+						        <span class='con'>说明：<span class="values pointer">
+									的jfk简单了领导jfk了简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导
+								</span></span>
+						        <div style="white-space:normal" slot="content">
+						           <span>
+						           	的jfk简单了领导jfk了简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导的jfk简单了领导jfk了简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导
+						           </span>
+						        </div>
+						    </Poptip>
 						</p>
 					</li>
 				</ul>
 			</li>
 		</ul>
+
+		<div :class="bg? 'container' : ''">
+			
+		</div>
+		
+		<check-or-not @close="showCheck" v-show="showCheckStatus"></check-or-not>
+		<check-connect @close="showConnect" v-show="showConnectStatus"></check-connect>
 	</div>
 </template>
 
 <script>
+	import checkOrNot from '@/components/pop/passing-pop'
+	import checkConnect from '@/components/pop/connect-pop'
 	export default {
        data() {
        	  return {
        	  	state: 0,
+       	  	bg:false,
+       	  	showCheckStatus:false,
+       	  	showConnectStatus:false
        	  }
+       },
+       methods: {
+       	showCheck() {
+       		this.bg = !this.bg
+       		this.showCheckStatus = !this.showCheckStatus
+       	},
+       	showConnect() {
+       		this.bg = !this.bg
+       		this.showConnectStatus = !this.showConnectStatus
+       	}
+       },
+       components: {
+       	 checkOrNot,
+       	 checkConnect
        }
    }
 </script>
 
 <style scoped>
 	.lists {
+		position: relative;
 		width:96%;
+		height: 100%;
 		margin-left:28px;
 		margin-top:20px;
+	}
+	.container {
+		position: absolute;
+		top:-216px;
+		bottom:0;
+		left:-28px;
+		right:-32px;
+		background: #e9eaec9c;
 	}
 	.header {
 		box-sizing: border-box;
@@ -173,6 +220,9 @@
 		width:300px;
 		height: 150px;
 		position: relative;
+	}
+	.pointer {
+		cursor:pointer;
 	}
 </style>
 
