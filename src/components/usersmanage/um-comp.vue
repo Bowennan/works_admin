@@ -1,7 +1,7 @@
 <template>
 	<div class="um">
 		<um-search-comp @findLevel="screenPage"></um-search-comp>
-        <um-title-comp @refreshData="getData"></um-title-comp>
+        <um-title-comp :total="totalPages" @refreshData="refreshData"></um-title-comp>
         <table-comp :userlistData="userlistData" class="tables"></table-comp>
         <Page class="pages" :total="totalPages" show-sizer :page-size-opts="pageArray"
               @on-change="turnPage"
@@ -61,6 +61,10 @@
 		     	    this.getData({
 		     	    	limit: this.limitNum
 		     	    })
+		     	},
+		     	refreshData() {
+		     		this.userlistData = []
+		     		this.getData();
 		     	}
 		     },
              components: {

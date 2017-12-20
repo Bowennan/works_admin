@@ -37,3 +37,12 @@ export function communityComments(paramsObj) {
 		params:paramsObj
 	})
 }
+
+//社区通用内容（通用回答）
+export function communityReply(paramsObj) {
+	return fetch({
+		url:api.Bestkit+'/admin/article/reply',
+		method: 'post',
+		params:paramsObj
+	})
+}

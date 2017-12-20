@@ -29,7 +29,7 @@
 						</p>
 					</li>
 					<li class="identity-pic">
-					    <p>身份照片</p>
+					    <p @click="showPic">身份照片</p>
 					</li>
 					<li class="apply-info more-line">
 						<p>
@@ -47,18 +47,31 @@
 			</li>
 		</ul>
 
-		<div class="container">
+		<div :class="bg? 'container' : ''">
 			
 		</div>
+		<look-pic @close="showPic" v-show="showPicStatus"></look-pic>
 	</div>
 </template>
 
 <script>
+    import lookPic from '@/components/pop/lookPic'
 	export default {
        data() {
        	  return {
        	  	state: 0,
+       	  	bg:false,
+       	  	showPicStatus:false
        	  }
+       },
+       methods: {
+       	showPic() {
+       		this.bg = !this.bg
+       		this.showPicStatus = !this.showPicStatus
+       	}
+       },
+       components: {
+       	lookPic
        }
    }
 </script>

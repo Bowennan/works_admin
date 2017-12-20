@@ -1,7 +1,13 @@
 <template>
 	<div class="search-box">
 		<div class="id-name-search">
-			<id-search></id-search>
+			<Input v-model="searchParas">
+			        <Select v-model="defaultPara" slot="prepend" style="width: 80px">
+			            <Option value="title">回答</Option>
+			            <Option value="id">ID</Option>
+			        </Select>
+			        <Button slot="append" icon="ios-search" @clicjk="subData"></Button>
+			    </Input>
 		</div>
 
 		<div class="range-search">
@@ -34,12 +40,23 @@
 	export default {
        data() {
        	return {
-       		value13: '',
-       		select3: '0',
+       		searchParas: '',
+       		defaultPara: "id",
        		model1: ''
        	}
        },
+       methods: {
+       	subData() {
+       	 	let paras = {};
+       	 	if(this.defaultPara === 'title'){
+       	 		paras.title = this.searchParas;
+       	 	}else {
+       	 		paras.comment_id = parseInt(this.searchParas);
+       	 	}
 
+       	 	this.$emit("searchResult", paras);
+       	 }
+       	},
        components: {
        	  idSearch,
        	  dateToDate,

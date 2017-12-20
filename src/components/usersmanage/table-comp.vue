@@ -109,7 +109,7 @@
 									        		<span class="pop-cols">举报数：</span> <span class="pop-nums">232</span>
 									        	</p>
 									        	<p>
-									        		<span>注册时间：</span> <span class="pop-nums">暂无数据</span>
+									        		<span>注册时间：</span> <span class="pop-nums">{{item.created_at}}</span>
 									        	</p>
 								        	</div>
 								        </div>

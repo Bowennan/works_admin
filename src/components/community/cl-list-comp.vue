@@ -9,7 +9,9 @@
 			<li class="apply-info">评论信息</li>
 			<li class="action-status">操作</li>
 		</ul>
-
+        <div v-show="!commentData.length">
+        	<loading></loading>
+        </div>
 		<ul v-for="(item, index) in commentData" :key="index">
 			<li>
 				<ul class="con-header">
@@ -51,6 +53,7 @@
 </template>
 
 <script>
+    import Loading from '@/components/base-comp/loading'
 	export default {
 		props: {
 			commentData:{
@@ -62,6 +65,9 @@
        	  	state: 0,
        	  	single: ''
        	  }
+       },
+       components: {
+       	Loading
        }
    }
 </script>

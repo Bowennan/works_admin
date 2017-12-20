@@ -36,7 +36,7 @@
 							        <span>社区、浏览、收藏等</span>
 							        <div class="pop-cons" slot="content" style="width:100%; height:130px;">
 							            <p class="posting-pop">
-								        		<span>加入的社区：</span> <span class="values" style="padding:0 3px"  v-for="(inneritem, innerindex) in item.communities" :key="innerindex">{{inneritem.name}}</span>
+								        		<span>加入的社区：</span> <span class="values" style="padding:0 6px"  v-for="(inneritem, innerindex) in item.communities" :key="innerindex">{{inneritem.name}}</span>
 								        		     <span v-if="!(item.communities).length">无</span>
 									        	</p>
                                         <p class="posting-pop">
@@ -181,7 +181,7 @@
         box-sizing: border-box;
         padding:0 18px;
 	}
-	.con-header li p {
+	.con-header li > p {
 		height: 95px;
 		display: table-cell;
 		vertical-align: middle;
@@ -230,8 +230,9 @@
 		width:100%;
 		display: block;
 		color:#bbbec4;
-		height: 30px;
+		min-height: 30px;
 		line-height: 30px;
+		white-space: normal;
 	}
 </style>
 

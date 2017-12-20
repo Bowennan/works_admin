@@ -4,10 +4,10 @@
 		<Button class="refresh" type="primary" shape="circle" icon="ios-loop" @click="refreshData">刷新</Button>
 		<div class="search-and-result">
 			<span class="result">共
-	          <span class="res-num">1000</span>人被筛选
+	          <span class="res-num">{{total}}</span>人被筛选
 			</span>
 			<Select class="search-group" v-model="model1">
-		        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
+		        <Option v-for="item in orderClass" :value="item.value" :key="item.value">{{ item.label }}</Option>
 		    </Select>
 		</div>
 	</div>
@@ -15,9 +15,73 @@
 
 <script>
 	export default {
+	   props:{
+         total:{
+         	type:Number
+         }
+	   },
        data() {
        	return {
-       		model1:''
+       		orderClass: [
+                    {
+                        value: '方式1',
+                        label: '被举报数'
+                    },
+                    {
+                        value: '方式2',
+                        label: '粉丝数'
+                    },
+                    {
+                        value: '方式3',
+                        label: '信用分'
+                    },
+                    {
+                        value: '方式4',
+                        label: '文章总评分'
+                    },
+                    {
+                        value: '方式5',
+                        label: '作品数量'
+                    },
+
+                    {
+                        value: '方式6',
+                        label: '好价发布数量'
+                    },
+                    {
+                        value: '方式7',
+                        label: '装备秀数量'
+                    },
+                    {
+                        value: '方式8',
+                        label: '闲置发布数量'
+                    },
+                    {
+                        value: '方式9',
+                        label: '回答数量'
+                    },
+                    {
+                        value: '方式10',
+                        label: '爆料数量'
+                    },
+                    {
+                        value: '方式11',
+                        label: '收获喜欢数量'
+                    },
+                    {
+                        value: '方式12',
+                        label: '帖子总数'
+                    },
+                    {
+                        value: '方式13',
+                        label: '评论总数'
+                    },
+                    {
+                        value: 0,
+                        label: '降序排列全部'
+                    }
+                ],
+                model1: 0
        	}
        },
        methods: {
@@ -63,6 +127,7 @@
 		top:50%;
 		transform: translateY(-50%);
 		text-align: right;
+		z-index: 1000;
 	}
 	.result {
 		font-size:14px;

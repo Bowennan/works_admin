@@ -182,7 +182,7 @@
 
        methods: {
        	checkLevel() {
-       		console.log(this.model1);
+       		// console.log(this.model1);
        		this.$emit("findLevel", this.model1);
        	}
        },

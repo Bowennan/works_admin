@@ -1,17 +1,14 @@
 <template>
 	<div class="search-box">
 		<div class="id-name-search">
-			<id-search></id-search>
+			
 		</div>
 
 		<div class="range-search">
-			<div class="lev-search">
-				<level-search class="level-group"></level-search>
-			</div>
 
 			<div class="lev-search">
-				    <Select class="commity-group" v-model="model1">
-				        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
+				    <Select class="commity-group" v-model="commentType">
+				        <Option v-for="item in selectorList" :value="item.value" :key="item.value">{{ item.label}}</Option>
 				    </Select>
 			</div>
 
@@ -34,9 +31,37 @@
 	export default {
        data() {
        	return {
-       		value13: '',
-       		select3: '0',
-       		model1: ''
+       		commentType:0,
+       		selectorList:[
+   				{
+   					label:"评论所属内容",
+   					value:0,
+   				},
+   				{
+   					label:"帖子评论",
+   					value:1
+   				},
+   				{
+   					label:"作品评论",
+   					value:2
+   				},
+   				{
+   					label:"装备秀评论",
+   					value:3
+   				},
+   				{
+   					label:"好价评论",
+   					value:4
+   				},
+   				{
+   					label:"二手评论",
+   					value:5
+   				},
+   				{
+   					label:"爆料评论",
+   					value:6
+   				}
+       		]
        	}
        },
 

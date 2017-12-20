@@ -1,7 +1,7 @@
 <template>
 	<div class="um">
 		<cl-search-comp></cl-search-comp>
-        <cl-title-comp></cl-title-comp>
+        <cl-title-comp :total="totalPages" @refresh="refreshed"></cl-title-comp>
         <cl-list-comp :commentData="commentData" class="tables"></cl-list-comp>
         <Page class="pages" :total="totalPages" show-sizer :page-size-opts="pageArray"
               @on-change="turnPage"
@@ -52,6 +52,10 @@
 		     	    this.getCommentsData({
 		     	    	limit: this.limitPages
 		     	    })
+		     	},
+		     	refreshed() {
+		     		this.commentData = []
+		     		this.getCommentsData();
 		     	}
 		     },
              components: {
