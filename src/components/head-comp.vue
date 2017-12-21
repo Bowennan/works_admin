@@ -13,7 +13,7 @@
            		<router-link class="sub-menu-list" to="/communities">通用内容管理</router-link>
            	</li>
            	<li class="sub-menu">
-                <router-link class="sub-menu-list" to="/communities">通用模块管理</router-link>
+                <router-link class="sub-menu-list" to="/community_common_m">通用模块管理</router-link>
            	</li>
            	<li class="sub-menu">
                 <router-link class="sub-menu-list" to="/communities">社区首页管理</router-link>

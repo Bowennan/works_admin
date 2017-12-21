@@ -44,8 +44,14 @@ import qsList from '@/components/community/qs-comp'
 import ToBeqs from '@/components/community/tbcqs-comp'
 import Abnormalqs from '@/components/community/aqs-comp'
 
+import BannerList from '@/components/community/common-m/banner-comp'
+import ProductsList from '@/components/community/common-m/products-comp'
+import BulletinList from '@/components/community/common-m/bulletin-comp'
+import RecommendList from '@/components/community/common-m/recommend-comp'
+
 import asideComp01 from '@/components/aside01-comp'
 import asideComp02 from '@/components/aside02-comp'
+import asideComp03 from '@/components/aside03-comp'
 import Log4 from '@/components/test03-comp'
 import Log5 from '@/components/test04-comp'
 import Log6 from '@/components/test05-comp'
@@ -236,6 +242,28 @@ export default new Router({
              {
                 path:'aqs',
                 component: Abnormalqs
+             }
+      ]
+     },
+     {
+        path: '/community_common_m',
+        component: asideComp03,
+         children: [
+             {
+                path: '',
+                component: BannerList
+             },
+             {
+                path:'products',
+                component: ProductsList
+             },
+             {
+                path:'bulletin',
+                component: BulletinList
+             },
+             {
+                path:'recommend',
+                component: RecommendList
              }
       ]
      },

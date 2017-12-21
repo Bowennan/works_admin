@@ -2,13 +2,13 @@
 	<div class="pop-position">
 		
 		<div class="head-style">
-			<span>审核用户实名管理</span>
+			<span>关联产品</span>
 			<Icon class="close" type="close-round" @click="closeWindos"></Icon>
 			<span class="close"  @click="closeWindos"></span>
 		</div>
 
 		<div>
-			<span class="sub-title">是否通过</span>
+			<span class="sub-title">关联产品</span>
 			<Radio v-model="single" class="sing-sel">审核通过</Radio>
 			<Radio v-model="single" class="sing-sel">审核不通过</Radio>
 		</div>
