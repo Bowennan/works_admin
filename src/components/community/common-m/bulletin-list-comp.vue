@@ -1,64 +1,80 @@
 <template>
 	<div class="lists">
 		<ul class="header">
-			<li class="id-nickname">
+			<li class="bul-id">
                  <Checkbox v-model="single"></Checkbox>
-			评论ID/类型</li>
-			<li class="media-info">评论内容</li>
-			<li class="works">评论来源</li>
-			<li class="apply-info">评论信息</li>
-			<li class="action-status">操作</li>
+		    ID/公告/日期</li>
+			<li class="bul-bel">公告所属内容模块</li>
+			<li class="bul-ope">操作</li>
 		</ul>
 
 		<ul>
 			<li>
 				<ul class="con-header">
-					<li class="id-nickname more-line">
+					<li class="bul-id more-line">
 						<p class="f-col">
 						   <Checkbox class="checkbox" v-model="single"></Checkbox>
-						   <span>12121</span>
-						   <span>直评</span>
+						   <span class="values">12121</span>
+						   <span class="values">直评</span>
+						   <span>2012-12-16</span>
 						</p>
 					</li>
-					<li class="media-info more-line">
-						<p style="color:#2d8cf0; cursor:pointer">查看</p>
-					</li>
-					<li class="works more-line">
-					    <p>
-					    	<span>评论者：<span class="values">影视，娱乐，体育</span></span>
-					    	<span>所属内容：<span class="values">作品1，作品2</span></span>
-					    	<span>标题：<span class="values">作品1，作品2</span></span>
-					    </p>
-					</li>
-					<li class="apply-info more-line">
+					<li class="bul-bel more-line">
 						<p>
-							<span>社区：<span class="values">待审核</span></span>
-							<span>赞同：<span class="values">5</span></span>
-							<span>举报：<span class="values">56</span></span>
-							<span>时间：<span class="values">2017-12-12</span></span>
+							<span>内容模块：<span class="values">好价公告</span></span>
 						</p>
 					</li>
-					<li class="action-status more-line">
+					<li class="bul-ope more-line">
 						<p>
-							<span>审核状态 | <span class="values">不通过</span></span>
-							<span>热门评论 | <span class="values">是</span></span>
-							<span>评论状态 | <span class="values">正常</span></span>
+							<span>操作 | <span class="values">编辑</span></span>
+							<span>状态 | <span class="values">隐藏</span></span>
 						</p>
 					</li>
 				</ul>
 			</li>
 		</ul>
+
+		<div v-show="cover" :style="{width:coverWidth+'px', height:coverHeight+'px'}" style="background:rgba(204, 204, 204, 0.59); position:fixed; top:0; left:0; z-index:1000" >
+			<div style="width:500px; position:fixed; top:120px; left:50%; transform:translateX(-50%); z-index:2000">
+				<bulletin-status @close="closeWindos"></bulletin-status>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
+    import BulletinStatus from '@/components/pop/bulletin-status-pop'
 	export default {
+		props: {
+			cover: {
+				type:Boolean,
+				default: false
+			}
+		},
+		created() {
+           this.getWindowsSize()
+		},
        data() {
        	  return {
        	  	state: 0,
        	  	single:'',
-       	  	opacityNum:1
+       	  	opacityNum:1,
+       	  	coverHeight:0,
+       	  	coverWidth:0,
+       	  	show_Status:false
        	  }
+       },
+       methods: {
+       	getWindowsSize() {
+       		this.coverWidth = window.document.body.offsetWidth;
+       		this.coverHeight = window.document.body.offsetHeight;
+       	},
+       	closeWindos() {
+           this.$emit('close')
+       	}
+       },
+       components: {
+       	BulletinStatus
        }
    }
 </script>
@@ -89,21 +105,15 @@
 		color:#80848f;
 		font-weight: 400;
 	}
-	.apply-info {
-		flex:0 0 197px;
-	}
-	.id-nickname {
-		flex:0 0 158px;
-	}
-	.media-info {
-		flex:0 0 156px;
-	}
-	.works {
-		min-width: 398px;
+	.bul-id {
+		min-width:410px;
 		flex:1;
 	}
-	.action-status {
-		flex:0 0 150px;
+	.bul-bel {
+		flex:0 0 460px;
+	}
+	.bul-ope {
+		flex:0 0 160px;
 	}
 	.header li, .con-header li {
         box-sizing: border-box;
@@ -120,6 +130,7 @@
 	.more-line p > span {
 		display: block;
 		color:#bbbec4;
+		padding:4px 0;
 	}
 	.con-box {
 		display: block;

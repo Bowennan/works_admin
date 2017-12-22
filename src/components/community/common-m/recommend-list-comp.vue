@@ -1,49 +1,53 @@
 <template>
 	<div class="lists">
 		<ul class="header">
-			<li class="id-nickname">
-                 <Checkbox v-model="single"></Checkbox>
-			评论ID/类型</li>
-			<li class="media-info">评论内容</li>
-			<li class="works">评论来源</li>
-			<li class="apply-info">评论信息</li>
-			<li class="action-status">操作</li>
+			<li class="rec-type">推荐类型</li>
+			<li class="rec-num">当前数量设置</li>
+			<li class="rec-ope">操作</li>
 		</ul>
 
 		<ul>
 			<li>
 				<ul class="con-header">
-					<li class="id-nickname more-line">
-						<p class="f-col">
-						   <Checkbox class="checkbox" v-model="single"></Checkbox>
-						   <span>12121</span>
-						   <span>直评</span>
+					<li class="rec-type more-line">
+						<p>
+						   <span>产品推荐</span>
 						</p>
 					</li>
-					<li class="media-info more-line">
-						<p style="color:#2d8cf0; cursor:pointer">查看</p>
+					<li class="rec-num more-line">
+						<p>
+							<span>4个</span>
+						</p>
 					</li>
-					<li class="works more-line">
+					<li class="rec-ope more-line">
 					    <p>
-					    	<span>评论者：<span class="values">影视，娱乐，体育</span></span>
-					    	<span>所属内容：<span class="values">作品1，作品2</span></span>
-					    	<span>标题：<span class="values">作品1，作品2</span></span>
+					    	  <Select size="small" v-model="model1" style="width:130px">
+						        <Option v-for="item in 6" :value="item" :key="item">{{ item }}</Option>
+						    </Select>
 					    </p>
 					</li>
-					<li class="apply-info more-line">
+				</ul>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<ul class="con-header">
+					<li class="rec-type more-line">
 						<p>
-							<span>社区：<span class="values">待审核</span></span>
-							<span>赞同：<span class="values">5</span></span>
-							<span>举报：<span class="values">56</span></span>
-							<span>时间：<span class="values">2017-12-12</span></span>
+						   <span>帖子推荐</span>
 						</p>
 					</li>
-					<li class="action-status more-line">
+					<li class="rec-num more-line">
 						<p>
-							<span>审核状态 | <span class="values">不通过</span></span>
-							<span>热门评论 | <span class="values">是</span></span>
-							<span>评论状态 | <span class="values">正常</span></span>
+							<span>10篇</span>
 						</p>
+					</li>
+					<li class="rec-ope more-line">
+					    <p>
+					    	  <Select size="small" v-model="model1" style="width:130px">
+						        <Option v-for="item in 10" :value="item" :key="item">{{ item }}</Option>
+						    </Select>
+					    </p>
 					</li>
 				</ul>
 			</li>
@@ -57,7 +61,8 @@
        	  return {
        	  	state: 0,
        	  	single:'',
-       	  	opacityNum:1
+       	  	opacityNum:1,
+       	  	model1:''
        	  }
        }
    }
@@ -87,23 +92,19 @@
 		display: flex;
 		border-bottom:1px solid #ccc;
 		color:#80848f;
-		font-weight: bold;
+		font-weight: 400;
 	}
-	.apply-info {
-		flex:0 0 197px;
-	}
-	.id-nickname {
-		flex:0 0 158px;
-	}
-	.media-info {
-		flex:0 0 156px;
-	}
-	.works {
-		min-width: 398px;
+	.rec-type {
+		min-width: 400px;
 		flex:1;
 	}
-	.action-status {
-		flex:0 0 150px;
+	.rec-num {
+		min-width: 400px;
+		flex:1;
+	}
+	.rec-ope {
+		min-width: 150px;
+		flex:1;
 	}
 	.header li, .con-header li {
         box-sizing: border-box;

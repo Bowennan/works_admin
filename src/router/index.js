@@ -49,9 +49,32 @@ import ProductsList from '@/components/community/common-m/products-comp'
 import BulletinList from '@/components/community/common-m/bulletin-comp'
 import RecommendList from '@/components/community/common-m/recommend-comp'
 
+import FrontPagePostingList from '@/components/community/community-f/fpp-comp'
+import FrontPageQuestionList from '@/components/community/community-f/fpq-comp'
+import FrontPagePriceList from '@/components/community/community-f/fpgp-comp'
+import FrontPageSencondHandList from '@/components/community/community-f/fpsh-comp'
+
+import indexPostingList from '@/components/community/community-t/indexpl-comp'
+import indexWorkList from '@/components/community/community-t/indexwl-comp'
+import indexQuestionList from '@/components/community/community-t/indexql-comp'
+import indexPriceList from '@/components/community/community-t/indexprl-comp'
+import indexSencondList from '@/components/community/community-t/indexsl-comp'
+import indexQsList from '@/components/community/community-t/indexqsl-comp'
+import indexDiscloseList from '@/components/community/community-t/indexdcl-comp'
+
+import postingTypes from '@/components/community/community-t/indexpll-comp'
+import workTypes from '@/components/community/community-t/indexwll-comp'
+import questionTypes from '@/components/community/community-t/indexqll-comp'
+import prieTypes from '@/components/community/community-t/indexprll-comp'
+import sencondTypes from '@/components/community/community-t/indexsll-comp'
+import qsTypes from '@/components/community/community-t/indexqsll-comp'
+import discloseTypes from '@/components/community/community-t/indexdcll-comp'
+
 import asideComp01 from '@/components/aside01-comp'
 import asideComp02 from '@/components/aside02-comp'
 import asideComp03 from '@/components/aside03-comp'
+import asideComp04 from '@/components/aside04-comp'
+import asideComp05 from '@/components/aside05-comp'
 import Log4 from '@/components/test03-comp'
 import Log5 from '@/components/test04-comp'
 import Log6 from '@/components/test05-comp'
@@ -264,6 +287,90 @@ export default new Router({
              {
                 path:'recommend',
                 component: RecommendList
+             }
+      ]
+     },
+          {
+        path: '/community_front_p',
+        component: asideComp04,
+         children: [
+             {
+                path: '',
+                component: FrontPagePostingList
+             },
+             {
+                path:'questions',
+                component: FrontPageQuestionList
+             },
+             {
+                path:'discount',
+                component: FrontPagePriceList
+             },
+             {
+                path:'sencondhand',
+                component: FrontPageSencondHandList
+             }
+      ]
+     },
+     {
+        path: '/community_types',
+        component: asideComp05,
+         children: [
+             {
+                path: '',
+                component: indexPostingList
+             },
+             {
+                path:'indexWork',
+                component: indexWorkList
+             },
+             {
+                path:'indexQuestion',
+                component: indexQuestionList
+             },
+             {
+                path:'indexPrice',
+                component: indexPriceList
+             },
+             {
+                path:'indexSencond',
+                component: indexSencondList
+             },
+             {
+                path:'indexQs',
+                component: indexQsList
+             },
+             {
+                path:'indexDisclose',
+                component: indexDiscloseList
+             },
+             {
+                path:'postingTypes',
+                component: postingTypes
+             },
+             {
+                path:'workTypes',
+                component: workTypes
+             },
+             {
+                path:'questionTypes',
+                component: questionTypes
+             },
+             {
+                path:'prieTypes',
+                component: prieTypes
+             },
+             {
+                path:'sencondTypes',
+                component: sencondTypes
+             },
+             {
+                path:'qsTypes',
+                component: qsTypes
+             },
+             {
+                path:'discloseTypes',
+                component: discloseTypes
              }
       ]
      },

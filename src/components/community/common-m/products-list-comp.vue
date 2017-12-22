@@ -57,14 +57,14 @@
 
 		<div v-show="cover" :style="{width:coverWidth+'px', height:coverHeight+'px'}" style="background:rgba(204, 204, 204, 0.59); position:fixed; top:0; left:0; z-index:1000" >
 			<div style="width:500px; position:fixed; top:120px; left:50%; transform:translateX(-50%); z-index:2000">
-				<banner-first @close="closeWindos"></banner-first>
+				<product-status @close="closeWindos"></product-status>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-    import BannerFirst from '@/components/pop/banner-status-pop'
+    import ProductStatus from '@/components/pop/product03-pop'
 	export default {
 		props: {
 			cover: {
@@ -95,7 +95,7 @@
        	}
        },
        components: {
-       	BannerFirst
+       	ProductStatus
        }
    }
 </script>

@@ -3,7 +3,7 @@
 		<h3 class="title">社区公告管理</h3>
 		<Button class="refresh" type="primary" shape="circle" icon="ios-loop">刷新</Button>
 		<Button class="re-btn" type="primary" shape="circle" icon="ios-trash-outline">批量删除</Button>
-		<Button class="re-btn01" type="primary" shape="circle" icon="plus">新增</Button>
+		<Button class="re-btn01" type="primary" shape="circle" icon="plus" @click="openWindos">新增</Button>
 		<div class="search-and-result">
 			<span class="result">全部：
 	          <span class="res-num">1000</span>
@@ -17,6 +17,11 @@
        data() {
        	return {
        		model1:''
+       	}
+       },
+       methods: {
+       	openWindos() {
+       		this.$emit('open')
        	}
        }
 	}

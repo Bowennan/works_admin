@@ -1,27 +1,22 @@
 <template>
 	<div class="title-box">
-		<h3 class="title">社区推荐数量管理</h3>
-		<refresh-btn class="refresh"></refresh-btn>
-		<Button class="re-btn" type="primary" shape="circle" icon="ios-trash-outline">批量不通</Button>
-		<Button class="re-btn01" type="primary" shape="circle" icon="ios-trash-outline">批量通过</Button>
+		<h3 class="title">首页帖子列表</h3>
+		<Button type="primary" class="refresh" shape="circle" icon="ios-loop">刷新</Button>
+		<Button type="primary" class="disappeared" shape="circle" icon="ios-trash-outline">批量隐藏</Button>
 		<div class="search-and-result">
-			<span class="result">全部：
-	          <span class="res-num">1000</span>
+			<span class="result">首页帖子：
+	          <span class="res-num">353216</span>
 			</span>
 		</div>
 	</div>
 </template>
 
 <script>
-    import refreshBtn from '@/components/base-comp/refresh-btn'
 	export default {
        data() {
        	return {
        		model1:''
        	}
-       },
-       components: {
-       	refreshBtn
        }
 	}
 </script>
@@ -44,12 +39,12 @@
 	.refresh {
 		position: absolute;
 		width:92px;
-		font-size:14px;
+		font-size:12px;
 		color:#fff;
 		bottom:24px;
 		left:28px;
 	}
-	.re-btn {
+	.disappeared {
 		position: absolute;
 		width:92px;
 		font-size:12px;
@@ -57,16 +52,6 @@
 		bottom:24px;
 		left:138px;
 	}
-
-	.re-btn01 {
-		position: absolute;
-		width:92px;
-		font-size:12px;
-		color:#fff;
-		bottom:24px;
-		left:256px;
-	}
-
 	.search-group {
 		width:150px;
 		margin-top:20px;

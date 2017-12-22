@@ -16,10 +16,10 @@
                 <router-link class="sub-menu-list" to="/community_common_m">通用模块管理</router-link>
            	</li>
            	<li class="sub-menu">
-                <router-link class="sub-menu-list" to="/communities">社区首页管理</router-link>
+                <router-link class="sub-menu-list" to="/community_front_p">社区首页管理</router-link>
            	</li>
            	<li class="sub-menu">
-                <router-link class="sub-menu-list" to="/communities">品类社区管理</router-link>
+                <router-link class="sub-menu-list" to="/community_types">品类社区管理</router-link>
            	</li>
            	<li class="sub-menu">
                 <router-link class="sub-menu-list" to="/communities">品牌社区管理</router-link>
