@@ -22,10 +22,10 @@
                 <router-link class="sub-menu-list" to="/community_types">品类社区管理</router-link>
            	</li>
            	<li class="sub-menu">
-                <router-link class="sub-menu-list" to="/communities">品牌社区管理</router-link>
+                <router-link class="sub-menu-list" to="/community_brands">品牌社区管理</router-link>
            	</li>
            	<li class="sub-menu">
-                <router-link class="sub-menu-list" to="/communities">产品社区管理</router-link>
+                <router-link class="sub-menu-list" to="/community_products">产品社区管理</router-link>
            	</li>
            	<li class="sub-menu">
                 <router-link class="sub-menu-list" to="/communities">社区新建与管理</router-link>
@@ -57,7 +57,7 @@ export default {
 <style scoped>
 	.head-comp {
 		width:100%;
-		min-width:1250px;
+		min-width:1400px;
 		height:86px;
 		background: -webkit-linear-gradient(left, #3752d3 , #4ca0fe); /* Safari 5.1 - 6.0 */
 	    background: -o-linear-gradient(right, #3752d3, #4ca0fe); /* Opera 11.1 - 12.0 */
@@ -68,9 +68,6 @@ export default {
 	.title {
 		display: inline-block;
 		margin:0 40px 0 28px;
-		color:#fff;
-		font-size:30px;
-		font-weight: 400;
 		line-height: 86px;
 		vertical-align: middle;
 	}
@@ -96,7 +93,7 @@ export default {
 	}
 	.main-links {
 		color:#fff;
-		font-weight: 500px;
+		font-weight: 500;
 		display: block;
 		width:100%;
 		height: 100%;

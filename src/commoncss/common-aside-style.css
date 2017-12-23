@@ -1,0 +1,85 @@
+	  .aside-box {
+	    position:relative;
+	    box-sizing: border-box;
+	    width:100%;
+	    height: 100%;
+	    padding-left:240px;
+	  }
+    .menu-wrapper {
+    	box-sizing: border-box;
+    	font-size:12px;
+    	width: 240px;
+	    border-bottom: 1px solid #dddee1;
+	    padding-bottom: 30px;
+	    position: absolute;
+	    top:0;
+	    left:0;
+    }
+    .viewer {
+    	position:absolute;
+    	right: 0;
+    	top:0;
+    	left:240px;
+    }
+	.submenu {
+		height:46px;
+		box-sizing: border-box;
+		font-size:12px !important;
+		color:#80848f;
+		position: relative;
+		font-weight:bold;
+	}
+	.badge-scale {
+		position: absolute;
+		right:20px;
+		transform: scale(0.8,0.65);
+	}
+	.left-icon {
+		position: absolute;
+		top:0;
+		left:0;
+		display: block;
+		width:100%;
+		height:46px;
+		line-height: 46px;
+		box-sizing: border-box;
+		padding-left:30px;
+		background-size:18px 18px;
+		background-position: 28px center;
+		background-repeat: no-repeat;
+		color:#1c2438;
+		font-weight:bold;
+	}
+	.right-title {
+		vertical-align: middle;
+	}
+	i.iconfont.ivu-icon.ivu-icon-ios-cog,
+	i.iconfont.ivu-icon.ivu-icon-android-people,
+	i.iconfont.ivu-icon.ivu-icon-ios-email,
+	i.iconfont.ivu-icon.ivu-icon-ios-film,
+	i.iconfont.ivu-icon.ivu-icon-filing,
+	i.iconfont.ivu-icon.ivu-icon-social-bitcoin,
+    i.iconfont.ivu-icon.ivu-icon-ios-paper,
+	i.iconfont.ivu-icon.ivu-icon-chatbubble-working,
+	i.iconfont.ivu-icon.ivu-icon-chatbox-working,
+	i.iconfont.ivu-icon.ivu-icon-ios-compose,
+	i.iconfont.ivu-icon.ivu-icon-ios-color-filter,
+    i.iconfont.ivu-icon.ivu-icon-images,
+    i.iconfont.ivu-icon.ivu-icon-camera,
+    i.iconfont.ivu-icon.ivu-icon-social-yen,
+    i.iconfont.ivu-icon.ivu-icon-asterisk,
+    i.iconfont.ivu-icon.ivu-icon-ios-help,
+    i.iconfont.ivu-icon.ivu-icon-help-circled,
+    i.iconfont.ivu-icon.ivu-icon-speakerphone,
+    i.iconfont.ivu-icon.ivu-icon-ios-box,
+    i.iconfont.ivu-icon.ivu-icon-help-circled,
+	i.iconfont.ivu-icon.ivu-icon-ios-list 
+	 {
+	    vertical-align: middle;
+	    margin-rgiht: 4px;
+	    margin-right: 4px;
+	}
+	.submenu-sub {
+		color:#80848f;
+		padding-left:46px;
+	}

@@ -14,6 +14,7 @@
 <script>
 import headComp from '@/components/head-comp'
 
+
 export default {
   components: {
     headComp

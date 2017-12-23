@@ -7,7 +7,7 @@
 		        <Button slot="append" icon="ios-search"></Button>
 		    </Input>
 
-		<div class="range-search">
+<!-- 		<div class="range-search">
 
 			<div class="lev-search">
 				    <Select class="brand-group" v-model="model1">
@@ -24,15 +24,11 @@
 			<div class="lev-search">
 				<confirm-btn></confirm-btn>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </template>
 
 <script>
-   import idSearchPost from '@/components/base-comp/id-search01'
-   import dateToDate from '@/components/base-comp/date-to-date01'
-   import confirmBtn from '@/components/base-comp/confirm-btn'
-   import levelSearch from '@/components/base-comp/level-search'
 	export default {
        data() {
        	return {
@@ -42,13 +38,6 @@
        		result: '无',
        		result_doing:'id'
        	}
-       },
-
-       components: {
-       	  idSearchPost,
-       	  dateToDate,
-       	  confirmBtn,
-       	  levelSearch
        }
 
 	}

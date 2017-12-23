@@ -1,0 +1,198 @@
+/*公共字体颜色,颜色名称使用西班牙语表示*/
+/*白色字体*/
+.c-blanco {
+	color:#fff;
+}
+
+/*蓝色字体*/
+.c-azul {
+	color:#2d8cf0;
+}
+
+/*黑色字体*/
+.c-negro {
+	color:#1c2438;
+}
+
+/*灰色字体*/
+.c-gris {
+	color:#bbbec4;
+}
+
+/*炭黑字体*/
+.c-carbon {
+	color:#495060;
+}
+
+/*红色字体*/
+.c-rojo {
+	color:#f00;
+}
+
+/*橘色字体*/
+.c-naranja {
+	color:#ff8900;
+}
+
+/*浅灰色边框*/
+.border {
+	border:1px solid #dddee1;
+}
+
+/*浅灰色下边框*/
+.border-bottom {
+	border-bottom:1px solid #dddee1;
+}
+
+/*页面最大标题*/
+.titulo {
+	font-size: 16px;
+	font-weight: bold;
+	color:#1c2438;
+	display: inline-block;
+	margin:20px 0 22px 28px;
+}
+
+.sub-titulo {
+	font-size: 12px;
+	font-weight: bold;
+	color:#1c2438;
+}
+
+.contenido {
+	font-size: 12px;
+	font-weight: 400;
+	color:#bbbec4;
+}
+
+.contenido-val {
+	font-size: 12px;
+	font-weight: 400;
+	color:#495060;
+}
+
+
+/*搜索包裹框样式*/
+.search-box {
+	box-sizing: border-box;
+	width:100%;
+	min-width: 1200px;
+	height: 78px;
+	border-bottom:1px solid #dddee1;
+	position: relative;
+}
+
+/*搜索框样式*/
+.id-search {
+	position: absolute;
+	top:20px;
+	left:28px;
+	width:250px;
+}
+
+/*筛选框样式*/
+.range-search {
+	position: absolute;
+	right: 30px;
+	top:20px;
+}
+
+.conditions-box {
+	float:left;
+	margin-left:25px;
+}
+.conditions-width {
+	width:150px;
+}
+
+/*标题包裹框样式*/
+.title-box {
+	box-sizing: border-box;
+	width:100%;
+	min-width: 1200px;
+	height: 100px;
+	padding:2px;
+	position: relative;
+}
+
+/*刷新按钮以及其他按钮组容器*/
+.btns-container {
+	position: absolute;
+	left:28px;
+	bottom:14px;
+	font-size:14px;
+	color:#fff;
+}
+
+.re-btn {
+	float:left;
+	margin-right: 25px;
+	width:90px;
+}
+
+.search-result {
+	position: absolute;
+	right: 30px;
+	bottom:14px;
+	text-align: right;
+}
+
+/*搜索数据结果*/
+.result-container {
+	position: absolute;
+	bottom:22px;
+	right: 30px;
+	text-align: right;
+}
+
+/*核心列表公共样式*/
+.tables {
+	height: 100%;
+	width:96%;
+	min-width:1000px;
+	margin:0 10px;
+}
+
+/*翻页组件样式*/
+.pages {
+	margin:10px 0 100px 40px;
+}
+
+/*列表样式*/
+.list-container {
+	width:96%;
+	margin:10px 20px;
+}
+
+.header {
+    box-sizing:border-box;
+    width:100%;
+	height: 42px;
+	line-height: 42px;
+	border-top:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+	display:flex;
+	color:#1c2438;
+	font-weight: bold;
+}
+
+.list-contents {
+	box-sizing: border-box;
+	width:100%;
+	height: 96px;
+	display: flex;
+	border-bottom:1px solid #ccc;
+	color:#80848f;
+	font-weight: bold;
+}
+.header li, .list-contents li {
+	padding: 0 18px;
+	box-sizing: border-box;
+}
+
+.content-core {
+	height: 95px;
+	display: table-cell;
+	vertical-align: middle;
+}
+

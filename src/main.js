@@ -6,6 +6,8 @@ import axios from 'axios'
 import router from './router'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
+import '@/commoncss/common-style.css'
+import '@/commoncss/common-aside-style.css'
 import 'babel-polyfill'
 import vuelazy from 'vue-lazyload'
 

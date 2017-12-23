@@ -70,11 +70,32 @@ import sencondTypes from '@/components/community/community-t/indexsll-comp'
 import qsTypes from '@/components/community/community-t/indexqsll-comp'
 import discloseTypes from '@/components/community/community-t/indexdcll-comp'
 
+import indexPostingListb from '@/components/community/community-b/indexpl-comp'
+import indexQuestionListb from '@/components/community/community-b/indexql-comp'
+import indexPriceListb from '@/components/community/community-b/indexprl-comp'
+import indexSencondListb from '@/components/community/community-b/indexsl-comp'
+import indexDiscloseListb from '@/components/community/community-b/indexdcl-comp'
+
+import postingTypesb from '@/components/community/community-b/indexpll-comp'
+import questionTypesb from '@/components/community/community-b/indexqll-comp'
+import prieTypesb from '@/components/community/community-b/indexprll-comp'
+import sencondTypesb from '@/components/community/community-b/indexsll-comp'
+import discloseTypesb from '@/components/community/community-b/indexdcll-comp'
+
+import postingTypesp from '@/components/community/community-p/indexpll-comp'
+import questionTypesp from '@/components/community/community-p/indexqll-comp'
+import prieTypesp from '@/components/community/community-p/indexprll-comp'
+import sencondTypesp from '@/components/community/community-p/indexsll-comp'
+import qsTypesp from '@/components/community/community-p/indexqsll-comp'
+import discloseTypesp from '@/components/community/community-p/indexdcll-comp'
+
 import asideComp01 from '@/components/aside01-comp'
 import asideComp02 from '@/components/aside02-comp'
 import asideComp03 from '@/components/aside03-comp'
 import asideComp04 from '@/components/aside04-comp'
 import asideComp05 from '@/components/aside05-comp'
+import asideComp06 from '@/components/aside06-comp'
+import asideComp07 from '@/components/aside07-comp'
 import Log4 from '@/components/test03-comp'
 import Log5 from '@/components/test04-comp'
 import Log6 from '@/components/test05-comp'
@@ -371,6 +392,82 @@ export default new Router({
              {
                 path:'discloseTypes',
                 component: discloseTypes
+             }
+      ]
+     },
+     {
+        path: '/community_brands',
+        component: asideComp06,
+         children: [
+             {
+                path: '',
+                component: indexPostingListb
+             },
+             {
+                path:'indexQuestion',
+                component: indexQuestionListb
+             },
+             {
+                path:'indexPrice',
+                component: indexPriceListb
+             },
+             {
+                path:'indexSencond',
+                component: indexSencondListb
+             },
+             {
+                path:'indexDisclose',
+                component: indexDiscloseListb
+             },
+             {
+                path:'postingTypes',
+                component: postingTypesb
+             },
+             {
+                path:'questionTypes',
+                component: questionTypesb
+             },
+             {
+                path:'prieTypes',
+                component: prieTypesb
+             },
+             {
+                path:'sencondTypes',
+                component: sencondTypesb
+             },
+             {
+                path:'discloseTypes',
+                component: discloseTypesb
+             }
+      ]
+     },
+     {
+        path: '/community_products',
+        component: asideComp07,
+         children: [
+             {
+                path:'',
+                component: postingTypesp
+             },
+             {
+                path:'questionTypes',
+                component: questionTypesp
+             },
+             {
+                path:'prieTypes',
+                component: prieTypesp
+             },
+             {
+                path:'sencondTypes',
+                component: sencondTypesp
+             },
+             {
+                path:'qsTypes',
+                component: qsTypesp
+             },
+             {
+                path:'discloseTypes',
+                component: discloseTypesp
              }
       ]
      },

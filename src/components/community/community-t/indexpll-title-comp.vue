@@ -1,12 +1,15 @@
 <template>
 	<div class="title-box">
-		<h3 class="title">社区首页帖子列表</h3>
+		<h3 class="title">品类社区帖子列表</h3>
 		<Button type="primary" class="refresh" shape="circle" icon="ios-loop">刷新</Button>
-		<Button type="primary" class="disappeared" shape="circle" icon="ios-trash-outline">批量隐藏</Button>
 		<div class="search-and-result">
-			<span class="result">首页帖子：
+			<span class="result">全部：
 	          <span class="res-num">353216</span>
 			</span>
+
+			    <Select size="small" v-model="model1" style="width:150px; margin-left:18px">
+			        <Option v-for="item in 6" :value="item" :key="item">{{ item }}</Option>
+			    </Select>
 		</div>
 	</div>
 </template>

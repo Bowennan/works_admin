@@ -1,21 +1,21 @@
 <template>
 	<div class="um">
-		<fpp-search-comp></fpp-search-comp>
-        <fpp-title-comp></fpp-title-comp>
-        <fpp-list-comp class="tables"></fpp-list-comp>
+		<indexprll-search-comp></indexprll-search-comp>
+        <indexprll-title-comp></indexprll-title-comp>
+        <indexprll-list-comp class="tables"></indexprll-list-comp>
 	</div>
 </template>
 
 <script>
-    import fppSearchComp from '@/components/community/community-f/fpp-search-comp'
-	import fppTitleComp from '@/components/community/community-f/fpp-title-comp'
-	import fppListComp from '@/components/community/community-f/fpp-list-comp'
+    import indexprllSearchComp from '@/components/community/community-t/indexprll-search-comp'
+	import indexprllTitleComp from '@/components/community/community-t/indexprll-title-comp'
+	import indexprllListComp from '@/components/community/community-t/indexprll-list-comp'
 
 	export default {
              components: {
-			    fppSearchComp,
-			    fppTitleComp,
-			    fppListComp
+			    indexprllSearchComp,
+			    indexprllTitleComp,
+			    indexprllListComp
 			  }
 	}
 </script>
