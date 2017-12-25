@@ -1,33 +1,37 @@
 <template>
 	<div class="search-box">
-		<div class="id-name-search">
-			<id-search></id-search>
-		</div>
+		  <Input class="id-search" v-model="result">
+          <Select v-model="result_doing" slot="prepend" style="width: 60px">
+              <Option value="id">ID</Option>
+              <Option value="month">昵称</Option>
+          </Select>
+          <Button slot="append" icon="ios-search"></Button>
+      </Input>
 
 		<div class="range-search">
-			<div class="lev-search">
-				<Select class="level-group" v-model="model1" placeholder="棒客等级(全部)">
+			<div class="conditions-box">
+				<Select v-model="model1" placeholder="棒客等级(全部)">
 			        <Option v-for="item in cityList01" :value="item.value" :key="item.value">{{ item.label }}</Option>
 			    </Select>
 			</div>
 
-			<div class="lev-search">
-				    <Select class="brand-group" v-model="model2">
+			<div class="conditions-box">
+				    <Select class="conditions-width" v-model="model2">
 				        <Option v-for="item in cityList02" :value="item.value" :key="item.value">{{ item.label }}</Option>
 				    </Select>
 			</div>
 
-			<div class="lev-search">
-				    <Select class="commity-group" v-model="model3">
+			<div class="conditions-box">
+				    <Select class="conditions-width" v-model="model3">
 				        <Option v-for="item in cityList03" :value="item.value" :key="item.value">{{ item.label }}</Option>
 				    </Select>
 			</div>
 
-			<div class="lev-search">
-				 <date-to-date></date-to-date>
+			<div class="conditions-box">
+				  <DatePicker type="daterange" placement="bottom-end" placeholder="Select date" style="200px"></DatePicker>
 			</div>
 
-			<div class="lev-search">
+			<div class="conditions-box">
 				<Button type="primary" @click="checkLevel">确认筛选</Button>
 			</div>
 		</div>
@@ -35,10 +39,6 @@
 </template>
 
 <script>
-   import idSearch from '@/components/base-comp/id-search'
-   import dateToDate from '@/components/base-comp/date-to-date'
-   import confirmBtn from '@/components/base-comp/confirm-btn'
-   import levelSearch from '@/components/base-comp/level-search'
 	export default {
        data() {
        	return {
@@ -47,6 +47,8 @@
        		model2: -1,
        		model3: -1,
        		model1: '',
+          result: '无',
+          result_doing:'id',
        		cityList01: [
        		        {
                     	value: '',
@@ -185,49 +187,7 @@
        		// console.log(this.model1);
        		this.$emit("findLevel", this.model1);
        	}
-       },
-
-       components: {
-       	  idSearch,
-       	  dateToDate,
-       	  confirmBtn,
-       	  levelSearch
        }
 
 	}
 </script>
-
-<style scoped>
-	.search-box {
-		box-sizing:border-box;
-		width:100%;
-		min-width:1250px;
-		height:78px;
-		border-right:1px solid #dddee1;
-		border-bottom:1px solid #dddee1;
-		position:relative;
-	}
-	.id-name-search {
-       position: absolute;
-       top:20px;
-       left:28px;
-	}
-
-	.range-search {
-		position: absolute;
-		right: 0;
-		top:18px;
-	}
-
-	.lev-search {
-		float:left;
-		margin-right:38px;
-	}
-
-	.level-group, .commity-group, .brand-group {
-		width:130px;
-	}
-    .ivu-select-arrow {
-    	color:blue !important;
-    }
-</style>

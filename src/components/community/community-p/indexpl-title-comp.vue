@@ -24,7 +24,6 @@
 <style scoped>
 	.title-box {
 		width:100%;
-		min-width:1250px;
 		height:118px;
 		box-sizing: border-box;
 		padding:1px;

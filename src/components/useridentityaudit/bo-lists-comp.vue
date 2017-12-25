@@ -76,12 +76,12 @@
 			</li>
 		</ul>
 
-		<div :class="bg? 'container' : ''">
-			
+		<div v-show="cover" :style="{width:coverWidth+'px', height:coverHeight+'px'}" class="cover-style">
+			<div class="pop-wrapper">
+				<check-or-not @close="showCheck" v-if="showCheckStatus"></check-or-not>
+				<check-connect @close="showConnect" v-if="showConnectStatus"></check-connect>
+			</div>
 		</div>
-		
-		<check-or-not @close="showCheck" v-show="showCheckStatus"></check-or-not>
-		<check-connect @close="showConnect" v-show="showConnectStatus"></check-connect>
 	</div>
 </template>
 
@@ -94,16 +94,26 @@
        	  	state: 0,
        	  	bg:false,
        	  	showCheckStatus:false,
-       	  	showConnectStatus:false
+       	  	showConnectStatus:false,
+       	  	coverWidth:0,
+       	  	coverHeight:0,
+       	  	cover:false
        	  }
        },
+       created() {
+       	this.getWindowsSize()
+       },
        methods: {
+       	getWindowsSize() {
+	       		this.coverWidth = window.document.body.offsetWidth;
+	       		this.coverHeight = window.document.body.offsetHeight;
+	       	},
        	showCheck() {
-       		this.bg = !this.bg
+       		this.cover = !this.cover
        		this.showCheckStatus = !this.showCheckStatus
        	},
        	showConnect() {
-       		this.bg = !this.bg
+       		this.cover = !this.cover
        		this.showConnectStatus = !this.showConnectStatus
        	}
        },

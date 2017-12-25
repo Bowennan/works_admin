@@ -57,7 +57,7 @@ export default {
 <style scoped>
 	.head-comp {
 		width:100%;
-		min-width:1400px;
+		min-width:1330px;
 		height:86px;
 		background: -webkit-linear-gradient(left, #3752d3 , #4ca0fe); /* Safari 5.1 - 6.0 */
 	    background: -o-linear-gradient(right, #3752d3, #4ca0fe); /* Opera 11.1 - 12.0 */

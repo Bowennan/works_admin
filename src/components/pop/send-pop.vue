@@ -1,52 +1,87 @@
 <template>
-	<div style="width:100%; height:365px; background:#fff">
-				<h3 class="pop-box-header">发信息
-	              <Icon type="close-round" class="pop-box-close"></Icon>
-	              <span class="pop-box-close" @click="closeTheSend"></span>
-				</h3>
+  <div class="pop-container">
+    <div class="pop-header">
+      <span class="pop-title">发信息</span>
+      <Icon class="pop-close" type="close-round" @click.native="closeSend"></Icon>
+    </div>
 
-					<div>
-						<span class="item-title">消息编辑</span>
-					</div>
+    <div class="pop-sub-container" style="border:none">
+      <span class="pop-sub-title">消息编辑</span>
+      <div class="border" style="height:132px;">
+        <textarea class="text-contents border-bottom"></textarea>
+        <Select class="text-sel"  size="small" v-model="infos" style="width:150px">
+              <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
+          </Select>
+      </div>
+    </div>
 
-					<div class="textarea-box">
-					  <textarea class="re-text">的垃圾分厘卡</textarea>
-                      <div class="text-select">
-					  	<Select v-model="model1" style="width:130px">
-					        <Option v-for="item in 5" :value="item" :key="item">{{ item}}</Option>
-					    </Select>
-					  </div>
-					</div>
-                    
-                    <div class="bottom-box-small">
-
-                    	<div>
-                    		<Button class="cancel-btn" type="primary" style="background:#fff; border:1px solid #84878f; color:#1c2438" @click="closeTheSend">取消</Button> 
-                    		<Button class="cancel-btn" type="primary">确认发送</Button>
-                    	</div>
-                    </div>
-			</div>
+    <div class="pop-bottom-box">
+       <Button class="pop-confirm-btn" @click="closeSend" type="ghost">取消</Button> 
+       <Button class="pop-confirm-btn" @click="closeSend" type="primary">确认发送</Button>
+       
+    </div>
+  </div>
 </template>
 
 <script>
-	export default {
-       data() {
-        	return {
-        		single: 9,
-        		model1: "消息模板",
-        		value5: "我是输入框",
-        		model11: "我是最后的选择框",
-        		value:"我是认证框",
-        		switchBtn: false
-        	}
-        },
-        methods: {
-           closeTheSend() {
-           	this.$emit("closeSendWindow")
-           }
-        }
-	}
-</script>
+  export default {
+    data() {
+      return {
+        check01:true,
+        check02:true,
+        infos:'无'
+      }
+    },
+    methods: {
+      closeSend() {
+        this.$emit('close')
+      }
+    }
+  }
+</script></span>
+      <div class="border" style="height:132px;">
+        <textarea class="text-contents border-bottom"></textarea>
+        <Select class="text-sel"  size="small" v-model="infos" style="width:150px">
+              <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
+          </Select>
+      </div>
+    </div>
 
-<style scoped>
-</style>
+    <div class="pop-bottom-box-big">
+      
+        <div class="sub-btn-input">
+          <Select class="input-and-sel" size="small" v-model="infos" style="width:200px">
+                <Option v-for="item in 4" :value="item" :key="item">{{ item }}</Option>
+            </Select>
+            <Button class="more-than-two" size="small" type="primary">确认授权人</Button>
+        </div>
+                
+                <div class="sub-btn-input">
+                  <Input class="input-and-sel" size="small" v-model="infos" placeholder="Enter something..." style="width: 200px"></Input>
+              <Button class="more-than-two" size="small" type="primary">认证</Button>
+                </div>
+
+           <div class="sub-btn-input">
+            <Button class="more-than-two" type="ghost" @click="closeForbidden">取消</Button>
+              <Button class="more-than-two" type="primary" @click="closeForbidden">确认发送</Button>
+           </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        check01:true,
+        check02:true,
+        infos:'无'
+      }
+    },
+    methods: {
+      closeForbidden() {
+        this.$emit('close')
+      }
+    }
+  }
+</script>

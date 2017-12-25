@@ -1,54 +1,76 @@
 <template>
-	<div style="width:100%; height:480px; background:#fff">
-				<h3 class="pop-box-header">私信查看(时间倒叙)
-	              <Icon type="close-round" class="pop-box-close"></Icon>
-	              <span class="pop-box-close" @click="closeThePrivate"></span>
-				</h3>
+  <div class="pop-container">
+    <div class="pop-header">
+      <span class="pop-title">私信查看（时间倒叙）</span>
+      <Icon class="pop-close" type="close-round" @click.native="closePrivate"></Icon>
+    </div>
 
-					<div>
-						<span class="item-title">操作积分变化信息</span>
-					</div>
+    <div class="pop-sub-container">
+      <span class="pop-sub-title">私信列表</span>
+          <Timeline>
+            <TimelineItem>
+                <p class="time">1976年</p>
+                <p class="content">Apple I 问世 
+                    <span class="c-azul">用户XXX</span>
+                    私信
+                    <span class="pop-check-out c-azul">查看详情</span>
+                </p>
+            </TimelineItem>
+            <TimelineItem>
+                <p class="time">1984年</p>
+                <p class="content">发布 Macintosh 
+                    <span class="c-azul">用户XXX</span>
+                    私信
+                    <span class="pop-check-out c-azul">查看详情</span>
+                </p>
+            </TimelineItem>
+            <TimelineItem>
+                <p class="time">2007年</p>
+                <p class="content">发布 iPhone 
+                    <span class="c-azul">用户XXX</span>
+                    私信
+                    <span class="pop-check-out c-azul">查看详情</span>
+                </p>
+            </TimelineItem>
+            <TimelineItem>
+                <p class="time">2010年</p>
+                <p class="content">发布 iPad 
+                    <span class="c-azul">用户XXX</span>
+                    私信
+                    <span class="pop-check-out c-azul">查看详情</span>
+                </p>
+            </TimelineItem>
+            <TimelineItem>
+                <p class="time">2011年10月5日</p>
+                <p class="content">史蒂夫·乔布斯去世 
+                    <span class="c-azul">用户XXX</span>
+                    私信
+                    <span class="pop-check-out c-azul">查看详情</span>
+                </p>
+            </TimelineItem>
+        </Timeline>
+    </div>
 
-          <div>
-            <Timeline>
-              <TimelineItem v-for="item in 5" :key="item">
-                  <p class="time">201{{item}}年</p>
-                  <p class="content">做了{{item}}件事情  <span style="color:#2d8cf0; margin-left:20px">查看详情</span></p>
-              </TimelineItem>
-          </Timeline>
-          </div>
-
-					
-                    
-                    <div class="bottom-box-small">
-
-                    	<div>
-                    		<Button class="cancel-btn" type="primary" style="background:#fff; border:1px solid #84878f; color:#1c2438" @click="closeThePrivate">取消</Button> 
-                    		<Button class="cancel-btn" type="primary">确认</Button>
-                    	</div>
-                    </div>
-			</div>
+    <div class="pop-bottom-box">
+      <Button class="pop-confirm-btn" type="ghost" @click="closePrivate">取消</Button>
+      <Button class="pop-confirm-btn" type="primary" @click="closePrivate">确认</Button>
+    </div>
+  </div>
 </template>
 
 <script>
-	export default {
-       data() {
-        	return {
-        		single: 9,
-        		model1: "消息模板",
-        		value5: "我是输入框",
-        		model11: "我是最后的选择框",
-        		value:"我是认证框",
-        		switchBtn: false
-        	}
-        },
-        methods: {
-           closeThePrivate() {
-           	this.$emit("closePrivateWindow")
-           }
-        }
-	}
+  export default {
+    data() {
+      return {
+        check01:true,
+        check02:true,
+        infos:'无'
+      }
+    },
+    methods: {
+      closePrivate() {
+        this.$emit('close')
+      }
+    }
+  }
 </script>
-
-<style scoped>
-</style>

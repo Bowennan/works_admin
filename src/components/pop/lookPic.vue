@@ -45,7 +45,6 @@
 		border:1px solid #bbbec4;
 		position: fixed;
 		left:50%;
-		top:230px;
 		transform: translateX(-50%);
 		background: #fff;
 		border-radius: 8px;

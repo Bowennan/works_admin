@@ -1,16 +1,8 @@
 <template>
   <div class="pop-container">
     <div class="pop-header">
-      <span class="pop-title">禁用用户管理</span>
-      <Icon class="pop-close" type="close-round" @click.native="closeForbidden"></Icon>
-    </div>
-
-    <div class="pop-sub-container">
-      <span class="pop-sub-title">禁用操作</span>
-      <span style="margin-left:12px;" class="c-carbon">禁用状态（天数）：10天</span>
-      <Select class="input-and-sel" size="small" v-model="infos" style="width:120px">
-          <Option v-for="item in 3" :value="item" :key="item">{{ item }}</Option>
-      </Select>
+      <span class="pop-title">达人身份取缔</span>
+      <Icon class="pop-close" type="close-round" @click.native="closeCancel"></Icon>
     </div>
 
     <div class="pop-sub-container" style="border:none">
@@ -38,8 +30,8 @@
                 </div>
 
            <div class="sub-btn-input">
-            <Button class="more-than-two" type="ghost" @click="closeForbidden">取消</Button>
-              <Button class="more-than-two" type="primary" @click="closeForbidden">确认发送</Button>
+            <Button class="more-than-two" type="ghost" @click="closeCancel">取消</Button>
+              <Button class="more-than-two" type="primary" @click="closeCancel">确认发送</Button>
            </div>
     </div>
   </div>
@@ -55,7 +47,7 @@
       }
     },
     methods: {
-      closeForbidden() {
+      closeCancel() {
         this.$emit('close')
       }
     }

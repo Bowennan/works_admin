@@ -38,55 +38,132 @@
 						<p class="h-block01">
 							<span class="items">
 								<span>审核状态</span>
-								<span>|不通过</span>
+								<span @click="examineTrigger">|不通过</span>
 							</span>
 							<span class="items">
 								<span>文章状态</span>
-								<span>|隐藏</span>
+								<span @click="statusTrigger">|隐藏</span>
 							</span>
 							<span class="items">
 								<span>产品关联</span>
-								<span>|设置</span>
+								<span @click="connectpTrigger">|设置</span>
 							</span>
 						</p>
 						<p class="h-block02">
 							<span class="items">
 								<span>推首</span>
-								<span>|设置</span>
+								<span @click="recommendTrigger">|设置</span>
 							</span>
 							<span class="items">
 								<span>评分</span>
-								<span>|等级A</span>
+								<span @click="levelTrigger">|等级A</span>
 							</span>
 							<span class="items">
 								<span>TAG</span>
-								<span>|设置</span>
+								<!-- <span @click="tagTrigger">|设置</span> -->
 							</span>
 						</p>
 						<p class="h-block03">
 							<span class="items">
 								<span>文章归类</span>
-								<span>|设置</span>
+								<span @click="classfyTrigger">|设置</span>
 							</span>
 							<span class="items">
 								<span>权重</span>
-								<span>|120</span>
+								<span @click="weightTrigger">|120</span>
 							</span>
 						</p>
 					</li>
 				</ul>
 			</li>
 		</ul>
+  
+        <div v-show="cover" :style="{width:coverWidth+'px', height:coverHeight+'px'}" class="cover-style">
+			<div class="pop-wrapper">
+				<examine-window v-if="eStatus" @close="examineTrigger"></examine-window>
+				<status-window v-if="sStatus" @close="statusTrigger"></status-window>
+				<classfy-window v-if="cStatus" @close="classfyTrigger"></classfy-window>
+				<connectp-window v-if="cpStatus" @close="connectpTrigger"></connectp-window>
+				<recommend-window v-if="recStatus" @close="recommendTrigger"></recommend-window>
+				<level-window v-if="levStatus" @close="levelTrigger"></level-window>
+				<weight-window v-if="weiStatus" @close="weightTrigger"></weight-window>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
+    import examineWindow from '@/components/pop/examine-pop'
+    import connectpWindow from '@/components/pop/connectp-pop'
+    import statusWindow from '@/components/pop/status-pop'
+    import classfyWindow from '@/components/pop/classfy-pop'
+    import recommendWindow from '@/components/pop/recommend-pop'
+    import levelWindow from '@/components/pop/level-pop'
+    import tagWindow from '@/components/pop/tag-pop'
+    import weightWindow from '@/components/pop/weight-pop'
 	export default {
        data() {
        	  return {
        	  	state: 0,
+       	  	eStatus:false,
+       	  	sStatus:false,
+       	  	cStatus:false,
+       	  	cpStatus:false,
+       	  	recStatus:false,
+       	  	levStatus:false,
+       	  	weiStatus:false,
+       	  	coverWidth:0,
+    		coverHeight:0,
+    		cover:false
        	  }
-       }
+       },
+       created() {
+           this.getWindowsSize()
+        },
+       methods: {
+       	getWindowsSize() {
+	       		this.coverWidth = window.document.body.offsetWidth;
+	       		this.coverHeight = window.document.body.offsetHeight;
+	       	},
+          examineTrigger() {
+          	this.eStatus = !this.eStatus
+          	this.cover = !this.cover
+          },
+          statusTrigger(){
+          	this.sStatus = !this.sStatus
+          	this.cover = !this.cover
+          },
+          classfyTrigger(){
+          	this.cStatus = !this.cStatus
+          	this.cover = !this.cover
+          },
+          connectpTrigger(){
+          	this.cpStatus = !this.cpStatus
+          	this.cover = !this.cover
+          },
+          recommendTrigger(){
+          	this.recStatus = !this.recStatus
+          	this.cover = !this.cover
+          },
+          levelTrigger(){
+          	this.levStatus = !this.levStatus
+          	this.cover = !this.cover
+          },
+          weightTrigger(){
+          	this.weiStatus = !this.weiStatus
+          	this.cover = !this.cover
+          }
+       },
+       components: {
+        	examineWindow,
+        	connectpWindow,
+        	statusWindow,
+        	classfyWindow,
+        	recommendWindow,
+        	tagWindow,
+        	levelWindow,
+        	weightWindow
+        }
    }
 </script>
 

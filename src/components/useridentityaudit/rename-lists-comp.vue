@@ -61,11 +61,14 @@
 			</li>
 		</ul>
 
-		<div :class="bg? 'container' : ''">
-			
+		<div v-show="cover" :style="{width:coverWidth+'px', height:coverHeight+'px'}" class="cover-style">
+
+			<div class="pop-wrapper">
+				<look-pic v-if="showPicStatus" @close="showPic"></look-pic>
+			    <check-or-not v-if="showCheckStatus" @close="showCheck" ></check-or-not>
+			</div>
 		</div>
-		<look-pic @close="showPic" v-show="showPicStatus"></look-pic>
-		<check-or-not @close="showCheck" v-show="showCheckStatus"></check-or-not>
+		
 	</div>
 </template>
 
@@ -78,16 +81,26 @@
        	  	state: 0,
        	  	bg:false,
        	  	showPicStatus:false,
-       	  	showCheckStatus:false
+       	  	showCheckStatus:false,
+       	  	coverWidth:0,
+    		coverHeight:0,
+    		cover:false
        	  }
        },
+       created() {
+       	this.getWindowsSize()
+       },
        methods: {
+       	getWindowsSize() {
+	       		this.coverWidth = window.document.body.offsetWidth;
+	       		this.coverHeight = window.document.body.offsetHeight;
+	       	},
        	showPic() {
-       		this.bg = !this.bg
+       		this.cover = !this.cover
        		this.showPicStatus = !this.showPicStatus
        	},
        	showCheck() {
-       		this.bg = !this.bg
+       		this.cover = !this.cover
        		this.showCheckStatus = !this.showCheckStatus
        	}
        },

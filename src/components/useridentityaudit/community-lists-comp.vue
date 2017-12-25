@@ -29,20 +29,49 @@
 						<p>社区1、社区2、社区3...</p>
 					</li>
 					<li class="action">
-						<p>身份编辑</p>
+						<p>
+							<span @click="showEditor">身份编辑</span>
+						</p>
 					</li>
 				</ul>
 			</li>
 		</ul>
+
+		<div v-show="cover" :style="{width:coverWidth+'px', height:coverHeight+'px'}" class="cover-style">
+			<div class="pop-wrapper">
+				<identity-editor v-if="showStatus" @close="showEditor"></identity-editor>
+			</div>
+		</div>	
 	</div>
 </template>
 
 <script>
+   import identityEditor from '@/components/pop/identity-editor-pop'
 	export default {
        data() {
        	  return {
        	  	state: 0,
+       	  	showStatus:false,
+       	  	cover:false,
+       	  	coverHeight:0,
+       	  	coverWidth:0
        	  }
+       },
+       created() {
+          this.getWindowsSize();
+       },
+       methods: {
+       	getWindowsSize() {
+	       		this.coverWidth = window.document.body.offsetWidth;
+	       		this.coverHeight = window.document.body.offsetHeight;
+	       	},
+       	showEditor() {
+       		this.cover = !this.cover;
+       		this.showStatus = !this.showStatus
+       	}
+       },
+       components: {
+       	identityEditor
        }
    }
 </script>

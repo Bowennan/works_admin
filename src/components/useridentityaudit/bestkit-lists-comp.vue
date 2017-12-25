@@ -37,20 +37,51 @@
 					    <p>XXx</p>
 					</li>
 					<li class="action">
-						<p>取消官方身份</p>
+						<p>
+							<span @click="cancelBest">
+								取消官方身份
+							</span>
+						</p>
 					</li>
 				</ul>
 			</li>
 		</ul>
+
+		<div v-show="cover" :style="{width:coverWidth+'px', height:coverHeight+'px'}" class="cover-style">
+			<div class="pop-wrapper">
+				<cancel-identity v-if="cancelStatus01" @close="cancelBest"></cancel-identity>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
+   import cancelIdentity from '@/components/pop/cancel-identity-pop'
 	export default {
        data() {
        	  return {
        	  	state: 0,
+       	  	cancelStatus01:false,
+       	  	coverWidth:0,
+    		coverHeight:0,
+    		cover:false
        	  }
+       },
+        created() {
+       	this.getWindowsSize();
+       },
+       methods: {
+       	getWindowsSize() {
+	       		this.coverWidth = window.document.body.offsetWidth;
+	       		this.coverHeight = window.document.body.offsetHeight;
+	       	},
+       	cancelBest() {
+       		this.cover = !this.cover;
+       		this.cancelStatus01 = !this.cancelStatus01;
+       	}
+       },
+       components: {
+       	cancelIdentity
        }
    }
 </script>

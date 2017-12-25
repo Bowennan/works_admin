@@ -1,12 +1,14 @@
 <template>
 	<div class="title-box">
-		<h3 class="title">用户管理</h3>
-		<Button class="refresh" type="primary" shape="circle" icon="ios-loop" @click="refreshData">刷新</Button>
-		<div class="search-and-result">
-			<span class="result">共
-	          <span class="res-num">{{total}}</span>人被筛选
+		<h3 class="titulo">用户管理</h3>
+		<div class="btns-container">
+           <Button  class="refresh re-btn" type="primary" shape="circle" icon="ios-loop" @click="refreshData">刷新</Button>      
+        </div>
+		<div class="result-container">
+			<span class="total-result">共
+	          <span class="c-azul">{{total}}</span>人被筛选
 			</span>
-			<Select class="search-group" v-model="model1">
+			<Select class="order-sel" v-model="model1">
 		        <Option v-for="item in orderClass" :value="item.value" :key="item.value">{{ item.label }}</Option>
 		    </Select>
 		</div>
@@ -91,49 +93,3 @@
        }
 	}
 </script>
-
-<style scoped>
-	.title-box {
-		width:100%;
-		min-width:1250px;
-		height:118px;
-		box-sizing: border-box;
-		padding:1px;
-		position: relative;
-	}
-	.title {
-		font-size:16px;
-		color:#1c24338;
-		display: inline-block;
-		margin:24px 0 22px 28px;
-	}
-	.refresh {
-		position: absolute;
-		width:92px;
-		font-size:14px;
-		color:#fff;
-		bottom:24px;
-		left:28px;
-	}
-	.search-group {
-		width:150px;
-		margin-top:20px;
-		display: block;
-		text-align: left;
-	}
-	.search-and-result {
-		position:absolute;
-		right:38px;
-		top:50%;
-		transform: translateY(-50%);
-		text-align: right;
-		z-index: 1000;
-	}
-	.result {
-		font-size:14px;
-		color:#80848f;
-	}
-	.res-num {
-		color:#2b85e4;
-	}
-</style>

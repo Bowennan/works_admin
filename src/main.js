@@ -8,6 +8,7 @@ import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 import '@/commoncss/common-style.css'
 import '@/commoncss/common-aside-style.css'
+import '@/commoncss/common-pop-style.css'
 import 'babel-polyfill'
 import vuelazy from 'vue-lazyload'
 

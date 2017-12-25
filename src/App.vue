@@ -24,7 +24,6 @@ export default {
 
 <style>
   #app {
-    min-width: 1250px;
     position: relative;
     width:100%;
     height:100%;
@@ -40,6 +39,7 @@ export default {
   .search {
     width:100%;
     height:100%;
+    min-width: 1330px;
   }
 
 

@@ -50,20 +50,51 @@
 						</p>
 					</li>
 					<li class="action-status">
-						<p>取消身份</p>
+						<p>
+							<span @click="showCancel">
+								取消身份
+							</span>
+						</p>
 					</li>
 				</ul>
 			</li>
 		</ul>
+
+		<div v-show="cover" :style="{width:coverWidth+'px', height:coverHeight+'px'}" class="cover-style">
+			<div class="pop-wrapper">
+				<cancel-identity v-if="cancelStatus" @close="showCancel"></cancel-identity>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
+   import cancelIdentity from '@/components/pop/cancel-identity-pop'
 	export default {
        data() {
        	  return {
        	  	state: 0,
+       	  	cancelStatus:false,
+       	  	coverWidth:0,
+    		coverHeight:0,
+    		cover:false
        	  }
+       },
+       created() {
+       	this.getWindowsSize();
+       },
+       methods: {
+       	getWindowsSize() {
+	       		this.coverWidth = window.document.body.offsetWidth;
+	       		this.coverHeight = window.document.body.offsetHeight;
+	       	},
+       	showCancel() {
+       		this.cover = !this.cover;
+       		this.cancelStatus = !this.cancelStatus;
+       	}
+       },
+       components: {
+       	cancelIdentity
        }
    }
 </script>

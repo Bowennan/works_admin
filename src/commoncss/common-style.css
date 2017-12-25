@@ -76,7 +76,6 @@
 .search-box {
 	box-sizing: border-box;
 	width:100%;
-	min-width: 1200px;
 	height: 78px;
 	border-bottom:1px solid #dddee1;
 	position: relative;
@@ -102,14 +101,13 @@
 	margin-left:25px;
 }
 .conditions-width {
-	width:150px;
+	width:120px;
 }
 
 /*标题包裹框样式*/
 .title-box {
 	box-sizing: border-box;
 	width:100%;
-	min-width: 1200px;
 	height: 100px;
 	padding:2px;
 	position: relative;
@@ -130,20 +128,27 @@
 	width:90px;
 }
 
-.search-result {
-	position: absolute;
-	right: 30px;
-	bottom:14px;
-	text-align: right;
-}
-
 /*搜索数据结果*/
 .result-container {
 	position: absolute;
-	bottom:22px;
+	bottom:14px;
 	right: 30px;
 	text-align: right;
 }
+
+.total-result {
+	display: block;
+	padding-bottom:5px;
+	font-size: 12px;
+	color:#80848f;
+}
+
+.order-sel {
+	width:150px;
+	text-align: left;
+}
+
+
 
 /*核心列表公共样式*/
 .tables {

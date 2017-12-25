@@ -77,11 +77,11 @@
 			</li>
 		</ul>
 
-		<div :class="bg? 'container' : ''">
-			
+		<div v-show="cover" :style="{width:coverWidth+'px', height:coverHeight+'px'}" class="cover-style">
+			<div class="pop-wrapper">
+				<check-or-not @close="showCheck" v-if="showCheckStatus"></check-or-not>
+			</div>
 		</div>
-		
-		<check-or-not @close="showCheck" v-show="showCheckStatus"></check-or-not>
 	</div>
 </template>
 
@@ -93,12 +93,22 @@
        	  	state: 0,
        	  	bg:false,
        	  	showPicStatus:false,
-       	  	showCheckStatus:false
+       	  	showCheckStatus:false,
+       	  	coverWidth:0,
+       	  	coverHeight:0,
+       	  	cover:false
        	  }
        },
+       created() {
+       	this.getWindowsSize()
+       },
        methods: {
+       	getWindowsSize() {
+	       		this.coverWidth = window.document.body.offsetWidth;
+	       		this.coverHeight = window.document.body.offsetHeight;
+	       	},
        	showCheck() {
-       		this.bg = !this.bg
+       		this.cover = !this.cover
        		this.showCheckStatus = !this.showCheckStatus
        	}
        },
@@ -109,21 +119,6 @@
 </script>
 
 <style scoped>
-	.lists {
-		position: relative;
-		width:96%;
-		height: 100%;
-		margin-left:28px;
-		margin-top:20px;
-	}
-	.container {
-		position: absolute;
-		top:-216px;
-		bottom:0;
-		left:-28px;
-		right:-32px;
-		background: #e9eaec9c;
-	}
 	.header {
 		box-sizing: border-box;
 		width:100%;
