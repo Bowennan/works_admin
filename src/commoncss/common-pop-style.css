@@ -74,6 +74,7 @@
 .pop-sub-title {
 	display: block;
 	padding:12px 10px;
+	color:#bbbec4;
 	position:relative;
 }
 
@@ -208,6 +209,14 @@
 	cursor:pointer;
 }
 
+/*缩略图*/
+.pop-thumb-img {
+	display: block;
+	width:96px;
+	height: 68px;
+	border:2px solid #bbbeec;
+}
+
 
 
 
@@ -262,3 +271,32 @@
 .border-bottom {
 	border-bottom:1px solid #dddee1;
 }
+
+/*棒客颜色*/
+.c-best {
+	color:#fdc628;
+}
+
+
+
+
+/*修改滚动条样式*/
+.pop-scroll-bar::-webkit-scrollbar {
+	width:4px;
+	box-sizing: border-box;
+	padding:0 1px;
+	background: #e9ecea;
+}
+
+.pop-scroll-bar::-webkit-scrollbar-thumb {/*滑块*/
+	border-radius: 2px;
+	box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+	background: #fdc628;
+
+}
+.pop-scroll-bar::-webkit-scrollbar-track {/*滚动条里面轨道*/
+            -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+            border-radius: 0;
+            padding:1px;
+            background: #e9ecea;
+        }

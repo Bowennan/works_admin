@@ -1,11 +1,11 @@
 <template>
 	<div class="search-box01">
 		<Input class="id-search" v-model="result">
-	        <Select v-model="result_doing" slot="prepend" style="width: 80px">
+	        <Select v-model="result_doing" slot="prepend" style="width: 60px">
 	            <Option value="id">ID</Option>
 	            <Option value="nickname">昵称</Option>
 	        </Select>
-	        <Button slot="append" icon="ios-search"></Button>
+	        <Button slot="append" icon="search"></Button>
 	    </Input>
 	</div>
 </template>

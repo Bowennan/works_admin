@@ -182,47 +182,24 @@
 				</ul>
 			</li>
 		</ul>
-    
-        <div :class="bg? 'container' : ''"></div>
-		<div class="pop-box" v-show="switchBtn">
-	      <nick-window @closeTheWindow="showNickWindow"></nick-window>
-	    </div>
 
-
-	
-		<div class="pop-box" v-show="switchBtn01">
-	      <send-window @closeSendWindow="showSendWindow"></send-window>
-	    </div>
-
-	    <div class="pop-box" v-show="switchBtn02">
-	      <authority-window @closeAuthorityWindow="showAuthorityWindow"></authority-window>
-	    </div>
-
-	    <div class="pop-box" v-show="switchBtn03">
-	      <log-window @closeLogWindow="showLogWindow"></log-window>
-	    </div>
-
-	    <div class="pop-box" v-show="switchBtn04">
-	      <private-window @closePrivateWindow="showPrivateWindow"></private-window>
-	    </div>
-
-	    <div class="pop-box" v-show="switchBtn05">
-	      <tagging-window @closeTaggingWindow="showTaggingWindow"></tagging-window>
-	    </div>
-
-	    <div class="pop-box" v-show="switchBtn06">
-	      <forbidden-window @closeForbiddenWindow="showForbiddenWindow" @confirmStoped="alertOne"></forbidden-window>
-	    </div>
-
-	    <div class="pop-box" v-show="switchBtn07">
-	      <user-window :outter="nameNum" @closeUserWindow="showUserWindow"></user-window>
-	    </div>
+		<div v-show="cover" :style="{width:coverWidth+'px', height:coverHeight+'px'}" class="cover-style">
+			<div class="pop-wrapper">
+				<nick-window v-if="switchBtn" @close="showNickWindow"></nick-window>
+				<tagging-window v-if="switchBtn05" @close="showTaggingWindow"></tagging-window>
+				<forbidden-window v-if="switchBtn06" @close="showForbiddenWindow"></forbidden-window>
+				<private-window v-if="switchBtn04" @close="showPrivateWindow"></private-window>
+				<log-window v-if="switchBtn03" @close="showLogWindow"></log-window>
+				<send-window v-if="switchBtn01" @close="showSendWindow"></send-window>
+				<authority-window v-if="switchBtn02" @close="showAuthorityWindow"></authority-window>
+				<user-window v-if="switchBtn07" :outter="nameNum" @close="showUserWindow"></user-window>
+			</div>
+		</div>
 
 	</div>
 </template>
 
 <script>
-    import '../../commoncss/pop-up.css'
     import nickWindow from '@/components/pop/nick-pop'
     import sendWindow from '@/components/pop/send-pop'
     import authorityWindow from '@/components/pop/authority-pop'
@@ -250,8 +227,14 @@
     		bg:false,
     		nameNum:'',
     		userId:'',
-    		freezeState: false
+    		freezeState: false,
+    		coverWidth:0,
+    		coverHeight:0,
+    		cover:false
        	}
+       },
+       created() {
+       	this.getWindowsSize()
        },
        computed: {
        	statusStyle() {
@@ -259,61 +242,64 @@
        	}
        },
        methods: {
+       	getWindowsSize() {
+	       		this.coverWidth = window.document.body.offsetWidth;
+	       		this.coverHeight = window.document.body.offsetHeight;
+	       	},
        	done() {
        		this.status = !this.status;//或许需要发送后台交互
        	},
        	showNickWindow() {
     		this.switchBtn = !this.switchBtn;
-    		this.bg = !this.bg;
+    		this.cover = !this.cover;
     	},
     	showSendWindow() {
     		this.switchBtn01 = !this.switchBtn01;
-    		this.bg = !this.bg;
+    		this.cover = !this.cover;
     	},
     	showAuthorityWindow() {
             this.switchBtn02 = !this.switchBtn02;
-    		this.bg = !this.bg;
+    		this.cover= !this.cover;
     	},
     	showLogWindow() {
     		this.switchBtn03 = !this.switchBtn03;
-    		this.bg = !this.bg;
+    		this.cover = !this.cover;
     	},
     	showPrivateWindow() {
     		this.switchBtn04 = !this.switchBtn04;
-    		this.bg = !this.bg;
+    		this.cover = !this.cover;
     	},
     	showTaggingWindow() {
     		this.switchBtn05 = !this.switchBtn05;
-    		this.bg = !this.bg;
+    		this.cover = !this.cover;
     	},
-    	showForbiddenWindow(id) {
+    	showForbiddenWindow() {
     		this.switchBtn06 = !this.switchBtn06;
-    		this.bg = !this.bg;
-    		this.userId = id;
+    		this.cover = !this.cover;
     	},
     	showUserWindow() {
     		this.switchBtn07 = !this.switchBtn07;
-    		this.bg = !this.bg;
+    		this.cover = !this.cover;
     	},
     	showUserWindow01() {
     		this.nameNum = "name1";
     		this.switchBtn07 = !this.switchBtn07;
-    		this.bg = !this.bg;
+    		this.cover = !this.cover;
     	},
     	showUserWindow02() {
     		this.nameNum = "name2";
     		this.switchBtn07 = !this.switchBtn07;
-    		this.bg = !this.bg;
+    		this.cover = !this.cover;
     	},
     	showUserWindow03() {
     		this.nameNum = "name3";
     		this.switchBtn07 = !this.switchBtn07;
-    		this.bg = !this.bg;
+    		this.cover = !this.cover;
     	},
     	showUserWindow04() {
     		this.nameNum = "name4";
     		this.switchBtn07 = !this.switchBtn07;
-    		this.bg = !this.bg;
+    		this.cover = !this.cover;
     	}
        },
        components: {

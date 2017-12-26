@@ -1,18 +1,22 @@
 <template>
-	<div class="search-box01">
+	<div class="search-box">
 		<Input class="id-search" v-model="result">
-	        <Select v-model="result_doing" slot="prepend" style="width: 80px">
+	        <Select v-model="result_doing" slot="prepend" style="width: 60px">
 	            <Option value="id">ID</Option>
 	            <Option value="nickname">昵称</Option>
 	        </Select>
-	        <Button slot="append" icon="ios-search"></Button>
+	        <Button slot="append" icon="search"></Button>
 	    </Input>
-		<Row class="date-range">
-	        <Col span="12">
-	            <DatePicker type="daterange" placement="bottom-end" placeholder="Select date" style="width: 200px"></DatePicker>
-	        </Col>
-	    </Row>
-	</div>
+	
+	      
+	 
+
+		 <div class="range-search">
+		 	<div class="conditions-box">
+		 		<DatePicker type="daterange" placement="bottom-end" placeholder="用户注册时间区间选择" style="width: 200px"></DatePicker>
+		 	</div>
+		 </div>
+	 </div>
 </template>
 
 <script>
@@ -25,25 +29,3 @@
 		}
 	}
 </script>
-
-<style scoped>
-		.search-box01 {
-			box-sizing:border-box;
-			width:100%;
-			height:78px;
-			border-right:1px solid #dddee1;
-			border-bottom:1px solid #dddee1;
-			position:relative;
-		}
-		.id-search {
-           position:absolute;
-           top:20px;
-           left:28px;
-           width:240px;
-		}
-		.date-range{
-           position:absolute;
-           right:38px;
-           top:20px;
-		}
-</style>
