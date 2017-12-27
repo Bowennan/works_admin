@@ -1,5 +1,5 @@
 <template>
-	<div class="um">
+	<div class="tables">
 		<aask-search-comp></aask-search-comp>
         <aask-title-comp></aask-title-comp>
         <aask-list-comp class="tables"></aask-list-comp>
@@ -19,12 +19,3 @@
 			  }
 	}
 </script>
-
-<style scoped>
-	  .tables {
-	  	height: 100%;
-	    width:96%;
-	    min-width:1052px;
-	    margin:0 10px;
-	  }
-</style>

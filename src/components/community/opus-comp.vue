@@ -1,5 +1,5 @@
 <template>
-	<div class="um">
+	<div class="tables">
 		<opus-search-comp></opus-search-comp>
         <opus-title-comp></opus-title-comp>
         <opus-list-comp class="tables"></opus-list-comp>
@@ -19,12 +19,3 @@
 			  }
 	}
 </script>
-
-<style scoped>
-	  .tables {
-	  	height: 100%;
-	    width:96%;
-	    min-width:1052px;
-	    margin:0 10px;
-	  }
-</style>

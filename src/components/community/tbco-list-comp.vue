@@ -1,6 +1,6 @@
 <template>
-	<div class="lists">
-		<ul class="header">
+	<div class="list-container">
+		<ul class="list-header">
 			<li class="posting-id">ID/标题/日期</li>
 			<li class="posting-author">作者信息</li>
 			<li class="posting-info">作品信息</li>
@@ -10,12 +10,12 @@
 
 		<ul>
 			<li>
-				<ul class="con-header">
+				<ul class="list-contents">
 					<li class="posting-id more-line">
 						<p>
 							<span class="lines">13232</span>
 							<span class="lines">你知道你活的比狗惨吗？</span>
-							<span class="lines">2017-12-9</span>
+							<span class="lines c-gris">2017-12-9</span>
 						</p>
 					</li>
 					<li class="posting-author more-line">
@@ -27,50 +27,91 @@
 					</li>
 					<li class="posting-info more-line">
 						<p>
-							<span class="lines">评论: <span>12</span></span> 
-							<span class="lines">类别: <span>攻略、图文、社区</span></span> 
+							<span class="lines c-gris">评论: <span class="c-carbon">12</span></span> 
+							<span class="lines c-gris">类型: <span class="c-carbon">图文</span></span> 
+
+							<Poptip  trigger="hover" placement="bottom" width="300">
+						        <span class="lines c-gris">其他: <span class="c-carbon">社区、浏览量等</span></span> 
+						        <div class="con-pop" slot="content">
+						           <div style="width:100%; height:130px; white-space:normal" class="poptip-box">
+						           	  <p>
+						           	  	<span>社区归属：</span>
+						           	  	<span class="c-carbon">苹果社区、无人机社区</span>
+						           	  </p>
+						           	  <p style="display:flex">
+						           	  	<span style="flex:1">
+						           	  		总浏览量：<span class="c-carbon">21212</span>
+						           	  	</span>
+						           	  	<span style="flex:1">
+						           	  		日浏览量：<span class="c-carbon">1231</span>
+						           	  	</span>
+						           	  </p>
+						           	  <p style="display:flex">
+						           	  	<span style="flex:1">
+						           	  		赞：<span class="c-carbon">1212</span>
+						           	  	</span>
+						           	  	<span style="flex:1">
+						           	  		踩：<span class="c-carbon">122</span>
+						           	  	</span>
+						           	  </p>
+						           	  <p style="display:flex">
+						           	  	<span style="flex:1">
+						           	  		优惠：<span class="c-carbon">1212</span>
+						           	  	</span>
+						           	  	<span style="flex:1">
+						           	  		收藏：<span class="c-carbon">122</span>
+						           	  	</span>
+						           	  </p>
+						           	  <p>
+						           	  	<span>
+						           	  		举报：<span class="c-carbon">1212</span>
+						           	  	</span>
+						           	  </p>
+						           </div>
+						        </div>
+    						</Poptip>
 						</p>
 					</li>
 					<li class="posting-con">
-					    <p>产品ID： <span>12151</span></p>
+					    <p class="c-gris">产品ID： <span class="c-carbon">12151</span></p>
 					</li>
 					<li class="posting-action">
 						<p class="h-block01">
 							<span class="items">
-								<span>审核状态</span>
-								<span>|不通过</span>
+								<span class="c-gris">审核状态 | </span>
+								<span class="pointer">不通过</span>
 							</span>
 							<span class="items">
-								<span>作品状态</span>
-								<span>|隐藏</span>
+								<span class="c-gris">作品状态 | </span>
+								<span class="pointer">隐藏</span>
 							</span>
 							<span class="items">
-								<span>产品关联</span>
-								<span>|设置</span>
+								<span class="c-gris">产品关联 | </span>
+								<span class="pointer">设置</span>
 							</span>
 						</p>
 						<p class="h-block02">
 							<span class="items">
-								<span>推首</span>
-								<span>|设置</span>
+								<span class="c-gris">推首 | </span>
+								<span class="pointer">设置</span>
 							</span>
 							<span class="items">
-								<span>评分</span>
-								<span>|等级A</span>
+								<span class="c-gris">评分 | </span>
+								<span class="pointer">等级A</span>
 							</span>
 							<span class="items">
-								<span>TAG</span>
-								<span>|设置</span>
+								<span class="c-gris">TAG | </span>
+								<span class="pointer">设置</span>
 							</span>
 						</p>
 						<p class="h-block03">
 							<span class="items">
-								<span>作品归类</span>
-								<span>|设置</span>
+								<span class="c-gris">作品归类 | </span>
+								<span class="pointer">设置</span>
 							</span>
 							<span class="items">
-								<span>权重</span>
-								<span>|120</span>
+								<span class="c-gris">权重 | </span>
+								<span class="pointer">120</span>
 							</span>
 						</p>
 					</li>
@@ -91,31 +132,6 @@
 </script>
 
 <style scoped>
-	.lists {
-		width:96%;
-		margin-left:28px;
-		margin-top:20px;
-	}
-	.header {
-		box-sizing: border-box;
-		width:100%;
-		height: 42px;
-		line-height: 42px;
-		border-top:1px solid #ccc;
-		border-bottom:1px solid #ccc;
-		display:flex;
-		color:#1c2438;
-		font-weight: bold;
-	}
-	.con-header {
-		box-sizing: border-box;
-		width:100%;
-		height: 96px;
-		display: flex;
-		border-bottom:1px solid #ccc;
-		color:#80848f;
-		font-weight: bold;
-	}
 	.col {
 		line-height: 18px;
 	}
@@ -152,46 +168,17 @@
 		min-width:232px;
 		flex:1;
 	}
-	.header li, .con-header li {
-        box-sizing: border-box;
-        padding:0 18px;
-	}
-	.con-header li p {
-		height: 95px;
-		display: table-cell;
-		vertical-align: middle;
-	}
 	.more-line p .lines {
 		display: block;
 	}
-	.con-box {
+	.con-pop .poptip-box p {
 		display: block;
-        width:100%;
-        max-height:54px; 
-        overflow: hidden;
-        position: relative;
-	}
-	.points {
-		display:block;
-		width:36px;
-		height: 18px;
-        position:absolute;
-        bottom:0;
-        right:0;
-        background: -webkit-linear-gradient(left, transparent, #fff 55%);
-		background: -o-linear-gradient(right, transparent, #fff 55%);
-		background: -moz-linear-gradient(right, transparent, #fff 55%);
-		background: linear-gradient(to right, transparent, #fff 55%);
-		font-size:14px;
-		font-weight: bold;
-		text-align: right;
-		padding-left:20px;
-	}
-	.action-con p span {
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 3;
-		overflow: hidden;
+		height: 25px;
+		line-height: 25px;
+		padding:5px;
+		font-size: 12px;
+		font-weight: 400;
+		color:#bbbec4;
 	}
 </style>
 

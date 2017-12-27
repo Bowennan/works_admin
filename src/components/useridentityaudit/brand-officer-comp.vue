@@ -1,5 +1,5 @@
 <template>
-	<div class="nutbt">
+	<div class="tables">
 		<bo-search-comp></bo-search-comp>
 		<bo-title-comp></bo-title-comp>
         <bo-lists-comp></bo-lists-comp>
@@ -18,11 +18,3 @@
 			  }
 	}
 </script>
-
-<style scoped>
-	  .tables {
-	    width:96%;
-	    min-width:1052px;
-	    margin:0 10px;
-	  }
-</style>

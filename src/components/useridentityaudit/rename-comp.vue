@@ -1,5 +1,5 @@
 <template>
-	<div class="nutbt">
+	<div class="tables">
 		<rename-search-comp></rename-search-comp>
 		<rename-title-comp></rename-title-comp>
         <rename-lists-comp></rename-lists-comp>
@@ -18,12 +18,3 @@
 			  }
 	}
 </script>
-
-<style scoped>
-	  .tables {
-	  	height: 100%;
-	    width:96%;
-	    min-width:1052px;
-	    margin:0 10px;
-	  }
-</style>

@@ -1,7 +1,7 @@
 <template>
-	<div class="lists">
-		<h4 class="title">管理员列表</h4>
-		<ul class="header">
+	<div class="list-container">
+		<h4 class="list-title">管理员列表</h4>
+		<ul class="list-header">
 			<li class="check-id more-line first-col">
 				<p>
 					<span>添加对象</span>
@@ -15,7 +15,7 @@
 
 		<ul>
 			<li>
-				<ul class="con-header">
+				<ul class="list-contents">
 					<li class="check-id more-line">
 						<p>
 						   <span>1025</span>
@@ -30,7 +30,7 @@
 					</li>
 					<li class="action">
 						<p>
-							<span @click="showEditor">身份编辑</span>
+							<span class="pointer" @click="showEditor">身份编辑</span>
 						</p>
 					</li>
 				</ul>
@@ -77,37 +77,6 @@
 </script>
 
 <style scoped>
-	.lists {
-		width:96%;
-		margin-left:28px;
-		margin-top:20px;
-	}
-	.title {
-		margin:12px 0;
-		font-size:14px;
-		color:#1c2438;
-		font-weight: bold;
-	}
-	.header {
-		box-sizing: border-box;
-		width:100%;
-		height: 42px;
-		line-height: 42px;
-		border-top:1px solid #ccc;
-		border-bottom:1px solid #ccc;
-		display:flex;
-		color:#1c2438;
-		font-weight: bold;
-	}
-	.con-header {
-		box-sizing: border-box;
-		width:100%;
-		height: 96px;
-		display: flex;
-		border-bottom:1px solid #ccc;
-		color:#80848f;
-		font-weight: bold;
-	}
 	.first-col {
 		line-height: 18px;
 	}
@@ -124,40 +93,8 @@
 		min-width:238px;
 		flex:1;
 	}
-	.header li, .con-header li {
-        box-sizing: border-box;
-        padding:0 18px;
-	}
-	.con-header li p {
-		height: 95px;
-		display: table-cell;
-		vertical-align: middle;
-	}
-	.more-line p span {
+	.more-line p > span {
 		display: block;
-	}
-	.con-box {
-		display: block;
-        width:100%;
-        max-height:54px; 
-        overflow: hidden;
-        position: relative;
-	}
-	.points {
-		display:block;
-		width:36px;
-		height: 18px;
-        position:absolute;
-        bottom:0;
-        right:0;
-        background: -webkit-linear-gradient(left, transparent, #fff 55%);
-		background: -o-linear-gradient(right, transparent, #fff 55%);
-		background: -moz-linear-gradient(right, transparent, #fff 55%);
-		background: linear-gradient(to right, transparent, #fff 55%);
-		font-size:14px;
-		font-weight: bold;
-		text-align: right;
-		padding-left:20px;
 	}
 </style>
 

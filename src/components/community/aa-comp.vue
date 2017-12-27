@@ -1,5 +1,5 @@
 <template>
-	<div class="um">
+	<div class="tables">
 		<aa-search-comp></aa-search-comp>
         <aa-title-comp></aa-title-comp>
         <aa-list-comp class="tables"></aa-list-comp>

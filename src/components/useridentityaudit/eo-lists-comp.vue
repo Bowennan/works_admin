@@ -1,6 +1,6 @@
 <template>
-	<div class="lists">
-		<ul class="header">
+	<div class="list-container">
+		<ul class="list-header">
 			<li class="check-id">审核ID</li>
 			<li class="id-nickname">ID/昵称</li>
 			<li class="media-info">自媒体信息</li>
@@ -11,23 +11,23 @@
 
 		<ul>
 			<li>
-				<ul class="con-header">
+				<ul class="list-contents">
 					<li class="check-id">
-						<p><span class="values">
+						<p><span class="c-carbon">
 							1025
 						</span></p>
 					</li>
 					<li class="id-nickname more-line">
 						<p>
-						   <span class="values">1025</span>
-						   <span class="values">开灯的山洞</span>
+						   <span class="c-carbon">1025</span>
+						   <span class="c-carbon">开灯的山洞</span>
 						</p>
 					</li>
 					<li class="media-info more-line">
 						<p>
                           
                           <Poptip trigger="hover" placement="bottom" width="300">
-						       <span>平台个数：<span class="values pointer">
+						       <span class="c-gris">平台个数：<span class="c-carbon pointer">
 									6
 								</span></span>
 						        <div style="white-space:normal" slot="content">
@@ -40,29 +40,29 @@
 					</li>
 					<li class="works more-line">
 					    <p>
-					    	<span>领域：<span class="values">
+					    	<span class="c-gris">领域：<span class="c-carbon">
 					    		影视，娱乐，体育
 					    	</span></span>
-					    	<span>作品：<span class="values">
+					    	<span class="c-gris">作品：<span class="c-carbon">
 					    		作品1，作品2
 					    	</span></span>
 					    </p>
 					</li>
 					<li class="apply-info more-line">
 						<p>
-							<span>申请状态：<span class="values">
+							<span class="c-gris">申请状态：<span class="c-carbon">
 								待审核
 							</span></span>
-							<span>申请时间：<span class="values">
+							<span class="c-gris">申请时间：<span class="c-carbon">
 								201665
 							</span></span>
 						</p>
 					</li>
 					<li class="action-status more-line">
 						<p>
-							<span class="values pointer"  @click="showCheck">审核</span>
+							<span class="c-carbon pointer"  @click="showCheck">审核</span>
 							<Poptip trigger="hover" placement="bottom-end" width="420">
-						        <span class='con'>说明：<span class="values">
+						        <span  class="c-gris font-hidden">说明：<span class="c-carbon">
 									的jfk简单了领导jfk了简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导
 								</span></span>
 						        <div style="white-space:normal" slot="content">
@@ -119,26 +119,6 @@
 </script>
 
 <style scoped>
-	.header {
-		box-sizing: border-box;
-		width:100%;
-		height: 42px;
-		line-height: 42px;
-		border-top:1px solid #ccc;
-		border-bottom:1px solid #ccc;
-		display:flex;
-		color:#1c2438;
-		font-weight: bold;
-	}
-	.con-header {
-		box-sizing: border-box;
-		width:100%;
-		height: 96px;
-		display: flex;
-		border-bottom:1px solid #ccc;
-		color:#bbbec4;
-		font-weight: 400;
-	}
 	.apply-info {
 		flex:0 0 178px;
 	}
@@ -158,52 +138,8 @@
 		min-width:210px;
 		flex:1;
 	}
-	.header li, .con-header li {
-        box-sizing: border-box;
-        padding:0 18px;
-	}
-	.con-header li p {
-		height: 95px;
-		display: table-cell;
-		vertical-align: middle;
-	}
 	.more-line p > span {
 		display: block;
-	}
-	.con-box {
-		display: block;
-        width:100%;
-        max-height:54px; 
-        overflow: hidden;
-        position: relative;
-	}
-	.points {
-		display:block;
-		width:36px;
-		height: 18px;
-        position:absolute;
-        bottom:0;
-        right:0;
-        background: -webkit-linear-gradient(left, transparent, #fff 55%);
-		background: -o-linear-gradient(right, transparent, #fff 55%);
-		background: -moz-linear-gradient(right, transparent, #fff 55%);
-		background: linear-gradient(to right, transparent, #fff 55%);
-		font-size:14px;
-		font-weight: bold;
-		text-align: right;
-		padding-left:20px;
-	}
-	.action-status p span.con {
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 3;
-		overflow: hidden;
-	}
-	.values {
-		color:#80848f;
-	}
-	.pointer {
-		cursor:pointer;
 	}
 </style>
 

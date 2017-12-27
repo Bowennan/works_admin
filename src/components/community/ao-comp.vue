@@ -1,5 +1,5 @@
 <template>
-	<div class="um">
+	<div class="tables">
 		<ao-search-comp></ao-search-comp>
         <ao-title-comp></ao-title-comp>
         <ao-list-comp class="tables"></ao-list-comp>
@@ -19,12 +19,3 @@
 			  }
 	}
 </script>
-
-<style scoped>
-	  .tables {
-	  	height: 100%;
-	    width:96%;
-	    min-width:1052px;
-	    margin:0 10px;
-	  }
-</style>

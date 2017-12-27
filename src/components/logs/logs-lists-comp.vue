@@ -1,6 +1,6 @@
 <template>
-	<div class="lists">
-		<ul class="header">
+	<div class="list-container">
+		<ul class="list-header">
 			<li class="action-id">操作ID</li>
 			<li class="actor">操作者</li>
 			<li class="action-name">操作行为</li>
@@ -16,7 +16,7 @@
 
 		<ul>
 			<li>
-				<ul class="con-header">
+				<ul class="list-contents">
 					<li class="action-id">
 						<p>1025</p>
 					</li>
@@ -28,7 +28,7 @@
 					</li>
 					<li class="action-con">
 					    <p>
-					    	<span>
+					    	<span class="font-hidden">
 					    		发布信息：的接口浪费精力都开始就电视剧法律上的放到手机发了是放到手机发了电视剧法律上的
 					    始就电视剧法律上的放到手机发了是放到手机发了电视剧法律上的
 					    	</span>
@@ -63,31 +63,6 @@
 </script>
 
 <style scoped>
-	.lists {
-		width:96%;
-		margin-left:28px;
-		margin-top:20px;
-	}
-	.header {
-		box-sizing: border-box;
-		width:100%;
-		height: 42px;
-		line-height: 42px;
-		border-top:1px solid #ccc;
-		border-bottom:1px solid #ccc;
-		display:flex;
-		color:#1c2438;
-		font-weight: bold;
-	}
-	.con-header {
-		box-sizing: border-box;
-		width:100%;
-		height: 96px;
-		display: flex;
-		border-bottom:1px solid #ccc;
-		color:#80848f;
-		font-weight: bold;
-	}
 	.col {
 		line-height: 18px;
 	}
@@ -114,42 +89,8 @@
         box-sizing: border-box;
         padding:0 18px;
 	}
-	.con-header li p {
-		height: 95px;
-		display: table-cell;
-		vertical-align: middle;
-	}
 	.more-line p span {
 		display: block;
-	}
-	.con-box {
-		display: block;
-        width:100%;
-        max-height:54px; 
-        overflow: hidden;
-        position: relative;
-	}
-	.points {
-		display:block;
-		width:36px;
-		height: 18px;
-        position:absolute;
-        bottom:0;
-        right:0;
-        background: -webkit-linear-gradient(left, transparent, #fff 55%);
-		background: -o-linear-gradient(right, transparent, #fff 55%);
-		background: -moz-linear-gradient(right, transparent, #fff 55%);
-		background: linear-gradient(to right, transparent, #fff 55%);
-		font-size:14px;
-		font-weight: bold;
-		text-align: right;
-		padding-left:20px;
-	}
-	.action-con p span {
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 3;
-		overflow: hidden;
 	}
 </style>
 

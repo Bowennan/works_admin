@@ -1,20 +1,22 @@
 <template>
-	<div class="title-box01">
-		<span class="title">品牌官方身份审核</span>
-        <Button type="primary" class="refresh" shape="circle" icon="ios-loop">刷新</Button>
-		<div class="num">
-			<span style="color:#1c2438">品牌官方身份审核：
-              <span style="color:#bbbec4">
+	<div class="title-box">
+		<span class="titulo">品牌官方身份审核</span>
+        <div class="btns-container">
+        	<Button type="primary" class="re-btn" shape="circle" icon="ios-loop">刷新</Button>
+        </div>
+		<div class="result-container">
+			<span class="c-carbon">品牌官方身份审核：
+              <span class="c-gris">
               	已处理
               </span>
-              <span style="color:#ff890f; font-weight:bold">
+              <span class="c-naranja">
               	100
               </span>
 
-              <span style="color:#bbbec4">
+              <span class="c-gris">
               	未处理
               </span>
-              <span style="color:#f00; font-weight:bold">
+              <span class="c-rojo">
               	100
               </span>
 			</span>
@@ -23,38 +25,9 @@
 </template>
 
 <script>
+
 	export default {
       
+
 	}
 </script>
-
-<style scoped>
-	.title-box01 {
-		width:100%;
-		height:118px;
-		box-sizing: border-box;
-		padding:1px;
-		position: relative;
-	}
-	.title {
-		position: absolute;
-		top:24px;
-		left:28px;
-		font-size:16px;
-		color:#1c24338;
-		font-weight: bold;
-	}
-	.refresh {
-		position: absolute;
-		bottom:24px;
-		left:28px;
-		font-size:12px;
-		color:#fff;
-		width:92px;
-	}
-	.num {
-		position:absolute;
-		right:38px;
-		bottom:24px;
-	}
-</style>

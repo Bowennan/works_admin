@@ -8,8 +8,6 @@
 	        <Button slot="append" icon="search"></Button>
 	    </Input>
 	
-	      
-	 
 
 		 <div class="range-search">
 		 	<div class="conditions-box">

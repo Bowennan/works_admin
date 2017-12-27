@@ -1,6 +1,7 @@
 <template>
-	<div class="lists">
-		<ul class="header">
+	<div class="list-container" style="margin-top:-20px;">
+		<h4 class="list-title">达人列表</h4>
+		<ul class="list-header">
 			<li class="check-id more-line first-col">
 				<p>
 					<span>添加对象</span>
@@ -16,7 +17,7 @@
 
 		<ul>
 			<li>
-				<ul class="con-header">
+				<ul class="list-contents">
 					<li class="check-id more-line">
 						<p>
 						   <span>1025</span>
@@ -25,22 +26,31 @@
 					</li>
 					<li class="master-info more-line">
 						<p>
-							<span>姓名：搭街坊</span>
-							<span>期数：8期</span>
-							<span>职位：评测达人</span>
+							<span class="c-gris">姓名：<span class="c-carbon">搭街坊</span></span>
+							<span class="c-gris">期数：<span class="c-carbon">8期</span></span>
+							<span class="c-gris">职位：<span class="c-carbon">评测达人</span></span>
 						</p>
 					</li>
 					<li class="invention more-line">
 						<p>
-							<span>邀约状态：已邀约</span>
-							<span>邀约开始结束：2017-05-25~2017-09-30</span>
+							<span class="c-gris">邀约状态：<span class="c-carbon">已邀约</span></span>
+							<span class="c-gris">邀约开始结束：<span class="c-carbon">2017-05-25~2017-09-30</span></span>
 						</p>
 					</li>
 					<li class="indroduce more-line">
 					    <p>
-					    	<span>标题：DKJFKD</span>
-					    	<span class="con">人物介绍：打开jfk的就是看了解放军水电费交了水电费俯拾地芥劳动法对抗疗法
-					    	放军水电费交了水电费俯拾地芥劳动法对抗疗</span>
+					    	<span class="c-gris">标题：<span class="c-carbon">DKJFKD</span></span>
+
+					    	<Poptip trigger="hover" placement = 'bottom' width="300">
+					    		<span class="font-hidden"><span class="c-gris pointer">人物介绍：</span>打开jfk的就是看了解放军水电费交了水电费俯拾地芥劳动法对抗疗法放军水电费交了水电费俯拾地芥劳动法对抗疗</span>
+					    		<div slot="content" style="width:100%; height:150px; position:relative; white-space: normal;">
+					    			
+					    				<div style="width:100%; height:100%; position:absolute">
+					    					就离开房间的时间浪费觉得少了开发放手大家快来解放圣诞节快乐附件监考老师的飞机的思考逻辑分离技术的看来飞机螺丝钉解放
+					    				</div>
+					    		
+					    		</div>
+					    	</Poptip>
 					    </p>
 					</li>
 					<li class="pic more-line">
@@ -51,7 +61,7 @@
 					</li>
 					<li class="action-status">
 						<p>
-							<span @click="showCancel">
+							<span class="pointer" @click="showCancel">
 								取消身份
 							</span>
 						</p>
@@ -100,31 +110,6 @@
 </script>
 
 <style scoped>
-	.lists {
-		width:96%;
-		margin-left:28px;
-		margin-top:20px;
-	}
-	.header {
-		box-sizing: border-box;
-		width:100%;
-		height: 42px;
-		line-height: 42px;
-		border-top:1px solid #ccc;
-		border-bottom:1px solid #ccc;
-		display:flex;
-		color:#1c2438;
-		font-weight: bold;
-	}
-	.con-header {
-		box-sizing: border-box;
-		width:100%;
-		height: 96px;
-		display: flex;
-		border-bottom:1px solid #ccc;
-		color:#80848f;
-		font-weight: bold;
-	}
 	.first-col {
 		line-height: 18px;
 	}
@@ -138,7 +123,7 @@
 		flex:0 0 164px;
 	}
 	.invention {
-		flex:0 0 214px;
+		flex:0 0 270px;
 	}
 	.indroduce {
 		min-width:258px;
@@ -147,46 +132,8 @@
 	.action-status {
 		flex:0 0 86px;
 	}
-	.header li, .con-header li {
-        box-sizing: border-box;
-        padding:0 18px;
-	}
-	.con-header li p {
-		height: 95px;
-		display: table-cell;
-		vertical-align: middle;
-	}
-	.more-line p span {
+	.more-line p > span {
 		display: block;
-	}
-	.con-box {
-		display: block;
-        width:100%;
-        max-height:54px; 
-        overflow: hidden;
-        position: relative;
-	}
-	.points {
-		display:block;
-		width:36px;
-		height: 18px;
-        position:absolute;
-        bottom:0;
-        right:0;
-        background: -webkit-linear-gradient(left, transparent, #fff 55%);
-		background: -o-linear-gradient(right, transparent, #fff 55%);
-		background: -moz-linear-gradient(right, transparent, #fff 55%);
-		background: linear-gradient(to right, transparent, #fff 55%);
-		font-size:14px;
-		font-weight: bold;
-		text-align: right;
-		padding-left:20px;
-	}
-	.indroduce p span.con {
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 3;
-		overflow: hidden;
 	}
 </style>
 

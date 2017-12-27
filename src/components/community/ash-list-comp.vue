@@ -1,6 +1,6 @@
 <template>
-	<div class="lists">
-		<ul class="header">
+	<div class="list-container">
+		<ul class="list-header">
 			<li class="posting-id">
              <Checkbox v-model="single">ID/标题/日期</Checkbox>
 			</li>
@@ -12,62 +12,62 @@
 
 		<ul>
 			<li>
-				<ul class="con-header">
+				<ul class="list-contents">
 					<li class="posting-id more-line">
 						<p style="position:relative; box-sizing:border-box; padding-left:20px"> 
 							<Checkbox style="position:absolute; left:0; top:34px" v-model="single"></Checkbox>
-							<span class="lines values">13232</span>
-							<span class="lines values">你知道你活的比狗惨吗？你知道你活的比狗惨吗？你知道你活的比狗惨吗？你知道你活的比狗惨吗？</span>
-							<span class="lines">2017-12-9</span>
+							<span class="lines c-carbon">13232</span>
+							<span class="lines c-carbon">你知道你活的比狗惨吗？你知道你活的比狗惨吗？你知道你活的比狗惨吗？你知道你活的比狗惨吗？</span>
+							<span class="lines c-gris">2017-12-9</span>
 						</p>
 					</li>
 					<li class="posting-author more-line">
 						<p>
-							<span class="lines values">1212</span>
-							<span class="lines values">哈，你不配</span>
+							<span class="lines c-carbon">1212</span>
+							<span class="lines c-carbon">哈，你不配</span>
 						</p>
 					</li>
 					<li class="posting-info more-line">
 						<p>
-							<span class="lines">评论: <span class="values">12</span></span> 
-							<span class="lines">闲鱼: <span class="values">查看</span></span> 
-							<span class="lines">转转: <span class="values">查看</span></span> 
+							<span class="lines c-gris">评论: <span class="c-carbon">12</span></span> 
+							<span class="lines c-gris">闲鱼: <span class="c-carbon">查看</span></span> 
+							<span class="lines c-gris">转转: <span class="c-carbon">查看</span></span> 
 							
 							<Poptip  trigger="hover" placement="bottom" width="300">
-						        <span class="lines">其他: <span class="values">价格、赞、收藏等</span></span> 
+						        <span class="lines c-gris">其他: <span class="c-carbon">价格、赞、收藏等</span></span> 
 						        <div class="con-pop" slot="content">
 						           <div style="width:100%; height:130px; white-space:normal" class="poptip-box">
 						           	  <p>
 						           	  	<span>社区归属：</span>
-						           	  	<span class="values">苹果社区、无人机社区</span>
+						           	  	<span class="c-carbon">苹果社区、无人机社区</span>
 						           	  </p>
 						           	  <p style="display:flex">
 						           	  	<span style="flex:1">
-						           	  		总浏览量：<span class="values">21212</span>
+						           	  		总浏览量：<span class="c-carbon">21212</span>
 						           	  	</span>
 						           	  	<span style="flex:1">
-						           	  		日浏览量：<span class="values">1231</span>
-						           	  	</span>
-						           	  </p>
-						           	  <p style="display:flex">
-						           	  	<span style="flex:1">
-						           	  		赞：<span class="values">1212</span>
-						           	  	</span>
-						           	  	<span style="flex:1">
-						           	  		踩：<span class="values">122</span>
+						           	  		日浏览量：<span class="c-carbon">1231</span>
 						           	  	</span>
 						           	  </p>
 						           	  <p style="display:flex">
 						           	  	<span style="flex:1">
-						           	  		优惠：<span class="values">1212</span>
+						           	  		赞：<span class="c-carbon">1212</span>
 						           	  	</span>
 						           	  	<span style="flex:1">
-						           	  		收藏：<span class="values">122</span>
+						           	  		踩：<span class="c-carbon">122</span>
+						           	  	</span>
+						           	  </p>
+						           	  <p style="display:flex">
+						           	  	<span style="flex:1">
+						           	  		优惠：<span class="c-carbon">1212</span>
+						           	  	</span>
+						           	  	<span style="flex:1">
+						           	  		收藏：<span class="c-carbon">122</span>
 						           	  	</span>
 						           	  </p>
 						           	  <p>
 						           	  	<span>
-						           	  		举报：<span class="values">1212</span>
+						           	  		举报：<span class="c-carbon">1212</span>
 						           	  	</span>
 						           	  </p>
 						           </div>
@@ -76,37 +76,34 @@
 						</p>
 					</li>
 					<li class="posting-con">
-					    <p>产品ID： <span class="values">12151</span></p>
+					    <p class='c-gris'>产品ID： <span class="c-carbon">12151</span></p>
 					</li>
 					<li class="posting-action">
 						<p class="h-block01">
 							<span class="items">
-								<span>二手状态|</span>
-								<span class="values">隐藏</span>
+								<span class="c-gris">二手状态 | </span>
+								<span class="c-carbon pointer">隐藏</span>
 							</span>
 							<span class="items">
-								<span>社区归类|</span>
-								<span class="values">设置</span>
+								<span class="c-gris">社区归类 | </span>
+								<span class="c-carbon pointer">设置</span>
 							</span>
 							<span class="items">
-								<span>审核状态|</span>
-								<span class="values">不通过</span>
+								<span class="c-gris">产品关联 | </span>
+								<span class="c-carbon pointer">设置</span>
 							</span>
 							
 						</p>
 						<p class="h-block02">
-							<span class="items">
-								<span>产品关联|</span>
-								<span class="values">设置</span>
-							</span>
+							
 							
 							<span class="items">
-								<span>权重|</span>
-								<span class="values">123</span>
+								<span class="c-gris">权重 | </span>
+								<span class="c-carbon pointer">123</span>
 							</span>
 							<span class="items">
-								<span>推首|</span>
-								<span class="values">设置</span>
+								<span class="c-gris">推首 | </span>
+								<span class="c-carbon pointer">设置</span>
 							</span>
 						</p>
 					</li>
@@ -128,31 +125,6 @@
 </script>
 
 <style scoped>
-	.lists {
-		width:96%;
-		margin-left:28px;
-		margin-top:20px;
-	}
-	.header {
-		box-sizing: border-box;
-		width:100%;
-		height: 42px;
-		line-height: 42px;
-		border-top:1px solid #ccc;
-		border-bottom:1px solid #ccc;
-		display:flex;
-		color:#1c2438;
-		font-weight: bold;
-	}
-	.con-header {
-		box-sizing: border-box;
-		width:100%;
-		height: 96px;
-		display: flex;
-		border-bottom:1px solid #ccc;
-		color:#bbbec4;
-		font-weight: 400;
-	}
 	.col {
 		line-height: 18px;
 	}
@@ -189,46 +161,8 @@
 		min-width:232px;
 		flex:1;
 	}
-	.header li, .con-header li {
-        box-sizing: border-box;
-        padding:0 18px;
-	}
-	.con-header li p {
-		height: 95px;
-		display: table-cell;
-		vertical-align: middle;
-	}
 	.more-line p .lines {
 		display: block;
-	}
-	.con-box {
-		display: block;
-        width:100%;
-        max-height:54px; 
-        overflow: hidden;
-        position: relative;
-	}
-	.points {
-		display:block;
-		width:36px;
-		height: 18px;
-        position:absolute;
-        bottom:0;
-        right:0;
-        background: -webkit-linear-gradient(left, transparent, #fff 55%);
-		background: -o-linear-gradient(right, transparent, #fff 55%);
-		background: -moz-linear-gradient(right, transparent, #fff 55%);
-		background: linear-gradient(to right, transparent, #fff 55%);
-		font-size:14px;
-		font-weight: bold;
-		text-align: right;
-		padding-left:20px;
-	}
-	.action-con p span {
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 3;
-		overflow: hidden;
 	}
 	.con-pop .poptip-box p {
 		display: block;
@@ -238,10 +172,6 @@
 		font-size: 12px;
 		font-weight: 400;
 		color:#bbbec4;
-	}
-	.values {
-		color:#80848f;
-
 	}
 </style>
 

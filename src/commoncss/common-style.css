@@ -31,6 +31,7 @@
 
 /*橘色字体*/
 .c-naranja {
+	font-weight: bold;
 	color:#fec30b;
 }
 
@@ -158,18 +159,22 @@
 	margin:0 10px;
 }
 
-/*翻页组件样式*/
-.pages {
-	margin:10px 0 100px 40px;
-}
-
 /*列表样式*/
 .list-container {
 	width:96%;
 	margin:10px 20px;
 }
 
-.header {
+.list-title {
+	font-size:14px;
+	font-weight: bold;
+	color:#495060;
+	margin-bottom:12px;
+	margin-top:10px;
+	margin-left:12px;
+}
+
+.list-header {
     box-sizing:border-box;
     width:100%;
 	height: 42px;
@@ -187,17 +192,38 @@
 	height: 96px;
 	display: flex;
 	border-bottom:1px solid #ccc;
-	color:#80848f;
-	font-weight: bold;
+	color:#495060;
+	font-weight: 400;
 }
-.header li, .list-contents li {
-	padding: 0 18px;
-	box-sizing: border-box;
-}
+.list-header li, .list-contents li {
+        box-sizing: border-box;
+        padding:0 18px;
+	}
 
-.content-core {
+.list-contents li > p {
 	height: 95px;
 	display: table-cell;
 	vertical-align: middle;
+}
+
+.font-hidden {
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		overflow: hidden;
+	}
+
+.pointer {
+	cursor:pointer;
+}
+
+
+
+
+
+
+/*翻页组件样式*/
+.pages {
+	margin:10px 0 100px 40px;
 }
 

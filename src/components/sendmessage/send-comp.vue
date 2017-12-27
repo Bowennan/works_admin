@@ -1,5 +1,5 @@
 <template>
-	<div class="send-box">
+	<div class="send-box ">
 		<send-search></send-search>
 		<send-editor></send-editor>
 		<send-lists></send-lists>

@@ -1,6 +1,6 @@
 <template>
-	<div class="lists">
-		<ul class="header">
+	<div class="list-container">
+		<ul class="list-header">
 			<li class="check-id">审核ID</li>
 			<li class="id-nickname">ID/昵称</li>
 			<li class="identity-info">个人信息</li>
@@ -12,7 +12,7 @@
 
 		<ul>
 			<li>
-				<ul class="con-header">
+				<ul class="list-contents">
 					<li class="check-id">
 						<p>1025</p>
 					</li>
@@ -24,18 +24,18 @@
 					</li>
 					<li class="identity-info more-line">
 						<p>
-							<span><span class="title-nam">姓名：</span>张三</span>
-							<span><span class="title-nam">联系电话：</span>166699878856</span>
-							<span><span class="title-nam">岗位：</span>产品经理</span>
-							<span><span class="title-nam">行业：</span>智能家居</span>
+							<span><span class="c-gris">姓名：</span>张三</span>
+							<span><span class="c-gris">联系电话：</span>166699878856</span>
+							<span><span class="c-gris">岗位：</span>产品经理</span>
+							<span><span class="c-gris">行业：</span>智能家居</span>
 						</p>
 					</li>
 					<li class="product more-line">
 					    <p>
-					    	<span><span class="title-nam">品牌：</span>大疆</span>
+					    	<span><span class="c-gris">品牌：</span>大疆</span>
 					    	
 					    	<Poptip trigger="hover" placement = 'bottom' width="300">
-					    		<span class="con"><span class="title-nam pointer">关联产品：</span>角度看jfk了的时间决定是否技术的家快来解放圣诞节快乐家快来解放圣诞节快乐家快来解放圣诞节快乐飞机</span>
+					    		<span class="font-hidden"><span class="title-nam pointer">关联产品：</span>角度看jfk了的时间决定是否技术的家快来解放圣诞节快乐家快来解放圣诞节快乐家快来解放圣诞节快乐飞机</span>
 					    		<div slot="content" style="width:100%; height:150px; position:relative; white-space: normal;">
 					    			
 					    				<div style="width:100%; height:100%; position:absolute">
@@ -51,8 +51,8 @@
 					</li>
 					<li class="apply-info more-line">
 						<p>
-							<span><span class="title-nam">申请状态：</span>待审核</span>
-							<span><span class="title-nam">申请时间：</span>201665</span>
+							<span><span class="c-gris">申请状态：</span>待审核</span>
+							<span><span class="c-gris">申请时间：</span>201665</span>
 						</p>
 					</li>
 					<li class="action-status more-line">
@@ -61,7 +61,7 @@
 
 
 							<Poptip trigger="hover" placement="bottom-end" width="420">
-						        <span class='con'>说明：<span class="values pointer">
+						        <span class='font-hidden'>说明：<span class="values pointer">
 									的jfk简单了领导jfk了简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导简单了领导
 								</span></span>
 						        <div style="white-space:normal" slot="content">
@@ -125,41 +125,6 @@
 </script>
 
 <style scoped>
-	.lists {
-		position: relative;
-		width:96%;
-		height: 100%;
-		margin-left:28px;
-		margin-top:20px;
-	}
-	.container {
-		position: absolute;
-		top:-216px;
-		bottom:0;
-		left:-28px;
-		right:-32px;
-		background: #e9eaec9c;
-	}
-	.header {
-		box-sizing: border-box;
-		width:100%;
-		height: 42px;
-		line-height: 42px;
-		border-top:1px solid #ccc;
-		border-bottom:1px solid #ccc;
-		display:flex;
-		color:#1c2438;
-		font-weight: bold;
-	}
-	.con-header {
-		box-sizing: border-box;
-		width:100%;
-		height: 96px;
-		display: flex;
-		border-bottom:1px solid #ccc;
-		color:#80848f;
-		font-weight: 400;
-	}
 	.apply-info {
 		flex:0 0 180px;
 	}
@@ -182,57 +147,8 @@
 		min-width:176px;
 		flex:1;
 	}
-	.header li, .con-header li {
-        box-sizing: border-box;
-        padding:0 18px;
-	}
-	.con-header li p {
-		height: 95px;
-		display: table-cell;
-		vertical-align: middle;
-	}
 	.more-line p > span {
 		display: block;
-	}
-	.con-box {
-		display: block;
-        width:100%;
-        max-height:54px; 
-        overflow: hidden;
-        position: relative;
-	}
-	.points {
-		display:block;
-		width:36px;
-		height: 18px;
-        position:absolute;
-        bottom:0;
-        right:0;
-        background: -webkit-linear-gradient(left, transparent, #fff 55%);
-		background: -o-linear-gradient(right, transparent, #fff 55%);
-		background: -moz-linear-gradient(right, transparent, #fff 55%);
-		background: linear-gradient(to right, transparent, #fff 55%);
-		font-size:14px;
-		font-weight: bold;
-		text-align: right;
-		padding-left:20px;
-	}
-	.product p span.con {
-        display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 2;
-		overflow: hidden;
-	}
-	.title-nam {
-		color:#bbbec4
-	}
-	.show-down {
-		width:300px;
-		height: 150px;
-		position: relative;
-	}
-	.pointer {
-		cursor:pointer;
 	}
 </style>
 

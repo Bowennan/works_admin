@@ -1,8 +1,8 @@
 <template>
 	<div class="editor">
-		<div class="header">
-			<span class="title">消息模板编辑</span>
-		</div>
+        <div class="title-box" style="height:70px">
+            <span class="titulo">消息模板编辑</span>
+        </div>
 
 		<div class="textarea-box01">
 			 <div class="textarea-con">
@@ -17,11 +17,11 @@
 
 			 	<div class="submit">
                      <div class="sub-box">
-                        <Select class="category" v-model="model1" style="width:105px">
+                        <Select size="small" class="category" v-model="model1" style="width:105px">
                             <Option v-for="item in 6" :value="item" :key="item">{{ item}}</Option>
                         </Select>
-                        <Input class="template-name" v-model="value" placeholder="模板名称"></Input>
-                        <Button class="add" type="primary">确认添加模板</Button> 
+                        <Input size="small" class="template-name" v-model="value" placeholder="模板名称"></Input>
+                        <Button size="small" class="add" type="primary">确认添加模板</Button> 
                      </div>          
                 </div>
 			 </div>
@@ -100,8 +100,9 @@
         position: absolute;
         right:0;
     }
-    .template-name {
+    .category, .add, .template-name {
         width:120px;
+        margin-left:20px;
     }
 </style>
 
