@@ -1,5 +1,5 @@
 <template>
-	<div class="um">
+	<div class="tables">
 		<disclo-search-comp></disclo-search-comp>
         <disclo-title-comp></disclo-title-comp>
         <disclo-list-comp class="tables"></disclo-list-comp>
@@ -19,12 +19,3 @@
 			  }
 	}
 </script>
-
-<style scoped>
-	  .tables {
-	  	height: 100%;
-	    width:96%;
-	    min-width:1052px;
-	    margin:0 10px;
-	  }
-</style>

@@ -8,11 +8,18 @@
 	    </Input>
 
 		 <div class="range-search">
+		 	<div class="conditions-box">
+		    	<Select class="conditions-width" v-model="model1">
+			        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
+			    </Select>
+		    </div>
+	
 		    <div class="conditions-box">
 		    	<Select class="conditions-width" v-model="model1">
 			        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
 			    </Select>
 		    </div>
+		    
 		 	<div class="conditions-box">
 		 		<DatePicker type="daterange" placement="bottom-end" placeholder="用户注册时间区间选择" style="width: 200px"></DatePicker>
 		 	</div>

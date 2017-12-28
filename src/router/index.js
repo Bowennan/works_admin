@@ -89,6 +89,19 @@ import sencondTypesp from '@/components/community/community-p/indexsll-comp'
 import qsTypesp from '@/components/community/community-p/indexqsll-comp'
 import discloseTypesp from '@/components/community/community-p/indexdcll-comp'
 
+import wikiProductList from '@/components/wiki/wkpl-comp'
+// import ptmList from '@/components/wiki/ptm-comp'
+// import hlpsList from '@/components/wiki/hlps-comp'
+// import lpmList from '@/components/wiki/lpm-comp'
+// import pimList from '@/components/wiki/pim-comp'
+// import hpvmList from '@/components/wiki/hpvm-comp'
+// import hpcmList from '@/components/wiki/hpcm-comp'
+// import wktmList from '@/components/wiki/wktm-comp'
+// import wkbmList from '@/components/wiki/wkbm-comp'
+// import pvmList from '@/components/wiki/pvm-comp'
+// import sublmList from '@/components/wiki/sublm-comp'
+// import pccList from '@/components/wiki/pcc-comp'
+
 import asideComp01 from '@/components/aside01-comp'
 import asideComp02 from '@/components/aside02-comp'
 import asideComp03 from '@/components/aside03-comp'
@@ -96,6 +109,7 @@ import asideComp04 from '@/components/aside04-comp'
 import asideComp05 from '@/components/aside05-comp'
 import asideComp06 from '@/components/aside06-comp'
 import asideComp07 from '@/components/aside07-comp'
+import asideComp08 from '@/components/aside08-comp'
 import Log4 from '@/components/test03-comp'
 import Log5 from '@/components/test04-comp'
 import Log6 from '@/components/test05-comp'
@@ -472,8 +486,58 @@ export default new Router({
       ]
      },
      {
-        path: '/wikis',
-        component: Log5
+        path: '/wiki',
+        component: asideComp08,
+        children: [
+             {
+                path: '',
+                component: wikiProductList
+             }
+             // {
+             //    path:'ptm',
+             //    component:ptmList
+             // },
+             // {
+             //    path:'hlps',
+             //    component: hlpsList
+             // },
+             // {
+             //    path:'lpm',
+             //    component: lpmList
+             // },
+             // {
+             //    path:'pim',
+             //    component: pimList
+             // },
+             // {
+             //    path:'hpvm',
+             //    component: hpvmList
+             // },
+             // {
+             //    path:'hpcm',
+             //    component: hpcmList
+             // },
+             // {
+             //    path: 'wktm',
+             //    component: wktmList
+             // },
+             // {
+             //    path: 'wkbm',
+             //    component: wkbmList
+             // },
+             // {
+             //    path:'pvm',
+             //    component: pvmList
+             // },
+             // {
+             //    path: 'sublm',
+             //    component: sublmList
+             // },
+             // {
+             //    path: 'pcc',
+             //    component: pccList
+             // } 
+      ]
      },
      {
         path: '/labs',
