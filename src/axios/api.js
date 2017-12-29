@@ -28,21 +28,22 @@ export function communityPosting(paramsObj) {
 	})
 }
 
-
+let typec = {'type':'comment'}
+let typer = {'type':'reply'}
 //社区通用内容（通用评论）
 export function communityComments(paramsObj) {
 	return fetch({
 		url:api.Bestkit+'/admin/article/comment',
 		method: 'post',
-		params:paramsObj
+		params:Object.assign({},paramsObj,typec)
 	})
 }
 
 //社区通用内容（通用回答）
 export function communityReply(paramsObj) {
 	return fetch({
-		url:api.Bestkit+'/admin/article/reply',
+		url:api.Bestkit+'/admin/article/comment',
 		method: 'post',
-		params:paramsObj
+		params:Object.assign({},paramsObj,typer)
 	})
 }

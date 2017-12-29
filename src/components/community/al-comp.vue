@@ -34,8 +34,8 @@
 		     	getReplyData(paras) {
 		     		communityReply(paras).then(res=>{
 		     			if(_OK===res.status){
-		     				this.replyData = res.data.replyList.data;
-		     				this.totalData = res.data.replyList.total;
+		     				this.replyData = res.data.List.data;
+		     				this.totalData = res.data.List.total;
 		     			}
 		     		}).catch(err=>{
 		     			console.log(err + "请求失败")

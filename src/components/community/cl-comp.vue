@@ -34,8 +34,8 @@
                     communityComments(paras).then(res=>{
                     	if(_OK===res.status) {
                     		console.log(res.data)
-                    		this.commentData = res.data.commentList.data;
-                    		this.totalPages = res.data.commentList.total;
+                    		this.commentData = res.data.List.data;
+                    		this.totalPages = res.data.List.total;
                     	}
                     }).catch(err=>{
                     	console.log(err + '请求错误')

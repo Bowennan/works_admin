@@ -90,10 +90,10 @@ import qsTypesp from '@/components/community/community-p/indexqsll-comp'
 import discloseTypesp from '@/components/community/community-p/indexdcll-comp'
 
 import wikiProductList from '@/components/wiki/wkpl-comp'
-// import ptmList from '@/components/wiki/ptm-comp'
-// import hlpsList from '@/components/wiki/hlps-comp'
-// import lpmList from '@/components/wiki/lpm-comp'
-// import pimList from '@/components/wiki/pim-comp'
+import ptmList from '@/components/wiki/ptm-comp'
+import hlpsList from '@/components/wiki/hlps-comp'
+import lpmList from '@/components/wiki/lpm-comp'
+import pimList from '@/components/wiki/pim-comp'
 // import hpvmList from '@/components/wiki/hpvm-comp'
 // import hpcmList from '@/components/wiki/hpcm-comp'
 // import wktmList from '@/components/wiki/wktm-comp'
@@ -492,23 +492,23 @@ export default new Router({
              {
                 path: '',
                 component: wikiProductList
-             }
-             // {
-             //    path:'ptm',
-             //    component:ptmList
-             // },
-             // {
-             //    path:'hlps',
-             //    component: hlpsList
-             // },
-             // {
-             //    path:'lpm',
-             //    component: lpmList
-             // },
-             // {
-             //    path:'pim',
-             //    component: pimList
-             // },
+             },
+             {
+                path:'ptm',
+                component:ptmList
+             },
+             {
+                path:'hlps',
+                component: hlpsList
+             },
+             {
+                path:'lpm',
+                component: lpmList
+             },
+             {
+                path:'pim',
+                component: pimList
+             },
              // {
              //    path:'hpvm',
              //    component: hpvmList
