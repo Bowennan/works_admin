@@ -1,18 +1,18 @@
 <template>
 	<div class="title-box">
-		<span class="titulo">通用回答列表</span>
+		<span class="titulo">产品视频管理</span>
 		<div class="btns-container">
 			<Button class="re-btn" type="primary" shape="circle" icon="ios-loop">刷新</Button>
-			<Button class="re-btn" type="primary" shape="circle" icon="ios-trash-outline">批量隐藏</Button>
+			<Button class="re-btn" type="primary" shape="circle" icon="ios-loop">批量删除</Button>
+			<Button class="re-btn" type="primary" shape="circle" icon="ios-loop">新增视频</Button>
 		</div>
-		
 		<div class="result-container">
-			<span class="total-result c-gris">全部回答：
-	          <span class="c-naranja">1000</span>
+			<span class="c-gris total-result">总共产品
+	          <span class="c-naranja">9990</span>
 			</span>
-			<Select class="order-sel" v-model="model1">
+		<!-- 	<Select class="order-sel"  v-model="model1">
 		        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
-		    </Select>
+		    </Select> -->
 		</div>
 	</div>
 </template>

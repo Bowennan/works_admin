@@ -1,13 +1,13 @@
 <template>
 	<div class="aside-box">
 		 <Menu :theme="theme" class="menu-wrapper">
-		 	    <MenuItem name="userlist" class="submenu">
+		 	    <MenuItem name="wikilist" class="submenu">
                    	 <router-link class="left-icon list-avator" to="/wiki" style="color:#2b85e4">
           						<Icon type="android-people" size=16 class="iconfont"></Icon>
           						<span class="right-title">产品列表管理</span>
           					 </router-link> 
 	            </MenuItem>
-                <Submenu name="user">
+                <Submenu name="paras">
                     <template slot="title">
                         <div style="height:18px; display:inline-block">
                         	<span class="left-icon">
@@ -28,12 +28,12 @@
                       <router-link to="/wiki/lpm" class="left-icon submenu-sub">列表参数管理</router-link>
                       <Badge count="10" class="badge-scale"></Badge>
                     </MenuItem>
-                    <MenuItem name="1-3" class="submenu">
+                    <MenuItem name="1-4" class="submenu">
                       <router-link to="/wiki/pim" class="left-icon submenu-sub">品类价格区间管理</router-link>
                       <Badge count="10" class="badge-scale"></Badge>
                     </MenuItem>
                 </Submenu>
-                <Submenu name="check">
+                <Submenu name="pagesf">
                     <template slot="title">
                         <div style="height:18px; display:inline-block">
                         	<span class="left-icon checked">
@@ -51,7 +51,7 @@
                           <Badge count="10" class="badge-scale"></Badge>
 	                    </MenuItem>
                 </Submenu>
-                <Submenu name="check">
+                <Submenu name="brandsf">
                     <template slot="title">
                         <div style="height:18px; display:inline-block">
                           <span class="left-icon checked">
@@ -60,28 +60,28 @@
                           </span>
                         </div>
                     </template>
-                      <MenuItem name="3-1" class="submenu">
+                      <MenuItem name="4-1" class="submenu">
                         <router-link to="/wiki/wktm" class="left-icon submenu-sub">百科品类管理</router-link>
                           <Badge count="10" class="badge-scale"></Badge>
                       </MenuItem>
-                      <MenuItem name="3-2" class="submenu">
+                      <MenuItem name="4-2" class="submenu">
                         <router-link to="/wiki/wkbm" class="left-icon submenu-sub">百科品牌管理</router-link>
                           <Badge count="10" class="badge-scale"></Badge>
                       </MenuItem>
                 </Submenu>
-                <MenuItem name="editor" class="submenu">
+                <MenuItem name="pv" class="submenu">
                 	<router-link to="/wiki/pvm" class="left-icon editor" >
                 		<Icon type="ios-compose" size=16 class="iconfont"></Icon>
                 		<span class="right-title">产品视频管理</span>
                 	</router-link>
 	            </MenuItem>
-                <MenuItem name="logs" class="submenu">
+                <MenuItem name="subline" class="submenu">
                 	<router-link to="/wiki/sublm" class="left-icon logs" >
                 		<Icon type="ios-list" size=16 class="iconfont"></Icon>
                 		<span class="right-title">线下渠道管理</span>
                 	</router-link>
 	            </MenuItem>
-              <MenuItem name="logs" class="submenu">
+              <MenuItem name="cp" class="submenu">
                   <router-link to="/wiki/pcc" class="left-icon logs" >
                     <Icon type="ios-list" size=16 class="iconfont"></Icon>
                     <span class="right-title">产品推荐审核</span>

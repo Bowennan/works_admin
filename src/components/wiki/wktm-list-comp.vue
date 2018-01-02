@@ -1,10 +1,10 @@
 <template>
 	<div class="list-container">
 		<ul class="list-header">
-			<li class="header-col01">二级参数名</li>
-			<li class="header-col02">数值</li>
-			<li class="header-col03">参数单位</li>
-			<li class="header-col04">参数类型</li>
+			<li class="header-col01">一级品类</li>
+			<li class="header-col02">二级品类</li>
+			<li class="header-col03">品类ID</li>
+			<li class="header-col04">产品数量</li>
 			<li class="header-col05">操作</li>
 		</ul>
 
@@ -14,11 +14,12 @@
 							<ul class="levels levels-one">
 								<li class="header-col01">{{item.name}}</li>
 								<li class="header-col02"></li>
-								<li class="header-col03">{{item.sign}}</li>
-								<li class="header-col04">参数类型</li>
+								<li class="header-col03">{{item.id}}</li>
+								<li class="header-col04"></li>
 								<li class="header-col05" style="display:flex">
-									<span style="flex:0 0 25%">添加数值</span>
-									<span style="flex:0 0 15%">删除</span>
+									<span style="flex:0 0 25%">添加二级</span>
+									<span style="flex:0 0 15%">编辑</span>
+                  <span style="flex:0 0 15%">删除</span>
 									<span style="flex:0 0 30%; line-height:56px; padding-left:30px">
 										
 										<Icon style="padding:4px; cursor:pointer; transition:250ms linear" :class="{uppered: !item.status}"  size='18' type="arrow-up-b" @click.native="hidden(index)"></Icon>
@@ -28,9 +29,9 @@
 
 							<ul class="levels levels-two" v-for="(items, indexs) in item.bt"  v-show="item.status"  :key="indexs">
 								<li class="header-col01"></li>
-								<li class="header-col02">{{items.fanwei}}</li>
-								<li class="header-col03">{{items.sign}}</li>
-								<li class="header-col04">{{items.type}}</li>
+								<li class="header-col02">{{items.name}}</li>
+								<li class="header-col03">{{items.id}}</li>
+								<li class="header-col04">关联产品：{{items.conn}}</li>
 								<li class="header-col05" style="display:flex">
 									<span style="flex:0 0 25%">编辑</span>
 									<span style="flex:0 0 15%">删除</span>
@@ -49,45 +50,45 @@
          	return {
          		paras:[
                    {
-                   	name:"可视范围",
-                   	sign:"M²",
+                   	name:"虚拟现实",
+                   	id:5,
                    	bt:[
                    	   {
-                   	   	fanwei:"300-100",
-                   	   	sign:"M²",
-                   	   	type:"范围值"
+                   	   	name:"VR眼镜",
+                   	   	id:6,
+                   	   	conn:15
                    	   },
                    	   {
-                   	   	fanwei:"400-200",
-                   	   	sign:"M²",
-                   	   	type:"范围值"
-                   	   },
+                        name:"Vr相机",
+                        id:12,
+                        conn:2
+                       },
                    	   {
-                   	   	fanwei:"600-300",
-                   	   	sign:"M²",
-                   	   	type:"范围值"
-                   	   }
+                        name:"VR手表",
+                        id:7,
+                        conn:10
+                       },
                    	],
                    	status:true
                    },
                    {
-                   	name:"电流范围",
-                   	sign:"A",
+                   	name:"汽车用品",
+                   	id:8,
                    	bt:[
                    	   {
-                   	   	fanwei:"50-20",
-                   	   	sign:"A",
-                   	   	type:"电流值"
+                   	   	name:"行车记录仪",
+                   	   	id:9,
+                   	   	conn:12
                    	   },
                    	   {
-                   	   	fanwei:"60-10",
-                   	   	sign:"A",
-                   	   	type:"电流值"
+                   	   	name:"车载净化器",
+                   	   	id:8,
+                   	   	conn: 65
                    	   },
                    	   {
-                   	   	fanwei:"100-30",
-                   	   	sign:"A",
-                   	   	type:"电流值"
+                   	   	name:"智能终端",
+                   	   	id:54,
+                   	   	conn:58
                    	   },
                    	],
                    	status:true

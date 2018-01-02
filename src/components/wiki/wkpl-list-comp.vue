@@ -100,6 +100,10 @@
 								<span @click="classfyTrigger">设置</span>
 							</span>
 							<span class="items">
+								<span class="c-gris">TAG | </span>
+								<span @click="classfyTrigger">设置</span>
+							</span>
+							<span class="items">
 								<span class="c-carbon">删除</span>
 							</span>
 						</p>
@@ -218,7 +222,7 @@
 		flex:1;
 	}
 	.posting-action {
-		min-width: 230px;
+		min-width: 250px;
 		flex:1;
 		display: flex;
 	}
@@ -232,7 +236,7 @@
 		flex:0 0 80px;
 	}
     .h-block03 {
-		flex:0 0 50px;
+		flex:0 0 80px;
 	}
 	.items {
 		display: block;

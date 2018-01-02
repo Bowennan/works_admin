@@ -94,13 +94,13 @@ import ptmList from '@/components/wiki/ptm-comp'
 import hlpsList from '@/components/wiki/hlps-comp'
 import lpmList from '@/components/wiki/lpm-comp'
 import pimList from '@/components/wiki/pim-comp'
-// import hpvmList from '@/components/wiki/hpvm-comp'
-// import hpcmList from '@/components/wiki/hpcm-comp'
-// import wktmList from '@/components/wiki/wktm-comp'
-// import wkbmList from '@/components/wiki/wkbm-comp'
-// import pvmList from '@/components/wiki/pvm-comp'
-// import sublmList from '@/components/wiki/sublm-comp'
-// import pccList from '@/components/wiki/pcc-comp'
+import hpvmList from '@/components/wiki/hpvm-comp'
+import hpcmList from '@/components/wiki/hpcm-comp'
+import wktmList from '@/components/wiki/wktm-comp'
+import wkbmList from '@/components/wiki/wkbm-comp'
+import pvmList from '@/components/wiki/pvm-comp'
+import sublmList from '@/components/wiki/sublm-comp'
+import pccList from '@/components/wiki/pcc-comp'
 
 import asideComp01 from '@/components/aside01-comp'
 import asideComp02 from '@/components/aside02-comp'
@@ -509,34 +509,34 @@ export default new Router({
                 path:'pim',
                 component: pimList
              },
-             // {
-             //    path:'hpvm',
-             //    component: hpvmList
-             // },
-             // {
-             //    path:'hpcm',
-             //    component: hpcmList
-             // },
-             // {
-             //    path: 'wktm',
-             //    component: wktmList
-             // },
-             // {
-             //    path: 'wkbm',
-             //    component: wkbmList
-             // },
-             // {
-             //    path:'pvm',
-             //    component: pvmList
-             // },
-             // {
-             //    path: 'sublm',
-             //    component: sublmList
-             // },
-             // {
-             //    path: 'pcc',
-             //    component: pccList
-             // } 
+             {
+                path:'hpvm',
+                component: hpvmList
+             },
+             {
+                path:'hpcm',
+                component: hpcmList
+             },
+             {
+                path: 'wktm',
+                component: wktmList
+             },
+             {
+                path: 'wkbm',
+                component: wkbmList
+             },
+             {
+                path:'pvm',
+                component: pvmList
+             },
+             {
+                path: 'sublm',
+                component: sublmList
+             },
+             {
+                path: 'pcc',
+                component: pccList
+             } 
       ]
      },
      {

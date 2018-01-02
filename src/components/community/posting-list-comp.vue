@@ -1,6 +1,6 @@
 <template>
-	<div class="lists">
-		<ul class="header">
+	<div class="list-container">
+		<ul class="list-header">
 			<li class="posting-id">ID/标题/日期</li>
 			<li class="posting-author">作者信息</li>
 			<li class="posting-info">帖子信息</li>
@@ -12,81 +12,81 @@
         </div>
 		<ul v-for="(item, index) in postingListData" :key="index">
 			<li>
-				<ul class="con-header">
+				<ul class="list-contents">
 					<li class="posting-id more-line">
 						<p>
-							<span class="lines values">{{item.id}}</span>
-							<span class="lines values">{{item.title}}</span>
-							<span class="lines">{{item.published_at}}</span>
+							<span class="lines">{{item.id}}</span>
+							<span class="lines">{{item.title}}</span>
+							<span class="lines c-gris">{{item.updated_at}}</span>
 						</p>
 					</li>
 					<li class="posting-author more-line">
 						<p>
-							<span class="lines values">{{(item.user).user_id}}</span>
-							<span class="lines values">{{(item.user).nickname}}</span>
-							<span class="lines values">😜</span>
+							<span class="lines">{{(item.user).user_id}}</span>
+							<span class="lines">{{(item.user).nickname}}</span>
+							<span class="lines">😜</span>
 						</p>
 					</li>
 					<li class="posting-info more-line">
 						<p>
-							<span class="lines">评论: <span class="values">{{item.comment_num}}</span></span> 
-							<span class="lines">类别: <span class="values">{{item.article_type_name_cn}} | {{item.content_type==="image"? "纯图" : item.content_type==="video"? "视频" : "图文"}}</span></span> 
+							<span class="lines c-gris">评论: <span class="c-carbon">{{item.comment_num}}</span></span> 
+							<span class="lines c-gris">类别: <span class="c-carbon">{{item.article_type_name_cn}} | {{item.content_type==="image"? "纯图" : item.content_type==="video"? "视频" : "图文"}}</span></span> 
 
 							    <Poptip style="white-space: normal;" trigger='hover' placement="bottom" width="300">
-							        <span>社区、浏览、收藏等</span>
+							        <span class="lines c-gris">其他: <span class="c-carbon">社区、浏览量等</span></span> 
 							        <div class="pop-cons" slot="content" style="width:100%; height:130px;">
-							            <p class="posting-pop">
-								        		<span>加入的社区：</span> <span class="values" style="padding:0 6px"  v-for="(inneritem, innerindex) in item.communities" :key="innerindex">{{inneritem.name}}</span>
+							            <p class="posting-pop c-gris">
+								        		<span>加入的社区：</span> <span class="c-carbon" style="padding:0 6px"  v-for="(inneritem, innerindex) in item.communities" :key="innerindex">{{inneritem.name}}</span>
 								        		     <span v-if="!(item.communities).length">无</span>
 									        	</p>
-                                        <p class="posting-pop">
-                                        	浏览：<span class="values">{{item.read_num}}</span>
+                                        <p class="posting-pop c-gris">
+                                        	浏览：<span class="c-carbon">{{item.read_num}}</span>
                                         </p>
-                                        <p class="posting-pop">
-                                        	收藏：<span class="values">{{item.collect_num}}</span>
+                                        <p class="posting-pop c-gris">
+                                        	收藏：<span class="c-carbon">{{item.collect_num}}</span>
                                         </p>
 							        </div>
 							    </Poptip>
 						</p>
 					</li>
 					<li class="posting-con">
-					    <p>产品ID： <span style="padding:0 3px"  v-for="(inneritem, innerindex) in item.products" :key="innerindex">{{inneritem.id}}</span>
+					    <p class="c-gris">产品ID： <span class="c-carbon" style="padding:0 3px"  v-for="(inneritem, innerindex) in item.products" :key="innerindex">{{inneritem.id}}</span>
 					<span v-if="!(item.products).length">无</span></p>
 					</li>
 					<li class="posting-action">
 						<p class="h-block01">
 							<span class="items">
-								<span>文章归类 | </span>
-								<span class="values">设置</span>
+								<span class="c-gris">文章归类 | </span>
+								<span class="c-carbon pointer">设置</span>
 							</span>
 							
 							<span class="items">
-								<span>文章状态 | </span>
-								<span class="values">{{item.status===0? "隐藏" : item.status===1? "正常" : "草稿"}}</span>
+								<span class="c-gris">文章状态 | </span>
+								<span class="c-carbon pointer">{{item.status===0? "隐藏" : item.status===1? "正常" : "草稿"}}</span>
 							</span>
 							<span class="items">
-								<span>产品关联 | </span>
-								<span class="values">设置</span>
+								<span class="c-gris">产品关联 | </span>
+								<span class="c-carbon pointer">设置</span>
 							</span>
 						</p>
 						<p class="h-block02">
 							<span class="items">
-								<span>推首 | </span>
-								<span class="values">设置</span>
+								<span class="c-gris">推首 | </span>
+								<span class="c-carbon pointer">设置</span>
 							</span>
 							<span class="items">
-								<span>评分 | </span>
-								<span class="values">{{item.level===0? "等级A" : item.level===1? "等级B" : item.level===2? "等级C" : item.level===3? "等级D" : "设置" }}</span>
+								<span class="c-gris">评分 | </span>
+								<span class="c-carbon pointer">{{item.level===0? "等级A" : item.level===1? "等级B" : item.level===2? "等级C" : item.level===3? "等级D" : "设置" }}</span>
 							</span>
 							<span class="items">
-								<span>TAG | </span>
-								<span class="values">设置</span>
+								<span class="c-gris">TAG | </span>
+								<span class="c-carbon pointer">设置</span>
 							</span>
 						</p>
 						<p class="h-block03">
 							<span class="items">
-								<span>权重 | </span>
-								<span class="values">{{item.heat}}</span>
+								<span class="c-gris">权重 | </span>
+								<span class="c-carbon pointer">{{item.weight}}</span>
 							</span>
 						</p>
 					</li>
@@ -116,31 +116,6 @@
 </script>
 
 <style scoped>
-	.lists {
-		width:96%;
-		margin-left:28px;
-		margin-top:20px;
-	}
-	.header {
-		box-sizing: border-box;
-		width:100%;
-		height: 42px;
-		line-height: 42px;
-		border-top:1px solid #ccc;
-		border-bottom:1px solid #ccc;
-		display:flex;
-		color:#1c2438;
-		font-weight: bold;
-	}
-	.con-header {
-		box-sizing: border-box;
-		width:100%;
-		height: 96px;
-		display: flex;
-		border-bottom:1px solid #ccc;
-		color:#bbbec4;
-		font-weight: 400;
-	}
 	.col {
 		line-height: 18px;
 	}
@@ -177,50 +152,10 @@
 		min-width:232px;
 		flex:1;
 	}
-	.header li, .con-header li {
-        box-sizing: border-box;
-        padding:0 18px;
-	}
-	.con-header li > p {
-		height: 95px;
-		display: table-cell;
-		vertical-align: middle;
-	}
 	.more-line p .lines {
 		display: block;
 	}
-	.con-box {
-		display: block;
-        width:100%;
-        max-height:54px; 
-        overflow: hidden;
-        position: relative;
-	}
-	.points {
-		display:block;
-		width:36px;
-		height: 18px;
-        position:absolute;
-        bottom:0;
-        right:0;
-        background: -webkit-linear-gradient(left, transparent, #fff 55%);
-		background: -o-linear-gradient(right, transparent, #fff 55%);
-		background: -moz-linear-gradient(right, transparent, #fff 55%);
-		background: linear-gradient(to right, transparent, #fff 55%);
-		font-size:14px;
-		font-weight: bold;
-		text-align: right;
-		padding-left:20px;
-	}
-	.action-con p span {
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 3;
-		overflow: hidden;
-	}
-	.values {
-		color:#80848f;
-	}
+	
 	.pop-cons {
 		width:100%;
 		height: 130px;

@@ -47,3 +47,13 @@ export function communityReply(paramsObj) {
 		params:Object.assign({},paramsObj,typer)
 	})
 }
+
+
+// 社区通用作品
+export function communityOpus(paramsObj) {
+	return fetch({
+		url:api.Bestkit+'/admin/article/master_piece',
+		method: 'post',
+		params: paramsObj
+	})
+}

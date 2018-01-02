@@ -8,27 +8,31 @@
 			<li class="posting-action">帖子状态与操作</li>
 		</ul>
 
-		<ul>
+		<div v-show="!postingListData.length">
+        	<loading></loading>
+        </div>
+
+		<ul  v-for="(item, index) in postingListData" :key="index">
 			<li>
 				<ul class="list-contents">
 					<li class="posting-id more-line">
 						<p>
-							<span class="lines">13232</span>
-							<span class="lines">你知道你活的比狗惨吗？</span>
-							<span class="lines c-gris">2017-12-9</span>
+							<span class="lines">{{item.id}}</span>
+							<span class="lines">{{item.title}}</span>
+							<span class="lines c-gris">{{item.published_at}}</span>
 						</p>
 					</li>
 					<li class="posting-author more-line">
 						<p>
-							<span class="lines">1212</span>
-							<span class="lines">哈，你不配</span>
+							<span class="lines">{{(item.user).user_id}}</span>
+							<span class="lines">{{(item.user).nickname}}</span>
 							<span class="lines">😜</span>
 						</p>
 					</li>
 					<li class="posting-info more-line">
 						<p>
-							<span class="lines c-gris">评论: <span class="c-carbon">12</span></span> 
-							<span class="lines c-gris">类别: <span class="c-carbon">攻略 | 图文</span></span>
+							<span class="lines c-gris">评论: <span class="c-carbon">{{item.comment_num}}</span></span> 
+							<span class="lines c-gris">类别: <span class="c-carbon">{{item.article_type_name_cn}} | {{item.content_type==="image"? "纯图" : item.content_type==="video"? "视频" : "图文"}}</span></span>
 
 							<Poptip  trigger="hover" placement="bottom" width="300">
 						        <span class="lines c-gris">其他: <span class="c-carbon">社区、浏览量等</span></span> 
@@ -36,14 +40,16 @@
 						           <div style="width:100%; height:130px; white-space:normal" class="poptip-box">
 						           	  <p>
 						           	  	<span>社区归属：</span>
-						           	  	<span class="c-carbon">苹果社区、无人机社区</span>
+						           	  	<span class="c-carbon"style="padding:0 6px"  v-for="(inneritem, innerindex) in item.communities" :key="innerindex">{{inneritem.name}}</span>
+
+						           	  	<span v-if="!(item.communities).length">无</span>
 						           	  </p>
 						           	  <p style="display:flex">
 						           	  	<span style="flex:1">
 						           	  		总浏览量：<span class="c-carbon">21212</span>
 						           	  	</span>
 						           	  	<span style="flex:1">
-						           	  		日浏览量：<span class="c-carbon">1231</span>
+						           	  		日浏览量：<span class="c-carbon">{{item.read_num}}</span>
 						           	  	</span>
 						           	  </p>
 						           	  <p style="display:flex">
@@ -59,7 +65,7 @@
 						           	  		优惠：<span class="c-carbon">1212</span>
 						           	  	</span>
 						           	  	<span style="flex:1">
-						           	  		收藏：<span class="c-carbon">122</span>
+						           	  		收藏：<span class="c-carbon">{{item.collect_num}}</span>
 						           	  	</span>
 						           	  </p>
 						           	  <p>
@@ -73,7 +79,7 @@
 						</p>
 					</li>
 					<li class="posting-con">
-					    <p class="c-gris">产品ID: <span class="c-carbon">12151</span></p>
+					    <p class="c-gris">产品ID: <span class="c-carbon" v-for="(inneritem, innerindex) in item.products" :key="innerindex">{{inneritem.id}}</span></p>
 					</li>
 					<li class="posting-action">
 						<p class="h-block01">
@@ -134,6 +140,7 @@
 </template>
 
 <script>
+    import Loading from '@/components/base-comp/loading'
     import examineWindow from '@/components/pop/examine-pop'
     import connectpWindow from '@/components/pop/connectp-pop'
     import statusWindow from '@/components/pop/status-pop'
@@ -143,6 +150,13 @@
     import tagWindow from '@/components/pop/tag-pop'
     import weightWindow from '@/components/pop/weight-pop'
 	export default {
+
+		props:{
+			postingListData:{
+				type:Array
+			}
+		},
+
        data() {
        	  return {
        	  	state: 0,
@@ -203,7 +217,8 @@
         	recommendWindow,
         	tagWindow,
         	levelWindow,
-        	weightWindow
+        	weightWindow,
+        	Loading
         }
    }
 </script>

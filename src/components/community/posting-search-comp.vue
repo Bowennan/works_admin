@@ -1,49 +1,46 @@
 <template>
 	<div class="search-box">
-		<div class="id-name-search">
-			    <Input v-model="searchVal">
+	
+			    <Input class="id-search" v-model="searchVal">
 			        <Select v-model="defaultSelect" slot="prepend" style="width: 80px">
 			            <Option value="title">帖子</Option>
 			            <Option value="id">ID</Option>
 			        </Select>
-			        <Button slot="append" icon="ios-search" @click="subData"></Button>
+			        <Button slot="append" icon="search" @click="subData"></Button>
 			    </Input>
-		</div>
+		
 
 		<div class="range-search">
-			<div class="lev-search">
-				<Select class="specail-select" v-model="sval">
+			<div class="conditions-box">
+				<Select class="conditions-width" v-model="sval">
 			        <Option v-for="item in specail" :value="item.value" :key="item.value">{{ item.label }}</Option>
 			    </Select>
 			</div>
 
-			<div class="lev-search">
-				    <Select class="brand-group" v-model="tval">
+			<div class="conditions-box">
+				    <Select class="conditions-width" v-model="tval">
 				        <Option v-for="item in types" :value="item.value" :key="item.value" :disabled="item.value<0">{{ item.label }}</Option>
 				    </Select>
 			</div>
 
-			<div class="lev-search">
-				    <Select class="commity-group" v-model="mval">
+			<div class="conditions-box">
+				    <Select class="conditions-width" v-model="mval">
 				        <Option v-for="item in model" :value="item.value" :key="item.value">{{ item.label }}</Option>
 				    </Select>
 			</div>
 
-			<div class="lev-search">
-				 <date-to-date></date-to-date>
+			<div class="conditions-box">
+				 <DatePicker type="daterange" placement="bottom-end" placeholder="用户注册时间区间选择" style="width: 200px"></DatePicker>
 			</div>
 
-			<div class="lev-search">
-				<confirm-btn></confirm-btn>
+			<div class="conditions-box">
+				<Button type="primary" class="confirm-group">确认筛选</Button>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-   import dateToDate from '@/components/base-comp/date-to-date01'
-   import confirmBtn from '@/components/base-comp/confirm-btn'
-   import levelSearch from '@/components/base-comp/level-search'
 	export default {
        data() {
        	return {
@@ -139,47 +136,7 @@
 
        	 	this.$emit("searchResult", paras);
        	 }
-       },
-       components: {
-       	  dateToDate,
-       	  confirmBtn,
-       	  levelSearch
        }
 
 	}
 </script>
-
-<style scoped>
-	.search-box {
-		box-sizing:border-box;
-		width:100%;
-		min-width:1250px;
-		height:78px;
-		border-right:1px solid #dddee1;
-		border-bottom:1px solid #dddee1;
-		position:relative;
-	}
-	.id-name-search {
-       position: absolute;
-       top:20px;
-       left:28px;
-	}
-
-	.range-search {
-		position: absolute;
-		right: 0;
-		top:18px;
-	}
-
-	.lev-search {
-		float:left;
-		margin-right:38px;
-	}
-
-	.specail-select, .commity-group, .brand-group {
-		width:115px;
-	}
-    .ivu-select-arrow {
-    	color:blue !important;
-    }
-</style>
