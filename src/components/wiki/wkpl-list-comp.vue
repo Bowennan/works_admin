@@ -85,7 +85,16 @@
 						</p>
 						<p class="h-block02">
 							<span class="items">
-								<span class="c-carbon">内容关联</span>
+								<span class="c-carbon">
+									<router-link :to = "{
+									                        name: 'connect_contents',
+									                        params: {
+									                        	productId: 166
+									                        }                            
+																						}"
+												  target="_blank"
+									 >内容关联</router-link>
+								</span>
 							</span>
 							<span class="items">
 								<span class="c-carbon">人物联系</span>
@@ -111,94 +120,20 @@
 				</ul>
 			</li>
 		</ul>
-  
-        <div v-show="cover" :style="{width:coverWidth+'px', height:coverHeight+'px'}" class="cover-style">
-			<div class="pop-wrapper">
-				<examine-window v-if="eStatus" @close="examineTrigger"></examine-window>
-				<status-window v-if="sStatus" @close="statusTrigger"></status-window>
-				<classfy-window v-if="cStatus" @close="classfyTrigger"></classfy-window>
-				<connectp-window v-if="cpStatus" @close="connectpTrigger"></connectp-window>
-				<recommend-window v-if="recStatus" @close="recommendTrigger"></recommend-window>
-				<level-window v-if="levStatus" @close="levelTrigger"></level-window>
-				<weight-window v-if="weiStatus" @close="weightTrigger"></weight-window>
-			</div>
-		</div>
 	</div>
 </template>
 
 <script>
-    import examineWindow from '@/components/pop/examine-pop'
-    import connectpWindow from '@/components/pop/connectp-pop'
-    import statusWindow from '@/components/pop/status-pop'
-    import classfyWindow from '@/components/pop/classfy-pop'
-    import recommendWindow from '@/components/pop/recommend-pop'
-    import levelWindow from '@/components/pop/level-pop'
-    import tagWindow from '@/components/pop/tag-pop'
-    import weightWindow from '@/components/pop/weight-pop'
 	export default {
        data() {
-       	  return {
-       	  	single:'',
-       	  	state: 0,
-       	  	eStatus:false,
-       	  	sStatus:false,
-       	  	cStatus:false,
-       	  	cpStatus:false,
-       	  	recStatus:false,
-       	  	levStatus:false,
-       	  	weiStatus:false,
-       	  	coverWidth:0,
-    		coverHeight:0,
-    		cover:false
-       	  }
-       },
-       created() {
-           this.getWindowsSize()
-        },
-       methods: {
-       	getWindowsSize() {
-	       		this.coverWidth = window.document.body.offsetWidth;
-	       		this.coverHeight = window.document.body.offsetHeight;
-	       	},
-          examineTrigger() {
-          	this.eStatus = !this.eStatus
-          	this.cover = !this.cover
-          },
-          statusTrigger(){
-          	this.sStatus = !this.sStatus
-          	this.cover = !this.cover
-          },
-          classfyTrigger(){
-          	this.cStatus = !this.cStatus
-          	this.cover = !this.cover
-          },
-          connectpTrigger(){
-          	this.cpStatus = !this.cpStatus
-          	this.cover = !this.cover
-          },
-          recommendTrigger(){
-          	this.recStatus = !this.recStatus
-          	this.cover = !this.cover
-          },
-          levelTrigger(){
-          	this.levStatus = !this.levStatus
-          	this.cover = !this.cover
-          },
-          weightTrigger(){
-          	this.weiStatus = !this.weiStatus
-          	this.cover = !this.cover
-          }
-       },
-       components: {
-        	examineWindow,
-        	connectpWindow,
-        	statusWindow,
-        	classfyWindow,
-        	recommendWindow,
-        	tagWindow,
-        	levelWindow,
-        	weightWindow
-        }
+       	 return {
+       	 	test: {
+       	 		name: "男孩波",
+       	 		age: 28
+
+       	 	}
+       	 }
+       }
    }
 </script>
 

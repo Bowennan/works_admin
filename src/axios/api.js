@@ -49,6 +49,16 @@ export function communityReply(paramsObj) {
 }
 
 
+// 社区通用提问
+export function communityQuestion(paramsObj) {
+	return fetch({
+		url:api.Bestkit+'/admin/article/question',
+		method: 'post',
+		params: paramsObj
+	})
+}
+
+
 // 社区通用作品
 export function communityOpus(paramsObj) {
 	return fetch({

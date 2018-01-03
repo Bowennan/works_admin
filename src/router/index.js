@@ -90,6 +90,10 @@ import qsTypesp from '@/components/community/community-p/indexqsll-comp'
 import discloseTypesp from '@/components/community/community-p/indexdcll-comp'
 
 import wikiProductList from '@/components/wiki/wkpl-comp'
+//百科下面的跳转页面
+import pspList from '@/components/wiki/sub/psp-comp'
+import psaskingList from '@/components/wiki/sub/psasking-comp'
+
 import ptmList from '@/components/wiki/ptm-comp'
 import hlpsList from '@/components/wiki/hlps-comp'
 import lpmList from '@/components/wiki/lpm-comp'
@@ -110,6 +114,9 @@ import asideComp05 from '@/components/aside05-comp'
 import asideComp06 from '@/components/aside06-comp'
 import asideComp07 from '@/components/aside07-comp'
 import asideComp08 from '@/components/aside08-comp'
+import asideComp081 from '@/components/aside081-comp'
+import asideComp082 from '@/components/aside082-comp'
+import asideComp083 from '@/components/aside083-comp'
 import Log4 from '@/components/test03-comp'
 import Log5 from '@/components/test04-comp'
 import Log6 from '@/components/test05-comp'
@@ -554,6 +561,21 @@ export default new Router({
      {
         path: '/operators',
         component: Log9
+     },
+     {
+        path: '/connect_contents/:productId',
+        name: 'connect_contents',
+        component: asideComp081,
+        children: [
+            {
+                path:'',
+                component: pspList
+            },
+            {
+                path:'psasking',
+                component: psaskingList
+            }
+        ]
      }
   ]
 })
