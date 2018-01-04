@@ -113,7 +113,8 @@ import asideComp04 from '@/components/aside04-comp'
 import asideComp05 from '@/components/aside05-comp'
 import asideComp06 from '@/components/aside06-comp'
 import asideComp07 from '@/components/aside07-comp'
-import asideComp08 from '@/components/aside08-comp'
+// import asideComp08 from '@/components/aside08-comp'
+
 import asideComp081 from '@/components/aside081-comp'
 import asideComp082 from '@/components/aside082-comp'
 import asideComp083 from '@/components/aside083-comp'
@@ -128,6 +129,7 @@ import Log1 from '@/components/test01-comp'
 
 Vue.use(Router)
 
+const asideComp08 = () => import('@/components/aside08-comp')
 export default new Router({
   routes: [
      {

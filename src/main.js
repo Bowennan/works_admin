@@ -5,6 +5,7 @@ import App from './App'
 import axios from 'axios'
 import router from './router'
 import iView from 'iview'
+import store from './store'
 import 'iview/dist/styles/iview.css'
 import '@/commoncss/common-style.css'
 import '@/commoncss/common-aside-style.css'
@@ -24,6 +25,7 @@ Vue.prototype.$http = axios
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })

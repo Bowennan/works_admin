@@ -89,10 +89,11 @@
 									<router-link :to = "{
 									                        name: 'connect_contents',
 									                        params: {
-									                        	productId: 166
+									                        	productId: test.id
 									                        }                            
 																						}"
 												  target="_blank"
+                                                  @click.native="changeId(test.id)"
 									 >内容关联</router-link>
 								</span>
 							</span>
@@ -106,14 +107,14 @@
 						<p class="h-block03">
 							<span class="items">
 								<span class="c-gris">付费 | </span>
-								<span @click="classfyTrigger">设置</span>
+								<span>设置</span>
 							</span>
 							<span class="items">
 								<span class="c-gris">TAG | </span>
-								<span @click="classfyTrigger">设置</span>
+								<span>设置</span>
 							</span>
 							<span class="items">
-								<span class="c-carbon">删除</span>
+								<span class="c-carbon">删除{{routerId}}</span>
 							</span>
 						</p>
 					</li>
@@ -124,15 +125,31 @@
 </template>
 
 <script>
+    import {mapGetters, mapMutations} from 'vuex'
 	export default {
        data() {
        	 return {
        	 	test: {
        	 		name: "男孩波",
-       	 		age: 28
-
-       	 	}
+       	 		age: 28,
+                id: 168
+       	 	},
+       	 	single:false
        	 }
+       },
+       computed: {
+       	...mapGetters([
+               'routerId'
+       		])
+       },
+       methods: {
+       	...mapMutations([
+              'setRouterId'
+       		]),
+       	changeId (num){
+       		 console.log("就看")
+       		this.setRouterId(num)
+       	}
        }
    }
 </script>

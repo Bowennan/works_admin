@@ -2,7 +2,7 @@
 	<div class="aside-box">
 		 <Menu :theme="theme" class="menu-wrapper">
           <MenuItem name="send" class="submenu">
-             <router-link to="/connect_contents" class="left-icon send" >
+             <router-link :to="'/connect_contents/'+ routerId" class="left-icon send" >
               <Icon type="star" size=16 class="iconfont"></Icon>
              	<span class="right-title">产品精选帖子</span>
              </router-link>
@@ -65,12 +65,18 @@
 </template>
 
 <script>
-
+  import {mapGetters} from 'vuex'
 	export default {
        data() {
        	return {
        		theme: "light"
        	}
+       },
+
+       computed: {
+        ...mapGetters([
+            'routerId'
+          ])
        }
 	}
 </script>
