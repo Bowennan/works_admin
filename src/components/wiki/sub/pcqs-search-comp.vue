@@ -7,12 +7,12 @@
 	        <Button slot="append" icon="search"></Button>
 	    </Input> -->
 
-		 <div class="range-search">
+		<!--  <div class="range-search">
 		 	<div class="conditions-box">
 		    	<Select class="conditions-width" v-model="model1">
 			        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
 			    </Select>
-		    </div>
+		    </div> -->
 	<!-- 
 		    <div class="conditions-box">
 		    	<Select class="conditions-width" v-model="model1">
@@ -26,7 +26,7 @@
 		 	<div class="conditions-box">
 		    	<Button type="primary" class="confirm-group">确认筛选</Button>
 		    </div> -->
-		 </div>
+		<!--  </div> -->
 	 </div>
 </template>
 

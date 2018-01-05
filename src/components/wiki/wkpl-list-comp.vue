@@ -86,15 +86,13 @@
 						<p class="h-block02">
 							<span class="items">
 								<span class="c-carbon">
-									<router-link :to = "{
-									                        name: 'connect_contents',
-									                        params: {
-									                        	productId: test.id
-									                        }                            
-																						}"
-												  target="_blank"
-                                                  @click.native="changeId(test.id)"
-									 >内容关联</router-link>
+									<router-link to="/connect_contents"
+									              target="_blank" 
+
+									   @click.native="changeId(test.id)"                                      
+									>
+										内容关联
+									</router-link>
 								</span>
 							</span>
 							<span class="items">

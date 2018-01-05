@@ -1,10 +1,10 @@
 <template>
 	<div class="list-container">
 		<ul class="list-header">
-			<li class="posting-id">ID/问题/日期</li>
-			<!-- <li class="posting-author">帖子信息</li> -->
-			<!-- <li class="posting-info">型号</li>
-			<li class="posting-con">视频信息</li> -->
+			<li class="posting-id">ID/标题/日期</li>
+			<li class="posting-info">作者信息</li>
+			<li class="posting-author">帖子信息</li>
+			<!-- <li class="posting-con">视频信息</li> -->
 			<li class="posting-action">操作</li>
 		</ul>
 
@@ -18,18 +18,18 @@
 							<span class="lines">2018-01-06</span>
 						</p>
 					</li>
-					<!-- <li class="posting-author more-line">
-						<p>
-							<span class="lines c-gris">来源：<span class="c-carbon">站内</span></span>
-							<span class="lines c-gris">网站：<span class="c-carbon">无</span></span>
-							<span class="lines c-gris">类别：<span class="c-carbon">攻略 | 图文</span></span>
-						</p>
-					</li> -->
-					<!-- <li class="posting-info more-line">
+					<li class="posting-info more-line">
 					    <p>
 					    	<span class="lines c-gris"><span class="c-carbon">IPHONE X</span></span>
 					    </p>
-					</li> -->
+					</li>
+					<li class="posting-author more-line">
+						<p>
+							<span class="lines c-gris">评论：<span class="c-carbon">5</span></span>
+							<span class="lines c-gris">类别：<span class="c-carbon">攻略 | 图文</span></span>
+						</p>
+					</li>
+					
 					<!-- <li class="posting-con more-line">
 						<p>
 						
@@ -51,10 +51,8 @@
 					</li> -->
 					<li class="posting-action more-line">
 						<p>
-							<span class="lines c-gris">排序 | 
-								<span class="c-carbon">6</span>
-							</span>
-							<span class="lines c-carbon">删除
+							<span class="lines c-gris">百科精选 | 
+								<span class="c-carbon">是</span>
 							</span>
 						</p>
 					</li>
@@ -82,7 +80,7 @@
 		flex:1;
 	}
 	.posting-info {
-		min-width: 287px;
+		min-width: 240px;
 		flex:1;
 	}
 /*	.posting-con {
@@ -90,11 +88,11 @@
 		flex:1;
 	}*/
 	.posting-action {
-		min-width: 250px;
+		min-width: 200px;
 		flex:1;
 	}
 	.posting-id{
-		min-width:900px;
+		min-width:342px;
 		flex:1;
 	}
 	.more-line p .lines {

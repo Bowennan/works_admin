@@ -93,6 +93,13 @@ import wikiProductList from '@/components/wiki/wkpl-comp'
 //百科下面的跳转页面
 import pspList from '@/components/wiki/sub/psp-comp'
 import psaskingList from '@/components/wiki/sub/psasking-comp'
+import pcplList from '@/components/wiki/sub/pcpl-comp'
+import pcolList from '@/components/wiki/sub/pcol-comp'
+import pcshList from '@/components/wiki/sub/pcsh-comp'
+import pcclList from '@/components/wiki/sub/pccl-comp'
+import pcgpList from '@/components/wiki/sub/pcgp-comp'
+import pcqsList from '@/components/wiki/sub/pcqs-comp'
+import pcdiscloseList from '@/components/wiki/sub/pcdisclose-comp'
 
 import ptmList from '@/components/wiki/ptm-comp'
 import hlpsList from '@/components/wiki/hlps-comp'
@@ -113,7 +120,7 @@ import asideComp04 from '@/components/aside04-comp'
 import asideComp05 from '@/components/aside05-comp'
 import asideComp06 from '@/components/aside06-comp'
 import asideComp07 from '@/components/aside07-comp'
-// import asideComp08 from '@/components/aside08-comp'
+import asideComp08 from '@/components/aside08-comp'
 
 import asideComp081 from '@/components/aside081-comp'
 import asideComp082 from '@/components/aside082-comp'
@@ -129,7 +136,6 @@ import Log1 from '@/components/test01-comp'
 
 Vue.use(Router)
 
-const asideComp08 = () => import('@/components/aside08-comp')
 export default new Router({
   routes: [
      {
@@ -565,8 +571,7 @@ export default new Router({
         component: Log9
      },
      {
-        path: '/connect_contents/:productId',
-        name: 'connect_contents',
+        path: '/connect_contents',
         component: asideComp081,
         children: [
             {
@@ -576,6 +581,34 @@ export default new Router({
             {
                 path:'psasking',
                 component: psaskingList
+            },
+            {
+                path:'pcpl',
+                component: pcplList
+            },
+            {
+                path: 'pcol',
+                component: pcolList
+            },
+            {
+                path: 'pcsh',
+                component: pcshList
+            },
+            {
+                path: 'pccl',
+                component: pcclList
+            },
+            {
+                path: 'pcgp',
+                component: pcgpList
+            },
+            {
+                path: 'pcqs',
+                component: pcqsList
+            },
+            {
+                path: 'pcdisclose',
+                component: pcdiscloseList
             }
         ]
      }
