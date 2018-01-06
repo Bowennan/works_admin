@@ -10,27 +10,31 @@
 			<li class="posting-action">装备秀状态与操作</li>
 		</ul>
 
-		<ul>
+		<div v-show="!qshowListData.length">
+        	<loading></loading>
+        </div>
+
+		<ul v-for="(item, index) in qshowListData" :key="index">
 			<li>
 				<ul class="list-contents">
 					<li class="posting-id more-line">
 						<p style="position:relative; box-sizing:border-box; padding-left:20px"> 
 							<Checkbox style="position:absolute; left:0; top:34px" v-model="single"></Checkbox>
-							<span class="lines c-carbon">13232</span>
-							<span class="lines c-carbon">你知道你活的比狗惨吗？你知道你活的比狗惨吗？你知道你活的比狗惨吗？你知道你活的比狗惨吗？</span>
-							<span class="lines c-gris">2017-12-9</span>
+							<span class="lines c-carbon">{{item.id}}</span>
+							<span class="lines c-carbon">{{item.title}}</span>
+							<span class="lines c-gris">{{item.updated_at}}</span>
 						</p>
 					</li>
 					<li class="posting-author more-line">
 						<p>
-							<span class="lines c-carbon">1212</span>
-							<span class="lines c-carbon">哈，你不配</span>
+							<span class="lines c-carbon">{{item.user_id}}</span>
+							<span class="lines c-carbon">{{(item.user).nickname}}</span>
 						</p>
 					</li>
 					<li class="posting-info more-line">
 						<p>
-							<span class="lines c-gris">评论: <span class="c-carbon">12</span></span> 
-							<span class="lines c-gris">收藏: <span class="c-carbon">9</span></span> 
+							<span class="lines c-gris">评论: <span class="c-carbon">{{item.comment_num}}</span></span> 
+							<span class="lines c-gris">收藏: <span class="c-carbon">{{item.collect_num}}</span></span> 
 							
 							<Poptip  trigger="hover" placement="bottom" width="300">
 						        <span class="lines c-gris">其他: <span class="c-carbon">社区、浏览量等</span></span> 
@@ -38,35 +42,20 @@
 						           <div style="width:100%; height:130px; white-space:normal" class="poptip-box">
 						           	  <p>
 						           	  	<span>社区归属：</span>
-						           	  	<span class="c-carbon">苹果社区、无人机社区</span>
+						           	  	<span class="c-carbon" style="padding:0 6px"  v-for="(inneritem, innerindex) in item.communities" :key="innerindex">{{inneritem.name}}</span>
+								        		     <span v-if="!(item.communities).length">无</span>
 						           	  </p>
 						           	  <p style="display:flex">
 						           	  	<span style="flex:1">
-						           	  		总浏览量：<span class="c-carbon">21212</span>
+						           	  		总浏览量：<span class="c-carbon">{{item.read_num}}</span>
 						           	  	</span>
 						           	  	<span style="flex:1">
-						           	  		日浏览量：<span class="c-carbon">1231</span>
-						           	  	</span>
-						           	  </p>
-						           	  <p style="display:flex">
-						           	  	<span style="flex:1">
-						           	  		赞：<span class="c-carbon">1212</span>
-						           	  	</span>
-						           	  	<span style="flex:1">
-						           	  		踩：<span class="c-carbon">122</span>
-						           	  	</span>
-						           	  </p>
-						           	  <p style="display:flex">
-						           	  	<span style="flex:1">
-						           	  		优惠：<span class="c-carbon">1212</span>
-						           	  	</span>
-						           	  	<span style="flex:1">
-						           	  		收藏：<span class="c-carbon">122</span>
+						           	  		日浏览量：<span class="c-carbon">暂无</span>
 						           	  	</span>
 						           	  </p>
 						           	  <p>
 						           	  	<span>
-						           	  		举报：<span class="c-carbon">1212</span>
+						           	  		举报：<span class="c-carbon">暂无</span>
 						           	  	</span>
 						           	  </p>
 						           </div>
@@ -75,13 +64,14 @@
 						</p>
 					</li>
 					<li class="posting-con">
-					    <p class="c-gris">产品ID： <span class="c-carbon">12151</span></p>
+					    <p class="c-gris">产品ID： <span class="c-carbon" style="padding:0 3px"  v-for="(products, productsindex) in item.products" :key="productsindex">{{products.id}}</span>
+					    <span v-if="!(item.products).length">无</span></p>
 					</li>
 					<li class="posting-action">
 						<p class="h-block01">
 							<span class="items">
 								<span class="c-gris">装备秀状态 | </span>
-								<span class="c-carbon pointer">隐藏</span>
+								<span class="c-carbon pointer">{{item.status===0? "隐藏" : item.status===1? "正常" : "草稿"}}</span>
 							</span>
 							<span class="items">
 								<span class="c-gris">社区归类 | </span>
@@ -98,7 +88,7 @@
 							
 							<span class="items">
 								<span class="c-gris">权重 | </span>
-								<span class="c-carbon pointer">123</span>
+								<span class="c-carbon pointer">{{item.weight}}</span>
 							</span>
 							<span class="items">
 								<span class="c-gris">推首 | </span>
@@ -113,12 +103,21 @@
 </template>
 
 <script>
+    import Loading from '@/components/base-comp/loading'
 	export default {
+	   props: {
+	   	qshowListData: {
+	   		type:Array
+	   	}
+	   },	
        data() {
        	  return {
        	  	state: 0,
        	  	single:''
        	  }
+       },
+       components: {
+       	Loading
        }
    }
 </script>

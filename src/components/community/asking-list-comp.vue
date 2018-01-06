@@ -33,47 +33,45 @@
 					</li>
 					<li class="posting-info more-line">
 						<p>
-							<span class="lines c-gris">提问: <span class="c-carbon">暂无字段</span></span> 
-							<span class="lines c-gris">社区: <span class="c-carbon">{{(item.communities).length}}</span></span> 
+							<span class="lines c-gris">回答： <span class="c-carbon">{{item.comment_num}}</span></span> 
+							<span class="lines c-gris">社区： <span class="c-carbon">{{(item.communities).length}}</span></span> 
 							
 							<Poptip  trigger="hover" placement="bottom" width="300">
 						        <span>浏览、收藏、其他</span>
-						        <div class="con-pop" slot="content">
-						           <div style="width:100%; height:130px; white-space:normal" class="poptip-box">
-						           	  <p>
+						        <div class="pop-cons" slot="content">
+						           	  <p class="posting-pop c-gris" style="margin-bottom:6px">
 						           	  	<span>社区归属：</span>
 						           	  	<span class="c-carbon" style="padding:0 6px"  v-for="(inneritem, innerindex) in item.communities" :key="innerindex">{{inneritem.name}}</span>
-								        		     <span v-if="!(item.communities).length">无</span>
+								        		     <span class="c-carbon" v-if="!(item.communities).length">无</span>
 						           	  </p>
-						           	  <p style="display:flex">
+						           	  <p class="c-gris" style="display:flex; margin-bottom:6px">
 						           	  	<span style="flex:1">
-						           	  		总浏览量：<span>{{item.read_num}}</span>
+						           	  		总浏览量：<span class="c-carbon">{{item.read_num}}</span>
 						           	  	</span>
 						           	  	<span style="flex:1">
-						           	  		日浏览量：<span>暂无</span>
-						           	  	</span>
-						           	  </p>
-						           	  <p style="display:flex">
-						           	  	<span style="flex:1">
-						           	  		举报：<span>暂无</span>
-						           	  	</span>
-						           	  	<span style="flex:1">
-						           	  		收藏：<span>{{item.collect_num}}</span>
+						           	  		日浏览量：<span class="c-carbon">暂无</span>
 						           	  	</span>
 						           	  </p>
-						           	  <p>
+						           	  <p class="c-gris" style="display:flex; margin-bottom:6px">
+						           	  	<span style="flex:1">
+						           	  		举报：<span class="c-carbon">暂无</span>
+						           	  	</span>
+						           	  	<span style="flex:1">
+						           	  		收藏：<span class="c-carbon">{{item.collect_num}}</span>
+						           	  	</span>
+						           	  </p>
+						           	  <p class="c-gris">
 						           	  	<span>TAG:</span>
 						           	  	<span class="c-carbon" style="padding:0 6px"  v-for="(tag, tagindex) in item.tags" :key="tagindex">{{tag.name}}</span>
 								        		     <span v-if="!(item.tags).length">无</span>
 						           	  </p>
-						           </div>
 						        </div>
     						</Poptip>
 						</p>
 					</li>
 					<li class="posting-con">
 					    <p class="c-gris">产品ID： <span class="c-carbon" style="padding:0 3px"  v-for="(products, productsindex) in item.products" :key="productsindex">{{products.id}}</span>
-					<span v-if="!(item.products).length">无</span></p>
+					    <span v-if="!(item.products).length">无</span></p>
 					</li>
 					<li class="posting-action">
 						<p class="h-block01">
@@ -173,15 +171,20 @@
 	}
 	.more-line p .lines {
 		display: block;
+		padding:2px 0;
 	}
-	.con-pop .poptip-box p {
+	.pop-cons {
+		width:100%;
+		height: 140px;
+        color:#80848f;
+	}
+	.pop-cons .posting-pop{
+		width:100%;
 		display: block;
-		height: 25px;
-		line-height: 25px;
-		padding:5px;
-		font-size: 12px;
-		font-weight: 400;
 		color:#bbbec4;
+		min-height: 24px;
+		line-height: 24px;
+		white-space: normal;
 	}
 </style>
 

@@ -67,3 +67,41 @@ export function communityOpus(paramsObj) {
 		params: paramsObj
 	})
 }
+
+// 社区通用好价
+export function communityCoupons(paramsObj) {
+	return fetch({
+		url:api.Bestkit+'/admin/article/coupons',
+		method: 'post',
+		params: paramsObj
+	})
+}
+
+// 社区通用二手
+export function communityIdle(paramsObj) {
+	return fetch({
+		url:api.Bestkit+'/admin/article/idle',
+		method: 'post',
+		params: paramsObj
+	})
+}
+
+// 社区通用装备秀
+export function communityQshow(paramsObj) {
+	return fetch({
+		url:api.Bestkit+'/admin/article/exhibition',
+		method: 'post',
+		params: paramsObj
+	})
+}
+
+// 社区通用爆料
+export function communityDisclose(paramsObj) {
+	return fetch({
+		url:api.Bestkit+'/admin/article/disclose',
+		method: 'post',
+		params: paramsObj
+	})
+}
+
+

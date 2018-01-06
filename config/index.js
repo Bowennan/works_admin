@@ -12,7 +12,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
         '/api': {
-            target:'http://lala.com',
+            // target:'http://lala.com',
+            target:'http://68c4206c.ngrok.io',
             changeOrigin: true,
             pathRewrite: {
                 '/api':'/'

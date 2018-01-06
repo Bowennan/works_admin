@@ -34,50 +34,45 @@
 							<span class="lines c-gris">评论: <span class="c-carbon">{{item.comment_num}}</span></span> 
 							<span class="lines c-gris">类型: <span class="c-carbon">{{item.content_type==="image"? "纯图" : item.content_type==="video"? "视频" : "图文"}}</span></span>
 
-							<Poptip  trigger="hover" placement="bottom" width="300">
+							<Poptip style="white-space: normal"  trigger="hover" placement="bottom" width="300">
 						        <span class="lines c-gris">其他: <span class="c-carbon">社区、浏览量等</span></span> 
-						        <div class="con-pop" slot="content">
-						           <div style="width:100%; height:130px; white-space:normal" class="poptip-box">
-						           	  <p>
+						        <div class="pop-cons" slot="content">
+						           	  <p class="posting-pop c-gris" style="margin-bottom:6px">
 						           	  	<span>社区归属：</span>
-						           	  	<span class="c-carbon"  v-for="(inneritem, innerindex) in item.communities" :key="innerindex">{{inneritem.name}}</span>
+						           	  	<span class="c-carbon" style="padding:0 6px"  v-for="(inneritem, innerindex) in item.communities" :key="innerindex">{{inneritem.name}}</span>
+						           	  	<span v-if="!(item.communities).length">无</span>
 						           	  </p>
-						           	  <p style="display:flex">
+						           	  <p class="c-gris" style="display:flex; margin-bottom:6px">
 						           	  	<span style="flex:1">
 						           	  		总浏览量：<span class="c-carbon">{{item.read_num}}</span>
 						           	  	</span>
 						           	  	<span style="flex:1">
-						           	  		日浏览量：<span class="c-carbon">1231</span>
+						           	  		日浏览量：<span class="c-carbon">暂无</span>
 						           	  	</span>
 						           	  </p>
-						           	  <p style="display:flex">
+						           	  <p class="c-gris" style="display:flex; margin-bottom:6px">
 						           	  	<span style="flex:1">
-						           	  		赞：<span class="c-carbon">1212</span>
+						           	  		举报：<span class="c-carbon">暂无</span>
 						           	  	</span>
 						           	  	<span style="flex:1">
-						           	  		踩：<span class="c-carbon">122</span>
-						           	  	</span>
-						           	  </p>
-						           	  <p style="display:flex">
-						           	  	<span style="flex:1">
-						           	  		优惠：<span class="c-carbon">1212</span>
-						           	  	</span>
-						           	  	<span style="flex:1">
-						           	  		收藏：<span class="c-carbon">122</span>
+						           	  		收藏：<span class="c-carbon">{{item.collect_num}}</span>
 						           	  	</span>
 						           	  </p>
-						           	  <p>
+						           	  <p class="c-gris">
 						           	  	<span>
-						           	  		举报：<span class="c-carbon">1212</span>
+							           	  		TAG：<span style="padding:0 2px" class="c-carbon" v-for="(proitem, proindex) in item.tags" :key="proindex">
+							           	  			{{proitem.name}}
+						           	  		     </span>
 						           	  	</span>
 						           	  </p>
 						           </div>
-						        </div>
     						</Poptip> 
 						</p>
 					</li>
 					<li class="posting-con">
-					    <p class="c-gris">产品ID： <span class="c-carbon"  v-for="(inneritem, innerindex) in item.products" :key="innerindex">{{inneritem.id}}</span></p>
+					    <p class="c-gris">产品ID： <span class="c-carbon" style="padding:0 2px"  v-for="(inneritem, innerindex) in item.products" :key="innerindex">{{inneritem.id}}</span>
+                        <span v-if="!(item.products).length">无</span>
+					    </p>
 					</li>
 					<li class="posting-action">
 						<p class="h-block01">
@@ -111,7 +106,7 @@
 						<p class="h-block03">
 							<span class="items">
 								<span class="c-gris">权重 | </span>
-								<span class="pointer">{{item.heat}}</span>
+								<span class="pointer">{{item.weight}}</span>
 							</span>
 						</p>
 					</li>
@@ -179,15 +174,20 @@
 	}
 	.more-line p .lines {
 		display: block;
+		padding:2px 0;
 	}
-	.con-pop .poptip-box p {
+	.pop-cons {
+		width:100%;
+		height: 140px;
+        color:#80848f;
+	}
+	.pop-cons .posting-pop{
+		width:100%;
 		display: block;
-		height: 25px;
-		line-height: 25px;
-		padding:5px;
-		font-size: 12px;
-		font-weight: 400;
 		color:#bbbec4;
+		min-height: 24px;
+		line-height: 24px;
+		white-space: normal;
 	}
 </style>
 

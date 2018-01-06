@@ -19,7 +19,7 @@
 	import askingTitleComp from '@/components/community/asking-title-comp'
 	import askingListComp from '@/components/community/asking-list-comp'
 
-	import {communityQuestion} from '@/axios/api'
+	import {communityQuestion, communities} from '@/axios/api'
     
     const _Ok = 200;
 	export default {

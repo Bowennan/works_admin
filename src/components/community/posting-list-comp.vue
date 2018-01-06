@@ -34,9 +34,9 @@
 
 							    <Poptip style="white-space: normal;" trigger='hover' placement="bottom" width="300">
 							        <span class="lines c-gris">其他: <span class="c-carbon">社区、浏览量等</span></span> 
-							        <div class="pop-cons" slot="content" style="width:100%; height:130px;">
+							        <div class="pop-cons" slot="content">
 							            <p class="posting-pop c-gris">
-								        		<span>加入的社区：</span> <span class="c-carbon" style="padding:0 6px"  v-for="(inneritem, innerindex) in item.communities" :key="innerindex">{{inneritem.name}}</span>
+								        		<span>社区归属：</span> <span class="c-carbon" style="padding:0 6px"  v-for="(inneritem, innerindex) in item.communities" :key="innerindex">{{inneritem.name}}</span>
 								        		     <span v-if="!(item.communities).length">无</span>
 									        	</p>
                                         <p class="posting-pop c-gris">
@@ -154,6 +154,7 @@
 	}
 	.more-line p .lines {
 		display: block;
+		padding:2px 0;
 	}
 	
 	.pop-cons {

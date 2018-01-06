@@ -28,12 +28,12 @@
 					<li class="works more-line">
 					    <p>
 					    	<span class="c-gris">回答者：<span class="c-carbon">{{(item.user).nickname}}</span></span>
-					    	<span class="c-gris">问题：<span class="c-carbon">作品1，作品2</span></span>
+					    	<span class="c-gris">问题：<span class="c-carbon">暂无</span></span>
 					    </p>
 					</li>
 					<li class="apply-info more-line">
 						<p>
-							<span class="c-gris">回复：<span class="c-carbon">暂无数据</span></span>
+							<span class="c-gris">回复：<span class="c-carbon">{{item.reply_num}}</span></span>
 							<span class="c-gris">赞同：<span class="c-carbon">{{item.agree_num}}</span></span>
 							<span class="c-gris">举报：<span class="c-carbon">0</span></span>
 							<span class="c-gris">时间：<span class="c-carbon">{{(item.created_at)}}</span></span>

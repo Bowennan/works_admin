@@ -28,7 +28,7 @@
 					<li class="works more-line">
 					    <p>
 					    	<span class="c-gris">评论者：<span class="c-carbon">{{(item.user).nickname}}</span></span>
-					    	<span class="c-gris">所属内容：<span class="c-carbon">{{(item.article).article_type}}</span></span>
+					    	<span class="c-gris">所属内容：<span class="c-carbon">暂无</span></span>
 					    	<span class="c-gris">标题：<span class="c-carbon">{{(item.article).title}}</span></span>
 					    </p>
 					</li>
@@ -36,7 +36,7 @@
 						<p>
 							<span class="c-gris">回复：<span class="c-carbon">{{item.reply_num}}</span></span>
 							<span class="c-gris">赞同：<span class="c-carbon">{{item.agree_num}}</span></span>
-							<span class="c-gris">举报：<span class="c-carbon">0</span></span>
+							<span class="c-gris">举报：<span class="c-carbon">暂无</span></span>
 							<span class="c-gris">时间：<span class="c-carbon">{{item.created_at}}</span></span>
 						</p>
 					</li>
