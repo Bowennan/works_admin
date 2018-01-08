@@ -100,6 +100,10 @@ import pcclList from '@/components/wiki/sub/pccl-comp'
 import pcgpList from '@/components/wiki/sub/pcgp-comp'
 import pcqsList from '@/components/wiki/sub/pcqs-comp'
 import pcdiscloseList from '@/components/wiki/sub/pcdisclose-comp'
+import pbaList from '@/components/wiki/sub/pba-comp'
+import onLineList from '@/components/wiki/sub/onlinelist-comp'
+import subLineList from '@/components/wiki/sub/sublinelist-comp'
+
 
 import ptmList from '@/components/wiki/ptm-comp'
 import hlpsList from '@/components/wiki/hlps-comp'
@@ -609,6 +613,30 @@ export default new Router({
             {
                 path: 'pcdisclose',
                 component: pcdiscloseList
+            }
+        ]
+     },
+     {
+        path: '/connect_persons',
+        component: asideComp082,
+        children: [
+            {
+                path: '',
+                component: pbaList
+            }
+        ]
+     },
+     {
+        path: '/manage_ways',
+        component: asideComp083,
+        children: [
+            {
+                path: '',
+                component: onLineList
+            },
+            {
+                path: 'sublist',
+                component: subLineList
             }
         ]
      }

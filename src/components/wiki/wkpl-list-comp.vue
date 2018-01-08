@@ -80,7 +80,7 @@
 								<span class="c-carbon">参数设置</span>
 							</span>
 							<span class="items">
-								<span class="c-carbon">图集编辑</span>
+								<span class="c-carbon" @click="openPop">图集编辑</span>
 							</span>
 						</p>
 						<p class="h-block02">
@@ -96,10 +96,23 @@
 								</span>
 							</span>
 							<span class="items">
-								<span class="c-carbon">人物联系</span>
+								<span class="c-carbon">
+                                  <router-link to="/connect_persons"
+									              target="_blank" 
+
+									   @click.native="changeId(test.id)"                                      
+									>
+										人物联系
+									</router-link>
+								</span>
 							</span>
 							<span class="items">
-								<span class="c-carbon">渠道管理</span>
+								<span class="c-carbon">
+									<router-link to="/manage_ways"
+                                                 target="_blank"
+                                                 @click.native="changeId(test.id)"
+									>渠道管理</router-link>
+								</span>
 							</span>
 						</p>
 						<p class="h-block03">
@@ -119,10 +132,23 @@
 				</ul>
 			</li>
 		</ul>
+
+		<!-- 弹窗 -->
+		<div class="cover-style"
+		     v-show='popStatus' 
+		     :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
+		>
+			<div class="pop-wrapper">
+				<add-products v-if="1 === popNum"></add-products>
+				<edit-imgs v-if="2 === popNum"></edit-imgs>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
+    import addProducts from '@/components/pop/add-products-pop'
+    import editImgs from '@/components/pop/edit-imgs-pop'
     import {mapGetters, mapMutations} from 'vuex'
 	export default {
        data() {
@@ -137,17 +163,36 @@
        },
        computed: {
        	...mapGetters([
-               'routerId'
+               'routerId',
+               'popStatus',
+               'popNum'
        		])
        },
+       created() {
+       	this.getWindowsSize()
+       },
        methods: {
+       	getWindowsSize() {
+       		this.coverWidth = window.document.body.offsetWidth;
+       		this.coverHeight = window.document.body.offsetHeight;
+       	},
        	...mapMutations([
-              'setRouterId'
+              'setRouterId',
+              'setPopNum',
+              'setPopStatus'
        		]),
        	changeId (num){
        		 console.log("就看")
        		this.setRouterId(num)
+       	},
+       	openPop() {
+           this.setPopNum(2)
+           this.setPopStatus()
        	}
+       },
+       components: {
+       	addProducts,
+       	editImgs
        }
    }
 </script>
@@ -209,4 +254,6 @@
 		color:#bbbec4;
 	}
 </style>
+
+
 
