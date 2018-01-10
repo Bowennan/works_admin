@@ -31,7 +31,8 @@
 		data() {
 			return {
 				result:"无",
-				result_doing:"id"
+				result_doing:"id",
+				model1:''
 			}
 		}
 	}

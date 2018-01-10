@@ -13,7 +13,7 @@ module.exports = {
     proxyTable: {
         '/api': {
             // target:'http://lala.com',
-            target:'http://68c4206c.ngrok.io',
+            target:'http://bestkit.test',
             changeOrigin: true,
             pathRewrite: {
                 '/api':'/'

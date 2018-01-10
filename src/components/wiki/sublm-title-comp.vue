@@ -3,7 +3,7 @@
 		<span class="titulo">线下渠道管理</span>
 		<div class="btns-container">
 			<Button class="re-btn" type="primary" shape="circle" icon="ios-loop">刷新</Button>
-			<Button class="re-btn" type="primary" shape="circle" icon="ios-loop">新增视频</Button>
+			<Button class="re-btn" type="primary" shape="circle" icon="ios-loop" @click="addSubLine">新增线下</Button>
 		</div>
 		<div class="result-container">
 			<span class="c-gris total-result">总共产品
@@ -17,10 +17,26 @@
 </template>
 
 <script>
+    import {mapMutations, mapGetters} from 'vuex'
 	export default {
        data() {
        	return {
-       		model1:''
+       		
+       	}
+       },
+       computed: {
+       	...mapGetters([
+                'popNum'
+       		])
+       },
+       methods: {
+       	...mapMutations([
+       		   'setPopNum',
+               'setPopStatus'
+       		]),
+       	addSubLine() {
+       		this.setPopNum(1)
+       		this.setPopStatus()
        	}
        }
 	}

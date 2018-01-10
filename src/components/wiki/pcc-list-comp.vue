@@ -41,7 +41,7 @@
 					<li class="posting-action more-line">
 						<p>
 							<span class="lines c-gris">回馈 | 
-								<span class="c-carbon">未审核</span>
+								<span class="c-carbon" @click="checked">未审核</span>
 							</span>
 							<span class="lines c-gris">图片 | 
 								<span class="c-carbon">查看</span>
@@ -54,12 +54,52 @@
 				</ul>
 			</li>
 		</ul>
+
+		<!-- 弹窗 -->
+	    <div class="cover-style"
+	         v-show='popStatus' 
+	         :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
+	    >
+	      <div class="pop-wrapper">
+	        <recommend-check></recommend-check>
+	      </div>
+	    </div>
 	</div>
 </template>
 
 <script>
+    import recommendCheck from "@/components/pop/recommend-check-pop"
+    import {mapGetters, mapMutations} from "vuex"
 	export default {
-       
+       computed: {
+      	...mapGetters([
+               'popStatus',
+               'popNum'
+      		])
+      },
+
+      created() {
+          this.getWindowsSize()
+         },
+
+         methods: {
+          ...mapMutations([
+              'setRouterId',
+              'setPopNum',
+              'setPopStatus'
+          ]),
+          getWindowsSize() {
+            this.coverWidth = window.document.body.offsetWidth;
+            this.coverHeight = window.document.body.offsetHeight;
+          },
+          checked() {
+          	this.setPopStatus()
+          }
+         },
+
+         components: {
+            recommendCheck
+         }
    }
 </script>
 

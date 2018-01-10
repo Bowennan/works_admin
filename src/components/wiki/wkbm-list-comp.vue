@@ -34,24 +34,86 @@
 					</li>
 					<li class="posting-action more-line">
 						<p>
-							<span class="lines c-gris">排序 | 
+							<span class="lines c-gris" @click="orderBrand">排序 | 
 								<span class="c-carbon">6</span>
 							</span>
 							
-							<span class="lines c-carbon">编辑</span>
+							<span class="lines c-carbon" @click="editBrand">编辑</span>
 
-							<span class="lines c-carbon">删除</span>
+							<span class="lines c-carbon" @click="removeBrand">删除</span>
 							
 						</p>
 					</li>
 				</ul>
 			</li>
 		</ul>
+
+		<div class="cover-style"
+	         v-show="popStatus"
+	         :style="{width:coverWidth + 'px', height: coverHeight + 'px'}"
+	                
+	    >
+	      <div class="pop-wrapper">
+	        <add-brand v-if="1 === popNum"></add-brand>
+	        <brand-order v-if="2 === popNum"></brand-order>
+	        <brand-edit v-if="3 === popNum"></brand-edit>
+	        <remove-brand v-if="4 === popNum"></remove-brand>
+	      </div>
+	    </div>
 	</div>
 </template>
 
 <script>
+    import addBrand from '@/components/pop/add-brand-pop'
+    import brandOrder from '@/components/pop/brand-order-pop'
+    import brandEdit from '@/components/pop/brand-edit-pop'
+    import removeBrand from '@/components/pop/remove-brand-pop'
+    import {mapGetters, mapMutations} from 'vuex'
 	export default {
+
+		computed: {
+          ...mapGetters([
+               'popStatus',
+               'popNum'
+            ])
+         },
+
+         created() {
+          this.getWindowsSize()
+         },
+
+         methods: {
+          getWindowsSize() {
+            this.coverWidth = window.document.body.offsetWidth;
+            this.coverHeight = window.document.body.offsetHeight;
+          },
+          ...mapMutations([
+               'setRouterId',
+               'setPopNum',
+               'setPopStatus'
+            ]),
+          removeBrand() {
+            this.setPopNum(4)
+            this.setPopStatus()
+          },
+          editBrand() {
+            this.setPopNum(3)
+            this.setPopStatus()
+          },
+          orderBrand(){
+            this.setPopNum(2)
+            this.setPopStatus()
+          }
+         },
+
+         components: {
+            addBrand,
+			brandOrder,
+			brandEdit,
+            removeBrand
+         } 
+
+
 
    }
 </script>

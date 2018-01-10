@@ -17,9 +17,9 @@
 								<li class="header-col03">{{item.id}}</li>
 								<li class="header-col04"></li>
 								<li class="header-col05" style="display:flex">
-									<span style="flex:0 0 25%">添加二级</span>
-									<span style="flex:0 0 15%">编辑</span>
-                  <span style="flex:0 0 15%">删除</span>
+									<span style="flex:0 0 25%" @click="addSecondLevel">添加二级</span>
+									<span style="flex:0 0 15%" @click="editFirsLevel">编辑</span>
+                  <span style="flex:0 0 15%" @click="Borrar">删除</span>
 									<span style="flex:0 0 30%; line-height:56px; padding-left:30px">
 										
 										<Icon style="padding:4px; cursor:pointer; transition:250ms linear" :class="{uppered: !item.status}"  size='18' type="arrow-up-b" @click.native="hidden(index)"></Icon>
@@ -33,18 +33,38 @@
 								<li class="header-col03">{{items.id}}</li>
 								<li class="header-col04">关联产品：{{items.conn}}</li>
 								<li class="header-col05" style="display:flex">
-									<span style="flex:0 0 25%">编辑</span>
-									<span style="flex:0 0 15%">删除</span>
+									<span style="flex:0 0 25%" @click="editSecondLevel">编辑</span>
+									<span style="flex:0 0 15%" @click="Borrar">删除</span>
 								</li>
 							</ul>
 				
 			</li>
 		</ul>
 
+    <div class="cover-style"
+         v-show="popStatus"
+         :style="{width:coverWidth + 'px', height: coverHeight + 'px'}"
+                
+    >
+      <div class="pop-wrapper">
+        <aun v-if="1 === popNum"></aun>
+        <paus v-if="2 === popNum"></paus>
+        <una-edit v-if="3 === popNum"></una-edit>
+        <dos-edit v-if="4 === popNum"></dos-edit>
+        <borrar v-if="5 === popNum"></borrar>
+      </div>
+    </div>
+
 	</div>
 </template>
 
 <script>
+    import aun from '@/components/pop/aun-pop'
+    import paus from '@/components/pop/paus-pop'
+    import dosEdit from '@/components/pop/dos-edit-pop'
+    import unaEdit from '@/components/pop/una-edit-pop'
+    import borrar from '@/components/pop/borrar-pop'
+    import {mapGetters, mapMutations} from 'vuex'
     export default {
          data(){
          	return {
@@ -97,11 +117,55 @@
          	}
          },
 
+         computed: {
+          ...mapGetters([
+               'popStatus',
+               'popNum'
+            ])
+         },
+
+         created() {
+          this.getWindowsSize()
+         },
+
          methods: {
+          getWindowsSize() {
+            this.coverWidth = window.document.body.offsetWidth;
+            this.coverHeight = window.document.body.offsetHeight;
+          },
          	hidden(index) {
          		// console.log(index)
          		this.paras[index].status = !this.paras[index].status
-         	}
+         	},
+          ...mapMutations([
+               'setRouterId',
+               'setPopNum',
+               'setPopStatus'
+            ]),
+          Borrar() {
+            this.setPopNum(5)
+            this.setPopStatus()
+          },
+          editSecondLevel() {
+            this.setPopNum(4)
+            this.setPopStatus()
+          },
+          editFirsLevel() {
+            this.setPopNum(3)
+            this.setPopStatus()
+          },
+          addSecondLevel(){
+            this.setPopNum(2)
+            this.setPopStatus()
+          }
+         },
+
+         components: {
+          aun,
+          paus,
+          dosEdit,
+          unaEdit,
+          borrar
          }   
     }
 </script>
