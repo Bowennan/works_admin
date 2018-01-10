@@ -2,7 +2,7 @@
 	<div class="tables">
 		<posting-search-comp  @searchResult="searchDown"></posting-search-comp>
         <posting-title-comp></posting-title-comp>
-        <posting-list-comp :postingListData="postingData" class="tables"></posting-list-comp>
+        <posting-list-comp :postingListData="postingData" class="tables" @refresh="getPostingData"></posting-list-comp>
 
         <Page class="pages" :total="totalPages" show-sizer :page-size-opts="pageArray"
               @on-change="turnPage"
@@ -34,10 +34,11 @@
 		     methods: {
 		     	getPostingData(paras) {
 		     		communityPosting(paras).then(res => {
+		     			// console.log(res.data.data)
                        if(_Ok === res.status){
-                       	this.postingData = res.data.articleList.data;
-                       	this.totalPages = res.data.articleList.total;
-                       	console.log(this.postingData)
+                       	this.postingData = res.data.data;
+                       	this.totalPages = res.data.meta.total;
+                       	// console.log(this.postingData)
                        }
 		     		}).catch(err => {
 		     			console.log(err, '请求失败')

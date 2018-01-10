@@ -2,21 +2,17 @@
 	<div class="pop-container">
 		<div class="pop-header">
 			<span class="pop-title">帖子状态选择</span>
-			<Icon type="close-round" class="pop-close" @click.native="closeStatus"></Icon>
+			<Icon type="close-round" class="pop-close" @click.native="closePop"></Icon>
 		</div>
 
 		<div class="pop-sub-container">
 			<span class="pop-sub-title">状态选择</span>
 
-			<p class="pop-items">
-				 <Radio class="pop-single-sel" v-model="single">正常</Radio>
-			</p>
-			<p class="pop-items">
-				 <Radio class="pop-single-sel" v-model="single">隐藏文章</Radio>
-			</p>
-			<p class="pop-items">
-				 <Radio class="pop-single-sel" v-model="single">退回草稿箱</Radio>
-			</p>
+			<RadioGroup class="pop-single-sel" v-model="status">
+		        <Radio style="display:block; margin:8px 4px" label=1>正常</Radio>
+		        <Radio style="display:block; margin:8px 4px" label=0>隐藏帖子</Radio>
+		        <Radio style="display:block; margin:8px 4px" label=2>退回草稿箱</Radio>
+		    </RadioGroup>
 		</div>
 
 		<div class="pop-sub-container" style="border:none">
@@ -32,8 +28,8 @@
 	    <div class="pop-bottom-box">
       
          
-            <Button class="pop-confirm-btn" type="ghost" @click="closeStatus">取消</Button>
-              <Button class="pop-confirm-btn" type="primary" @click="closeStatus">确认发送</Button>
+              <Button class="pop-confirm-btn" type="ghost" @click="closePop">取消</Button>
+              <Button class="pop-confirm-btn" type="primary" @click="changeStatus">确认发送</Button>
     
 	   </div>
 
@@ -41,15 +37,26 @@
 </template>
 
 <script>
+    import {mapMutations} from 'vuex'
+    // import {updateArticleStatus} from '@/axios/api'
 	export default {
 		data() {
 			return {
-				infos:''
+				infos:'',
+				status:''
 			}
 		},
 		methods: {
-			closeStatus() {
-				this.$emit('close')
+			...mapMutations([
+                   'setPopStatus'
+				]),
+			closePop() {
+				this.setPopStatus()
+			},
+			changeStatus() {
+				
+				this.setPopStatus()
+				this.$emit("changeStatus", this.status)
 			}
 		}
 	}

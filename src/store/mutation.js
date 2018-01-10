@@ -8,6 +8,9 @@ const mutations = {
 	},
 	setPopNum(state, data) {
 		state.popNum = data
+	},
+	sendId(state, data) {
+		state.articleId = data
 	}
 }
 

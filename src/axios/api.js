@@ -22,8 +22,8 @@ export function forbiddenUser(paramsObj) {
 //社区通用内容（通用帖子）
 export function communityPosting(paramsObj) {
 	return fetch({
-		url:api.Bestkit+'/admin/article/index',
-		method: 'post',
+		url:api.Bestkit+'/admin/community/articles',
+		method: 'get',
 		params:paramsObj
 	})
 }
@@ -100,6 +100,15 @@ export function communityDisclose(paramsObj) {
 	return fetch({
 		url:api.Bestkit+'/admin/article/disclose',
 		method: 'post',
+		params: paramsObj
+	})
+}
+
+//更新文章状态
+export function updateArticleStatus(paramsObj) {
+	return fetch({
+		url:api.Bestkit + 'admin/community/articles/' + paramsObj.id,
+		method: 'put',
 		params: paramsObj
 	})
 }

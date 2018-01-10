@@ -215,8 +215,11 @@
 
 .pointer {
 	cursor:pointer;
+	padding:2px;
 }
-
+.pointer:hover {
+	color:#2d8cf0;
+}
 
 
 

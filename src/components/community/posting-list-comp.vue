@@ -62,7 +62,7 @@
 							
 							<span class="items">
 								<span class="c-gris">文章状态 | </span>
-								<span class="c-carbon pointer">{{item.status===0? "隐藏" : item.status===1? "正常" : "草稿"}}</span>
+								<span class="c-carbon pointer" @click="setStatus(item.id)">{{item.status===0? "删除" : item.status===1? "正常" : "草稿"}}</span>
 							</span>
 							<span class="items">
 								<span class="c-gris">产品关联 | </span>
@@ -93,11 +93,23 @@
 				</ul>
 			</li>
 		</ul>
+
+		<div class="cover-style"
+             v-show="popStatus"
+             :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
+		>
+			<div class="pop-wrapper">
+				<status @changeStatus="changeStatus" v-if="2 === popNum"></status>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
     import Loading from '@/components/base-comp/loading'
+    import status from "@/components/pop/status-pop"
+    import {mapGetters, mapMutations} from 'vuex'
+    import {updateArticleStatus, communityPosting} from '@/axios/api'
 	export default {
 		props:{
 			postingListData:{
@@ -107,10 +119,50 @@
        data() {
        	  return {
        	  	state: 0,
+       	  	coverWidth:0,
+       	  	coverHeight:0
        	  }
        },
+       created() {
+          this.getWindowsSize()
+         },
+       computed: {
+       	...mapGetters([
+               'popStatus',
+               'popNum',
+               'articleId'
+       		])
+       },
+       methods: {
+       	getWindowsSize() {
+            this.coverWidth = window.document.body.offsetWidth;
+            this.coverHeight = window.document.body.offsetHeight;
+          },
+       	...mapMutations([
+                'setPopStatus',
+                'setPopNum',
+                'sendId'
+       		]),
+       	setStatus(id) {
+       		this.setPopNum(2)
+       		this.setPopStatus()
+       		this.sendId(id)
+       		//console.log(this.articleId)
+       	},
+       	changeStatus(status) {
+       		let that = this
+       		//console.log(this.articleId)
+       		updateArticleStatus({
+       			id: this.articleId,
+       			status: status
+       		}).then(res => {
+       			that.$emit("refresh")
+       		})
+       	}
+       },
        components: {
-       	Loading
+       	Loading,
+       	status
        }
    }
 </script>
