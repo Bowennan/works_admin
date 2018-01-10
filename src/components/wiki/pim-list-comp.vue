@@ -13,17 +13,29 @@
 								<li class="header-col01">{{item.name}}</li>
 								<li class="header-col02">{{item.sign}}</li>
 								<li class="header-col03" style="display:flex">
-									<span style="flex:0 0 25%">编辑</span>
+									<span style="flex:0 0 25%" @click="priceEdit">编辑</span>
 								</li>
 							</ul>
 				
 			</li>
 		</ul>
 
+    <!-- 弹窗 -->
+    <div class="cover-style"
+         v-show='popStatus' 
+         :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
+    >
+      <div class="pop-wrapper">
+        <price-edit></price-edit>
+      </div>
+    </div>
+
 	</div>
 </template>
 
 <script>
+    import priceEdit from '@/components/pop/price-edit-pop'
+    import {mapGetters, mapMutations} from 'vuex'
     export default {
          data(){
          	return {
@@ -43,13 +55,41 @@
          		]
          	}
          },
+         
+         computed: {
+          ...mapGetters([
+               'popStatus',
+               'popNum'
+            ])
+         },
+         
+         created() {
+          this.getWindowsSize()
+         },
+
 
          methods: {
+          ...mapMutations([
+              'setRouterId',
+              'setPopNum',
+              'setPopStatus'
+          ]),
+          getWindowsSize() {
+            this.coverWidth = window.document.body.offsetWidth;
+            this.coverHeight = window.document.body.offsetHeight;
+          },
          	hidden(index) {
          		// console.log(index)
          		this.paras[index].status = !this.paras[index].status
-         	}
-         }   
+         	},
+          priceEdit() {
+            this.setPopStatus()
+          }
+         },
+
+         components: {
+          priceEdit
+         }  
     }
 </script>
 

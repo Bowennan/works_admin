@@ -51,10 +51,10 @@
 					</li>
 					<li class="posting-action more-line">
 						<p>
-							<span class="lines c-gris">排序 | 
+							<span class="lines c-gris" @click="setOrder">排序 | 
 								<span class="c-carbon">6</span>
 							</span>
-							<span class="lines c-gris">状态 | 
+							<span class="lines c-gris" @click="setStatus">状态 | 
 								<span class="c-carbon">隐藏</span>
 							</span>
 						</p>
@@ -62,11 +62,67 @@
 				</ul>
 			</li>
 		</ul>
+
+		<!-- 弹窗 -->
+	    <div class="cover-style"
+	         v-show='popStatus' 
+	         :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
+	    >
+	      <div class="pop-wrapper">
+	        <hpvm-order v-if="1 === popNum"></hpvm-order>
+	        <hidden v-if="2 === popNum"></hidden>
+	      </div>
+	    </div>
 	</div>
 </template>
 
 <script>
+    import hpvmOrder from "@/components/pop/hpvm-order-pop"
+    import hidden from "@/components/pop/hidden-pop"
+    import {mapGetters, mapMutations} from 'vuex'
 	export default {
+      data() {
+      	return {
+      		single:''
+      	}
+      },
+
+      computed: {
+      	...mapGetters([
+               'popStatus',
+               'popNum'
+      		])
+      },
+
+      created() {
+          this.getWindowsSize()
+         },
+
+         methods: {
+          ...mapMutations([
+              'setRouterId',
+              'setPopNum',
+              'setPopStatus'
+          ]),
+          getWindowsSize() {
+            this.coverWidth = window.document.body.offsetWidth;
+            this.coverHeight = window.document.body.offsetHeight;
+          },
+          setOrder() {
+          	this.setPopNum(1)
+          	this.setPopStatus()
+          },
+          setStatus() {
+          	this.setPopNum(2)
+          	this.setPopStatus()
+          }
+         },
+
+         components: {
+           hpvmOrder,
+		   hidden
+         }
+
 
    }
 </script>

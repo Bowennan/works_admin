@@ -15,18 +15,34 @@
 								<li class="header-col02">{{item.sign}}</li>
 								<li class="header-col03">{{item.order}}</li>
 								<li class="header-col04" style="display:flex">
-									<span style="flex:0 0 25%">排序</span>
-									<span style="flex:0 0 15%">删除</span>
+									<span style="flex:0 0 25%" @click="ordering">排序</span>
+									<span style="flex:0 0 15%" @click="removed">删除</span>
 								</li>
 							</ul>
 				
 			</li>
 		</ul>
 
+    <!-- 弹窗 -->
+    <div class="cover-style"
+         v-show='popStatus' 
+         :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
+    >
+      <div class="pop-wrapper">
+        <add-second-level v-if="1 === popNum"></add-second-level>
+        <order-edit v-if="2 === popNum"></order-edit>
+        <removed v-if="3 === popNum"></removed>
+      </div>
+    </div>
+
 	</div>
 </template>
 
 <script>
+    import addSecondLevel from '@/components/pop/add-second-level-pop'
+    import orderEdit from '@/components/pop/order-edit-pop'
+    import removed from '@/components/pop/removed-pop'
+    import {mapGetters, mapMutations} from 'vuex'
     export default {
          data(){
          	return {
@@ -50,11 +66,45 @@
          	}
          },
 
+         computed: {
+          ...mapGetters([
+               'popStatus',
+               'popNum'
+            ])
+         },
+
+         created() {
+          this.getWindowsSize()
+         },
+
          methods: {
+          getWindowsSize() {
+            this.coverWidth = window.document.body.offsetWidth;
+            this.coverHeight = window.document.body.offsetHeight;
+          },
+          ...mapMutations([
+              'setRouterId',
+              'setPopNum',
+              'setPopStatus'
+          ]),
          	hidden(index) {
          		// console.log(index)
          		this.paras[index].status = !this.paras[index].status
-         	}
+         	},
+          ordering() {
+            this.setPopNum(2)
+            this.setPopStatus()
+          },
+          removed() {
+            this.setPopNum(3)
+            this.setPopStatus()
+          }
+         },
+
+         components: {
+            addSecondLevel,
+            orderEdit,
+            removed
          }   
     }
 </script>

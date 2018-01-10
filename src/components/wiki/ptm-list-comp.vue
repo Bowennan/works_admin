@@ -15,9 +15,9 @@
 								<li class="header-col02"></li>
 								<li class="header-col03"></li>
 								<li class="header-col04" style="display:flex">
-									<span style="flex:0 0 25%">添加二级</span>
-									<span style="flex:0 0 15%">编辑</span>
-									<span style="flex:0 0 15%">删除</span>
+									<span style="flex:0 0 25%" @click="openPop">添加二级</span>
+									<span style="flex:0 0 15%" @click="unaeditor">编辑</span>
+									<span style="flex:0 0 15%" @click="removed">删除</span>
 									<span style="flex:0 0 30%; line-height:56px; padding-left:30px">
 										
 										<Icon style="padding:4px; cursor:pointer; transition:250ms linear" :class="{uppered: !item.status}"  size='18' type="arrow-up-b" @click.native="hidden(index)"></Icon>
@@ -30,18 +30,38 @@
 								<li class="header-col02">{{items.btnanme}}</li>
 								<li class="header-col03">{{items.vla}}</li>
 								<li class="header-col04" style="display:flex">
-									<span style="flex:0 0 25%">编辑</span>
-									<span style="flex:0 0 15%">删除</span>
+									<span style="flex:0 0 25%" @click="doseditor">编辑</span>
+									<span style="flex:0 0 15%" @click="removed">删除</span>
 								</li>
 							</ul>
 				
 			</li>
 		</ul>
 
+    <!-- 弹窗 -->
+    <div class="cover-style"
+         v-show='popStatus' 
+         :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
+    >
+      <div class="pop-wrapper">
+        <first-level v-if="1 === popNum"></first-level>
+        <second-level v-if="2 === popNum"></second-level>
+        <removed v-if="3 === popNum"></removed>
+        <edit-first v-if="4 === popNum"></edit-first>
+        <edit-second v-if="5 === popNum"></edit-second>
+      </div>
+    </div>
+
 	</div>
 </template>
 
 <script>
+    import firstLevel from '@/components/pop/first-level-pop'
+    import secondLevel from '@/components/pop/second-level-pop'
+    import removed from '@/components/pop/removed-pop'
+    import editFirst from '@/components/pop/edit-first-pop'
+    import editSecond from '@/components/pop/edit-second-pop'
+    import {mapGetters, mapMutations} from 'vuex'
     export default {
          data(){
          	return {
@@ -86,11 +106,55 @@
          	}
          },
 
+         computed: {
+          ...mapGetters([
+               'popStatus',
+               'popNum'
+            ])
+         },
+         
+         created() {
+          this.getWindowsSize()
+         },
+
          methods: {
+          ...mapMutations([
+              'setRouterId',
+              'setPopNum',
+              'setPopStatus'
+          ]),
+          getWindowsSize() {
+            this.coverWidth = window.document.body.offsetWidth;
+            this.coverHeight = window.document.body.offsetHeight;
+          },
          	hidden(index) {
          		// console.log(index)
          		this.paras[index].status = !this.paras[index].status
-         	}
+         	},
+          openPop() {
+            this.setPopNum(2)
+            this.setPopStatus()
+          },
+          removed() {
+            this.setPopNum(3)
+            this.setPopStatus()
+          },
+          unaeditor() {
+            this.setPopNum(4)
+            this.setPopStatus()
+          },
+          doseditor() {
+            this.setPopNum(5)
+            this.setPopStatus()
+          }
+         },
+
+         components: {
+           firstLevel,
+           secondLevel,
+           removed,
+           editFirst,
+           editSecond
          }   
     }
 </script>

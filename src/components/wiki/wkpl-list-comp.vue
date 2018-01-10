@@ -125,7 +125,7 @@
 								<span>设置</span>
 							</span>
 							<span class="items">
-								<span class="c-carbon">删除{{routerId}}</span>
+								<span class="c-carbon" @click="removing">删除</span>
 							</span>
 						</p>
 					</li>
@@ -141,6 +141,7 @@
 			<div class="pop-wrapper">
 				<add-products v-if="1 === popNum"></add-products>
 				<edit-imgs v-if="2 === popNum"></edit-imgs>
+				<removed v-if="3 === popNum"></removed>
 			</div>
 		</div>
 	</div>
@@ -149,6 +150,7 @@
 <script>
     import addProducts from '@/components/pop/add-products-pop'
     import editImgs from '@/components/pop/edit-imgs-pop'
+    import removed from '@/components/pop/removed-pop'
     import {mapGetters, mapMutations} from 'vuex'
 	export default {
        data() {
@@ -188,11 +190,16 @@
        	openPop() {
            this.setPopNum(2)
            this.setPopStatus()
+       	},
+       	removing() {
+       		this.setPopNum(3)
+       		this.setPopStatus()
        	}
        },
        components: {
        	addProducts,
-       	editImgs
+       	editImgs,
+       	removed
        }
    }
 </script>
