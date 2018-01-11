@@ -3,7 +3,7 @@
 		<span class="titulo">百科产品管理列表 &gt 产品线下渠道管理</span>
 		<div class="btns-container">
 			<Button class="re-btn" type="primary" shape="circle" icon="ios-loop">刷新</Button>
-			<Button class="re-btn" type="primary" shape="circle" icon="ios-loop">新增线下</Button>
+			<Button class="re-btn" type="primary" shape="circle" icon="plus" @click="openPop">新增线下</Button>
 		</div>
 		<div class="result-container">
 			<span class="c-gris total-result">总共
@@ -17,11 +17,24 @@
 </template>
 
 <script>
+    import {mapMutations} from 'vuex'
 	export default {
        data() {
        	return {
        		model1:''
        	}
+       },
+
+       methods: {
+       	...mapMutations([
+               'setPopNum',
+               'setPopStatus'
+       		]),
+
+       	openPop() {
+       	this.setPopNum(1)
+       	this.setPopStatus()
+       }
        }
 	}
 </script>

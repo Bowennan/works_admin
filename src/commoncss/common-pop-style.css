@@ -300,3 +300,15 @@
             padding:1px;
             background: #e9ecea;
         }
+
+/*删除的hover效果*/
+.removed:hover .trash {
+	color:#f00;
+	cursor:pointer;
+}
+.removed{
+	cursor:pointer;
+}
+.trash {
+	margin-right:4px;
+}

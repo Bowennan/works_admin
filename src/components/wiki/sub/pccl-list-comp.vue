@@ -51,20 +51,57 @@
 					<li class="posting-action more-line">
 						<p>
 							<span class="lines c-gris">百科精选 | 
-								<span class="c-carbon">是</span>
+								<span class="c-carbon pointer" @click="setBest">是</span>
 							</span>
 						</p>
 					</li>
 				</ul>
 			</li>
 		</ul>
+
+		<!-- 弹窗 -->
+	    <div class="cover-style"
+	         v-show='popStatus' 
+	         :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
+	    >
+	      <div class="pop-wrapper">
+	        <pccl-to-best></pccl-to-best>
+	      </div>
+	    </div>
 	</div>
 </template>
 
 <script>
+    import pcclToBest from '@/components/pop/pccl-to-best-pop'
+    import {mapGetters, mapMutations} from 'vuex'
 	export default {
+         computed: {
+          ...mapGetters([
+               'popStatus'
+            ])
+         },
 
-   }
+         created() {
+          this.getWindowsSize()
+         },
+
+         methods: {
+          getWindowsSize() {
+            this.coverWidth = window.document.body.offsetWidth;
+            this.coverHeight = window.document.body.offsetHeight;
+          },
+          ...mapMutations([
+              'setPopStatus'
+          ]),
+          setBest() {
+            this.setPopStatus()
+          }
+         },
+
+         components: {
+            pcclToBest
+         }   
+    }
 </script>
 
 <style scoped>

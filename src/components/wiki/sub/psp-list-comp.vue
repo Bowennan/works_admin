@@ -52,22 +52,71 @@
 					<li class="posting-action more-line">
 						<p>
 							<span class="lines c-gris">排序 | 
-								<span class="c-carbon">6</span>
+								<span class="c-carbon pointer" @click="setOrder">6</span>
 							</span>
-							<span class="lines c-carbon">删除
+							<span class="lines c-carbon pointer" @click="remove">删除
 							</span>
 						</p>
 					</li>
 				</ul>
 			</li>
 		</ul>
+
+		<div class="cover-style"
+		     v-show="popStatus"
+		     :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
+		>
+			<div class="pop-wrapper">
+				<psp-order v-if="1 === popNum"></psp-order>
+				<psp-remove v-if="2 === popNum"></psp-remove>
+				<psp-add v-if="3 === popNum"></psp-add>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
+    import pspOrder from "@/components/pop/psp-order-pop"
+    import pspRemove from "@/components/pop/psp-remove-pop"
+    import pspAdd from "@/components/pop/psp-add-pop"
+    import {mapGetters, mapMutations} from 'vuex'
 	export default {
+        computed: {
+          ...mapGetters([
+               'popStatus',
+               'popNum'
+            ])
+         },
 
-   }
+         created() {
+          this.getWindowsSize()
+         },
+
+         methods: {
+          getWindowsSize() {
+            this.coverWidth = window.document.body.offsetWidth;
+            this.coverHeight = window.document.body.offsetHeight;
+          },
+          ...mapMutations([
+              'setPopNum',
+              'setPopStatus'
+          ]),
+          setOrder() {
+            this.setPopNum(1)
+            this.setPopStatus()
+          },
+          remove() {
+            this.setPopNum(2)
+            this.setPopStatus()
+          }
+         },
+
+         components: {
+            pspOrder,
+			pspRemove,
+			pspAdd
+         }   
+    }
 </script>
 
 <style scoped>

@@ -2,27 +2,19 @@
 	<div class="pop-container">
 		<div class="pop-header">
 			<span class="pop-title">帖子评分</span>
-			<Icon type="close-round" class="pop-close" @click.native="closeLevel"></Icon>
+			<Icon type="close-round" class="pop-close" @click.native="closePop"></Icon>
 		</div>
 
 		<div class="pop-sub-container">
 			<span class="pop-sub-title">等级选择</span>
 
-			<p class="pop-items">
-				 <Radio class="pop-single-sel" v-model="single">等级A</Radio>
-			</p>
-			<p class="pop-items">
-				 <Radio class="pop-single-sel" v-model="single">等级B</Radio>
-			</p>
-			<p class="pop-items">
-				 <Radio class="pop-single-sel" v-model="single">等级C</Radio>
-			</p>
-			<p class="pop-items">
-				 <Radio class="pop-single-sel" v-model="single">等级D</Radio>
-			</p>
-			<p class="pop-items">
-				 <Radio class="pop-single-sel" v-model="single">无等级</Radio>
-			</p>
+			<RadioGroup class="pop-single-sel" v-model="level">
+		        <Radio style="display:block; margin:8px 4px" label=1>A级</Radio>
+		        <Radio style="display:block; margin:8px 4px" label=2>B级</Radio>
+		        <Radio style="display:block; margin:8px 4px" label=3>C级</Radio>
+		        <Radio style="display:block; margin:8px 4px" label=4>D级</Radio>
+		        <Radio style="display:block; margin:8px 4px" label=0>无等级</Radio>
+		    </RadioGroup>
 		</div>
 
 		<div class="pop-sub-container" style="border:none">
@@ -38,8 +30,8 @@
 	    <div class="pop-bottom-box">
       
          
-            <Button class="pop-confirm-btn" type="ghost" @click="closeLevel">取消</Button>
-              <Button class="pop-confirm-btn" type="primary" @click="closeLevel">确认发送</Button>
+            <Button class="pop-confirm-btn" style="background:#fff" type="ghost" @click="closePop">取消</Button>
+              <Button class="pop-confirm-btn" type="primary" @click="changeLevel">确认发送</Button>
     
 	   </div>
 
@@ -47,15 +39,24 @@
 </template>
 
 <script>
+    import {mapMutations} from 'vuex'
 	export default {
 		data() {
 			return {
-				infos:''
+				infos:'',
+				level:''
 			}
 		},
 		methods: {
-			closeLevel() {
-				this.$emit('close')
+			...mapMutations([
+                    'setPopStatus'
+				]),
+			closePop() {
+				this.setPopStatus()
+			},
+			changeLevel() {
+				this.setPopStatus()
+				this.$emit("changeLevel", this.level)
 			}
 		}
 	}

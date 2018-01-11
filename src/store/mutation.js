@@ -11,6 +11,9 @@ const mutations = {
 	},
 	sendId(state, data) {
 		state.articleId = data
+	},
+	sendConnection(state,data) {
+		state.connectionArr = data
 	}
 }
 

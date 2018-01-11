@@ -28,7 +28,7 @@
 	    <div class="pop-bottom-box">
       
          
-              <Button class="pop-confirm-btn" type="ghost" @click="closePop">取消</Button>
+              <Button class="pop-confirm-btn" style="background:#fff" type="ghost" @click="closePop">取消</Button>
               <Button class="pop-confirm-btn" type="primary" @click="changeStatus">确认发送</Button>
     
 	   </div>

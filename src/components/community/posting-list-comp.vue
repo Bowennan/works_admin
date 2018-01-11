@@ -66,7 +66,7 @@
 							</span>
 							<span class="items">
 								<span class="c-gris">产品关联 | </span>
-								<span class="c-carbon pointer">设置</span>
+								<span class="c-carbon pointer" @click="setConnection(item)">设置</span>
 							</span>
 						</p>
 						<p class="h-block02">
@@ -76,7 +76,7 @@
 							</span>
 							<span class="items">
 								<span class="c-gris">评分 | </span>
-								<span class="c-carbon pointer">{{item.level===0? "等级A" : item.level===1? "等级B" : item.level===2? "等级C" : item.level===3? "等级D" : "设置" }}</span>
+								<span class="c-carbon pointer" @click="setLevel(item.id)">{{item.level===0? "无等级" : item.level===1? "等级A" : item.level===2? "等级B" : item.level===3? "等级C" : "等级D" }}</span>
 							</span>
 							<span class="items">
 								<span class="c-gris">TAG | </span>
@@ -100,6 +100,8 @@
 		>
 			<div class="pop-wrapper">
 				<status @changeStatus="changeStatus" v-if="2 === popNum"></status>
+				<level @changeLevel="changeLevel" v-if="5 === popNum"></level>
+				<connection v-if="3 === popNum"></connection>
 			</div>
 		</div>
 	</div>
@@ -107,9 +109,11 @@
 
 <script>
     import Loading from '@/components/base-comp/loading'
-    import status from "@/components/pop/status-pop"
+    import Status from "@/components/pop/status-pop"
+    import Level from "@/components/pop/level-pop"
+    import Connection from "@/components/pop/connectp-pop"
     import {mapGetters, mapMutations} from 'vuex'
-    import {updateArticleStatus, communityPosting} from '@/axios/api'
+    import {updateArticle} from '@/axios/api'
 	export default {
 		props:{
 			postingListData:{
@@ -130,7 +134,8 @@
        	...mapGetters([
                'popStatus',
                'popNum',
-               'articleId'
+               'articleId',
+               'connectionArr'
        		])
        },
        methods: {
@@ -141,20 +146,42 @@
        	...mapMutations([
                 'setPopStatus',
                 'setPopNum',
-                'sendId'
+                'sendId',
+                'sendConnection'
        		]),
        	setStatus(id) {
        		this.setPopNum(2)
        		this.setPopStatus()
        		this.sendId(id)
-       		//console.log(this.articleId)
+       	},
+       	setLevel(id) {
+       		this.setPopNum(5)
+       		this.setPopStatus()
+       		this.sendId(id)
+       	},
+       	setConnection(item) {
+            this.setPopNum(3)
+            this.setPopStatus()
+            this.sendId(item.id)
+            this.sendConnection(item.products)
+            console.log(this.connectionArr)
        	},
        	changeStatus(status) {
        		let that = this
        		//console.log(this.articleId)
-       		updateArticleStatus({
+       		updateArticle({
        			id: this.articleId,
        			status: status
+       		}).then(res => {
+       			that.$emit("refresh")
+       		})
+       	},
+       	changeLevel(level) {
+       		let that = this
+       		//console.log(this.articleId)
+       		updateArticle({
+       			id: this.articleId,
+       			level: level
        		}).then(res => {
        			that.$emit("refresh")
        		})
@@ -162,7 +189,9 @@
        },
        components: {
        	Loading,
-       	status
+       	Status,
+       	Level,
+       	Connection
        }
    }
 </script>

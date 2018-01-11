@@ -104,13 +104,15 @@ export function communityDisclose(paramsObj) {
 	})
 }
 
-//更新文章状态
-export function updateArticleStatus(paramsObj) {
+//更新文章(状态 等级 权重)
+export function updateArticle(paramsObj) {
 	return fetch({
 		url:api.Bestkit + 'admin/community/articles/' + paramsObj.id,
 		method: 'put',
 		params: paramsObj
 	})
 }
+
+
 
 

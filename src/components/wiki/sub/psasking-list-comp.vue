@@ -52,22 +52,68 @@
 					<li class="posting-action more-line">
 						<p>
 							<span class="lines c-gris">排序 | 
-								<span class="c-carbon">6</span>
+								<span class="c-carbon pointer" @click="setOrder">6</span>
 							</span>
-							<span class="lines c-carbon">删除
+							<span class="lines c-carbon pointer" @click="remove">删除
 							</span>
 						</p>
 					</li>
 				</ul>
 			</li>
 		</ul>
+
+		<div class="cover-style"
+		     v-show="popStatus"
+		     :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
+		>
+			<div class="pop-wrapper">
+				<psasking-order v-if="1 === popNum"></psasking-order>
+				<psasking-remove v-if="2 === popNum"></psasking-remove>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
+    import psaskingOrder from "@/components/pop/psasking-order-pop"
+    import psaskingRemove from "@/components/pop/psasking-remove-pop"
+    import {mapGetters, mapMutations} from 'vuex'
 	export default {
+         computed: {
+          ...mapGetters([
+               'popStatus',
+               'popNum'
+            ])
+         },
 
-   }
+         created() {
+          this.getWindowsSize()
+         },
+
+         methods: {
+          getWindowsSize() {
+            this.coverWidth = window.document.body.offsetWidth;
+            this.coverHeight = window.document.body.offsetHeight;
+          },
+          ...mapMutations([
+              'setPopNum',
+              'setPopStatus'
+          ]),
+          setOrder() {
+            this.setPopNum(1)
+            this.setPopStatus()
+          },
+          remove() {
+            this.setPopNum(2)
+            this.setPopStatus()
+          }
+         },
+
+         components: {
+            psaskingOrder,
+			psaskingRemove
+         }
+    }
 </script>
 
 <style scoped>

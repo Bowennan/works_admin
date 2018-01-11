@@ -52,20 +52,70 @@
 					</li> -->
 					<li class="posting-action more-line">
 						<p>
-							<span class="lines c-carbon">编辑 </span>
-							<span class="lines c-carbon">删除 </span>
+							<span class="lines c-carbon pointer" @click="editOnline">编辑 </span>
+							<span class="lines c-carbon pointer" @click="remove">删除 </span>
 						</p>
 					</li>
 				</ul>
 			</li>
 		</ul>
+
+		<!-- 弹窗 -->
+	    <div class="cover-style"
+	         v-show='popStatus' 
+	         :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
+	    >
+	      <div class="pop-wrapper">
+	      	<add-online v-if="1 === popNum"></add-online>
+	        <edit-online v-if="2 === popNum"></edit-online>
+	        <remove-online v-if="3 === popNum"></remove-online>
+	      </div>
+	    </div>
 	</div>
 </template>
 
 <script>
+    import addOnline from '@/components/pop/add-online-pop'
+    import editOnline from '@/components/pop/edit-online-pop'
+    import removeOnline from '@/components/pop/remove-online-pop'
+    import {mapGetters, mapMutations} from 'vuex'
 	export default {
+         computed: {
+          ...mapGetters([
+               'popStatus',
+               'popNum'
+            ])
+         },
 
-   }
+         created() {
+          this.getWindowsSize()
+         },
+
+         methods: {
+          getWindowsSize() {
+            this.coverWidth = window.document.body.offsetWidth;
+            this.coverHeight = window.document.body.offsetHeight;
+          },
+          ...mapMutations([
+              'setPopStatus',
+              'setPopNum'
+          ]),
+          editOnline() {
+          	this.setPopNum(2)
+            this.setPopStatus()
+          },
+          remove() {
+          	this.setPopNum(3)
+          	this.setPopStatus()
+          }
+         },
+
+         components: {
+            addOnline,
+			editOnline,
+			removeOnline
+         }   
+    }
 </script>
 
 <style scoped>

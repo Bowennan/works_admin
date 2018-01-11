@@ -44,21 +44,71 @@
 					</li>
 					<li class="posting-action more-line">
 						<p>
-							<span class="lines c-carbon">编辑 </span>
+							<span class="lines c-carbon pointer" @click="editSubline">编辑 </span>
 
-							<span class="lines c-carbon">删除 </span>
+							<span class="lines c-carbon pointer" @click="remove">删除 </span>
 						</p>
 					</li>
 				</ul>
 			</li>
 		</ul>
+
+		<!-- 弹窗 -->
+	    <div class="cover-style"
+	         v-show='popStatus' 
+	         :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
+	    >
+	      <div class="pop-wrapper">
+	      	<add-subline v-if="1 === popNum"></add-subline>
+	        <edit-subline v-if="2 === popNum"></edit-subline>
+	        <remove-subline v-if="3 === popNum"></remove-subline>
+	      </div>
+	    </div>
 	</div>
 </template>
 
 <script>
+    import addSubline from '@/components/pop/subline-add-pop'
+    import editSubline from '@/components/pop/subline-edit-pop'
+    import removeSubline from '@/components/pop/subline-remove-pop'
+    import {mapGetters, mapMutations} from 'vuex'
 	export default {
+         computed: {
+          ...mapGetters([
+               'popStatus',
+               'popNum'
+            ])
+         },
 
-   }
+         created() {
+          this.getWindowsSize()
+         },
+
+         methods: {
+          getWindowsSize() {
+            this.coverWidth = window.document.body.offsetWidth;
+            this.coverHeight = window.document.body.offsetHeight;
+          },
+          ...mapMutations([
+              'setPopStatus',
+              'setPopNum'
+          ]),
+          editSubline() {
+          	this.setPopNum(2)
+            this.setPopStatus()
+          },
+          remove() {
+          	this.setPopNum(3)
+          	this.setPopStatus()
+          }
+         },
+
+         components: {
+            addSubline,
+			editSubline,
+			removeSubline
+         }   
+    }
 </script>
 
 <style scoped>
