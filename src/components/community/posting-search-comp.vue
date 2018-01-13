@@ -2,19 +2,21 @@
 	<div class="search-box">
 	
 			    <Input class="id-search" v-model="searchVal">
-			        <Select v-model="defaultSelect" slot="prepend" style="width: 80px">
+			        <Select v-model="searchType" slot="prepend" style="width: 80px">
 			            <Option value="title">帖子</Option>
 			            <Option value="id">ID</Option>
 			        </Select>
-			        <Button slot="append" icon="search" @click="subData"></Button>
+			        <Button slot="append" icon="search" @click="search"></Button>
 			    </Input>
+
+          <span v-show="status" class="c-naranja" style='position: absolute; bottom: 5px; left: 106px;'>输入正确ID号或标题关键字</span>
 		
 
 		<div class="range-search">
 			<div class="conditions-box">
 				<Select class="conditions-width" v-model="sval">
 			        <Option v-for="item in specail" :value="item.value" :key="item.value">{{ item.label }}</Option>
-			    </Select>
+			   </Select>
 			</div>
 
 			<div class="conditions-box">
@@ -30,22 +32,25 @@
 			</div>
 
 			<div class="conditions-box">
-				 <DatePicker type="daterange" placement="bottom-end" placeholder="用户注册时间区间选择" style="width: 200px"></DatePicker>
+				 <DatePicker type="daterange" placement="bottom-end" placeholder="用户注册时间区间选择" style="width: 200px" @on-change="setTimeRange"></DatePicker>
 			</div>
 
 			<div class="conditions-box">
-				<Button type="primary" class="confirm-group">确认筛选</Button>
+				<Button type="primary" class="confirm-group" @click="chiose">确认筛选</Button>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+  import {mapMutations} from "vuex"
 	export default {
        data() {
        	return {
+          status:false,
+          dateArr:[],
        		searchVal: '',
-       		defaultSelect: 'title',
+          searchType: 'id',
        		specail:[
                       {
                       	label:"特殊筛选",
@@ -67,23 +72,19 @@
                       },
                       {
                       	label:"测评帖子",
-                      	value:'1'
-                      },
-                      {
-                      	label:"教程帖子",
-                      	value:'2'
+                      	value:'evaluate'
                       },
                       {
                       	label:"攻略帖子",
-                      	value:'3'
+                      	value:'strategy'
                       },
                       {
                       	label:"资讯帖子",
-                      	value:'4'
+                      	value:'message'
                       },
                       {
                       	label:"体验帖子",
-                      	value:'5'
+                      	value:'experience'
                       },
                       {
                       	label:"--帖子类型--",
@@ -91,15 +92,15 @@
                       },
                       {
                       	label:"纯图帖子",
-                      	value:'6'
+                      	value:'image'
                       },
                       {
                       	label:"视频帖子",
-                      	value:'7'
+                      	value:'video'
                       },
                       {
                       	label:"图文帖子",
-                      	value:'8'
+                      	value:'mix'
                       }
        		],
        		model:[
@@ -126,16 +127,62 @@
        	}
        },
        methods: {
-       	 subData() {
-       	 	let paras = {};
-       	 	if(this.defaultSelect === 'title'){
-       	 		paras.title = this.searchVal;
-       	 	}else {
-       	 		paras.id = parseInt(this.searchVal);
-       	 	}
+         ...mapMutations([
+             'setId',
+             'setTitle',
+             'setBegin',
+             'setEnd',
+             'setOrderType',
+             'setArticleType',
+             'setImageType',
+             'setBegin',
+             'setEnd'
+          ]),
 
-       	 	this.$emit("searchResult", paras);
-       	 }
+       	 search() {
+       	 	  if(this.searchType == "id" && /^[0-9]*$/.test(this.searchVal) && this.searchVal !== '' ){
+              this.status = false
+              this.setId(this.searchVal)
+              this.$emit("searchid")
+            }else if(this.searchType == "title" && this.searchVal !== ''){
+              this.status = false
+              this.setTitle(this.searchVal)
+              this.$emit("searchtitle")
+            }else {
+              this.status = true
+              setTimeout(()=>{
+                this.status = false
+              },1500)
+            }
+
+            this.searchVal=''
+       	  },
+
+         chiose() {
+         
+            if(this.tval=="evaluate" || this.tval=="experience" || this.tval=="strategy" || this.tval=="message") {
+              this.setArticleType(this.tval)
+              this.setImageType('')
+            }else if (this.tval==0) {
+              this.setArticleType('')
+              this.setImageType('')
+            }else {
+              this.setImageType(this.tval)
+              this.setArticleType('')
+            }
+          
+
+             this.setBegin(this.dateArr[0])
+             this.setEnd(this.dateArr[1])
+
+             this.$emit("chiose");
+         },
+         
+         setTimeRange(date) {
+          this.dateArr[0] = date[0]
+          this.dateArr[1] = date[1]
+          console.log(this.dateArr)
+         }
        }
 
 	}

@@ -62,7 +62,10 @@
 							
 							<span class="items">
 								<span class="c-gris">文章状态 | </span>
-								<span class="c-carbon pointer" @click="setStatus(item.id)">{{item.status===0? "删除" : item.status===1? "正常" : "草稿"}}</span>
+								<span class="c-carbon pointer" @click="setStatus({
+									id: item.id,
+									index: index
+								})">{{item.status===0? "删除" : item.status===1? "正常" : "草稿"}}</span>
 							</span>
 							<span class="items">
 								<span class="c-gris">产品关联 | </span>
@@ -135,7 +138,8 @@
                'popStatus',
                'popNum',
                'articleId',
-               'connectionArr'
+               'connectionArr',
+               'articleIndex'
        		])
        },
        methods: {
@@ -147,12 +151,14 @@
                 'setPopStatus',
                 'setPopNum',
                 'sendId',
-                'sendConnection'
+                'sendConnection',
+                'setArticleIndex'
        		]),
-       	setStatus(id) {
+       	setStatus(obj) {
        		this.setPopNum(2)
        		this.setPopStatus()
-       		this.sendId(id)
+       		this.sendId(obj.id)
+       		this.setArticleIndex(obj.index)
        	},
        	setLevel(id) {
        		this.setPopNum(5)
@@ -173,7 +179,8 @@
        			id: this.articleId,
        			status: status
        		}).then(res => {
-       			that.$emit("refresh")
+
+       		  (that.postingListData)[that.articleIndex] = status
        		})
        	},
        	changeLevel(level) {

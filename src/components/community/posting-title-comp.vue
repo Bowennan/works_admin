@@ -2,59 +2,69 @@
 	<div class="title-box">
 		<span class="titulo">通用帖子列表</span>
 		<div class="btns-container">
-			<Button class="re-btn" type="primary" shape="circle" icon="ios-loop">刷新</Button>
+			<Button class="re-btn" type="primary" shape="circle" icon="ios-loop" @click="refresh">刷新</Button>
 		</div>
 		<div class="result-container">
 			<span class="total-result c-gris">总共文章：
 	          <span class="c-naranja">353216</span>
 			</span>
 			<Select class="order-sel" v-model="order">
-		        <Option v-for="item in postingsOrder" :value="item.value" :key="item.value">{{ item.label }}</Option>
+		        <Option v-for="item in postingsOrder" :value="item.value" :key="item.value" @click.native="sendOrderType(item.value)">{{ item.label }}</Option>
 		    </Select>
 		</div>
 	</div>
 </template>
 
 <script>
+    import {mapMutations} from 'vuex'
 	export default {
        data() {
        	return {
-       		order:0,
+       		order:"id",
        		postingsOrder:[
                  {
                  	label:"降序排列全部",
-                 	value:0
+                 	value:"id"
                  },
                  {
-                 	label:"文章日浏览量由高到低",
-                 	value:2
-                 },
-                 {
-                 	label:"文章浏览量由高到低",
-                 	value:3
-                 },
-                 {
-                 	label:"举报数由高到低",
-                 	value:4
+                 	label:"总阅读量由高到低",
+                 	value:"read_num"
                  },
                  {
                  	label:"评论数由高到低",
-                 	value:5
+                 	value:"comment_num"
                  },
                  {
-                 	label:"收获喜欢由高到低",
-                 	value:6
+                 	label:"收藏数由高到低",
+                 	value:"collect_num"
                  },
                  {
                  	label:"热度由高到低",
-                 	value:7
+                 	value:"heat"
                  },
                  {
                  	label:"权重由高到低",
-                 	value:8
+                 	value:"weight"
                  },
        		]
        	}
+       },
+
+       methods: {
+        ...mapMutations([
+               "setOrderType"
+            ]),
+
+        sendOrderType(types) {
+            console.log(types)
+            this.setOrderType(types)
+            this.$emit("changeOrderType")
+        },
+
+        refresh() {
+            this.order = "id"
+            this.$emit("refresh")
+        }
        }
 	}
 </script>

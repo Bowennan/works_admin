@@ -52,7 +52,6 @@
 		},
 		computed: {
 			...mapGetters([
-                   "articleId",
 				   "connectionArr"
 				])
 		},
