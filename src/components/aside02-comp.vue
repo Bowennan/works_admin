@@ -12,15 +12,13 @@
                     </template>
                     <MenuItem name="1-1" class="submenu">
                       <router-link to="/communities" class="left-icon submenu-sub">帖子列表</router-link>
-                      <Badge count="10" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-2" class="submenu">
                       <router-link to="/communities/tbcp" class="left-icon submenu-sub">待审核帖子</router-link>
-                      <Badge count="10" class="badge-scale"></Badge>
+                      <Badge :count="postingCount" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-3" class="submenu">
                       <router-link to="/communities/ap" class="left-icon submenu-sub">异常帖子</router-link>
-                      <Badge count="10" class="badge-scale"></Badge>
                     </MenuItem>
                 </Submenu>
                 <Submenu name="opus">
@@ -209,11 +207,19 @@
 </template>
 
 <script>
+  import {postingCount} from '@/axios/api'
 	export default {
        data() {
        	return {
-       		theme: "light"
+       		theme: "light",
+          postingCount: null
        	}
+       },
+
+       created() {
+        postingCount().then(res => {
+          this.postingCount = res.data.data
+        })
        }
 	}
 </script>

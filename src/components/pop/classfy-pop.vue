@@ -2,7 +2,7 @@
 	<div class="pop-container">
 		<div class="pop-header">
 			<span class="pop-title">帖子归类社区</span>
-			<Icon type="close-round" class="pop-close" @click.native="closeClassfy"></Icon>
+			<Icon type="close-round" class="pop-close" @click.native="closePop"></Icon>
 		</div>
 
 		<div class="pop-sub-container">
@@ -28,8 +28,8 @@
 	    <div class="pop-bottom-box">
       
          
-            <Button class="pop-confirm-btn" type="ghost" @click="closeClassfy">取消</Button>
-              <Button class="pop-confirm-btn" type="primary" @click="closeClassfy">确认发送</Button>
+            <Button class="pop-confirm-btn" type="ghost" @click="closePop">取消</Button>
+              <Button class="pop-confirm-btn" type="primary">确认发送</Button>
     
 	   </div>
 
@@ -37,6 +37,7 @@
 </template>
 
 <script>
+    import {mapMutations} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -44,8 +45,11 @@
 			}
 		},
 		methods: {
-			closeClassfy() {
-				this.$emit('close')
+			...mapMutations([
+                   'setPopStatus'
+				]),
+			closePop() {
+				this.setPopStatus()
 			}
 		}
 	}

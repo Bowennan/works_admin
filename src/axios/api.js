@@ -19,14 +19,49 @@ export function forbiddenUser(paramsObj) {
 	})
 }
 
-//社区通用内容（通用帖子）
+//以下为社区接口
+//通用帖子
+let normal = {status: 1}
+let abnormal = {status: 0}
 export function communityPosting(paramsObj) {
 	return fetch({
 		url:api.Bestkit+'/admin/community/articles',
 		method: 'get',
-		params:paramsObj
+		params:Object.assign({},paramsObj,normal)
 	})
 }
+//隐藏帖子
+export function abnormalCommunityPosting(paramsObj) {
+	return fetch({
+		url:api.Bestkit+'/admin/community/articles',
+		method: 'get',
+		params:Object.assign({},paramsObj,abnormal)
+	})
+}
+//待审核帖子
+export function reviewCommunityPosting(){
+	return fetch({
+		url:api.Bestkit+'/admin/community/articles/review',
+		method: 'get'
+	})
+}
+//待审核数量
+export function postingCount(){
+	return fetch({
+		url:api.Bestkit+'/admin/community/articles/review/num',
+		method: 'get'
+	})
+}
+
+
+
+
+
+
+
+
+
+
 
 let typec = {'type':'comment'}
 let typer = {'type':'reply'}
@@ -34,7 +69,7 @@ let typer = {'type':'reply'}
 export function communityComments(paramsObj) {
 	return fetch({
 		url:api.Bestkit+'/admin/article/comment',
-		method: 'post',
+		method: 'get',
 		params:Object.assign({},paramsObj,typec)
 	})
 }
@@ -43,7 +78,7 @@ export function communityComments(paramsObj) {
 export function communityReply(paramsObj) {
 	return fetch({
 		url:api.Bestkit+'/admin/article/comment',
-		method: 'post',
+		method: 'get',
 		params:Object.assign({},paramsObj,typer)
 	})
 }
@@ -53,7 +88,7 @@ export function communityReply(paramsObj) {
 export function communityQuestion(paramsObj) {
 	return fetch({
 		url:api.Bestkit+'/admin/article/question',
-		method: 'post',
+		method: 'get',
 		params: paramsObj
 	})
 }
@@ -63,7 +98,7 @@ export function communityQuestion(paramsObj) {
 export function communityOpus(paramsObj) {
 	return fetch({
 		url:api.Bestkit+'/admin/article/master_piece',
-		method: 'post',
+		method: 'get',
 		params: paramsObj
 	})
 }
@@ -72,7 +107,7 @@ export function communityOpus(paramsObj) {
 export function communityCoupons(paramsObj) {
 	return fetch({
 		url:api.Bestkit+'/admin/article/coupons',
-		method: 'post',
+		method: 'get',
 		params: paramsObj
 	})
 }
@@ -81,7 +116,7 @@ export function communityCoupons(paramsObj) {
 export function communityIdle(paramsObj) {
 	return fetch({
 		url:api.Bestkit+'/admin/article/idle',
-		method: 'post',
+		method: 'get',
 		params: paramsObj
 	})
 }
@@ -90,7 +125,7 @@ export function communityIdle(paramsObj) {
 export function communityQshow(paramsObj) {
 	return fetch({
 		url:api.Bestkit+'/admin/article/exhibition',
-		method: 'post',
+		method: 'get',
 		params: paramsObj
 	})
 }
@@ -99,7 +134,7 @@ export function communityQshow(paramsObj) {
 export function communityDisclose(paramsObj) {
 	return fetch({
 		url:api.Bestkit+'/admin/article/disclose',
-		method: 'post',
+		method: 'get',
 		params: paramsObj
 	})
 }

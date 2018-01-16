@@ -43,7 +43,7 @@
 </template>
 
 <script>
-  import {mapMutations} from "vuex"
+  import {mapMutations, mapGetters, mapActions} from "vuex"
 	export default {
        data() {
        	return {
@@ -126,28 +126,41 @@
        		mval:0
        	}
        },
+       computed: {
+        ...mapGetters([
+          'id',
+          'title',
+          'begin',
+          'end',
+          'articleType',
+          'imageType'
+          ])
+       },
        methods: {
          ...mapMutations([
              'setId',
              'setTitle',
-             'setBegin',
-             'setEnd',
-             'setOrderType',
              'setArticleType',
              'setImageType',
              'setBegin',
              'setEnd'
           ]),
-
+         ...mapActions([
+           'getPostingData'
+          ]),
        	 search() {
        	 	  if(this.searchType == "id" && /^[0-9]*$/.test(this.searchVal) && this.searchVal !== '' ){
               this.status = false
               this.setId(this.searchVal)
-              this.$emit("searchid")
+              this.getPostingData({
+                 id: this.id
+               })
             }else if(this.searchType == "title" && this.searchVal !== ''){
               this.status = false
               this.setTitle(this.searchVal)
-              this.$emit("searchtitle")
+              this.getPostingData({
+                 title: this.title
+               })
             }else {
               this.status = true
               setTimeout(()=>{
@@ -155,7 +168,9 @@
               },1500)
             }
 
-            this.searchVal=''
+             this.searchVal=''
+
+             
        	  },
 
          chiose() {
@@ -175,7 +190,12 @@
              this.setBegin(this.dateArr[0])
              this.setEnd(this.dateArr[1])
 
-             this.$emit("chiose");
+             this.getPostingData({
+                 content_type: this.imageType,
+                 article_type: this.articleType,
+                 begin_published_at: this.begin,
+                 end_published_at: this.end
+               })
          },
          
          setTimeRange(date) {

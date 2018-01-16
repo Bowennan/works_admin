@@ -9,7 +9,7 @@ const state = {
 	//产品关联内容存储
     connectionArr:[],
     //排序类型存储
-    orderType:'',
+    orderType:'id',
     //搜索id
     id:null,
     //搜索标题

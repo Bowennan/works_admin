@@ -6,7 +6,7 @@
 		</div>
 		<div class="result-container">
 			<span class="total-result c-gris">总共文章：
-	          <span class="c-naranja">353216</span>
+	          <span class="c-naranja">{{totalPages}}</span>
 			</span>
 			<Select class="order-sel" v-model="order">
 		        <Option v-for="item in postingsOrder" :value="item.value" :key="item.value" @click.native="sendOrderType(item.value)">{{ item.label }}</Option>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-    import {mapMutations} from 'vuex'
+    import {mapMutations, mapGetters, mapActions} from 'vuex'
 	export default {
        data() {
        	return {
@@ -50,21 +50,32 @@
        	}
        },
 
+       computed: {
+        ...mapGetters([
+             'totalPages'
+          ])
+       },
+
        methods: {
         ...mapMutations([
                "setOrderType"
             ]),
 
+        ...mapActions([
+             "getPostingData"
+          ]),
+
         sendOrderType(types) {
             console.log(types)
             this.setOrderType(types)
-            this.$emit("changeOrderType")
+            this.getPostingData({
+              sort_field: types
+            })
         },
 
         refresh() {
-            this.order = "id"
-            this.$emit("refresh")
-        }
+            this.getPostingData()
+         }
        }
 	}
 </script>

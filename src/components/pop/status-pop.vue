@@ -37,14 +37,21 @@
 </template>
 
 <script>
-    import {mapMutations} from 'vuex'
-    // import {updateArticleStatus} from '@/axios/api'
+    import {mapMutations, mapGetters} from 'vuex'
+    import {updateArticle} from '@/axios/api'
 	export default {
 		data() {
 			return {
 				infos:'',
-				status:''
+				status:null
 			}
+		},
+		computed: {
+          ...mapGetters([
+               "articleId",
+               "datas",
+               "articleIndex"
+          	])
 		},
 		methods: {
 			...mapMutations([
@@ -54,9 +61,18 @@
 				this.setPopStatus()
 			},
 			changeStatus() {
-				
 				this.setPopStatus()
-				this.$emit("changeStatus", this.status)
+				updateArticle({
+					id: this.articleId,
+					status: parseInt(this.status)
+				}).then(res => {
+                    if(parseInt(this.status) === 2 || parseInt(this.status) === 0) {
+                    	this.datas.splice(this.articleIndex, 1)
+                    }
+					console.log("修改成功")
+				}).catch(err => {
+					console.log("修改失败")
+				})
 			}
 		}
 	}

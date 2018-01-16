@@ -7,10 +7,10 @@
 			<li class="posting-con">产品关联</li>
 			<li class="posting-action">帖子状态与操作</li>
 		</ul>
-        <div v-show="!postingListData.length">
+        <div v-show="!datas.length">
         	<loading></loading>
         </div>
-		<ul v-for="(item, index) in postingListData" :key="index">
+		<ul v-for="(item, index) in datas" :key="index">
 			<li>
 				<ul class="list-contents">
 					<li class="posting-id more-line">
@@ -65,7 +65,7 @@
 								<span class="c-carbon pointer" @click="setStatus({
 									id: item.id,
 									index: index
-								})">{{item.status===0? "删除" : item.status===1? "正常" : "草稿"}}</span>
+								})">{{item.status===0? "隐藏" : item.status===1? "正常" : "草稿"}}</span>
 							</span>
 							<span class="items">
 								<span class="c-gris">产品关联 | </span>
@@ -79,7 +79,10 @@
 							</span>
 							<span class="items">
 								<span class="c-gris">评分 | </span>
-								<span class="c-carbon pointer" @click="setLevel(item.id)">{{item.level===0? "无等级" : item.level===1? "等级A" : item.level===2? "等级B" : item.level===3? "等级C" : "等级D" }}</span>
+								<span class="c-carbon pointer" @click="setLevel({
+									id: item.id,
+									index: index
+								})">{{item.level===0? "无等级" : item.level===1? "等级A" : item.level===2? "等级B" : item.level===3? "等级C" : "等级D" }}</span>
 							</span>
 							<span class="items">
 								<span class="c-gris">TAG | </span>
@@ -89,7 +92,7 @@
 						<p class="h-block03">
 							<span class="items">
 								<span class="c-gris">权重 | </span>
-								<span class="c-carbon pointer">{{item.weight}}</span>
+								<span class="c-carbon pointer" @click="setWeight">{{item.weight}}</span>
 							</span>
 						</p>
 					</li>
@@ -102,9 +105,10 @@
              :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
 		>
 			<div class="pop-wrapper">
-				<status @changeStatus="changeStatus" v-if="2 === popNum"></status>
-				<level @changeLevel="changeLevel" v-if="5 === popNum"></level>
+				<status v-if="2 === popNum"></status>
+				<level v-if="5 === popNum"></level>
 				<connection v-if="3 === popNum"></connection>
+				<weight v-if="7 === popNum"></weight>
 			</div>
 		</div>
 	</div>
@@ -115,31 +119,25 @@
     import Status from "@/components/pop/status-pop"
     import Level from "@/components/pop/level-pop"
     import Connection from "@/components/pop/connectp-pop"
-    import {mapGetters, mapMutations} from 'vuex'
+    import Weight from "@/components/pop/weight-pop"
+    import {mapGetters, mapMutations, mapActions} from 'vuex'
     import {updateArticle} from '@/axios/api'
 	export default {
-		props:{
-			postingListData:{
-				type:Array
-			}
-		},
        data() {
        	  return {
-       	  	state: 0,
        	  	coverWidth:0,
        	  	coverHeight:0
        	  }
        },
        created() {
+       	  this.getPostingData()
           this.getWindowsSize()
          },
        computed: {
        	...mapGetters([
-               'popStatus',
-               'popNum',
-               'articleId',
-               'connectionArr',
-               'articleIndex'
+               "datas",
+               "popStatus",
+               "popNum"
        		])
        },
        methods: {
@@ -147,6 +145,9 @@
             this.coverWidth = window.document.body.offsetWidth;
             this.coverHeight = window.document.body.offsetHeight;
           },
+          ...mapActions([
+               'getPostingData'
+          	]),
        	...mapMutations([
                 'setPopStatus',
                 'setPopNum',
@@ -160,10 +161,11 @@
        		this.sendId(obj.id)
        		this.setArticleIndex(obj.index)
        	},
-       	setLevel(id) {
+       	setLevel(obj) {
        		this.setPopNum(5)
        		this.setPopStatus()
-       		this.sendId(id)
+       		this.sendId(obj.id)
+       		this.setArticleIndex(obj.index)
        	},
        	setConnection(item) {
             this.setPopNum(3)
@@ -172,33 +174,17 @@
             this.sendConnection(item.products)
             console.log(this.connectionArr)
        	},
-       	changeStatus(status) {
-       		let that = this
-       		//console.log(this.articleId)
-       		updateArticle({
-       			id: this.articleId,
-       			status: status
-       		}).then(res => {
-
-       		  (that.postingListData)[that.articleIndex] = status
-       		})
-       	},
-       	changeLevel(level) {
-       		let that = this
-       		//console.log(this.articleId)
-       		updateArticle({
-       			id: this.articleId,
-       			level: level
-       		}).then(res => {
-       			that.$emit("refresh")
-       		})
+       	setWeight() {
+       		this.setPopNum(7)
+       		this.setPopStatus()
        	}
        },
        components: {
        	Loading,
        	Status,
        	Level,
-       	Connection
+       	Connection,
+       	Weight
        }
    }
 </script>

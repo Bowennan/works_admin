@@ -2,7 +2,7 @@
 	<div class="pop-container">
 		<div class="pop-header">
 			<span class="pop-title">权重设置</span>
-			<Icon type="close-round" class="pop-close" @click.native="closeWeight"></Icon>
+			<Icon type="close-round" class="pop-close" @click.native="closePop"></Icon>
 		</div>
 
 		<div class="pop-sub-container">
@@ -26,14 +26,15 @@
 		<div class="pop-bottom-box">
       
          
-            <Button class="pop-confirm-btn" type="ghost" @click="closeWeight">取消</Button>
-              <Button class="pop-confirm-btn" type="primary" @click="closeWeight">确认</Button>
+            <Button class="pop-confirm-btn" style="background: #fff" type="ghost" @click="closePop">取消</Button>
+              <Button class="pop-confirm-btn" type="primary">确认</Button>
     
 	   </div>
 	</div>
 </template>
 
 <script>
+    import {mapMutations} from 'vuex'
 	export default {
 	  
 	  	data() {
@@ -42,8 +43,11 @@
           }
 	  	},
 	  	methods: {
-	  		closeWeight() {
-	  			this.$emit('close')
+	  		...mapMutations([
+                    'setPopStatus'
+	  			]),
+	  		closePop() {
+	  			this.setPopStatus()
 	  		}
 	  	}
 	  
