@@ -8,28 +8,16 @@
 		<div class="pop-sub-container">
 			<span class="pop-sub-title">文章社区选择（可全选）</span>
 
-			<p class="pop-items">
-				  <Checkbox class="pop-single-sel" v-model="single">社区1</Checkbox>
-				   <Checkbox class="pop-single-sel" v-model="single">社区2</Checkbox>
-				    <Checkbox class="pop-single-sel" v-model="single">社区3</Checkbox>
-			</p>
-			<p class="pop-items">
-				  <Checkbox class="pop-single-sel" v-model="single">社区1</Checkbox>
-				   <Checkbox class="pop-single-sel" v-model="single">社区2</Checkbox>
-				    <Checkbox class="pop-single-sel" v-model="single">社区3</Checkbox>
-			</p>
-			<p class="pop-items">
-				  <Checkbox class="pop-single-sel" v-model="single">社区1</Checkbox>
-				   <Checkbox class="pop-single-sel" v-model="single">社区2</Checkbox>
-				    <Checkbox class="pop-single-sel" v-model="single">社区3</Checkbox>
-			</p>
+			<CheckboxGroup v-model="communityNameChoose">
+		        <Checkbox class="c-carbon" style="padding:4px" v-for="(item, index) in communityName" :label="item.id">{{item.name}}</Checkbox>
+		    </CheckboxGroup>
 		</div>
 
 	    <div class="pop-bottom-box">
       
          
             <Button class="pop-confirm-btn" type="ghost" @click="closePop">取消</Button>
-              <Button class="pop-confirm-btn" type="primary">确认发送</Button>
+              <Button class="pop-confirm-btn" type="primary" @click="sendComm">确认发送</Button>
     
 	   </div>
 
@@ -37,12 +25,27 @@
 </template>
 
 <script>
-    import {mapMutations} from 'vuex'
+    import {getCommunityNameId, updateArticleComm} from "@/axios/api"
+    import {mapMutations, mapGetters} from 'vuex'
 	export default {
 		data() {
 			return {
-				infos:''
+				infos:'',
+				communityName:[],
+				communityNameChoose:[]
+				
 			}
+		},
+		computed: {
+           ...mapGetters([
+               'commid',
+               'articleId'
+           	])
+		},
+		created() {
+           getCommunityNameId().then(res => {
+           	this.communityName = res.data.data
+           })
 		},
 		methods: {
 			...mapMutations([
@@ -50,6 +53,16 @@
 				]),
 			closePop() {
 				this.setPopStatus()
+                this.communityNameChoose.length =0
+			},
+			sendComm() {
+               this.setPopStatus()
+               updateArticleComm({
+                 community_ids: this.communityNameChoose,
+                 id: this.articleId
+               }).then(res => {
+               	this.communityNameChoose.length =0
+               })
 			}
 		}
 	}

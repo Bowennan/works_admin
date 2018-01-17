@@ -20,7 +20,7 @@ export function forbiddenUser(paramsObj) {
 }
 
 //以下为社区接口
-//通用帖子
+//通用帖子和隐藏帖子 status = 1 为正常显示  status = 0 为
 let normal = {status: 1}
 let abnormal = {status: 0}
 export function communityPosting(paramsObj) {
@@ -28,6 +28,13 @@ export function communityPosting(paramsObj) {
 		url:api.Bestkit+'/admin/community/articles',
 		method: 'get',
 		params:Object.assign({},paramsObj,normal)
+	})
+}
+//待审核帖子
+export function reviewCommunityPosting(){
+	return fetch({
+		url:api.Bestkit+'/admin/community/articles/review',
+		method: 'get'
 	})
 }
 //隐藏帖子
@@ -38,28 +45,6 @@ export function abnormalCommunityPosting(paramsObj) {
 		params:Object.assign({},paramsObj,abnormal)
 	})
 }
-//待审核帖子
-export function reviewCommunityPosting(){
-	return fetch({
-		url:api.Bestkit+'/admin/community/articles/review',
-		method: 'get'
-	})
-}
-//待审核数量
-export function postingCount(){
-	return fetch({
-		url:api.Bestkit+'/admin/community/articles/review/num',
-		method: 'get'
-	})
-}
-
-
-
-
-
-
-
-
 
 
 
@@ -139,12 +124,85 @@ export function communityDisclose(paramsObj) {
 	})
 }
 
+//待审核数量
+export function postingCount(){
+	return fetch({
+		url:api.Bestkit+'/admin/community/articles/review/num',
+		method: 'get'
+	})
+}
+export function masterPieceCount(){
+	return fetch({
+		url:api.Bestkit+'/admin/community/masterpieces/review/num',
+		method: 'get'
+	})
+}
+export function commentsCount(){
+	return fetch({
+		url:api.Bestkit+'/admin/community/comments/review/num',
+		method: 'get'
+	})
+}
+export function replyCount(){
+	return fetch({
+		url:api.Bestkit+'/admin/community/comments/review/num?summary_catalog=question',
+		method: 'get'
+	})
+}
+export function couponsCount(){
+	return fetch({
+		url:api.Bestkit+'/admin/community/coupons/review/num',
+		method: 'get'
+	})
+}
+export function idlesCount(){
+	return fetch({
+		url:api.Bestkit+'/admin/community/idles/review/num',
+		method: 'get'
+	})
+}
+export function questionsCount(){
+	return fetch({
+		url:api.Bestkit+'/admin/community/questions/review/num',
+		method: 'get'
+	})
+}
+export function exhibitionsCount(){
+	return fetch({
+		url:api.Bestkit+'/admin/community/exhibitions/review/num',
+		method: 'get'
+	})
+}
+export function disclosesCount(){
+	return fetch({
+		url:api.Bestkit+'/admin/community/discloses/review/num',
+		method: 'get'
+	})
+}
+
 //更新文章(状态 等级 权重)
 export function updateArticle(paramsObj) {
 	return fetch({
 		url:api.Bestkit + 'admin/community/articles/' + paramsObj.id,
 		method: 'put',
 		params: paramsObj
+	})
+}
+
+//获得所有社区名称
+export function getCommunityNameId() {
+	return fetch({
+		url:api.Bestkit + 'admin/community/communities?field=id,name&limit=50',
+		method: 'get'
+	})
+}
+
+//更新文章(关联社区)
+export function updateArticleComm(paramsObj) {
+	return fetch({
+		url:api.Bestkit + 'admin/community/articles/' + paramsObj.id + '/communities',
+		method: 'put',
+		data: paramsObj
 	})
 }
 

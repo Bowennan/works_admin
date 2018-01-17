@@ -50,7 +50,8 @@
           ...mapGetters([
                "articleId",
                "datas",
-               "articleIndex"
+               "articleIndex",
+               "source"
           	])
 		},
 		methods: {
@@ -66,9 +67,16 @@
 					id: this.articleId,
 					status: parseInt(this.status)
 				}).then(res => {
-                    if(parseInt(this.status) === 2 || parseInt(this.status) === 0) {
-                    	this.datas.splice(this.articleIndex, 1)
-                    }
+					if(this.source === "ap") {
+						if(parseInt(this.status) === 1 || parseInt(this.status) === 2) {
+	                    	this.datas.splice(this.articleIndex, 1)
+	                    }
+					}else {
+						if(parseInt(this.status) === 2 || parseInt(this.status) === 0) {
+	                    	this.datas.splice(this.articleIndex, 1)
+	                    }
+					}
+                    
 					console.log("修改成功")
 				}).catch(err => {
 					console.log("修改失败")

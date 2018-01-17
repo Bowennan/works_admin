@@ -1,6 +1,6 @@
 <template>
 	<div class="title-box">
-		<span class="titulo">异常帖子列表</span>
+		<span class="titulo">隐藏帖子列表</span>
 		<div class="btns-container">
 			<Button class="re-btn" type="primary" shape="circle" icon="ios-loop">刷新</Button>
 		</div>

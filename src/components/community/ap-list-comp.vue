@@ -7,203 +7,124 @@
 			<li class="posting-con">产品关联</li>
 			<li class="posting-action">帖子状态与操作</li>
 		</ul>
+		<div v-show="!datas.length">
+        	<loading></loading>
+        </div>
 
-		<ul>
+		<ul v-for="(item, index) in datas" :key="index">
 			<li>
 				<ul class="list-contents">
 					<li class="posting-id more-line">
 						<p>
-							<span class="lines">13232</span>
-							<span class="lines">你知道你活的比狗惨吗？</span>
-							<span class="lines c-gris">2017-12-9</span>
+							<span class="lines">{{item.id}}</span>
+							<span class="lines">{{item.title}}</span>
+							<span class="lines c-gris">{{item.updated_at}}</span>
 						</p>
 					</li>
 					<li class="posting-author more-line">
 						<p>
-							<span class="lines">1212</span>
-							<span class="lines">哈，你不配</span>
+							<span class="lines">{{(item.user).user_id}}</span>
+							<span class="lines">{{(item.user).nickname}}</span>
 							<span class="lines">😜</span>
 						</p>
 					</li>
 					<li class="posting-info more-line">
 						<p>
-							<span class="lines c-gris">评论: <span class="c-carbon">12</span></span> 
-							<span class="lines c-gris">类别: <span class="c-carbon">攻略 | 图文</span></span>
+							<span class="lines c-gris">评论: <span class="c-carbon">{{item.comment_num}}</span></span> 
+							<span class="lines c-gris">类别: <span class="c-carbon">{{item.article_type_name_cn}} | {{item.content_type==="image"? "纯图" : item.content_type==="video"? "视频" : "图文"}}</span></span>
 
-							<Poptip  trigger="hover" placement="bottom" width="300">
-						        <span class="lines c-gris">其他: <span class="c-carbon">社区、浏览量等</span></span> 
-						        <div class="con-pop" slot="content">
-						           <div style="width:100%; height:130px; white-space:normal" class="poptip-box">
-						           	  <p>
-						           	  	<span>社区归属：</span>
-						           	  	<span class="c-carbon">苹果社区、无人机社区</span>
-						           	  </p>
-						           	  <p style="display:flex">
-						           	  	<span style="flex:1">
-						           	  		总浏览量：<span class="c-carbon">21212</span>
-						           	  	</span>
-						           	  	<span style="flex:1">
-						           	  		日浏览量：<span class="c-carbon">1231</span>
-						           	  	</span>
-						           	  </p>
-						           	  <p style="display:flex">
-						           	  	<span style="flex:1">
-						           	  		赞：<span class="c-carbon">1212</span>
-						           	  	</span>
-						           	  	<span style="flex:1">
-						           	  		踩：<span class="c-carbon">122</span>
-						           	  	</span>
-						           	  </p>
-						           	  <p style="display:flex">
-						           	  	<span style="flex:1">
-						           	  		优惠：<span class="c-carbon">1212</span>
-						           	  	</span>
-						           	  	<span style="flex:1">
-						           	  		收藏：<span class="c-carbon">122</span>
-						           	  	</span>
-						           	  </p>
-						           	  <p>
-						           	  	<span>
-						           	  		举报：<span class="c-carbon">1212</span>
-						           	  	</span>
-						           	  </p>
-						           </div>
-						        </div>
-    						</Poptip>
+							<Poptip style="white-space: normal;" trigger='hover' placement="bottom" width="300">
+							        <span class="lines c-gris">其他: <span class="c-carbon">社区、浏览量等</span></span> 
+							        <div class="pop-cons" slot="content">
+							            <p class="posting-pop c-gris">
+								        		<span>社区归属：</span> <span class="c-carbon" style="padding:0 6px"  v-for="(inneritem, innerindex) in item.communities" :key="innerindex">{{inneritem.name}}</span>
+								        		     <span v-if="!(item.communities).length">无</span>
+									        	</p>
+                                        <p class="posting-pop c-gris">
+                                        	浏览：<span class="c-carbon">{{item.read_num}}</span>
+                                        </p>
+                                        <p class="posting-pop c-gris">
+                                        	收藏：<span class="c-carbon">{{item.collect_num}}</span>
+                                        </p>
+							        </div>
+							    </Poptip>
 						</p>
 					</li>
 					<li class="posting-con">
-					    <p class="c-gris">产品ID: <span class="c-carbon">12151</span></p>
+					    <p class="c-gris">产品ID： <span class="c-carbon" style="padding:0 3px"  v-for="(inneritem, innerindex) in item.products" :key="innerindex">{{inneritem.id}}</span>
+					<span v-if="!(item.products).length">无</span></p>
 					</li>
 					<li class="posting-action">
-						<p class="h-block01">
-							<span class="items">
-								<span class="c-gris">审核状态 | </span>
-								<span @click="examineTrigger">不通过</span>
-							</span>
-							<span class="items">
+						<p>
+							
 								<span class="c-gris">文章状态 | </span>
-								<span @click="statusTrigger">隐藏</span>
-							</span>
-							<span class="items">
-								<span class="c-gris">产品关联 | </span>
-								<span @click="connectpTrigger">设置</span>
-							</span>
-						</p>
-						<p class="h-block02">
-							<span class="items">
-								<span class="c-gris">推首 | </span>
-								<span @click="recommendTrigger">设置</span>
-							</span>
-							<span class="items">
-								<span class="c-gris">评分 | </span>
-								<span @click="levelTrigger">等级A</span>
-							</span>
-							<span class="items">
-								<span class="c-gris">TAG | </span>
-								<span>设置</span>
-							</span>
-						</p>
-						<p class="h-block03">
-							<span class="items">
-								<span class="c-gris">文章归类 | </span>
-								<span @click="classfyTrigger">设置</span>
-							</span>
-							<span class="items">
-								<span class="c-gris">权重 | </span>
-								<span @click="weightTrigger">120</span>
-							</span>
+								<span @click="setStatus({
+									id: item.id,
+									index: index
+								})" class="pointer">{{item.status===0? "隐藏" : item.status===1? "正常" : "草稿"}}</span>
+						
 						</p>
 					</li>
 				</ul>
 			</li>
 		</ul>
   
-        <div v-show="cover" :style="{width:coverWidth+'px', height:coverHeight+'px'}" class="cover-style">
+        <div v-show="popStatus" :style="{width:coverWidth+'px', height:coverHeight+'px'}" class="cover-style">
 			<div class="pop-wrapper">
-				<examine-window v-if="eStatus" @close="examineTrigger"></examine-window>
-				<status-window v-if="sStatus" @close="statusTrigger"></status-window>
-				<classfy-window v-if="cStatus" @close="classfyTrigger"></classfy-window>
-				<connectp-window v-if="cpStatus" @close="connectpTrigger"></connectp-window>
-				<recommend-window v-if="recStatus" @close="recommendTrigger"></recommend-window>
-				<level-window v-if="levStatus" @close="levelTrigger"></level-window>
-				<weight-window v-if="weiStatus" @close="weightTrigger"></weight-window>
+				<status-window></status-window>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-    import examineWindow from '@/components/pop/examine-pop'
-    import connectpWindow from '@/components/pop/connectp-pop'
+    import Loading from '@/components/base-comp/loading'
     import statusWindow from '@/components/pop/status-pop'
-    import classfyWindow from '@/components/pop/classfy-pop'
-    import recommendWindow from '@/components/pop/recommend-pop'
-    import levelWindow from '@/components/pop/level-pop'
-    import tagWindow from '@/components/pop/tag-pop'
-    import weightWindow from '@/components/pop/weight-pop'
+    import {mapGetters, mapMutations, mapActions} from 'vuex'
 	export default {
        data() {
        	  return {
-       	  	state: 0,
-       	  	eStatus:false,
-       	  	sStatus:false,
-       	  	cStatus:false,
-       	  	cpStatus:false,
-       	  	recStatus:false,
-       	  	levStatus:false,
-       	  	weiStatus:false,
        	  	coverWidth:0,
-    		coverHeight:0,
-    		cover:false
+    		coverHeight:0
        	  }
        },
        created() {
+       	   this.getPostingAbnormalData()
            this.getWindowsSize()
         },
+        computed: {
+       	...mapGetters([
+               "datas",
+               "popStatus",
+               "popNum"
+       		])
+       },
        methods: {
+       	...mapMutations([
+               'setPopStatus',
+                'setPopNum',
+                'sendId',
+                'sendConnection',
+                'setArticleIndex',
+                'SET_POSTING_SOURCE'
+       		]),
+       	...mapActions([
+              'getPostingAbnormalData'
+       		]),
        	getWindowsSize() {
 	       		this.coverWidth = window.document.body.offsetWidth;
 	       		this.coverHeight = window.document.body.offsetHeight;
 	       	},
-          examineTrigger() {
-          	this.eStatus = !this.eStatus
-          	this.cover = !this.cover
-          },
-          statusTrigger(){
-          	this.sStatus = !this.sStatus
-          	this.cover = !this.cover
-          },
-          classfyTrigger(){
-          	this.cStatus = !this.cStatus
-          	this.cover = !this.cover
-          },
-          connectpTrigger(){
-          	this.cpStatus = !this.cpStatus
-          	this.cover = !this.cover
-          },
-          recommendTrigger(){
-          	this.recStatus = !this.recStatus
-          	this.cover = !this.cover
-          },
-          levelTrigger(){
-          	this.levStatus = !this.levStatus
-          	this.cover = !this.cover
-          },
-          weightTrigger(){
-          	this.weiStatus = !this.weiStatus
-          	this.cover = !this.cover
+          setStatus(obj){
+          	this.setPopStatus()
+          	this.SET_POSTING_SOURCE('ap')
+          	this.sendId(obj.id)
+          	this.setArticleIndex(obj.index)
           }
        },
        components: {
-        	examineWindow,
-        	connectpWindow,
         	statusWindow,
-        	classfyWindow,
-        	recommendWindow,
-        	tagWindow,
-        	levelWindow,
-        	weightWindow
+        	Loading
         }
    }
 </script>
@@ -213,29 +134,16 @@
 		line-height: 18px;
 	}
 	.posting-author {
-		flex:0 0 133px;
+		flex:0 0 140px;
 	}
 	.posting-info {
-		flex:0 0 178px;
+		flex:0 0 200px;
 	}
 	.posting-con {
-		flex:0 0 146px;
+		flex:0 0 200px;
 	}
 	.posting-action {
-		flex:0 0 320px;
-		display: flex;
-	}
-	.posting-action p {
-       padding-top:16px;
-	}
-	.posting-action .h-block01 {
-		flex:0 0 120px;
-	}
-	.posting-action .h-block02 {
-		flex:0 0 96px;
-	}
-	.posting-action .h-block03 {
-		flex:0 0 100px;
+		flex:0 0 220px;
 	}
 	.items {
 		display: block;
@@ -247,15 +155,20 @@
 	}
 	.more-line p .lines {
 		display: block;
+		padding:2px 0;
 	}
-	.con-pop .poptip-box p {
+	.pop-cons {
+		width:100%;
+		height: 130px;
+        color:#80848f;
+	}
+	.pop-cons .posting-pop{
+		width:100%;
 		display: block;
-		height: 25px;
-		line-height: 25px;
-		padding:5px;
-		font-size: 12px;
-		font-weight: 400;
 		color:#bbbec4;
+		min-height: 30px;
+		line-height: 30px;
+		white-space: normal;
 	}
 </style>
 

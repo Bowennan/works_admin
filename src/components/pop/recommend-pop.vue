@@ -6,9 +6,9 @@
 		</div>
 
 		<div class="pop-sub-container">
-			<span class="pop-sub-title">已首推</span>
-			<p class="pop-items">
-				<span class="c-carbon pop-item-title">社区1首页</span> <span class="c-azul">删除</span>
+			<span class="pop-sub-title">已首推  <span v-show="choice === 0 || commname.length===0" class='c-carbon'>无</span></span>
+			<p v-show="choice === 1" class="pop-items" v-for="(item, index) in commname" :key="index">
+				<span class="c-carbon pop-item-title-l">{{item}}</span> <span class="c-azul pointer" @click="removed(index)">删除</span>
 			</p>
 		</div>
 
@@ -58,19 +58,29 @@
 </template>
 
 <script>
-    import {mapMutations} from 'vuex'
+    import {mapMutations, mapGetters} from 'vuex'
 	export default {
 		data() {
 			return {
 				infos:''
 			}
 		},
+		computed: {
+			...mapGetters([
+                       'choice',
+                       'commname'
+      				])
+		},
 		methods: {
 			...mapMutations([
-                   'setPopStatus'
+                   'setPopStatus',
+                   'DELETE_COMMUNITY_NAME'
 				]),
 			closePop () {
 				this.setPopStatus()
+			},
+			removed(index) {
+				this.DELETE_COMMUNITY_NAME(index)
 			}
 		}
 	}

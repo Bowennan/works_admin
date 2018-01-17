@@ -32,15 +32,13 @@
                     </template>
                     <MenuItem name="1-11" class="submenu">
                       <router-link to="/communities/opus" class="left-icon submenu-sub">作品列表</router-link>
-                      <Badge count="10" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-22" class="submenu">
                       <router-link to="/communities/tbco" class="left-icon submenu-sub">待审核作品</router-link>
-                      <Badge count="10" class="badge-scale"></Badge>
+                      <Badge :count="masterPieceCount" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-33" class="submenu">
                       <router-link to="/communities/ao" class="left-icon submenu-sub">异常作品</router-link>
-                      <Badge count="10" class="badge-scale"></Badge>
                     </MenuItem>
                 </Submenu>
                 <Submenu name="comment">
@@ -54,15 +52,13 @@
                     </template>
 	                    <MenuItem name="2-1" class="submenu">
 	                      <router-link to="/communities/cl" class="left-icon submenu-sub">评论列表</router-link>
-                          <Badge count="10" class="badge-scale"></Badge>
 	                    </MenuItem>
 	                    <MenuItem name="2-2" class="submenu">
 	                      <router-link to="/communities/tbcc" class="left-icon submenu-sub">待审核评论</router-link>
-                          <Badge count="10" class="badge-scale"></Badge>
+                          <Badge :count="commentsCount" class="badge-scale"></Badge>
 	                    </MenuItem>
 	                    <MenuItem name="2-3" class="submenu">
 	                      <router-link to="/communities/ac" class="left-icon submenu-sub">异常评论</router-link>
-                          <Badge count="10" class="badge-scale"></Badge>
 	                    </MenuItem>
                 </Submenu>
                 <Submenu name="answer">
@@ -77,15 +73,13 @@
                     </template>
 	                    <MenuItem name="3-1" class="submenu">
 	                      <router-link to="/communities/al" class="left-icon submenu-sub">回答列表</router-link>
-                          <Badge count="10" class="badge-scale"></Badge>
 	                    </MenuItem>
 	                    <MenuItem name="3-2" class="submenu">
 	                      <router-link to="/communities/tbca" class="left-icon submenu-sub">待审核回答</router-link>
-                          <Badge count="10" class="badge-scale"></Badge>
+                          <Badge :count="replyCount" class="badge-scale"></Badge>
 	                    </MenuItem>
 	                    <MenuItem name="3-3" class="submenu">
 	                      <router-link to="/communities/aa" class="left-icon submenu-sub">异常回答</router-link>
-                          <Badge count="10" class="badge-scale"></Badge>
 	                    </MenuItem>
                 </Submenu>
                 <Submenu name="ask">
@@ -99,15 +93,13 @@
                     </template>
                     <MenuItem name="1-111" class="submenu">
                       <router-link to="/communities/ask" class="left-icon submenu-sub">提问列表</router-link>
-                      <Badge count="10" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-222" class="submenu">
                       <router-link to="/communities/tbcask" class="left-icon submenu-sub">待审核提问</router-link>
-                      <Badge count="10" class="badge-scale"></Badge>
+                      <Badge :count="questionsCount" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-333" class="submenu">
                       <router-link to="/communities/aask" class="left-icon submenu-sub">异常提问</router-link>
-                      <Badge count="10" class="badge-scale"></Badge>
                     </MenuItem>
                 </Submenu>
                 <Submenu name="price">
@@ -121,15 +113,13 @@
                     </template>
                     <MenuItem name="1-110" class="submenu">
                       <router-link to="/communities/price" class="left-icon submenu-sub">好价列表</router-link>
-                      <Badge count="10" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-220" class="submenu">
                       <router-link to="/communities/tbcgp" class="left-icon submenu-sub">待审核好价</router-link>
-                      <Badge count="10" class="badge-scale"></Badge>
+                      <Badge :count="couponsCount" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-330" class="submenu">
                       <router-link to="/communities/agp" class="left-icon submenu-sub">异常好价</router-link>
-                      <Badge count="10" class="badge-scale"></Badge>
                     </MenuItem>
                 </Submenu>
                 <Submenu name="senhand">
@@ -143,15 +133,13 @@
                     </template>
                     <MenuItem name="1-451" class="submenu">
                       <router-link to="/communities/senhand" class="left-icon submenu-sub">二手列表</router-link>
-                      <Badge count="10" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-452" class="submenu">
                       <router-link to="/communities/tbcsh" class="left-icon submenu-sub">待审核二手</router-link>
-                      <Badge count="10" class="badge-scale"></Badge>
+                      <Badge :count="idlesCount" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-453" class="submenu">
                       <router-link to="/communities/ash" class="left-icon submenu-sub">异常二手</router-link>
-                      <Badge count="10" class="badge-scale"></Badge>
                     </MenuItem>
                 </Submenu>
                 <Submenu name="qs">
@@ -165,15 +153,13 @@
                     </template>
                     <MenuItem name="1-145" class="submenu">
                       <router-link to="/communities/qs" class="left-icon submenu-sub">装备秀列表</router-link>
-                      <Badge count="10" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-256" class="submenu">
                       <router-link to="/communities/tbcqs" class="left-icon submenu-sub">待审核装备秀</router-link>
-                      <Badge count="10" class="badge-scale"></Badge>
+                      <Badge :count="exhibitionsCount" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-367" class="submenu">
                       <router-link to="/communities/aqs" class="left-icon submenu-sub">异常装备秀</router-link>
-                      <Badge count="10" class="badge-scale"></Badge>
                     </MenuItem>
                 </Submenu>
                 <Submenu name="disclo">
@@ -187,15 +173,13 @@
                     </template>
                     <MenuItem name="1-189" class="submenu">
                       <router-link to="/communities/disclo" class="left-icon submenu-sub">爆料列表</router-link>
-                      <Badge count="10" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-299" class="submenu">
                       <router-link to="/communities/tbcdisclo" class="left-icon submenu-sub">待审核爆料</router-link>
-                      <Badge count="10" class="badge-scale"></Badge>
+                      <Badge :count="disclosesCount" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-392" class="submenu">
                       <router-link to="/communities/adisclo" class="left-icon submenu-sub">异常爆料</router-link>
-                      <Badge count="10" class="badge-scale"></Badge>
                     </MenuItem>
                 </Submenu>
             </Menu>
@@ -207,18 +191,59 @@
 </template>
 
 <script>
-  import {postingCount} from '@/axios/api'
+  import {postingCount, 
+          masterPieceCount,
+          commentsCount,
+          replyCount,
+          couponsCount,
+          idlesCount,
+          questionsCount,
+          exhibitionsCount,
+          disclosesCount
+         } from '@/axios/api'
 	export default {
        data() {
        	return {
        		theme: "light",
-          postingCount: null
+          postingCount: null,
+          masterPieceCount: null,
+          disclosesCount: null,
+          couponsCount: null,
+          commentsCount: null,
+          idlesCount: null,
+          questionsCount: null,
+          exhibitionsCount: null
+
        	}
        },
 
        created() {
         postingCount().then(res => {
           this.postingCount = res.data.data
+        }),
+        masterPieceCount().then(res => {
+          this.masterPieceCount = res.data.data
+        }),
+        commentsCount().then(res => {
+          this.commentsCount = res.data.data
+        }),
+        couponsCount().then(res => {
+          this.couponsCount = res.data.data
+        }),
+        idlesCount().then(res => {
+          this.idlesCount = res.data.data
+        }),
+        questionsCount().then(res => {
+          this.questionsCount = res.data.data
+        }),
+        disclosesCount().then(res => {
+          this.disclosesCount = res.data.data
+        }),
+        replyCount().then(res => {
+          this.replyCount = res.data.data
+        }),
+        exhibitionsCount().then(res => {
+          this.exhibitionsCount = res.data.data
         })
        }
 	}

@@ -57,7 +57,10 @@
 						<p class="h-block01">
 							<span class="items">
 								<span class="c-gris">文章归类 | </span>
-								<span class="c-carbon pointer">设置</span>
+								<span class="c-carbon pointer" @click="setClass({
+									id: item.id,
+									comm: item.communities
+								})">设置</span>
 							</span>
 							
 							<span class="items">
@@ -75,7 +78,11 @@
 						<p class="h-block02">
 							<span class="items">
 								<span class="c-gris">推首 | </span>
-								<span class="c-carbon pointer">设置</span>
+								<span class="c-carbon pointer" @click="setRecommend({
+									id: item.id,
+									choice: item.is_choice,
+									comm: item.communities
+								})">设置</span>
 							</span>
 							<span class="items">
 								<span class="c-gris">评分 | </span>
@@ -105,10 +112,13 @@
              :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
 		>
 			<div class="pop-wrapper">
+				<class v-if="1 === popNum"></class>
 				<status v-if="2 === popNum"></status>
-				<level v-if="5 === popNum"></level>
 				<connection v-if="3 === popNum"></connection>
+				<recommend v-if="4 === popNum"></recommend>
+				<level v-if="5 === popNum"></level>
 				<weight v-if="7 === popNum"></weight>
+
 			</div>
 		</div>
 	</div>
@@ -120,6 +130,8 @@
     import Level from "@/components/pop/level-pop"
     import Connection from "@/components/pop/connectp-pop"
     import Weight from "@/components/pop/weight-pop"
+    import Class from "@/components/pop/classfy-pop"
+    import Recommend from "@/components/pop/recommend-pop"
     import {mapGetters, mapMutations, mapActions} from 'vuex'
     import {updateArticle} from '@/axios/api'
 	export default {
@@ -137,7 +149,10 @@
        	...mapGetters([
                "datas",
                "popStatus",
-               "popNum"
+               "popNum",
+               "commid",
+               "choice",
+               "commname"
        		])
        },
        methods: {
@@ -153,11 +168,31 @@
                 'setPopNum',
                 'sendId',
                 'sendConnection',
-                'setArticleIndex'
+                'setArticleIndex',
+                'SET_POSTING_SOURCE',
+                'GET_COMMUNITY_ID',
+                'SET_COMMUNITY_CHIOCE',
+                'GET_COMMUNITY_NAME'
        		]),
+       	setRecommend(obj) {
+       		this.setPopNum(4)
+       		this.setPopStatus()
+       		this.sendId(obj.id)
+       		this.SET_COMMUNITY_CHIOCE(obj.choice)
+       		this.GET_COMMUNITY_NAME(obj.comm)
+       		console.log(this.commname)
+       		console.log(this.choice)
+       	},
+       	setClass(obj) {
+       		this.setPopNum(1)
+       		this.setPopStatus()
+       		this.sendId(obj.id)
+       		this.GET_COMMUNITY_ID(obj.comm)
+       	},
        	setStatus(obj) {
        		this.setPopNum(2)
        		this.setPopStatus()
+       		this.SET_POSTING_SOURCE('')
        		this.sendId(obj.id)
        		this.setArticleIndex(obj.index)
        	},
@@ -184,7 +219,9 @@
        	Status,
        	Level,
        	Connection,
-       	Weight
+       	Weight,
+       	Class,
+       	Recommend
        }
    }
 </script>

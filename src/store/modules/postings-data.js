@@ -1,5 +1,5 @@
 //引入帖子的api
-import {communityPosting, reviewCommunityPosting} from "@/axios/api"  //一个首页 一个待审核的列表
+import {communityPosting, reviewCommunityPosting, abnormalCommunityPosting} from "@/axios/api"  //一个首页 一个待审核的列表
 //引入公用提交标识符
 import * as types from '../mutation-types'
 
@@ -7,7 +7,10 @@ import * as types from '../mutation-types'
 const state = {
 	datas:[],
 	totalPages:1,
-    
+    source:'',
+    commid:[],
+    choice:0,
+    commname:[]
 
 }
 
@@ -45,7 +48,11 @@ const actions = {
 //组件获取数据的getters
 const getters = {
 	datas: state => state.datas,
-	totalPages: state => state.totalPages
+	totalPages: state => state.totalPages,
+	source: state => state.source,
+	commid: state => state.commid,
+	choice: state => state.choice,
+	commname: state => state.commname
 }
 
 
@@ -57,6 +64,27 @@ const mutations = {
 	},
 	[types.GET_TOTAL_PAGES](state, data) {
 		state.totalPages = data
+	},
+	[types.SET_POSTING_SOURCE](state, data) {
+		state.source = data
+	},
+	[types.GET_COMMUNITY_ID](state, data) {
+		(state.commid).length = 0
+		data.forEach(item => {
+			(state.commid).push(item.id)
+		})
+	},
+	[types.SET_COMMUNITY_CHIOCE](state, data) {
+		state.choice = data
+	},
+	[types.GET_COMMUNITY_NAME](state, data) {
+		(state.commname).length = 0
+		data.forEach(item => {
+			(state.commname).push(item.name)
+		})
+	},
+	[types.DELETE_COMMUNITY_NAME](state, data) {
+		state.commname.splice(data, 1)
 	}
 }
 
