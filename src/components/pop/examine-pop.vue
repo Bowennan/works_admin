@@ -8,9 +8,9 @@
 		<div class="pop-sub-container">
 			<span class="pop-sub-title">是否通过</span>
 
-			<RadioGroup v-model="passStatus">
-		        <Radio v-model="showStatus" label=true>审核通过</Radio>
-		        <Radio v-model="showStatus" label=false>审核不通过</Radio>
+			<RadioGroup v-model="passStatus" @on-change="changeShowStatus">
+		        <Radio  label=true>审核通过</Radio>
+		        <Radio  label=false>审核不通过</Radio>
 		    </RadioGroup>
 		</div>
 
@@ -52,7 +52,8 @@
 				infos:'',
 				showStatus: false,
 				passStatus: '',
-				status: ''
+				status: '',
+				hiddenStatus: ''
 			}
 		},
 		methods: {
@@ -61,6 +62,11 @@
 				]),
 			closePop() {
 				this.setPopStatus()
+			},
+			changeShowStatus() {
+				console.log(this.passStatus)
+				console.log(this.showStatus)
+				this.showStatus = !this.showStatus
 			}
 		}
 	}

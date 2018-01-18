@@ -31,10 +31,11 @@ export function communityPosting(paramsObj) {
 	})
 }
 //待审核帖子
-export function reviewCommunityPosting(){
+export function reviewCommunityPosting(paramsObj){
 	return fetch({
 		url:api.Bestkit+'/admin/community/articles/review',
-		method: 'get'
+		method: 'get',
+		params: paramsObj
 	})
 }
 //隐藏帖子
@@ -201,6 +202,15 @@ export function getCommunityNameId() {
 export function updateArticleComm(paramsObj) {
 	return fetch({
 		url:api.Bestkit + 'admin/community/articles/' + paramsObj.id + '/communities',
+		method: 'put',
+		data: paramsObj
+	})
+}
+
+//更新文章(推首)
+export function updateArticleChoice(paramsObj) {
+	return fetch({
+		url:api.Bestkit + 'admin/community/articles/' + paramsObj.id + '/community_choices',
 		method: 'put',
 		data: paramsObj
 	})

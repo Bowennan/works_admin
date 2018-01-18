@@ -81,7 +81,7 @@
 								<span class="c-carbon pointer" @click="setRecommend({
 									id: item.id,
 									choice: item.is_choice,
-									comm: item.communities
+									communities: item.communities
 								})">设置</span>
 							</span>
 							<span class="items">
@@ -112,10 +112,10 @@
              :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
 		>
 			<div class="pop-wrapper">
-				<class v-if="1 === popNum"></class>
+				<class ref="classfy" v-if="1 === popNum"></class>
 				<status v-if="2 === popNum"></status>
 				<connection v-if="3 === popNum"></connection>
-				<recommend v-if="4 === popNum"></recommend>
+				<recommend ref="rec" v-if="4 === popNum"></recommend>
 				<level v-if="5 === popNum"></level>
 				<weight v-if="7 === popNum"></weight>
 
@@ -152,7 +152,7 @@
                "popNum",
                "commid",
                "choice",
-               "commname"
+               "communities"
        		])
        },
        methods: {
@@ -172,22 +172,25 @@
                 'SET_POSTING_SOURCE',
                 'GET_COMMUNITY_ID',
                 'SET_COMMUNITY_CHIOCE',
-                'GET_COMMUNITY_NAME'
+                'GET_COMMUNITIES'
        		]),
        	setRecommend(obj) {
        		this.setPopNum(4)
        		this.setPopStatus()
        		this.sendId(obj.id)
-       		this.SET_COMMUNITY_CHIOCE(obj.choice)
-       		this.GET_COMMUNITY_NAME(obj.comm)
-       		console.log(this.commname)
-       		console.log(this.choice)
+       		this.GET_COMMUNITIES(obj.communities)
+       		this.$nextTick(() => {
+       			this.$refs.rec.addComm()
+       		})
        	},
        	setClass(obj) {
        		this.setPopNum(1)
        		this.setPopStatus()
        		this.sendId(obj.id)
-       		this.GET_COMMUNITY_ID(obj.comm)
+       		this.GET_COMMUNITIES(obj.communities)
+       		this.$nextTick(() => {
+       			this.$refs.classfy.addComm()
+       		})
        	},
        	setStatus(obj) {
        		this.setPopNum(2)

@@ -10,7 +10,7 @@ const state = {
     source:'',
     commid:[],
     choice:0,
-    commname:[]
+    communities:[]
 
 }
 
@@ -26,8 +26,8 @@ const actions = {
 	},
     
     //待审核
-	getPostingReviewData({commit}) {
-		reviewCommunityPosting().then(res => {
+	getPostingReviewData({commit}, paras) {
+		reviewCommunityPosting(paras).then(res => {
 			commit(types.GET_POSTING_DATA, res.data.data)
 			commit(types.GET_TOTAL_PAGES, res.data.meta.total)
 		})
@@ -52,7 +52,7 @@ const getters = {
 	source: state => state.source,
 	commid: state => state.commid,
 	choice: state => state.choice,
-	commname: state => state.commname
+	communities: state => state.communities
 }
 
 
@@ -77,14 +77,8 @@ const mutations = {
 	[types.SET_COMMUNITY_CHIOCE](state, data) {
 		state.choice = data
 	},
-	[types.GET_COMMUNITY_NAME](state, data) {
-		(state.commname).length = 0
-		data.forEach(item => {
-			(state.commname).push(item.name)
-		})
-	},
-	[types.DELETE_COMMUNITY_NAME](state, data) {
-		state.commname.splice(data, 1)
+	[types.GET_COMMUNITIES](state, data) {
+		state.communities = data
 	}
 }
 

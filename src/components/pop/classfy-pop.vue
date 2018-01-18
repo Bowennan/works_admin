@@ -9,7 +9,7 @@
 			<span class="pop-sub-title">文章社区选择（可全选）</span>
 
 			<CheckboxGroup v-model="communityNameChoose">
-		        <Checkbox class="c-carbon" style="padding:4px" v-for="(item, index) in communityName" :label="item.id">{{item.name}}</Checkbox>
+		        <Checkbox class="c-carbon" style="padding:4px" v-for="(item, index) in communityName" :label="item.id" :key="index">{{item.name}}</Checkbox>
 		    </CheckboxGroup>
 		</div>
 
@@ -38,7 +38,7 @@
 		},
 		computed: {
            ...mapGetters([
-               'commid',
+               'communities',
                'articleId'
            	])
 		},
@@ -54,6 +54,16 @@
 			closePop() {
 				this.setPopStatus()
                 this.communityNameChoose.length =0
+			},
+			addComm() {
+				console.log("lolo")
+				this.communityNameChoose.length = 0
+				this.communityName.map((item , index)=> {
+					if(item.id === (this.communities)[index][id]) {
+                    this.communityNameChoose.push(item.id)
+				 }
+				})
+				console.log("lololo")
 			},
 			sendComm() {
                this.setPopStatus()

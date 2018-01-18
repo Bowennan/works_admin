@@ -212,8 +212,8 @@
           commentsCount: null,
           idlesCount: null,
           questionsCount: null,
-          exhibitionsCount: null
-
+          exhibitionsCount: null,
+          replyCount:null
        	}
        },
 

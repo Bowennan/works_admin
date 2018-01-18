@@ -5,12 +5,12 @@
 			<Icon type="close-round" class="pop-close" @click.native="closePop"></Icon>
 		</div>
 
-		<div class="pop-sub-container">
-			<span class="pop-sub-title">已首推  <span v-show="choice === 0 || commname.length===0" class='c-carbon'>无</span></span>
-			<p v-show="choice === 1" class="pop-items" v-for="(item, index) in commname" :key="index">
-				<span class="c-carbon pop-item-title-l">{{item}}</span> <span class="c-azul pointer" @click="removed(index)">删除</span>
+		<!-- <div class="pop-sub-container">
+			<span class="pop-sub-title">已首推</span>
+			<p class="pop-items">
+				<span class="c-carbon pop-item-title-l">121</span> <span class="c-azul pointer" @click="removed(index)">删除</span>
 			</p>
-		</div>
+		</div> -->
 
 		<div class="pop-sub-container">
 			<span class="pop-sub-title">推荐地方选择（可全选）</span>
@@ -19,10 +19,10 @@
 			</p>
 			<p class="pop-items">
 				<span class="c-gris">社区推首</span>
-				 <Select size='small' v-model="infos" style="width:200px">
-			        <Option v-for="item in 6" :value="item" :key="item">{{ item }}</Option>
+				<span>{{choiceArr}}</span>
+				<Select v-model="choiceArr" multiple style="width:260px">
+			        <Option v-for="item in communities" :value="item.id" :key="item.id">{{ item.name }}</Option>
 			    </Select>
-				<span class="c-azul">确认添加</span>
 			</p>
 		</div>
 
@@ -43,7 +43,7 @@
 	      <span class="pop-sub-title">消息发送</span>
 	      <div class="border" style="height:132px;">
 	        <textarea class="text-contents border-bottom"></textarea>
-	        <Select class="text-sel"  size="small" v-model="infos" style="width:150px">
+	        <Select class="text-sel"  size="small" v-model="choiceArr" style="width:150px">
 	              <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
 	          </Select>
 	      </div>
@@ -51,36 +51,51 @@
 
 	    <div class="pop-bottom-box">
 			<Button  class="pop-confirm-btn" type="ghost" @click="closePop">取消</Button>
-			<Button  class="pop-confirm-btn" type="primary">确认</Button>
+			<Button  class="pop-confirm-btn" type="primary" @click="sendComm">确认</Button>
             
 		</div>
 	</div>
 </template>
 
 <script>
+    import {updateArticleChoice} from '@/axios/api'
     import {mapMutations, mapGetters} from 'vuex'
 	export default {
 		data() {
 			return {
-				infos:''
+				infos:true,
+				choiceArr:[]
 			}
 		},
 		computed: {
 			...mapGetters([
-                       'choice',
-                       'commname'
+                       'communities',
+                       'articleId'
       				])
 		},
 		methods: {
 			...mapMutations([
-                   'setPopStatus',
-                   'DELETE_COMMUNITY_NAME'
+                   'setPopStatus'
 				]),
 			closePop () {
 				this.setPopStatus()
 			},
-			removed(index) {
-				this.DELETE_COMMUNITY_NAME(index)
+			addComm() {
+				this.choiceArr.length = 0
+				this.communities.forEach(item => {
+	           	 if(item.is_choice ===1) {
+	           	 	this.choiceArr.push(item.id)
+	           	 }
+	           })
+			},
+			sendComm() {
+               this.setPopStatus()
+               updateArticleChoice({
+                 community_ids: this.choiceArr,
+                 id: this.articleId
+               }).then(res => {
+               	this.choiceArr.length = 0
+               })
 			}
 		}
 	}
