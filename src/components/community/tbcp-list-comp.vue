@@ -52,7 +52,7 @@
 						</p>
 					</li>
 					<li class="posting-con">
-					    <p class="c-gris">产品ID: <span class="c-carbon" v-for="(inneritem, innerindex) in item.products" :key="innerindex">{{inneritem.id}}</span></p>
+					    <p class="c-gris">产品ID: <span class="c-carbon" style="padding:0 3px" v-for="(inneritem, innerindex) in item.products" :key="innerindex">{{inneritem.id}}</span></p>
 					</li>
 					<li class="posting-action">
 						<p class="h-block01">

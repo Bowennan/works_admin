@@ -118,16 +118,31 @@
 
 <script>
     import Loading from '@/components/base-comp/loading'
+    import {mapGetters, mapMutations, mapActions} from 'vuex'
 	export default {
-		props: {
-			opusListData: {
-				type:Array
-			}
-		},
        data() {
        	  return {
        	  	state: 0,
        	  }
+       },
+       // created() {
+       //    this.getPostingData()
+       // },
+       computed: {
+       	 ...mapGetters({
+               datas:"masterpieceData/erer"
+       	 	})
+       },
+
+       methods: {
+       	// ...mapActions([
+        //       'getMasterpieceData'
+       	// 	])
+       },
+       mounted() {
+       	// this.getMasterpieceData()
+       	console.log(this.datas)
+       	console.log("看看是啥")
        },
        components: {
        	Loading

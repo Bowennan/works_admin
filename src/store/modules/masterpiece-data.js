@@ -5,7 +5,7 @@ import * as types from '../mutation-types'
 
 //帖子所有状态及数据存储
 const state = {
-	hah:[6,7,4],
+	erer:[9,8,7],
 	totalPages:1,
     source:'',
     commid:[],

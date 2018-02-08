@@ -133,7 +133,6 @@
     import Class from "@/components/pop/classfy-pop"
     import Recommend from "@/components/pop/recommend-pop"
     import {mapGetters, mapMutations, mapActions} from 'vuex'
-    import {updateArticle} from '@/axios/api'
 	export default {
        data() {
        	  return {

@@ -81,9 +81,9 @@ export function communityQuestion(paramsObj) {
 
 
 // 社区通用作品
-export function communityOpus(paramsObj) {
+export function communityMasterpiece(paramsObj) {
 	return fetch({
-		url:api.Bestkit+'/admin/article/master_piece',
+		url:api.Bestkit+'/admin/community/masterpieces',
 		method: 'get',
 		params: paramsObj
 	})

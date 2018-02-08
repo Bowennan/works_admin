@@ -52,7 +52,8 @@
 
        computed: {
         ...mapGetters([
-             'totalPages'
+             'totalPages',
+             'datas'
           ])
        },
 
@@ -75,6 +76,7 @@
 
         refresh() {
             this.getPostingData()
+            console.log(this.datas)
          }
        }
 	}

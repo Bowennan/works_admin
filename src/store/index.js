@@ -4,6 +4,7 @@ import * as getters from './getter'
 import state from './state'
 import mutations from './mutation'
 import postingData from './modules/postings-data'
+import masterpieceData from './modules/masterpiece-data'
 
 Vue.use(Vuex)
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
 	mutations,
 	state,
 	modules: {
-		postingData
+		postingData,
+		masterpieceData
 	}
 })
