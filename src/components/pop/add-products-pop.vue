@@ -1,7 +1,7 @@
 <template>
 	<div class="pop-container">
 		<div class="pop-header">
-			<span class="pop-title">产品新增</span>
+			<span class="pop-title">{{title}}</span>
 			<Icon type="close-round" class="pop-close" @click.native="closePop"></Icon>
 		</div>
 
@@ -84,7 +84,8 @@
               modelos:'',                  //型号
               kao:'',                      //参考价
               descripcion:'',              //描述
-              arriba:''                    //推首
+              arriba:'' ,                   //推首
+              title:'新增产品'
 			}
 		},
  
@@ -92,9 +93,12 @@
        	 ...mapMutations({
        	 	setPopStatus: 'setPopStatus'
        	 }),
-
+       	 changeTitle(para) {
+       	     this.title = para
+       	 },
        	 closePop() {
        	 	this.setPopStatus()
+       	 	this.title = "新增产品"
        	 }
        }
 	}

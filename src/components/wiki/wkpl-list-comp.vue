@@ -74,13 +74,13 @@
 					<li class="posting-action">
 						<p class="h-block01">
 							<span class="items">
-								<span class="c-carbon">编辑产品</span>
+								<span class="c-carbon pointer" @click="editor">编辑产品</span>
 							</span>
 							<span class="items">
-								<span class="c-carbon">参数设置</span>
+								<span class="c-carbon pointer" @click="setPara">参数设置</span>
 							</span>
 							<span class="items">
-								<span class="c-carbon" @click="openPop">图集编辑</span>
+								<span class="c-carbon pointer" @click="openPop">图集编辑</span>
 							</span>
 						</p>
 						<p class="h-block02">
@@ -125,7 +125,7 @@
 								<span>设置</span>
 							</span>
 							<span class="items">
-								<span class="c-carbon" @click="removing">删除</span>
+								<span class="c-carbon pointer" @click="removing">删除</span>
 							</span>
 						</p>
 					</li>
@@ -139,9 +139,10 @@
 		     :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
 		>
 			<div class="pop-wrapper">
-				<add-products v-if="1 === popNum"></add-products>
+				<add-products ref="add" v-if="1 === popNum"></add-products>
 				<edit-imgs v-if="2 === popNum"></edit-imgs>
 				<removed v-if="3 === popNum"></removed>
+				<para-set v-if="4 === popNum"></para-set>
 			</div>
 		</div>
 	</div>
@@ -151,6 +152,7 @@
     import addProducts from '@/components/pop/add-products-pop'
     import editImgs from '@/components/pop/edit-imgs-pop'
     import removed from '@/components/pop/removed-pop'
+    import paraSet from '@/components/pop/para-set-pop'
     import {mapGetters, mapMutations} from 'vuex'
 	export default {
        data() {
@@ -160,7 +162,8 @@
        	 		age: 28,
                 id: 168
        	 	},
-       	 	single:false
+       	 	single:false,
+       	 	title: null
        	 }
        },
        computed: {
@@ -187,6 +190,13 @@
        		 console.log("就看")
        		this.setRouterId(num)
        	},
+       	editor() {
+            this.setPopNum(1)
+            this.setPopStatus()
+            this.$nextTick(() => {
+            	this.$refs.add.changeTitle("编辑产品")
+            })
+       	},
        	openPop() {
            this.setPopNum(2)
            this.setPopStatus()
@@ -194,12 +204,17 @@
        	removing() {
        		this.setPopNum(3)
        		this.setPopStatus()
+       	},
+       	setPara() {
+       		this.setPopNum(4)
+       		this.setPopStatus()
        	}
        },
        components: {
        	addProducts,
        	editImgs,
-       	removed
+       	removed,
+       	paraSet
        }
    }
 </script>

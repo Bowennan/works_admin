@@ -15,9 +15,9 @@
 								<li class="header-col02"></li>
 								<li class="header-col03"></li>
 								<li class="header-col04" style="display:flex">
-									<span style="flex:0 0 25%" @click="openPop">添加二级</span>
-									<span style="flex:0 0 15%" @click="unaeditor">编辑</span>
-									<span style="flex:0 0 15%" @click="removed">删除</span>
+									<span class="pointer" style="flex:0 0 25%" @click="openPop">添加二级</span>
+									<span class="pointer" style="flex:0 0 15%" @click="unaeditor(item.name)">编辑</span>
+									<span class="pointer" style="flex:0 0 15%" @click="removed">删除</span>
 									<span style="flex:0 0 30%; line-height:56px; padding-left:30px">
 										
 										<Icon style="padding:4px; cursor:pointer; transition:250ms linear" :class="{uppered: !item.status}"  size='18' type="arrow-up-b" @click.native="hidden(index)"></Icon>
@@ -30,8 +30,8 @@
 								<li class="header-col02">{{items.btnanme}}</li>
 								<li class="header-col03">{{items.vla}}</li>
 								<li class="header-col04" style="display:flex">
-									<span style="flex:0 0 25%" @click="doseditor">编辑</span>
-									<span style="flex:0 0 15%" @click="removed">删除</span>
+									<span class="pointer" style="flex:0 0 25%" @click="doseditor({name:items.btnanme, val:items.vla})">编辑</span>
+									<span class="pointer" style="flex:0 0 15%" @click="removed">删除</span>
 								</li>
 							</ul>
 				
@@ -47,8 +47,8 @@
         <first-level v-if="1 === popNum"></first-level>
         <second-level v-if="2 === popNum"></second-level>
         <removed v-if="3 === popNum"></removed>
-        <edit-first v-if="4 === popNum"></edit-first>
-        <edit-second v-if="5 === popNum"></edit-second>
+        <edit-first :unaedicion="unaedicion" v-if="4 === popNum"></edit-first>
+        <edit-second :dosedicion="dosedicion" :dosunidad="dosunidad" v-if="5 === popNum"></edit-second>
       </div>
     </div>
 
@@ -102,7 +102,11 @@
                    	],
                    	status:true
                    }
-         		]
+         		],
+
+            unaedicion:'',
+            dosedicion:'',
+            dosunidad:''
          	}
          },
 
@@ -139,11 +143,14 @@
             this.setPopNum(3)
             this.setPopStatus()
           },
-          unaeditor() {
+          unaeditor(name) {
+            this.unaedicion = name
             this.setPopNum(4)
             this.setPopStatus()
           },
-          doseditor() {
+          doseditor(para) {
+            this.dosedicion = para.name
+            this.dosunidad = para.val
             this.setPopNum(5)
             this.setPopStatus()
           }

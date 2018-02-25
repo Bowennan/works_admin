@@ -27,9 +27,14 @@
 <script>
     import {mapMutations} from 'vuex'
 	export default {
+		props: {
+			unaedicion: {
+				type:String
+			}
+		},
 		data() {
 			return {
-              unaedicion: ''
+
 			}
 		},
 

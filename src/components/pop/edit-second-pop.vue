@@ -34,10 +34,17 @@
 <script>
     import {mapMutations} from 'vuex'
 	export default {
+		props: {
+           dosedicion: {
+           	type:String
+           },
+           dosunidad: {
+           	type:String
+           }
+		},
 		data() {
 			return {
-              dosedicion: '',
-              dosunidad: ''
+              
 			}
 		},
 

@@ -3,7 +3,7 @@
 		<span class="titulo">参数模板管理</span>
 		<div class="btns-container">
 			<Button class="re-btn" type="primary" shape="circle" icon="ios-loop">刷新</Button>
-			<Button class="re-btn" type="primary" shape="circle" icon="ios-loop"
+			<Button class="re-btn" type="primary" shape="circle" icon="plus-round"
 			@click="openPop" >新增一级</Button>
 		</div>
 		<!-- <div class="result-container">

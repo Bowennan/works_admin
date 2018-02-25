@@ -19,7 +19,7 @@
 								<li class="header-col05" style="display:flex">
 									<span style="flex:0 0 25%" @click="addSecondLevel">添加二级</span>
 									<span style="flex:0 0 15%" @click="editFirsLevel">编辑</span>
-                  <span style="flex:0 0 15%" @click="Borrar">删除</span>
+                  <span style="flex:0 0 15%" @click="Borrar(index)">删除</span>
 									<span style="flex:0 0 30%; line-height:56px; padding-left:30px">
 										
 										<Icon style="padding:4px; cursor:pointer; transition:250ms linear" :class="{uppered: !item.status}"  size='18' type="arrow-up-b" @click.native="hidden(index)"></Icon>
@@ -34,7 +34,7 @@
 								<li class="header-col04">关联产品：{{items.conn}}</li>
 								<li class="header-col05" style="display:flex">
 									<span style="flex:0 0 25%" @click="editSecondLevel">编辑</span>
-									<span style="flex:0 0 15%" @click="Borrar">删除</span>
+									<span style="flex:0 0 15%" @click="BorrarS({f:index, s:indexs})">删除</span>
 								</li>
 							</ul>
 				
@@ -142,9 +142,17 @@
                'setPopNum',
                'setPopStatus'
             ]),
-          Borrar() {
-            this.setPopNum(5)
-            this.setPopStatus()
+          Borrar(index) {
+            console.log(index)
+            // this.setPopNum(5)
+            // this.setPopStatus()
+            this.paras.splice(index,1)
+          },
+          BorrarS(order) {
+            console.log(order)
+            // this.setPopNum(5)
+            // this.setPopStatus()
+            this.paras[order.f].bt.splice(order.s, 1)
           },
           editSecondLevel() {
             this.setPopNum(4)

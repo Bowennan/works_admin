@@ -7,13 +7,17 @@
 			<Icon type="close-round" class="pop-close" @click.native="closePop"></Icon>
 		</div>
 
-		<div class="pop-sub-container">
+		<div class="pop-sub-container" style="border-bottom:none">
 			<span class="pop-sub-title">
 				产品以及参数添加
 			</span>
-			<p class="pop-items">
+			<p class="pop-items f-lev-para" v-if="paraCol.length" v-for="(item, index) in paraCol" :key="index">
 				<span class="pop-item-title">一级参数</span>
-				 <Input size="small" v-model="unaclase" placeholder="Enter something..." style="width: 220px"></Input>
+				 <Input size="small" v-model="item.paraName" placeholder="Enter something..." style="width: 220px"></Input>
+			</p>
+
+			<p class="pop-items">
+				<span class="pop-item-title c-azul pointer" @click="addFpara">添加一级</span>
 			</p>
 		</div>
 
@@ -29,7 +33,12 @@
 	export default {
       data() {
       	return {
-      		unaclase:''
+      		unaclase:'',
+      		paraCol:[
+               {
+               	paraName:''
+               }
+      		]
       	}
       },
 
@@ -38,9 +47,22 @@
       		setPopStatus: 'setPopStatus'
       	}),
 
+      	addFpara() {
+      		this.paraCol.push({
+      			paraName:''
+      		})
+      	},
+
       	closePop() {
       		this.setPopStatus()
       	}
       }
 	}
 </script>
+
+<style scoped>
+	.f-lev-para {
+		border-bottom:1px solid #e9eaec;
+		padding:10px 12px;
+	}
+</style>
