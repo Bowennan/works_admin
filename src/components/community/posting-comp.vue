@@ -29,7 +29,7 @@
                }
 		    },
             computed: {
-	        	...mapGetters([
+	        	...mapGetters('postingData', [
 	                    'totalPages',
 	                    'orderType',
 	                    'title',
@@ -40,7 +40,7 @@
 	        		])
             },
 		     methods: {
-		     	...mapActions([
+		     	...mapActions('postingData', [
                        'getPostingData'
 		     		]),
 		     	turnPage(pageNum){

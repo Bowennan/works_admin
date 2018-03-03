@@ -8,11 +8,11 @@
 			<li class="posting-action">作品状态与操作</li>
 		</ul>
 
-		<div v-show="!opusListData.length">
+		<div v-show="!datas.length">
         	<loading></loading>
         </div>
 
-		<ul v-for="(item, index) in opusListData" :key="index">
+		<ul v-for="(item, index) in datas" :key="index">
 			<li>
 				<ul class="list-contents">
 					<li class="posting-id more-line">
@@ -24,8 +24,8 @@
 					</li>
 					<li class="posting-author more-line">
 						<p>
-							<span class="lines">{{(item.user).user_id}}</span>
-							<span class="lines">{{(item.user).nickname}}</span>
+							<!-- <span class="lines">{{(item.user).user_id? (item.user).user_id : "数据无" }}</span>
+							<span class="lines">{{(item.user).nickname? (item.user).nickname : "数据无" }}</span> -->
 							<span class="lines">😜</span>
 						</p>
 					</li>
@@ -122,27 +122,45 @@
 	export default {
        data() {
        	  return {
-       	  	state: 0,
+       	  	coverWidth:0,
+       	  	coverHeight:0
        	  }
        },
-       // created() {
-       //    this.getPostingData()
-       // },
+       created() {
+       	  this.getMasterpieceData()
+          this.getWindowsSize()
+         },
        computed: {
-       	 ...mapGetters({
-               datas:"masterpieceData/erer"
-       	 	})
+       	...mapGetters('masterpieceData', [
+               "datas",
+               "popStatus",
+               "popNum",
+               "commid",
+               "choice",
+               "communities"
+       		])
        },
 
        methods: {
-       	// ...mapActions([
-        //       'getMasterpieceData'
-       	// 	])
-       },
-       mounted() {
-       	// this.getMasterpieceData()
-       	console.log(this.datas)
-       	console.log("看看是啥")
+       	getWindowsSize() {
+            this.coverWidth = window.document.body.offsetWidth;
+            this.coverHeight = window.document.body.offsetHeight;
+          },
+
+           ...mapActions('masterpieceData', [
+               'getMasterpieceData'
+          	]),
+       	...mapMutations('masterpieceData', [
+                'setPopStatus',
+                'setPopNum',
+                'sendId',
+                'sendConnection',
+                'setArticleIndex',
+                'SET_POSTING_SOURCE',
+                'GET_COMMUNITY_ID',
+                'SET_COMMUNITY_CHIOCE',
+                'GET_COMMUNITIES'
+       		]),
        },
        components: {
        	Loading

@@ -2,12 +2,14 @@
 	<div class="tables">
 		<senhand-search-comp></senhand-search-comp>
         <senhand-title-comp></senhand-title-comp>
-        <senhand-list-comp :idleListData="idleData" class="tables"></senhand-list-comp>
+        <senhand-list-comp></senhand-list-comp>
 
         <Page class="pages"
               :total="totalPages"
               show-sizer
+              :page-size="limitPages"
               :page-size-opts="pageArray"
+              :current.sync="current"
               @on-change = "turnPage"
               @on-page-size-change = "turnPages"
         ></Page>
@@ -19,37 +21,33 @@
 	import senhandTitleComp from '@/components/community/senhand-title-comp'
 	import senhandListComp from '@/components/community/senhand-list-comp'
 
-	import {communityIdle} from '@/axios/api'
+	import {mapActions, mapGetters} from "vuex"
     
     const _Ok = 200;
 	export default {
+
 		     data() {
 		     	return {
-		     		idleData:[],
-		     		totalPages:0,
 		     		pageArray:[5,10,20],
-		     		limitPages:10
+		     		limitPages:10,
+		     		current:1
 		     	}
 		     },
 
-		     created() {
-		     	this.getIdleData();
+		     computed: {
+		     	...mapGetters('idlesData', [
+                       'totalPages'
+		     		])
 		     },
 
+
+
 		     methods: {
-		     	getIdleData(paras) {
-                   communityIdle(paras).then(res => {
-                   	if(_Ok=== res.status) {
-                   		this.idleData = res.data.idleList.data;
-                   		this.totalPages = res.data.idleList.total;
-                   		console.log(this.idleData)
-                   	}
-                   }).catch(err => {
-                   	console.log(err, '请求失败')
-                   })
-		     	},
-                
-                turnPage(pageNum) {
+		     	...mapActions('idlesData', [
+                        'getIdleData'
+		     		]),
+
+		     	turnPage(pageNum) {
 		     		this.getIdleData({
 		     			page:pageNum,
 		     			limit:this.limitPages
@@ -62,13 +60,11 @@
 		     			limit: this.limitPages
 		     		})
 		     	}
-
 		     },
-		     
              components: {
 			    senhandSearchComp,
-			    senhandTitleComp,
-			    senhandListComp
+				senhandTitleComp,
+				senhandListComp
 			  }
 	}
 </script>

@@ -51,18 +51,18 @@
        },
 
        computed: {
-        ...mapGetters([
+        ...mapGetters('postingData',[
              'totalPages',
              'datas'
           ])
        },
 
        methods: {
-        ...mapMutations([
+        ...mapMutations('postingData',[
                "setOrderType"
             ]),
 
-        ...mapActions([
+        ...mapActions('postingData',[
              "getPostingData"
           ]),
 

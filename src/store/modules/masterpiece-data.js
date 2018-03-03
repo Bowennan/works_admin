@@ -1,16 +1,16 @@
 //引入帖子的api
-import {communityPosting, reviewCommunityPosting, abnormalCommunityPosting} from "@/axios/api"  //一个首页 一个待审核的列表
+import {communityMasterpiece, abnormalCommunityMasterpiece} from "@/axios/api"  //一个首页 一个待审核的列表
 //引入公用提交标识符
 import * as types from '../mutation-types'
 
 //帖子所有状态及数据存储
 const state = {
-	erer:[9,8,7],
 	totalPages:1,
     source:'',
     commid:[],
     choice:0,
-    communities:[]
+    communities:[],
+    datas:[]
 
 }
 
@@ -18,15 +18,15 @@ const state = {
 const actions = {
 
 	//首页
-	getPostingData({commit},paras) {
-		communityPosting(paras).then(res => {
+	getMasterpieceData({commit},paras) {
+		communityMasterpiece(paras).then(res => {
 			commit(types.GET_POSTING_DATA, res.data.data)
 			commit(types.GET_TOTAL_PAGES, res.data.meta.total)
 		})
 	},
     
     //待审核
-	getPostingReviewData({commit}, paras) {
+	getMasterpieceReviewData({commit}, paras) {
 		reviewCommunityPosting(paras).then(res => {
 			commit(types.GET_POSTING_DATA, res.data.data)
 			commit(types.GET_TOTAL_PAGES, res.data.meta.total)
@@ -34,8 +34,8 @@ const actions = {
 	},
 
 	//隐藏
-	getPostingAbnormalData({commit},paras) {
-		abnormalCommunityPosting(paras).then(res => {
+	getAbnormalMasterpiece({commit},paras) {
+		abnormalCommunityMasterpiece(paras).then(res => {
 			commit(types.GET_POSTING_DATA, res.data.data)
 			commit(types.GET_TOTAL_PAGES, res.data.meta.total)
 		})
@@ -88,6 +88,7 @@ const mutations = {
 
 //导出本模块的状态数据 异步提交  同步提交  获取 
 export default {
+	namespaced: true,
 	state,
 	actions,
 	getters,

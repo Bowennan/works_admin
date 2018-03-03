@@ -12,7 +12,6 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
         '/api': {
-            // target:'http://lala.com',
             target:'http://bestkit.test',
             changeOrigin: true,
             pathRewrite: {

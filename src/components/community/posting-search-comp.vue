@@ -127,7 +127,7 @@
        	}
        },
        computed: {
-        ...mapGetters([
+        ...mapGetters('postingData', [
           'id',
           'title',
           'begin',
@@ -137,7 +137,7 @@
           ])
        },
        methods: {
-         ...mapMutations([
+         ...mapMutations('postingData', [
              'setId',
              'setTitle',
              'setArticleType',
@@ -145,7 +145,7 @@
              'setBegin',
              'setEnd'
           ]),
-         ...mapActions([
+         ...mapActions('postingData',[
            'getPostingData'
           ]),
        	 search() {

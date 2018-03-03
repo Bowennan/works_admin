@@ -6,18 +6,26 @@
 		</div>
 		<div class="result-container">
 			<span class="c-gris total-result">全部作品：
-	          <span class="c-naranja">1000</span>
+	          <span class="c-naranja">{{totalPages}}</span>
 			</span>
 		</div>
 	</div>
 </template>
 
 <script>
+    import {mapMutations, mapGetters, mapActions} from 'vuex'
 	export default {
        data() {
        	return {
        		model1:''
        	}
-       }
+       },
+
+       computed: {
+        ...mapGetters('masterpieceData',[
+             'totalPages',
+             'datas'
+          ])
+       },
 	}
 </script>

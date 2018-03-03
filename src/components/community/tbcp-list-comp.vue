@@ -132,7 +132,7 @@
        	  }
        },
        computed: {
-       	...mapGetters([
+       	...mapGetters('postingData', [
                'datas',
                'popStatus',
                'popNum'
@@ -143,10 +143,10 @@
            this.getWindowsSize()
         },
        methods: {
-       	...mapActions([
+       	...mapActions('postingData', [
                'getPostingReviewData'
        		]),
-       	...mapMutations([
+       	...mapMutations('postingData', [
                 'setPopStatus',
                 'setPopNum',
                 'sendId',

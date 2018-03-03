@@ -10,11 +10,11 @@
 			<li class="posting-action">二手状态与操作</li>
 		</ul>
 
-		<div v-show="!idleListData.length">
+		<div v-show="!datas.length">
         	<loading></loading>
         </div>
 
-		<ul v-for="(item, index) in idleListData" :key="index">
+		<ul v-for="(item, index) in datas" :key="index">
 			<li>
 				<ul class="list-contents">
 					<li class="posting-id more-line">
@@ -124,13 +124,8 @@
 
 <script>
     import Loading from '@/components/base-comp/loading'
+    import {mapGetters, mapMutations, mapActions} from 'vuex'
 	export default {
-	   props: {
-	   	idleListData: {
-	   		type:Array
-	   	}
-	   },
-
        data() {
        	  return {
        	  	state: 0,
@@ -138,6 +133,36 @@
        	  }
        },
 
+       created() {
+       	this.getIdleData(),
+       	this.getWindowsSize()
+       },
+       computed: {
+       	...mapGetters('idlesData',[
+              "datas"
+       		])
+       },
+
+       methods: {
+       		getWindowsSize() {
+            this.coverWidth = window.document.body.offsetWidth;
+            this.coverHeight = window.document.body.offsetHeight;
+          },
+          ...mapActions('idlesData', [
+               'getIdleData'
+          	]),
+       	...mapMutations('idlesData', [
+                'setPopStatus',
+                'setPopNum',
+                'sendId',
+                'sendConnection',
+                'setArticleIndex',
+                'SET_POSTING_SOURCE',
+                'GET_COMMUNITY_ID',
+                'SET_COMMUNITY_CHIOCE',
+                'GET_COMMUNITIES'
+              ])
+       	 },
        components: {
        	Loading
        }

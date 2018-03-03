@@ -27,12 +27,12 @@
                }
 		    },
             computed: {
-	        	...mapGetters([
+	        	...mapGetters('postingData', [
 	                    'totalPages'
 	        		])
             },
 		     methods: {
-		     	...mapActions([
+		     	...mapActions('postingData', [
                        'getPostingAbnormalData'
 		     		]),
 		     	turnPage(pageNum){

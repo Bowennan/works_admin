@@ -1,5 +1,5 @@
 //引入帖子的api
-import {communityPosting, reviewCommunityPosting, abnormalCommunityPosting} from "@/axios/api"  //一个首页 一个待审核的列表
+import {communityQuestion, abnormalCommunityQuestion} from "@/axios/api"  //一个首页 一个待审核的列表
 //引入公用提交标识符
 import * as types from '../mutation-types'
 
@@ -18,8 +18,8 @@ const state = {
 const actions = {
 
 	//首页
-	getPostingData({commit},paras) {
-		communityPosting(paras).then(res => {
+	getQuestionsData({commit},paras) {
+		communityQuestion(paras).then(res => {
 			commit(types.GET_POSTING_DATA, res.data.data)
 			commit(types.GET_TOTAL_PAGES, res.data.meta.total)
 		})
@@ -34,8 +34,8 @@ const actions = {
 	},
 
 	//隐藏
-	getPostingAbnormalData({commit},paras) {
-		abnormalCommunityPosting(paras).then(res => {
+	getAbnormalQuestionsData({commit},paras) {
+		abnormalCommunityQuestion(paras).then(res => {
 			commit(types.GET_POSTING_DATA, res.data.data)
 			commit(types.GET_TOTAL_PAGES, res.data.meta.total)
 		})

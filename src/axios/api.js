@@ -20,7 +20,7 @@ export function forbiddenUser(paramsObj) {
 }
 
 //以下为社区接口
-//通用帖子和隐藏帖子 status = 1 为正常显示  status = 0 为
+//通用帖子和隐藏帖子 status = 1 为正常显示  status = 0 为隐藏
 let normal = {status: 1}
 let abnormal = {status: 0}
 export function communityPosting(paramsObj) {
@@ -49,9 +49,7 @@ export function abnormalCommunityPosting(paramsObj) {
 
 
 
-let typec = {'type':'comment'}
-let typer = {'type':'reply'}
-//社区通用内容（通用评论）
+//社区通用评论
 export function communityComments(paramsObj) {
 	return fetch({
 		url:api.Bestkit+'/admin/article/comment',
@@ -60,7 +58,7 @@ export function communityComments(paramsObj) {
 	})
 }
 
-//社区通用内容（通用回答）
+//社区通用回答
 export function communityReply(paramsObj) {
 	return fetch({
 		url:api.Bestkit+'/admin/article/comment',
@@ -73,9 +71,17 @@ export function communityReply(paramsObj) {
 // 社区通用提问
 export function communityQuestion(paramsObj) {
 	return fetch({
-		url:api.Bestkit+'/admin/article/question',
+		url:api.Bestkit+'/admin/community/questions',
 		method: 'get',
-		params: paramsObj
+		params:Object.assign({},paramsObj,normal)
+	})
+}
+//隐藏通用提问
+export function abnormalCommunityQuestion(paramsObj) {
+	return fetch({
+		url:api.Bestkit+'/admin/community/questions',
+		method: 'get',
+		params:Object.assign({},paramsObj,abnormal)
 	})
 }
 
@@ -85,25 +91,49 @@ export function communityMasterpiece(paramsObj) {
 	return fetch({
 		url:api.Bestkit+'/admin/community/masterpieces',
 		method: 'get',
-		params: paramsObj
+		params: Object.assign({},paramsObj,normal)
+	})
+}
+//隐藏作品
+export function abnormalCommunityMasterpiece(paramsObj) {
+	return fetch({
+		url:api.Bestkit+'/admin/community/masterpieces',
+		method: 'get',
+		params:Object.assign({},paramsObj,abnormal)
 	})
 }
 
 // 社区通用好价
 export function communityCoupons(paramsObj) {
 	return fetch({
-		url:api.Bestkit+'/admin/article/coupons',
+		url:api.Bestkit+'/admin/community/coupons',
 		method: 'get',
-		params: paramsObj
+		params: Object.assign({},paramsObj,normal)
+	})
+}
+//隐藏好价
+export function abnormalCommunityCoupons(paramsObj) {
+	return fetch({
+		url:api.Bestkit+'/admin/community/coupons',
+		method: 'get',
+		params: Object.assign({},paramsObj,abnormal)
 	})
 }
 
 // 社区通用二手
 export function communityIdle(paramsObj) {
 	return fetch({
-		url:api.Bestkit+'/admin/article/idle',
+		url:api.Bestkit+'/admin/community/idles',
 		method: 'get',
-		params: paramsObj
+		params: Object.assign({},paramsObj,normal)
+	})
+}
+//隐藏二手
+export function abnormalCommunityIdle(paramsObj) {
+	return fetch({
+		url:api.Bestkit+'/admin/community/idles',
+		method: 'get',
+		params: Object.assign({},paramsObj,abnormal)
 	})
 }
 

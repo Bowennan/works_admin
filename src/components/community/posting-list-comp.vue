@@ -145,7 +145,7 @@
           this.getWindowsSize()
          },
        computed: {
-       	...mapGetters([
+       	...mapGetters('postingData', [
                "datas",
                "popStatus",
                "popNum",
@@ -159,10 +159,10 @@
             this.coverWidth = window.document.body.offsetWidth;
             this.coverHeight = window.document.body.offsetHeight;
           },
-          ...mapActions([
+          ...mapActions('postingData', [
                'getPostingData'
           	]),
-       	...mapMutations([
+       	...mapMutations('postingData', [
                 'setPopStatus',
                 'setPopNum',
                 'sendId',

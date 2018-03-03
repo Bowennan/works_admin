@@ -10,11 +10,11 @@
 			<li class="posting-action">好价状态与操作</li>
 		</ul>
 
-		<div v-show="!couponsListData.length">
+		<div v-show="!datas.length">
         	<loading></loading>
         </div>
 
-		<ul v-for="(item, index) in couponsListData" :key="index">
+		<ul v-for="(item, index) in datas" :key="index">
 			<li>
 				<ul class="list-contents">
 					<li class="posting-id more-line">
@@ -122,18 +122,45 @@
 
 <script>
     import Loading from '@/components/base-comp/loading'
+    import {mapGetters, mapMutations, mapActions} from 'vuex'
 	export default {
-	   props: {
-	   	couponsListData: {
-	   		type: Array
-	   	}
-	   },
        data() {
        	  return {
        	  	state: 0,
        	  	single:''
        	  }
        },
+
+       created() {
+       	this.getCouponsData(),
+       	this.getWindowsSize()
+       },
+       computed: {
+       	...mapGetters('couponsData',[
+              "datas"
+       		])
+       },
+
+       methods: {
+       		getWindowsSize() {
+            this.coverWidth = window.document.body.offsetWidth;
+            this.coverHeight = window.document.body.offsetHeight;
+          },
+          ...mapActions('couponsData', [
+               'getCouponsData'
+          	]),
+       	...mapMutations('couponsData', [
+                'setPopStatus',
+                'setPopNum',
+                'sendId',
+                'sendConnection',
+                'setArticleIndex',
+                'SET_POSTING_SOURCE',
+                'GET_COMMUNITY_ID',
+                'SET_COMMUNITY_CHIOCE',
+                'GET_COMMUNITIES'
+              ])
+       	 },
        components: {
        	Loading
        }

@@ -19,7 +19,7 @@
     import {mapActions} from 'vuex'
 	export default {
        methods: {
-       	...mapActions([
+       	...mapActions('postingData', [
              "getPostingReviewData"
           ]),
 

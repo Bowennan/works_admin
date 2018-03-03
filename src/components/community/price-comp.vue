@@ -3,12 +3,14 @@
 	<div class="tables">
 		<price-search-comp></price-search-comp>
         <price-title-comp></price-title-comp>
-        <price-list-comp :couponsListData="couponsData" class="tables"></price-list-comp>
+        <price-list-comp></price-list-comp>
 
         <Page class="pages"
               :total="totalPages"
               show-sizer
+              :page-size="limitPages"
               :page-size-opts="pageArray"
+              :current.sync="current"
               @on-change = "turnPage"
               @on-page-size-change = "turnPages"
         ></Page>
@@ -20,37 +22,33 @@
 	import priceTitleComp from '@/components/community/price-title-comp'
 	import priceListComp from '@/components/community/price-list-comp'
 
-	import {communityCoupons} from '@/axios/api'
+	import {mapActions, mapGetters} from "vuex"
     
     const _Ok = 200;
 	export default {
+
 		     data() {
 		     	return {
-		     		couponsData:[],
-		     		totalPages:0,
 		     		pageArray:[5,10,20],
-		     		limitPages:10
+		     		limitPages:10,
+		     		current:1
 		     	}
 		     },
 
-		     created() {
-		     	this.getCouponsData();
+		     computed: {
+		     	...mapGetters('couponsData', [
+                       'totalPages'
+		     		])
 		     },
 
+
+
 		     methods: {
-		     	getCouponsData(paras) {
-		     		communityCoupons(paras).then(res => {
-		     			if(_Ok === res.status) {
-		     				this.couponsData = res.data.couponsList.data;
-		     				this.totalPages = res.data.couponsList.total;
-		     				console.log(this.couponsData)
-		     			}
-		     		}).catch(err => {
-		     			console.log(err, '请求失败')
-		     		})
-		     	},
-                
-                turnPage(pageNum) {
+		     	...mapActions('couponsData', [
+                        'getCouponsData'
+		     		]),
+
+		     	turnPage(pageNum) {
 		     		this.getCouponsData({
 		     			page:pageNum,
 		     			limit:this.limitPages
@@ -63,12 +61,11 @@
 		     			limit: this.limitPages
 		     		})
 		     	}
-
 		     },
              components: {
 			    priceSearchComp,
-			    priceTitleComp,
-			    priceListComp
+				priceTitleComp,
+				priceListComp
 			  }
 	}
 </script>

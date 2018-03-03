@@ -10,11 +10,11 @@
 			<li class="posting-action">提问状态与操作</li>
 		</ul>
 
-		<div v-show="!questionListData.length">
+		<div v-show="!datas.length">
         	<loading></loading>
         </div>
 
-		<ul v-for="(item, index) in questionListData" :key="index">
+		<ul v-for="(item, index) in datas" :key="index">
 			<li>
 				<ul class="list-contents">
 					<li class="posting-id more-line">
@@ -27,8 +27,8 @@
 					</li>
 					<li class="posting-author more-line">
 						<p>
-							<span class="lines">{{(item.user).user_id}}</span>
-							<span class="lines">{{(item.user).nickname}}</span>
+							<!-- <span class="lines">{{(item.user).user_id}}</span>
+							<span class="lines">{{(item.user).nickname}}</span> -->
 						</p>
 					</li>
 					<li class="posting-info more-line">
@@ -113,17 +113,44 @@
 <script>
 
     import Loading from '@/components/base-comp/loading'
+    import {mapGetters, mapMutations, mapActions} from 'vuex'
 	export default {
-		props: {
-			questionListData: {
-				type:Array
-			}
-		},
        data() {
        	  return {
        	  	state: 0,
        	  	single:''
        	  }
+       },
+
+       created() {
+       	this.getQuestionsData(),
+       	this.getWindowsSize()
+       },
+       computed: {
+       	...mapGetters('questionsData',[
+              "datas"
+       		])
+       },
+
+       methods: {
+       		getWindowsSize() {
+            this.coverWidth = window.document.body.offsetWidth;
+            this.coverHeight = window.document.body.offsetHeight;
+          },
+          ...mapActions('questionsData', [
+               'getQuestionsData'
+          	]),
+       	...mapMutations('questionsData', [
+                'setPopStatus',
+                'setPopNum',
+                'sendId',
+                'sendConnection',
+                'setArticleIndex',
+                'SET_POSTING_SOURCE',
+                'GET_COMMUNITY_ID',
+                'SET_COMMUNITY_CHIOCE',
+                'GET_COMMUNITIES'
+       		])
        },
        components: {
        	Loading
