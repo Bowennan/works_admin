@@ -57,39 +57,26 @@
 						<p class="h-block01">
 							<span class="items">
 								<span class="c-gris">文章归类 | </span>
-								<span class="c-carbon pointer" @click="setClass({
-									id: item.id,
-									comm: item.communities
-								})">设置</span>
+								<span class="c-carbon pointer">设置</span>
 							</span>
 							
 							<span class="items">
 								<span class="c-gris">文章状态 | </span>
-								<span class="c-carbon pointer" @click="setStatus({
-									id: item.id,
-									index: index
-								})">{{item.status===0? "隐藏" : item.status===1? "正常" : "草稿"}}</span>
+								<span class="c-carbon pointer">{{item.status===0? "隐藏" : item.status===1? "正常" : "草稿"}}</span>
 							</span>
 							<span class="items">
 								<span class="c-gris">产品关联 | </span>
-								<span class="c-carbon pointer" @click="setConnection(item)">设置</span>
+								<span class="c-carbon pointer">设置</span>
 							</span>
 						</p>
 						<p class="h-block02">
 							<span class="items">
 								<span class="c-gris">推首 | </span>
-								<span class="c-carbon pointer" @click="setRecommend({
-									id: item.id,
-									choice: item.is_choice,
-									communities: item.communities
-								})">设置</span>
+								<span class="c-carbon pointer">设置</span>
 							</span>
 							<span class="items">
 								<span class="c-gris">评分 | </span>
-								<span class="c-carbon pointer" @click="setLevel({
-									id: item.id,
-									index: index
-								})">{{item.level===0? "无等级" : item.level===1? "等级A" : item.level===2? "等级B" : item.level===3? "等级C" : "等级D" }}</span>
+								<span class="c-carbon pointer">{{item.level===0? "无等级" : item.level===1? "等级A" : item.level===2? "等级B" : item.level===3? "等级C" : "等级D" }}</span>
 							</span>
 							<span class="items">
 								<span class="c-gris">TAG | </span>
@@ -99,7 +86,7 @@
 						<p class="h-block03">
 							<span class="items">
 								<span class="c-gris">权重 | </span>
-								<span class="c-carbon pointer" @click="setWeight">{{item.weight}}</span>
+								<span class="c-carbon pointer">{{item.weight}}</span>
 							</span>
 						</p>
 					</li>
@@ -107,7 +94,7 @@
 			</li>
 		</ul>
 
-		<div class="cover-style"
+		<!-- <div class="cover-style"
              v-show="popStatus"
              :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
 		>
@@ -120,7 +107,7 @@
 				<weight v-if="7 === popNum"></weight>
 
 			</div>
-		</div>
+		</div> -->
 	</div>
 </template>
 
@@ -145,13 +132,8 @@
           this.getWindowsSize()
          },
        computed: {
-       	...mapGetters('postingData', [
-               "datas",
-               "popStatus",
-               "popNum",
-               "commid",
-               "choice",
-               "communities"
+       	...mapGetters('postingsData', [
+               "datas"
        		])
        },
        methods: {
@@ -159,62 +141,9 @@
             this.coverWidth = window.document.body.offsetWidth;
             this.coverHeight = window.document.body.offsetHeight;
           },
-          ...mapActions('postingData', [
+          ...mapActions('postingsData', [
                'getPostingData'
-          	]),
-       	...mapMutations('postingData', [
-                'setPopStatus',
-                'setPopNum',
-                'sendId',
-                'sendConnection',
-                'setArticleIndex',
-                'SET_POSTING_SOURCE',
-                'GET_COMMUNITY_ID',
-                'SET_COMMUNITY_CHIOCE',
-                'GET_COMMUNITIES'
-       		]),
-       	setRecommend(obj) {
-       		this.setPopNum(4)
-       		this.setPopStatus()
-       		this.sendId(obj.id)
-       		this.GET_COMMUNITIES(obj.communities)
-       		this.$nextTick(() => {
-       			this.$refs.rec.addComm()
-       		})
-       	},
-       	setClass(obj) {
-       		this.setPopNum(1)
-       		this.setPopStatus()
-       		this.sendId(obj.id)
-       		this.GET_COMMUNITIES(obj.communities)
-       		this.$nextTick(() => {
-       			this.$refs.classfy.addComm()
-       		})
-       	},
-       	setStatus(obj) {
-       		this.setPopNum(2)
-       		this.setPopStatus()
-       		this.SET_POSTING_SOURCE('')
-       		this.sendId(obj.id)
-       		this.setArticleIndex(obj.index)
-       	},
-       	setLevel(obj) {
-       		this.setPopNum(5)
-       		this.setPopStatus()
-       		this.sendId(obj.id)
-       		this.setArticleIndex(obj.index)
-       	},
-       	setConnection(item) {
-            this.setPopNum(3)
-            this.setPopStatus()
-            this.sendId(item.id)
-            this.sendConnection(item.products)
-            console.log(this.connectionArr)
-       	},
-       	setWeight() {
-       		this.setPopNum(7)
-       		this.setPopStatus()
-       	}
+          	])
        },
        components: {
        	Loading,

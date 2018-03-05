@@ -2,7 +2,7 @@
 	<div class="title-box">
 		<span class="titulo">通用评论列表</span>
 		<div class="btns-container">
-			<Button class="re-btn" type="primary" shape="circle" icon="ios-loop" @click="subRefresh">刷新</Button>
+			<Button class="re-btn" type="primary" shape="circle" icon="ios-loop" @click="refresh">刷新</Button>
 			<Button class="re-btn" type="primary" shape="circle" icon="ios-trash-outline">批量隐藏</Button>
 		</div>
 		<div class="result-container">
@@ -14,20 +14,32 @@
 </template>
 
 <script>
+  import {mapGetters, mapActions} from 'vuex'
 	export default {
-		props: {
-			total: {
-				type:Number
-			}
-		},
        data() {
        	return {
        		model1:''
        	}
        },
+       computed: {
+       	...mapGetters('commentsData', [
+               'total',
+               'summary_catalog',
+               'page'
+       		])
+       },
        methods: {
-       	subRefresh() {
-       		this.$emit("refresh")
+        ...mapActions('commentsData', [
+              'refreshPage',
+              'getCommentData'
+          ]),
+
+       	refresh() {
+       		this.refreshPage()
+          this.getCommentData({
+              page: this.page,
+              summary_catalog: this.summary_catalog
+          });
        	}
        }
 	}

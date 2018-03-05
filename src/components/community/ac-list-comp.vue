@@ -9,14 +9,16 @@
 			<li class="apply-info">评论信息</li>
 			<li class="action-status">操作</li>
 		</ul>
-
-		<ul>
+        <div v-show="!datas.length">
+        	<loading></loading>
+        </div>
+		<ul v-for="(item, index) in datas" :key="index">
 			<li>
 				<ul class="list-contents">
 					<li class="id-nickname more-line">
 						<p class="f-col">
 						   <Checkbox class="checkbox" v-model="single"></Checkbox>
-						   <span class="c-carbon">12121</span>
+						   <span class="c-carbon">{{item.id}}</span>
 						   <span class="c-carbon">直评</span>
 						</p>
 					</li>
@@ -25,24 +27,22 @@
 					</li>
 					<li class="works more-line">
 					    <p>
-					    	<span>评论者：<span class="c-carbon">影视，娱乐，体育</span></span>
-					    	<span>所属内容：<span class="c-carbon">作品1，作品2</span></span>
-					    	<span>标题：<span class="c-carbon">作品1，作品2</span></span>
+					    	<span class="c-gris">评论者：<span class="c-carbon">{{(item.user).nickname}}</span></span>
+					    	<span class="c-gris">所属内容：<span class="c-carbon">暂无</span></span>
+					    	<span class="c-gris">标题：<span class="c-carbon">{{(item[summary_catalog]).title}}</span></span>
 					    </p>
 					</li>
 					<li class="apply-info more-line">
 						<p>
-							<span>社区：<span class="c-carbon">待审核</span></span>
-							<span>赞同：<span class="c-carbon">5</span></span>
-							<span>举报：<span class="c-carbon">56</span></span>
-							<span>时间：<span class="c-carbon">2017-12-12</span></span>
+							<span class="c-gris">回复：<span class="c-carbon">{{item.reply_num}}</span></span>
+							<span class="c-gris">赞同：<span class="c-carbon">{{item.agree_num}}</span></span>
+							<span class="c-gris">举报：<span class="c-carbon">暂无</span></span>
+							<span class="c-gris">时间：<span class="c-carbon">{{item.created_at}}</span></span>
 						</p>
 					</li>
 					<li class="action-status more-line">
 						<p>
-							<span>审核状态 | <span class="c-carbon pointer">不通过</span></span>
-							<span>热门评论 | <span class="c-carbon pointer">是</span></span>
-							<span>评论状态 | <span class="c-carbon pointer">正常</span></span>
+							<span class="c-gris">评论状态 | <span class="c-carbon">{{item.deleted_at===null? "正常" : "隐藏"}}</span></span>
 						</p>
 					</li>
 				</ul>
@@ -52,21 +52,51 @@
 </template>
 
 <script>
+    import Loading from '@/components/base-comp/loading'
+    import {mapGetters, mapMutations, mapActions} from 'vuex'
 	export default {
        data() {
        	  return {
        	  	state: 0,
-       	  	single:'',
-       	  	opacityNum:1
+       	  	single:''
        	  }
        },
+
+       created() {
+       	this.abnormalCommunityComment({
+       		summary_catalog: this.summary_catalog
+       	}),
+       	this.getWindowsSize()
+       },
+       computed: {
+       	...mapGetters('commentsData',[
+              "datas",
+              "summary_catalog"
+       		])
+       },
+
        methods: {
-       	imgOpacity() {
-       		this.opacityNum = 0.3
-       	},
-        reverseImgOpacity() {
-        	this.opacityNum = 1
-        }
+       		getWindowsSize() {
+            this.coverWidth = window.document.body.offsetWidth;
+            this.coverHeight = window.document.body.offsetHeight;
+          },
+          ...mapActions('commentsData', [
+               'abnormalCommunityComment'
+          	]),
+       	...mapMutations('commentsData', [
+                'setPopStatus',
+                'setPopNum',
+                'sendId',
+                'sendConnection',
+                'setArticleIndex',
+                'SET_POSTING_SOURCE',
+                'GET_COMMUNITY_ID',
+                'SET_COMMUNITY_CHIOCE',
+                'GET_COMMUNITIES'
+              ])
+       	 },
+       components: {
+       	Loading
        }
    }
 </script>
@@ -86,11 +116,10 @@
 		flex:1;
 	}
 	.action-status {
-		flex:0 0 150px;
+		flex:0 0 120px;
 	}
 	.more-line p > span {
 		display: block;
-		color:#bbbec4;
 	}
 	.f-col {
 		position: relative;

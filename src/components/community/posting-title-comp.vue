@@ -6,7 +6,7 @@
 		</div>
 		<div class="result-container">
 			<span class="total-result c-gris">总共文章：
-	          <span class="c-naranja">{{totalPages}}</span>
+	          <span class="c-naranja">{{total}}</span>
 			</span>
 			<Select class="order-sel" v-model="order">
 		        <Option v-for="item in postingsOrder" :value="item.value" :key="item.value" @click.native="sendOrderType(item.value)">{{ item.label }}</Option>
@@ -51,30 +51,41 @@
        },
 
        computed: {
-        ...mapGetters('postingData',[
-             'totalPages',
-             'datas'
+        ...mapGetters('postingsData',[
+              'total',
+              'sort_field',
+              'content_type',
+              'article_type',
+              'begin_published_at',
+              'end_published_at'
           ])
        },
 
        methods: {
-        ...mapMutations('postingData',[
-               "setOrderType"
+        ...mapMutations('postingsData',[
+               "setSortfield"
             ]),
 
-        ...mapActions('postingData',[
-             "getPostingData"
+        ...mapActions('postingsData',[
+             "getPostingData",
+             "refreshPage"
           ]),
 
         sendOrderType(types) {
             console.log(types)
-            this.setOrderType(types)
+            this.setSortfield(types)
             this.getPostingData({
-              sort_field: types
+               page: 1,
+               content_type: this.content_type,
+               article_type: this.article_type,
+               begin_published_at: this.begin_published_at,
+               end_published_at: this.end_published_at,
+               sort_field: this.sort_field
             })
         },
 
         refresh() {
+            this.refreshPage()
             this.getPostingData()
             console.log(this.datas)
          }

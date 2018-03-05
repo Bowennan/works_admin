@@ -3,7 +3,7 @@
 		<ap-search-comp></ap-search-comp>
         <ap-title-comp></ap-title-comp>
         <ap-list-comp class="tables"></ap-list-comp>
-        <Page class="pages" :current.sync="current" :total="totalPages" show-sizer :page-size="limitPages" :page-size-opts="pageArray"
+        <Page class="pages" :current="page" :total="total" show-sizer :page-size="limitPages" :page-size-opts="pageArray"
               @on-change="turnPage"
               @on-page-size-change="turnPages"
         ></Page>
@@ -21,18 +21,18 @@
 		    data() {
                return {
                	 pageArray:[5,10,20],
-               	 limitPages:10,
-               	 current:1
+               	 limitPages:10
 
                }
 		    },
             computed: {
-	        	...mapGetters('postingData', [
-	                    'totalPages'
+	        	...mapGetters('postingsData', [
+	                    'total',
+	                    'page'
 	        		])
             },
 		     methods: {
-		     	...mapActions('postingData', [
+		     	...mapActions('postingsData', [
                        'getPostingAbnormalData'
 		     		]),
 		     	turnPage(pageNum){

@@ -4,7 +4,7 @@
         <posting-title-comp></posting-title-comp>
         <posting-list-comp></posting-list-comp>
 
-        <Page class="pages" :current.sync="current" :total="totalPages" show-sizer :page-size="limitPages" :page-size-opts="pageArray"
+        <Page class="pages" :current="page" :total="total" show-sizer :page-size="limitPages" :page-size-opts="pageArray"
               @on-change="turnPage"
               @on-page-size-change="turnPages"
         ></Page>
@@ -17,54 +17,52 @@
 	import postingListComp from '@/components/community/posting-list-comp'
 
     import {mapGetters, mapActions} from "vuex"
-
     const _Ok = 200;
 	export default {
 		    data() {
                return {
                	 pageArray:[5,10,20],
-               	 limitPages:10,
-               	 current:1
-
+               	 limitPages:10
                }
 		    },
             computed: {
-	        	...mapGetters('postingData', [
-	                    'totalPages',
-	                    'orderType',
-	                    'title',
-	                    'begin',
-	                    'end',
-	                    'articleType',
-	                    'imageType'
+	        	...mapGetters('postingsData', [
+	                    'total',
+	                    'content_type',
+						'article_type',
+						'begin_published_at',
+						'end_published_at',
+						'page',
+						'sort_field',
+						'title'
 	        		])
             },
 		     methods: {
-		     	...mapActions('postingData', [
+		     	...mapActions('postingsData', [
                        'getPostingData'
 		     		]),
 		     	turnPage(pageNum){
 		     		this.getPostingData({
-		     			page: pageNum,
-		     			limit: this.limitPages,
-                        sort_field: this.orderType,
-                        title: this.title,
-                        article_type: this.articleType,
-                        content_type: this.imageType,
-                        begin_pulished_at: this.begin,
-                        end_published_at: this.end
+		     			 page: pageNum,
+		     			 limit: this.limitPages,
+		     			 content_type: this.content_type,
+		                 article_type: this.article_type,
+		                 begin_published_at: this.begin_published_at,
+		                 end_published_at: this.end_published_at,
+		                 sort_field: this.sort_field,
+		                 title: this.title
 		     		})
 		     	},
 		     	turnPages(pagesNum) {
                     this.limitPages = pagesNum
 		     	    this.getPostingData({
-		     	    	limit: this.limitPages,
-		     	    	sort_field: this.orderType,
-		     	    	title: this.title,
-		     	    	article_type: this.articleType,
-		     	    	content_type: this.imageType,
-		     	    	begin_pulished_at: this.begin,
-		     	    	end_published_at: this.end
+		     	    	 limit: this.limitPages,
+		     	    	 content_type: this.content_type,
+		                 article_type: this.article_type,
+		                 begin_published_at: this.begin_published_at,
+		                 end_published_at: this.end_published_at,
+		                 sort_field: this.sort_field,
+		                 title: this.title
 		     	    })
 		     	}
 		     },

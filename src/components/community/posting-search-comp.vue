@@ -127,25 +127,26 @@
        	}
        },
        computed: {
-        ...mapGetters('postingData', [
+        ...mapGetters('postingsData', [
           'id',
           'title',
-          'begin',
-          'end',
-          'articleType',
-          'imageType'
+          'content_type',
+          'article_type',
+          'begin_published_at',
+          'end_published_at'
           ])
        },
        methods: {
-         ...mapMutations('postingData', [
-             'setId',
-             'setTitle',
-             'setArticleType',
-             'setImageType',
-             'setBegin',
-             'setEnd'
+         ...mapMutations('postingsData', [
+             "setId",
+             "setTitle",
+             "setContent",
+             "setArticle",
+             "setBegin",
+             "setEnd",
+             "setPage"
           ]),
-         ...mapActions('postingData',[
+         ...mapActions('postingsData',[
            'getPostingData'
           ]),
        	 search() {
@@ -174,16 +175,16 @@
        	  },
 
          chiose() {
-         
+            this.setPage(1)
             if(this.tval=="evaluate" || this.tval=="experience" || this.tval=="strategy" || this.tval=="message") {
-              this.setArticleType(this.tval)
-              this.setImageType('')
+              this.setArticle(this.tval)
+              this.setContent('')
             }else if (this.tval==0) {
-              this.setArticleType('')
-              this.setImageType('')
+              this.setArticle('')
+              this.setContent('')
             }else {
-              this.setImageType(this.tval)
-              this.setArticleType('')
+              this.setContent(this.tval)
+              this.setArticle('')
             }
           
 
@@ -191,10 +192,10 @@
              this.setEnd(this.dateArr[1])
 
              this.getPostingData({
-                 content_type: this.imageType,
-                 article_type: this.articleType,
-                 begin_published_at: this.begin,
-                 end_published_at: this.end
+                 content_type: this.content_type,
+                 article_type: this.article_type,
+                 begin_published_at: this.begin_published_at,
+                 end_published_at: this.end_published_at
                })
          },
          

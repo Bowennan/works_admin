@@ -9,17 +9,17 @@
 			<li class="apply-info">回答信息</li>
 			<li class="action-status">操作</li>
 		</ul>
-        <div v-show="!replyData.length">
+        <div v-show="!datas.length">
         	<loading></loading>
         </div>
-		<ul v-for="(item, index) in replyData" :key="index">
+		<ul v-for="(item, index) in datas" :key="index">
 			<li>
 				<ul class="list-contents">
 					<li class="id-nickname more-line">
 						<p class="f-col">
 						   <Checkbox class="checkbox" v-model="single"></Checkbox>
 						   <span class="c-carbon">{{item.id}}</span>
-						   <span class="c-carbon">直评</span>
+						   <span class="c-carbon">回复</span>
 						</p>
 					</li>
 					<li class="media-info more-line">
@@ -52,19 +52,48 @@
 </template>
 
 <script>
-   import Loading from '@/components/base-comp/loading'
+    import Loading from '@/components/base-comp/loading'
+    import {mapGetters, mapMutations, mapActions} from 'vuex'
 	export default {
-	   props: {
-	   	replyData:{
-	   		type:Array
-	   	}
-	   },
        data() {
        	  return {
        	  	state: 0,
-       	  	single: ''
+       	  	single:''
        	  }
        },
+
+       created() {
+       	this.getReplyData({
+       		summary_catalog: 'article'
+       	}),
+       	this.getWindowsSize()
+       },
+       computed: {
+       	...mapGetters('replysData',[
+              "datas"
+       		])
+       },
+
+       methods: {
+       		getWindowsSize() {
+            this.coverWidth = window.document.body.offsetWidth;
+            this.coverHeight = window.document.body.offsetHeight;
+          },
+          ...mapActions('replysData', [
+               'getReplyData'
+          	]),
+       	...mapMutations('replysData', [
+                'setPopStatus',
+                'setPopNum',
+                'sendId',
+                'sendConnection',
+                'setArticleIndex',
+                'SET_POSTING_SOURCE',
+                'GET_COMMUNITY_ID',
+                'SET_COMMUNITY_CHIOCE',
+                'GET_COMMUNITIES'
+              ])
+       	 },
        components: {
        	Loading
        }

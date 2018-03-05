@@ -2,7 +2,17 @@
 	<div class="tables">
 		<adisclo-search-comp></adisclo-search-comp>
         <adisclo-title-comp></adisclo-title-comp>
-        <adisclo-list-comp class="tables"></adisclo-list-comp>
+        <adisclo-list-comp></adisclo-list-comp>
+
+        <Page class="pages"
+              :total="totalPages"
+              show-sizer
+              :page-size="limitPages"
+              :page-size-opts="pageArray"
+              :current.sync="current"
+              @on-change = "turnPage"
+              @on-page-size-change = "turnPages"
+        ></Page>
 	</div>
 </template>
 
@@ -11,11 +21,50 @@
 	import adiscloTitleComp from '@/components/community/adisclo-title-comp'
 	import adiscloListComp from '@/components/community/adisclo-list-comp'
 
+	import {mapActions, mapGetters} from "vuex"
+    
+    const _Ok = 200;
 	export default {
+
+		     data() {
+		     	return {
+		     		pageArray:[5,10,20],
+		     		limitPages:10,
+		     		current:1
+		     	}
+		     },
+
+		     computed: {
+		     	...mapGetters('disclosesData', [
+                       'totalPages'
+		     		])
+		     },
+
+
+
+		     methods: {
+		     	...mapActions('disclosesData', [
+                        'abnormalCommunityDisclose'
+		     		]),
+
+		     	turnPage(pageNum) {
+		     		this.abnormalCommunityDisclose({
+		     			page:pageNum,
+		     			limit:this.limitPages
+		     		})
+		     	},
+
+		     	turnPages(pagesNum) {
+		     		this.limitPages = pagesNum;
+		     		this.abnormalCommunityDisclose({
+		     			limit: this.limitPages
+		     		})
+		     	}
+		     },
              components: {
 			    adiscloSearchComp,
-			    adiscloTitleComp,
-			    adiscloListComp
+				adiscloTitleComp,
+				adiscloListComp
 			  }
 	}
 </script>

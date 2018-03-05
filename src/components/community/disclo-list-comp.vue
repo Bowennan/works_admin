@@ -10,11 +10,11 @@
 			<li class="posting-action">爆料状态与操作</li>
 		</ul>
 
-		<div v-show="!discolesListData.length">
+		<div v-show="!datas.length">
         	<loading></loading>
         </div>
 
-		<ul v-for="(item, index) in discolesListData" :key="index">
+		<ul v-for="(item, index) in datas" :key="index">
 			<li>
 				<ul class="list-contents">
 					<li class="posting-id more-line">
@@ -103,19 +103,46 @@
 </template>
 
 <script>
-	import Loading from '@/components/base-comp/loading'
+    import Loading from '@/components/base-comp/loading'
+    import {mapGetters, mapMutations, mapActions} from 'vuex'
 	export default {
-		props: {
-			discolesListData: {
-				type:Array
-			}
-		},
        data() {
        	  return {
        	  	state: 0,
        	  	single:''
        	  }
        },
+
+       created() {
+       	this.getDiscloseData(),
+       	this.getWindowsSize()
+       },
+       computed: {
+       	...mapGetters('disclosesData',[
+              "datas"
+       		])
+       },
+
+       methods: {
+       		getWindowsSize() {
+            this.coverWidth = window.document.body.offsetWidth;
+            this.coverHeight = window.document.body.offsetHeight;
+          },
+          ...mapActions('disclosesData', [
+               'getDiscloseData'
+          	]),
+       	...mapMutations('disclosesData', [
+                'setPopStatus',
+                'setPopNum',
+                'sendId',
+                'sendConnection',
+                'setArticleIndex',
+                'SET_POSTING_SOURCE',
+                'GET_COMMUNITY_ID',
+                'SET_COMMUNITY_CHIOCE',
+                'GET_COMMUNITIES'
+              ])
+       	 },
        components: {
        	Loading
        }

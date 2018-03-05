@@ -52,18 +52,34 @@ export function abnormalCommunityPosting(paramsObj) {
 //社区通用评论
 export function communityComments(paramsObj) {
 	return fetch({
-		url:api.Bestkit+'/admin/article/comment',
+		url:api.Bestkit+'/admin/community/comments?comment_type=comment',
 		method: 'get',
-		params:Object.assign({},paramsObj,typec)
+		params:Object.assign({},paramsObj,normal)
+	})
+}
+//隐藏通用评论
+export function abnormalCommunityComments(paramsObj) {
+	return fetch({
+		url:api.Bestkit+'/admin/community/comments?comment_type=comment',
+		method: 'get',
+		params:Object.assign({},paramsObj,abnormal)
 	})
 }
 
 //社区通用回答
 export function communityReply(paramsObj) {
 	return fetch({
-		url:api.Bestkit+'/admin/article/comment',
+		url:api.Bestkit+'/admin/community/comments?comment_type=reply',
 		method: 'get',
-		params:Object.assign({},paramsObj,typer)
+		params:Object.assign({},paramsObj,normal)
+	})
+}
+//隐藏通用回答
+export function abnormalCommunityReply(paramsObj) {
+	return fetch({
+		url:api.Bestkit+'/admin/community/comments?comment_type=reply',
+		method: 'get',
+		params:Object.assign({},paramsObj,abnormal)
 	})
 }
 
@@ -140,19 +156,35 @@ export function abnormalCommunityIdle(paramsObj) {
 // 社区通用装备秀
 export function communityQshow(paramsObj) {
 	return fetch({
-		url:api.Bestkit+'/admin/article/exhibition',
+		url:api.Bestkit+'/admin/community/exhibitions',
 		method: 'get',
-		params: paramsObj
+		params: Object.assign({},paramsObj,normal)
+	})
+}
+//隐藏装备秀
+export function abnormalCommunityQshow(paramsObj) {
+	return fetch({
+		url:api.Bestkit+'/admin/community/exhibitions',
+		method: 'get',
+		params: Object.assign({},paramsObj,abnormal)
 	})
 }
 
 // 社区通用爆料
 export function communityDisclose(paramsObj) {
 	return fetch({
-		url:api.Bestkit+'/admin/article/disclose',
+		url:api.Bestkit+'/admin/community/discloses',
 		method: 'get',
-		params: paramsObj
-	})
+		params: Object.assign({},paramsObj,normal)
+     })
+}
+// 隐藏通用爆料
+export function abnormalCommunityDisclose(paramsObj) {
+	return fetch({
+		url:api.Bestkit+'/admin/community/discloses',
+		method: 'get',
+		params: Object.assign({},paramsObj,abnormal)
+     })
 }
 
 //待审核数量

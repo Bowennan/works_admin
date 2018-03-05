@@ -8,7 +8,7 @@
 		
 		<div class="result-container">
 			<span class="total-result c-gris">全部回答：
-	          <span class="c-naranja">1000</span>
+	          <span class="c-naranja">{{totalPages}}</span>
 			</span>
 			<Select class="order-sel" v-model="model1">
 		        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
@@ -18,11 +18,18 @@
 </template>
 
 <script>
+    import {mapGetters} from 'vuex'
 	export default {
        data() {
        	return {
        		model1:''
        	}
+       },
+
+       computed: {
+       	...mapGetters('replysData', [
+               'totalPages'
+       		])
        }
 	}
 </script>

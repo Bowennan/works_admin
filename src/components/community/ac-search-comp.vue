@@ -1,6 +1,6 @@
 <template>
 	<div class="search-box">
-		<Input class="id-search" v-model="result">
+		<!-- <Input class="id-search" v-model="result">
 	        <Select v-model="result_doing" slot="prepend" style="width: 60px">
 	            <Option value="id">ID</Option>
 	        </Select>
@@ -20,7 +20,7 @@
 		 	<div class="conditions-box">
 		    	<Button type="primary" class="confirm-group">确认筛选</Button>
 		    </div>
-		 </div>
+		 </div> -->
 	 </div>
 </template>
 

@@ -1,12 +1,16 @@
 <template>
 	<div class="tables">
-		<al-search-comp @searchResult="searchResult"></al-search-comp>
+		<al-search-comp></al-search-comp>
         <al-title-comp></al-title-comp>
-        <al-list-comp :replyData="replyData" class="tables"></al-list-comp>
-        <Page class="pages" :total="100" show-sizer 
-            :page-size-opts="pageArray"
-            @on-change="turnPage"
-            @on-page-size-change="turnPages"
+        <al-list-comp></al-list-comp>
+        <Page class="pages"
+              :total="totalPages"
+              show-sizer
+              :page-size="limitPages"
+              :page-size-opts="pageArray"
+              :current.sync="current"
+              @on-change = "turnPage"
+              @on-page-size-change = "turnPages"
         ></Page>
 	</div>
 </template>
@@ -15,52 +19,52 @@
     import alSearchComp from '@/components/community/al-search-comp'
 	import alTitleComp from '@/components/community/al-title-comp'
 	import alListComp from '@/components/community/al-list-comp'
-    import {communityReply} from '@/axios/api'
+    import {mapActions, mapGetters} from "vuex"
     
-    const _OK = 200;
+    const _Ok = 200;
 	export default {
-            data() {
-            	return {
-            		replyData:[],
-            		totalData:0,
-            		pageArray:[10,20,30],
-            		limit:10
-            	}
-            },
-            created() {
-              this.getReplyData()
-            },
+
+		     data() {
+		     	return {
+		     		pageArray:[5,10,20],
+		     		limitPages:10,
+		     		current:1
+		     	}
+		     },
+
+		     computed: {
+		     	...mapGetters('replysData', [
+                       'totalPages'
+		     		])
+		     },
+
+
+
 		     methods: {
-		     	getReplyData(paras) {
-		     		communityReply(paras).then(res=>{
-		     			if(_OK===res.status){
-		     				this.replyData = res.data.List.data;
-		     				this.totalData = res.data.List.total;
-		     			}
-		     		}).catch(err=>{
-		     			console.log(err + "请求失败")
-		     		})
-		     	},
-		     	turnPage(page) {
+		     	...mapActions('replysData', [
+                        'getReplyData'
+		     		]),
+
+		     	turnPage(pageNum) {
 		     		this.getReplyData({
-		     			page: page,
-		     			limit: this.limit
+		     			page:pageNum,
+		     			limit:this.limitPages,
+		     			summary_catalog: 'article'
 		     		})
 		     	},
-		     	turnPages(pages) {
-		     		this.limit = pages;
+
+		     	turnPages(pagesNum) {
+		     		this.limitPages = pagesNum;
 		     		this.getReplyData({
-                       limit: this.limit
+		     			limit: this.limitPages,
+		     			summary_catalog: 'article'
 		     		})
-		     	},
-		     	searchResult(paras) {
-		     		this.getReplyData(paras)
 		     	}
 		     },
              components: {
 			    alSearchComp,
-			    alTitleComp,
-			    alListComp
+				alTitleComp,
+				alListComp
 			  }
 	}
 </script>

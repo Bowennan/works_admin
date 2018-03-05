@@ -2,12 +2,14 @@
 	<div class="tables">
 		<disclo-search-comp></disclo-search-comp>
         <disclo-title-comp></disclo-title-comp>
-        <disclo-list-comp :discolesListData="discolesData" class="tables"></disclo-list-comp>
+        <disclo-list-comp></disclo-list-comp>
 
         <Page class="pages"
               :total="totalPages"
               show-sizer
+              :page-size="limitPages"
               :page-size-opts="pageArray"
+              :current.sync="current"
               @on-change = "turnPage"
               @on-page-size-change = "turnPages"
         ></Page>
@@ -19,38 +21,33 @@
 	import discloTitleComp from '@/components/community/disclo-title-comp'
 	import discloListComp from '@/components/community/disclo-list-comp'
 
-	import {communityDisclose} from '@/axios/api'
+	import {mapActions, mapGetters} from "vuex"
     
     const _Ok = 200;
 	export default {
+
 		     data() {
 		     	return {
-                  discolesData:[],
-                  totalPages:0,
-                  pageArray:[5,10,20],
-                  limitPages:10
+		     		pageArray:[5,10,20],
+		     		limitPages:10,
+		     		current:1
 		     	}
 		     },
 
-		     created() {
-		     	this.getDiscloseData();
+		     computed: {
+		     	...mapGetters('disclosesData', [
+                       'totalPages'
+		     		])
 		     },
 
-		     methods: {
-		     	getDiscloseData(paras) {
-		     		communityDisclose(paras).then(res => {
-		     			if(_Ok === res.status) {
-		     				this.discolesData = res.data.discloseList.data;
-		     				this.totalPages = res.data.discloseList.total;
-		     				console.log(this.discolesData)
-		     			}
-		     		}).catch(err => {
-		     			console.log(err, '请求失败')
-		     		})
-		     	},
-                
 
-                turnPage(pageNum) {
+
+		     methods: {
+		     	...mapActions('disclosesData', [
+                        'getDiscloseData'
+		     		]),
+
+		     	turnPage(pageNum) {
 		     		this.getDiscloseData({
 		     			page:pageNum,
 		     			limit:this.limitPages
@@ -63,13 +60,11 @@
 		     			limit: this.limitPages
 		     		})
 		     	}
-
 		     },
-
              components: {
 			    discloSearchComp,
-			    discloTitleComp,
-			    discloListComp
+				discloTitleComp,
+				discloListComp
 			  }
 	}
 </script>

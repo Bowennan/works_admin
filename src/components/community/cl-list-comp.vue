@@ -9,10 +9,10 @@
 			<li class="apply-info">评论信息</li>
 			<li class="action-status">操作</li>
 		</ul>
-        <div v-show="!commentData.length">
+        <div v-show="!datas.length">
         	<loading></loading>
         </div>
-		<ul v-for="(item, index) in commentData" :key="index">
+		<ul v-for="(item, index) in datas" :key="index">
 			<li>
 				<ul class="list-contents">
 					<li class="id-nickname more-line">
@@ -29,7 +29,7 @@
 					    <p>
 					    	<span class="c-gris">评论者：<span class="c-carbon">{{(item.user).nickname}}</span></span>
 					    	<span class="c-gris">所属内容：<span class="c-carbon">暂无</span></span>
-					    	<span class="c-gris">标题：<span class="c-carbon">{{(item.article).title}}</span></span>
+					    	<span v-if='summary_catalog' class="c-gris">标题：<span class="c-carbon">{{(item[summary_catalog]).title}}</span></span>
 					    </p>
 					</li>
 					<li class="apply-info more-line">
@@ -54,18 +54,48 @@
 
 <script>
     import Loading from '@/components/base-comp/loading'
+    import {mapGetters, mapMutations, mapActions} from 'vuex'
 	export default {
-		props: {
-			commentData:{
-				type:Array
-			}
-		},
        data() {
        	  return {
        	  	state: 0,
-       	  	single: ''
+       	  	single:''
        	  }
        },
+
+       created() {
+       	this.getCommentData({
+       		summary_catalog: this.summary_catalog
+       	}),
+       	this.getWindowsSize()
+       },
+       computed: {
+       	...mapGetters('commentsData',[
+              "datas",
+              "summary_catalog"
+       		])
+       },
+
+       methods: {
+       		getWindowsSize() {
+            this.coverWidth = window.document.body.offsetWidth;
+            this.coverHeight = window.document.body.offsetHeight;
+          },
+          ...mapActions('commentsData', [
+               'getCommentData'
+          	]),
+       	...mapMutations('commentsData', [
+                'setPopStatus',
+                'setPopNum',
+                'sendId',
+                'sendConnection',
+                'setArticleIndex',
+                'SET_POSTING_SOURCE',
+                'GET_COMMUNITY_ID',
+                'SET_COMMUNITY_CHIOCE',
+                'GET_COMMUNITIES'
+              ])
+       	 },
        components: {
        	Loading
        }
