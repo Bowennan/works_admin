@@ -5,11 +5,11 @@
         <aask-list-comp></aask-list-comp>
 
         <Page class="pages"
-              :total="totalPages"
+              :total="total"
               show-sizer
               :page-size="limitPages"
               :page-size-opts="pageArray"
-              :current.sync="current"
+              :current="page"
               @on-change = "turnPage"
               @on-page-size-change = "turnPages"
         ></Page>
@@ -21,7 +21,7 @@
 	import aaskTitleComp from '@/components/community/aask-title-comp'
 	import aaskListComp from '@/components/community/aask-list-comp'
 
-	import {mapActions, mapGetters} from "vuex"
+	import {mapActions, mapGetters, mapMutations} from "vuex"
     
     const _Ok = 200;
 	export default {
@@ -29,14 +29,14 @@
 		     data() {
 		     	return {
 		     		pageArray:[5,10,20],
-		     		limitPages:10,
-		     		current:1
+		     		limitPages:10
 		     	}
 		     },
 
 		     computed: {
 		     	...mapGetters('questionsData', [
-                       'totalPages'
+                       'total',
+                       'page'
 		     		])
 		     },
 
@@ -47,10 +47,15 @@
                         'getAbnormalQuestionsData'
 		     		]),
 
+		     	...mapMutations('questionsData',[
+                       'setPage'
+		     		]),
+
 		     	turnPage(pageNum) {
+		     		this.setPage(pageNum)
 		     		this.getAbnormalQuestionsData({
-		     			page:pageNum,
-		     			limit:this.limitPages
+		     			page: this.page,
+		     			limit: this.limitPages
 		     		})
 		     	},
 

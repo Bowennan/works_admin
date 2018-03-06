@@ -5,11 +5,11 @@
         <qs-list-comp></qs-list-comp>
 
         <Page class="pages"
-              :total="totalPages"
+              :total="total"
               show-sizer
               :page-size="limitPages"
               :page-size-opts="pageArray"
-              :current.sync="current"
+              :current="page"
               @on-change = "turnPage"
               @on-page-size-change = "turnPages"
         ></Page>
@@ -21,7 +21,7 @@
 	import qsTitleComp from '@/components/community/qs-title-comp'
 	import qsListComp from '@/components/community/qs-list-comp'
 
-	import {mapActions, mapGetters} from "vuex"
+	import {mapActions, mapGetters, mapMutations} from "vuex"
     
     const _Ok = 200;
 	export default {
@@ -29,14 +29,15 @@
 		     data() {
 		     	return {
 		     		pageArray:[5,10,20],
-		     		limitPages:10,
-		     		current:1
+		     		limitPages:10
 		     	}
 		     },
 
 		     computed: {
 		     	...mapGetters('exhibitionsData', [
-                       'totalPages'
+                       'total',
+                       'page',
+                       'sort_field'
 		     		])
 		     },
 
@@ -46,18 +47,24 @@
 		     	...mapActions('exhibitionsData', [
                         'getQsData'
 		     		]),
+		     	...mapMutations('exhibitionsData', [
+                       'setPage'
+		     		]),
 
 		     	turnPage(pageNum) {
+		     		this.setPage(pageNum)
 		     		this.getQsData({
 		     			page:pageNum,
-		     			limit:this.limitPages
+		     			limit:this.limitPages,
+		     			sort_field: this.sort_field
 		     		})
 		     	},
 
 		     	turnPages(pagesNum) {
 		     		this.limitPages = pagesNum;
 		     		this.getQsData({
-		     			limit: this.limitPages
+		     			limit: this.limitPages,
+		     			sort_field: this.sort_field
 		     		})
 		     	}
 		     },

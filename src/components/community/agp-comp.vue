@@ -5,11 +5,11 @@
         <agp-list-comp></agp-list-comp>
 
         <Page class="pages"
-              :total="totalPages"
+              :total="total"
               show-sizer
               :page-size="limitPages"
               :page-size-opts="pageArray"
-              :current.sync="current"
+              :current="page"
               @on-change = "turnPage"
               @on-page-size-change = "turnPages"
         ></Page>
@@ -21,7 +21,7 @@
 	import agpTitleComp from '@/components/community/agp-title-comp'
 	import agpListComp from '@/components/community/agp-list-comp'
 
-    import {mapActions, mapGetters} from "vuex"
+    import {mapActions, mapGetters, mapMutations} from "vuex"
     
     const _Ok = 200;
 	export default {
@@ -29,14 +29,14 @@
 		     data() {
 		     	return {
 		     		pageArray:[5,10,20],
-		     		limitPages:10,
-		     		current:1
+		     		limitPages:10
 		     	}
 		     },
 
 		     computed: {
 		     	...mapGetters('couponsData', [
-                       'totalPages'
+                       'total',
+                       'page'
 		     		])
 		     },
 
@@ -44,19 +44,24 @@
 
 		     methods: {
 		     	...mapActions('couponsData', [
-                        'getAbnormalCouponsData'
+                        'getabnormalCommunityCoupons'
+		     		]),
+
+		     	...mapMutations('couponsData', [
+                       'setPage'
 		     		]),
 
 		     	turnPage(pageNum) {
-		     		this.getAbnormalCouponsData({
-		     			page:pageNum,
+		     		this.setPage(pageNum)
+		     		this.getabnormalCommunityCoupons({
+		     			page: this.page,
 		     			limit:this.limitPages
 		     		})
 		     	},
 
 		     	turnPages(pagesNum) {
 		     		this.limitPages = pagesNum;
-		     		this.getAbnormalCouponsData({
+		     		this.getabnormalCommunityCoupons({
 		     			limit: this.limitPages
 		     		})
 		     	}

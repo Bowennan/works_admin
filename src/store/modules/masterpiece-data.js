@@ -1,16 +1,17 @@
 //引入帖子的api
 import {communityMasterpiece, abnormalCommunityMasterpiece} from "@/axios/api"  //一个首页 一个待审核的列表
-//引入公用提交标识符
-import * as types from '../mutation-types'
+
 
 //帖子所有状态及数据存储
 const state = {
-	totalPages:1,
-    source:'',
-    commid:[],
-    choice:0,
-    communities:[],
-    datas:[]
+	total:1,
+    datas:[],
+    page:1,
+    id:null,
+    content_type: '',
+    begin_published_at: '',
+    end_published_at: '',
+    sort_field: 'id'
 
 }
 
@@ -20,8 +21,9 @@ const actions = {
 	//首页
 	getMasterpieceData({commit},paras) {
 		communityMasterpiece(paras).then(res => {
-			commit(types.GET_POSTING_DATA, res.data.data)
-			commit(types.GET_TOTAL_PAGES, res.data.meta.total)
+			commit('setData', res.data.data)
+			commit('setTotal', res.data.meta.total)
+			commit('setPage', res.data.meta.current_page)
 		})
 	},
     
@@ -36,9 +38,20 @@ const actions = {
 	//隐藏
 	getAbnormalMasterpiece({commit},paras) {
 		abnormalCommunityMasterpiece(paras).then(res => {
-			commit(types.GET_POSTING_DATA, res.data.data)
-			commit(types.GET_TOTAL_PAGES, res.data.meta.total)
+			commit('setData', res.data.data)
+			commit('setTotal', res.data.meta.total)
+			commit('setPage', res.data.meta.current_page)
 		})
+	},
+
+	//刷新页面
+	refreshPage({commit}) {
+        commit('setId', null)
+        commit('setPage', 1)
+        commit('setContent', '')
+        commit('setBegin', '')
+        commit('setEnd', '')
+        commit('setSortfield', "id")
 	}
 }
 
@@ -48,37 +61,42 @@ const actions = {
 //组件获取数据的getters
 const getters = {
 	datas: state => state.datas,
-	totalPages: state => state.totalPages,
-	source: state => state.source,
-	commid: state => state.commid,
-	choice: state => state.choice,
-	communities: state => state.communities
+	total: state => state.total,
+	page: state => state.page,
+	id: state => state.id,
+	content_type: state => state.content_type,
+	begin_published_at: state => state.begin_published_at,
+	end_published_at: state => state.end_published_at,
+	sort_field: state => state.sort_field
 }
 
 
 
 //组件提交修改的mutations
 const mutations = {
-	[types.GET_POSTING_DATA](state, data) {
+	setData(state, data) {
 		state.datas = data
 	},
-	[types.GET_TOTAL_PAGES](state, data) {
-		state.totalPages = data
+	setTotal(state, total) {
+		state.total = total
 	},
-	[types.SET_POSTING_SOURCE](state, data) {
-		state.source = data
+	setPage(state, page) {
+		state.page = page
 	},
-	[types.GET_COMMUNITY_ID](state, data) {
-		(state.commid).length = 0
-		data.forEach(item => {
-			(state.commid).push(item.id)
-		})
+	setId(state, id) {
+		state.id = id
 	},
-	[types.SET_COMMUNITY_CHIOCE](state, data) {
-		state.choice = data
+	setContent(state, type) {
+		state.content_type = type
 	},
-	[types.GET_COMMUNITIES](state, data) {
-		state.communities = data
+	setBegin(state, begin) {
+		state.begin_published_at = begin
+	},
+	setEnd(state, end) {
+		state.end_published_at = end
+	},
+	setSortfield(state, sortField) {
+		state.sort_field = sortField
 	}
 }
 

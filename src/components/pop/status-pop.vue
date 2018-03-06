@@ -20,14 +20,14 @@
 	      <div class="border" style="height:132px;">
 	        <textarea class="text-contents border-bottom"></textarea>
 	        <Select class="text-sel"  size="small" v-model="infos" style="width:150px">
-	              <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
-	          </Select>
-	      </div>
+              <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
+            </Select>
+	      </div> 
 	    </div>
 
 	    <div class="pop-bottom-box">
       
-         
+              
               <Button class="pop-confirm-btn" style="background:#fff" type="ghost" @click="closePop">取消</Button>
               <Button class="pop-confirm-btn" type="primary" @click="changeStatus">确认发送</Button>
     
@@ -37,9 +37,13 @@
 </template>
 
 <script>
-    import {mapMutations, mapGetters} from 'vuex'
-    import {updateArticle} from '@/axios/api'
+    import {mapMutations, mapGetters, mapActions} from 'vuex'
 	export default {
+		props: {
+            id: {
+            	type:Number
+            }
+		},
 		data() {
 			return {
 				infos:'',
@@ -58,29 +62,19 @@
 			...mapMutations([
                    'setPopStatus'
 				]),
+			...mapActions([
+                   'updateArticle'
+				]),
 			closePop() {
 				this.setPopStatus()
 			},
 			changeStatus() {
-				this.setPopStatus()
-				updateArticle({
-					id: this.articleId,
-					status: parseInt(this.status)
-				}).then(res => {
-					if(this.source === "ap") {
-						if(parseInt(this.status) === 1 || parseInt(this.status) === 2) {
-	                    	this.datas.splice(this.articleIndex, 1)
-	                    }
-					}else {
-						if(parseInt(this.status) === 2 || parseInt(this.status) === 0) {
-	                    	this.datas.splice(this.articleIndex, 1)
-	                    }
-					}
-                    
-					console.log("修改成功")
-				}).catch(err => {
-					console.log("修改失败")
+				this.updateArticle({
+                    id: this.id,
+                    status: this.status
 				})
+
+				this.$emit('reload')
 			}
 		}
 	}

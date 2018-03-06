@@ -7,9 +7,11 @@
 			<li class="posting-con">产品关联</li>
 			<li class="posting-action">帖子状态与操作</li>
 		</ul>
+
         <div v-show="!datas.length">
         	<loading></loading>
         </div>
+
 		<ul v-for="(item, index) in datas" :key="index">
 			<li>
 				<ul class="list-contents">
@@ -57,16 +59,16 @@
 						<p class="h-block01">
 							<span class="items">
 								<span class="c-gris">文章归类 | </span>
-								<span class="c-carbon pointer">设置</span>
+								<span class="c-carbon pointer" @click="setCatalog(item.id)">设置</span>
 							</span>
 							
 							<span class="items">
 								<span class="c-gris">文章状态 | </span>
-								<span class="c-carbon pointer">{{item.status===0? "隐藏" : item.status===1? "正常" : "草稿"}}</span>
+								<span class="c-carbon pointer" @click="setStatus(item.id)">{{item.status===0? "隐藏" : item.status===1? "正常" : "草稿"}}</span>
 							</span>
 							<span class="items">
 								<span class="c-gris">产品关联 | </span>
-								<span class="c-carbon pointer">设置</span>
+								<span class="c-carbon pointer" @click="setConnect(item.id)">设置</span>
 							</span>
 						</p>
 						<p class="h-block02">
@@ -93,21 +95,20 @@
 				</ul>
 			</li>
 		</ul>
-
-		<!-- <div class="cover-style"
+		<div class="cover-style"
              v-show="popStatus"
              :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
 		>
 			<div class="pop-wrapper">
-				<class ref="classfy" v-if="1 === popNum"></class>
-				<status v-if="2 === popNum"></status>
+				<class :id="id_num" v-if="1 === popNum"></class>
+				<status :id="id_num" @reload="getPostingData" v-if="2 === popNum"></status>
 				<connection v-if="3 === popNum"></connection>
 				<recommend ref="rec" v-if="4 === popNum"></recommend>
 				<level v-if="5 === popNum"></level>
 				<weight v-if="7 === popNum"></weight>
 
 			</div>
-		</div> -->
+		</div>
 	</div>
 </template>
 
@@ -124,16 +125,18 @@
        data() {
        	  return {
        	  	coverWidth:0,
-       	  	coverHeight:0
+       	  	coverHeight:0,
+       	  	id_num:null
        	  }
        },
        created() {
        	  this.getPostingData()
-          this.getWindowsSize()
          },
        computed: {
        	...mapGetters('postingsData', [
-               "datas"
+               "datas",
+               "popNum",
+               "popStatus"
        		])
        },
        methods: {
@@ -142,8 +145,27 @@
             this.coverHeight = window.document.body.offsetHeight;
           },
           ...mapActions('postingsData', [
-               'getPostingData'
-          	])
+               'getPostingData',
+               'setPop'
+          	]),
+
+          setCatalog(id) {
+          	this.getWindowsSize()
+          	this.setPop(1)
+          	this.id_num = id
+          },
+
+          setStatus(id) {
+          	this.getWindowsSize()
+          	this.setPop(2)
+          	this.id_num = id
+          },
+
+          setConnect(id) {
+          	this.getWindowsSize()
+          	this.setPop(3)
+          	this.id_num = id
+          }
        },
        components: {
        	Loading,
@@ -211,6 +233,14 @@
 		min-height: 30px;
 		line-height: 30px;
 		white-space: normal;
+	}
+	.list-enter-active, .list-leave-active {
+	  transition: all 1s;
+	}
+	.list-enter, .list-leave-to
+	/* .list-leave-active for below version 2.1.8 */ {
+	  opacity: 0;
+	  transform: translateY(30px);
 	}
 </style>
 

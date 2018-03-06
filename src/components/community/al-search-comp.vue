@@ -1,12 +1,13 @@
 <template>
 	<div class="search-box">
-			<Input class="id-search" v-model="searchParas">
-			        <Select v-model="defaultPara" slot="prepend" style="width: 60px">
-			            <Option value="title">回答</Option>
-			            <Option value="id">ID</Option>
+			<Input class="id-search" v-model="searchVal">
+			        <Select v-model="searchType" slot="prepend" style="width: 80px">
+			            <Option value="id">回复ID</Option>
 			        </Select>
-			        <Button slot="append" icon="ios-search" @clicjk="subData"></Button>
+			        <Button slot="append" icon="ios-search" @click="search"></Button>
 			    </Input>
+
+			    <span v-show="status" class="c-naranja" style='position: absolute; bottom: 5px; left: 106px;'>输入正确ID号</span>
 
 		<div class="range-search">
 			<div class="conditions-box">
@@ -33,25 +34,51 @@
 </template>
 
 <script>
+    import {mapMutations,  mapActions, mapGetters} from "vuex"
 	export default {
        data() {
        	return {
-       		searchParas: '',
-       		defaultPara: "id",
-       		model1: ''
+       		status:false,
+       		searchVal: '',
+       		searchType: 'id',
+
        	}
        },
-       methods: {
-       	subData() {
-       	 	let paras = {};
-       	 	if(this.defaultPara === 'title'){
-       	 		paras.title = this.searchParas;
-       	 	}else {
-       	 		paras.comment_id = parseInt(this.searchParas);
-       	 	}
 
-       	 	this.$emit("searchResult", paras);
-       	 }
+       computed: {
+       	...mapGetters('replysData', [
+               'id',
+               'summary_catalog'
+       		])
+       },
+
+
+       methods: {
+       	...mapMutations('replysData', [
+              'setId',
+              'setSummarycatalog'
+       		]),
+       	...mapActions('replysData', [
+       		 'getReplyData'
+       		]),
+
+       	search() {
+              if(this.searchType == "id" && /^[0-9]*$/.test(this.searchVal) && this.searchVal !== '' ){
+              this.status = false
+              this.setId(this.searchVal)
+              this.getReplyData({
+                 id: this.id,
+                 summary_catalog: this.summary_catalog
+               })
+            }else {
+              this.status = true
+              setTimeout(()=>{
+                this.status = false
+              },1500)
+            }
+
+             this.searchVal=''
+          },
        	}
 
 	}

@@ -4,11 +4,11 @@
         <aa-title-comp></aa-title-comp>
         <aa-list-comp></aa-list-comp>
         <Page class="pages"
-              :total="totalPages"
+              :total="total"
               show-sizer
               :page-size="limitPages"
               :page-size-opts="pageArray"
-              :current.sync="current"
+              :current="page"
               @on-change = "turnPage"
               @on-page-size-change = "turnPages"
         ></Page>
@@ -19,7 +19,7 @@
     import aaSearchComp from '@/components/community/aa-search-comp'
 	import aaTitleComp from '@/components/community/aa-title-comp'
 	import aaListComp from '@/components/community/aa-list-comp'
-    import {mapActions, mapGetters} from "vuex"
+    import {mapActions, mapGetters, mapMutations} from "vuex"
     
     const _Ok = 200;
 	export default {
@@ -27,14 +27,15 @@
 		     data() {
 		     	return {
 		     		pageArray:[5,10,20],
-		     		limitPages:10,
-		     		current:1
+		     		limitPages:10
 		     	}
 		     },
 
 		     computed: {
 		     	...mapGetters('replysData', [
-                       'totalPages'
+                       'total',
+                       'page',
+                       'summary_catalog'
 		     		])
 		     },
 
@@ -45,11 +46,16 @@
                         'abnormalCommunityReply'
 		     		]),
 
+		     	...mapMutations('replysData', [
+                       'setPage'
+		     		]),
+
 		     	turnPage(pageNum) {
+		     		this.setPage(pageNum)
 		     		this.abnormalCommunityReply({
 		     			page:pageNum,
 		     			limit:this.limitPages,
-		     			summary_catalog: 'article'
+		     			summary_catalog: this.summary_catalog
 		     		})
 		     	},
 
@@ -57,7 +63,7 @@
 		     		this.limitPages = pagesNum;
 		     		this.abnormalCommunityReply({
 		     			limit: this.limitPages,
-		     			summary_catalog: 'article'
+		     			summary_catalog: this.summary_catalog
 		     		})
 		     	}
 		     },

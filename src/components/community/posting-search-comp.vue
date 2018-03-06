@@ -1,10 +1,10 @@
 <template>
 	<div class="search-box">
 	
-			    <Input class="id-search" v-model="searchVal">
+			    <Input class="id-search" v-model="searchVal" @on-enter="search">
 			        <Select v-model="searchType" slot="prepend" style="width: 80px">
-			            <Option value="title">帖子</Option>
-			            <Option value="id">ID</Option>
+			            <Option value="title">帖子标题</Option>
+			            <Option value="id">帖子ID</Option>
 			        </Select>
 			        <Button slot="append" icon="search" @click="search"></Button>
 			    </Input>

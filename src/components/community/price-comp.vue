@@ -6,11 +6,11 @@
         <price-list-comp></price-list-comp>
 
         <Page class="pages"
-              :total="totalPages"
+              :total="total"
               show-sizer
               :page-size="limitPages"
               :page-size-opts="pageArray"
-              :current.sync="current"
+              :current="page"
               @on-change = "turnPage"
               @on-page-size-change = "turnPages"
         ></Page>
@@ -22,7 +22,7 @@
 	import priceTitleComp from '@/components/community/price-title-comp'
 	import priceListComp from '@/components/community/price-list-comp'
 
-	import {mapActions, mapGetters} from "vuex"
+	import {mapActions, mapGetters, mapMutations} from "vuex"
     
     const _Ok = 200;
 	export default {
@@ -30,14 +30,17 @@
 		     data() {
 		     	return {
 		     		pageArray:[5,10,20],
-		     		limitPages:10,
-		     		current:1
+		     		limitPages:10
 		     	}
 		     },
 
 		     computed: {
 		     	...mapGetters('couponsData', [
-                       'totalPages'
+                       'total',
+                       'page',
+                       'begin_published_at',
+						'end_published_at',
+						'sort_field'
 		     		])
 		     },
 
@@ -48,17 +51,28 @@
                         'getCouponsData'
 		     		]),
 
+		     	...mapMutations('couponsData', [
+                        'setPage'
+		     		]),
+
 		     	turnPage(pageNum) {
+		     		this.setPage(pageNum)
 		     		this.getCouponsData({
-		     			page:pageNum,
-		     			limit:this.limitPages
+		     			page: this.page,
+		     			limit:this.limitPages,
+		     			sort_field: this.sort_field,
+		     			end_published_at: this.end_published_at,
+		     			begin_published_at: this.begin_published_at
 		     		})
 		     	},
 
 		     	turnPages(pagesNum) {
 		     		this.limitPages = pagesNum;
 		     		this.getCouponsData({
-		     			limit: this.limitPages
+		     			limit: this.limitPages,
+		     			sort_field: this.sort_field,
+		     			end_published_at: this.end_published_at,
+		     			begin_published_at: this.begin_published_at
 		     		})
 		     	}
 		     },

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import * as getters from './getter'
 import state from './state'
 import mutations from './mutation'
+import actions from './action'
 import postingsData from './modules/postings-data'
 import masterpieceData from './modules/masterpiece-data'
 import questionsData from './modules/questions-data'
@@ -18,6 +19,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	getters,
 	mutations,
+	actions,
 	state,
 	modules: {
 		postingsData,

@@ -64,13 +64,14 @@
 
        created() {
        	this.getReplyData({
-       		summary_catalog: 'article'
+       		summary_catalog: this.summary_catalog
        	}),
        	this.getWindowsSize()
        },
        computed: {
        	...mapGetters('replysData',[
-              "datas"
+              "datas",
+              "summary_catalog"
        		])
        },
 

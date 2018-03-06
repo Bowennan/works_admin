@@ -5,11 +5,11 @@
         <adisclo-list-comp></adisclo-list-comp>
 
         <Page class="pages"
-              :total="totalPages"
+              :total="total"
               show-sizer
               :page-size="limitPages"
               :page-size-opts="pageArray"
-              :current.sync="current"
+              :current="page"
               @on-change = "turnPage"
               @on-page-size-change = "turnPages"
         ></Page>
@@ -21,7 +21,7 @@
 	import adiscloTitleComp from '@/components/community/adisclo-title-comp'
 	import adiscloListComp from '@/components/community/adisclo-list-comp'
 
-	import {mapActions, mapGetters} from "vuex"
+	import {mapActions, mapGetters, mapMutations} from "vuex"
     
     const _Ok = 200;
 	export default {
@@ -36,7 +36,8 @@
 
 		     computed: {
 		     	...mapGetters('disclosesData', [
-                       'totalPages'
+                       'total',
+                       'page'
 		     		])
 		     },
 
@@ -47,7 +48,12 @@
                         'abnormalCommunityDisclose'
 		     		]),
 
+		     	...mapMutations('idlesData', [
+                        'setPage'
+		     		]),
+
 		     	turnPage(pageNum) {
+		     		this.setPage(pageNum)
 		     		this.abnormalCommunityDisclose({
 		     			page:pageNum,
 		     			limit:this.limitPages

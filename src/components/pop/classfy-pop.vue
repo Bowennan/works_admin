@@ -6,10 +6,15 @@
 		</div>
 
 		<div class="pop-sub-container">
-			<span class="pop-sub-title">文章社区选择（可全选）</span>
+			<span class="pop-sub-title">
+				<Checkbox
+	            :indeterminate="indeterminate"
+	            :value="checkAll"
+	            @click.prevent.native="handleCheckAll">社区全选</Checkbox>
+			</span>
 
-			<CheckboxGroup v-model="communityNameChoose">
-		        <Checkbox class="c-carbon" style="padding:4px" v-for="(item, index) in communityName" :label="item.id" :key="index">{{item.name}}</Checkbox>
+			<CheckboxGroup v-model="checkAllGroup" @on-change="checkAllGroupChange">
+		        <Checkbox class="c-carbon" style="padding:4px" v-for="(item, index) in communityCol" :label="item.id" :key="index">{{item.name}}</Checkbox>
 		    </CheckboxGroup>
 		</div>
 
@@ -25,53 +30,77 @@
 </template>
 
 <script>
-    import {getCommunityNameId, updateArticleComm} from "@/axios/api"
-    import {mapMutations, mapGetters} from 'vuex'
+    import {mapMutations, mapGetters, mapActions} from 'vuex'
 	export default {
-		data() {
-			return {
-				infos:'',
-				communityName:[],
-				communityNameChoose:[]
-				
+		props: {
+			id: {
+				type: Number
 			}
 		},
+
+		data() {
+			return {
+				indeterminate: true,
+				checkAll: false,
+				checkAllGroup: []
+			}
+		},
+
 		computed: {
            ...mapGetters([
-               'communities',
-               'articleId'
+               'communityCol'
            	])
 		},
 		created() {
-           getCommunityNameId().then(res => {
-           	this.communityName = res.data.data
-           })
+           this.getAllCommunity()
+           console.log(this.communityCol)
 		},
 		methods: {
 			...mapMutations([
                    'setPopStatus'
 				]),
+			...mapActions([
+                   'getAllCommunity',
+                   'updateCommunity'
+				]),
+			handleCheckAll () {
+                if (this.indeterminate) {
+                    this.checkAll = false;
+                } else {
+                    this.checkAll = !this.checkAll;
+                }
+                this.indeterminate = false;
+
+                if (this.checkAll) {
+                    this.communityCol.forEach((item) => {
+                    	this.checkAllGroup.push(item.id)
+                    })
+                } else {
+                    this.checkAllGroup = [];
+                }
+            },
+            checkAllGroupChange (data) {
+                if (data.length == (this.communityCol).length) {
+                    this.indeterminate = false;
+                    this.checkAll = true;
+                } else if (data.length > 0) {
+                    this.indeterminate = true;
+                    this.checkAll = false;
+                } else {
+                    this.indeterminate = false;
+                    this.checkAll = false;
+                }
+                console.log(this.checkAllGroup)
+            },
+
 			closePop() {
 				this.setPopStatus()
-                this.communityNameChoose.length =0
 			},
-			addComm() {
-				console.log("lolo")
-				this.communityNameChoose.length = 0
-				this.communityName.map((item , index)=> {
-					if(item.id === (this.communities)[index][id]) {
-                    this.communityNameChoose.push(item.id)
-				 }
-				})
-				console.log("lololo")
-			},
+		//貌似后数据有问题
 			sendComm() {
-               this.setPopStatus()
-               updateArticleComm({
-                 community_ids: this.communityNameChoose,
-                 id: this.articleId
-               }).then(res => {
-               	this.communityNameChoose.length =0
+               this.updateCommunity({
+               	id: this.id,
+               	summary_catalog_ids: this.checkAllGroup
                })
 			}
 		}

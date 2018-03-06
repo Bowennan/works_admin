@@ -261,9 +261,9 @@ export function getCommunityNameId() {
 }
 
 //更新文章(关联社区)
-export function updateArticleComm(paramsObj) {
+export function updateCommunity(paramsObj) {
 	return fetch({
-		url:api.Bestkit + 'admin/community/articles/' + paramsObj.id + '/communities',
+		url:api.Bestkit + `admin/community/communities/${paramsObj.id}`,
 		method: 'put',
 		data: paramsObj
 	})
@@ -273,6 +273,15 @@ export function updateArticleComm(paramsObj) {
 export function updateArticleChoice(paramsObj) {
 	return fetch({
 		url:api.Bestkit + 'admin/community/articles/' + paramsObj.id + '/community_choices',
+		method: 'put',
+		data: paramsObj
+	})
+}
+
+//更新文章(关联社区)
+export function updatePro(paramsObj) {
+	return fetch({
+		url:api.Bestkit + `admin/community/articles/${paramsObj.id}/products`,
 		method: 'put',
 		data: paramsObj
 	})

@@ -112,7 +112,7 @@
        },
 
        created() {
-       	this.getAbnormalCouponsData(),
+       	this.getabnormalCommunityCoupons(),
        	this.getWindowsSize()
        },
        computed: {
@@ -127,7 +127,7 @@
             this.coverHeight = window.document.body.offsetHeight;
           },
           ...mapActions('couponsData', [
-               'getAbnormalCouponsData'
+               'getabnormalCommunityCoupons'
           	]),
        	...mapMutations('couponsData', [
                 'setPopStatus',

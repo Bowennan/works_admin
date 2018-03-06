@@ -1,16 +1,14 @@
 //引入帖子的api
 import {communityReply, abnormalCommunityReply} from "@/axios/api"  //一个首页 一个待审核的列表
-//引入公用提交标识符
-import * as types from '../mutation-types'
+
 
 //帖子所有状态及数据存储
 const state = {
-	totalPages:1,
-    source:'',
-    commid:[],
-    choice:0,
-    communities:[],
-    datas:[]
+	total:1,
+    datas:[],
+    page:1,
+    id: null,
+    summary_catalog: 'article'
 
 }
 
@@ -20,8 +18,9 @@ const actions = {
 	//首页
 	getReplyData({commit},paras) {
 		communityReply(paras).then(res => {
-			commit(types.GET_POSTING_DATA, res.data.data)
-			commit(types.GET_TOTAL_PAGES, res.data.meta.total)
+			commit('setData', res.data.data)
+			commit('setTotal', res.data.meta.total)
+			commit('setPage', res.data.meta.current_page)
 		})
 	},
     
@@ -36,9 +35,17 @@ const actions = {
 	//隐藏
 	abnormalCommunityReply({commit},paras) {
 		abnormalCommunityReply(paras).then(res => {
-			commit(types.GET_POSTING_DATA, res.data.data)
-			commit(types.GET_TOTAL_PAGES, res.data.meta.total)
+			commit('setData', res.data.data)
+			commit('setTotal', res.data.meta.total)
+			commit('setPage', res.data.meta.current_page)
 		})
+	},
+
+	//刷新页面
+	refreshPage({commit}) {
+		commit('setPage', 1)
+		commit('setSummarycatalog', 'article')
+		commit('setId', null)
 	}
 }
 
@@ -48,37 +55,30 @@ const actions = {
 //组件获取数据的getters
 const getters = {
 	datas: state => state.datas,
-	totalPages: state => state.totalPages,
-	source: state => state.source,
-	commid: state => state.commid,
-	choice: state => state.choice,
-	communities: state => state.communities
+	total: state => state.total,
+	page: state => state.page,
+	summary_catalog: state => state.summary_catalog,
+	id: state => state.id
 }
 
 
 
 //组件提交修改的mutations
 const mutations = {
-	[types.GET_POSTING_DATA](state, data) {
+	setData(state, data) {
 		state.datas = data
 	},
-	[types.GET_TOTAL_PAGES](state, data) {
-		state.totalPages = data
+	setPage(state, page) {
+		state.page = page
 	},
-	[types.SET_POSTING_SOURCE](state, data) {
-		state.source = data
+	setTotal(state, total) {
+		state.total = total
 	},
-	[types.GET_COMMUNITY_ID](state, data) {
-		(state.commid).length = 0
-		data.forEach(item => {
-			(state.commid).push(item.id)
-		})
+	setId(state, id) {
+		state.id = id
 	},
-	[types.SET_COMMUNITY_CHIOCE](state, data) {
-		state.choice = data
-	},
-	[types.GET_COMMUNITIES](state, data) {
-		state.communities = data
+	setSummarycatalog(state, catalog) {
+		state.summary_catalog = catalog
 	}
 }
 

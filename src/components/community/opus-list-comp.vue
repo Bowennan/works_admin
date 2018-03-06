@@ -132,12 +132,7 @@
          },
        computed: {
        	...mapGetters('masterpieceData', [
-               "datas",
-               "popStatus",
-               "popNum",
-               "commid",
-               "choice",
-               "communities"
+               "datas"
        		])
        },
 

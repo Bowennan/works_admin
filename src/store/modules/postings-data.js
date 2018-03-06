@@ -54,7 +54,14 @@ const actions = {
 		commit('setEnd', '')
 		commit('setPage', 1)
 		commit('setSortfield', '')
+	},
+
+	//显示对应的弹窗
+	setPop({ dispatch, commit, getters, rootGetters }, num ) {
+		commit('setPopNum', num, { root: true })
+		commit('setPopStatus', null, { root: true })
 	}
+
 }
 
 
@@ -71,7 +78,9 @@ const getters = {
 	begin_published_at: state => state.begin_published_at,
 	end_published_at: satate => state.end_published_at,
 	page: state => state.page,
-	sort_field: state => state.sort_field
+	sort_field: state => state.sort_field,
+	popStatus: (state, getters, rootState, rootGetters) => rootGetters.popStatus,
+	popNum: (state, getters, rootState, rootGetters) => rootGetters.popNum
     }
 
 

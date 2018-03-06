@@ -4,7 +4,7 @@
         <opus-title-comp></opus-title-comp>
         <opus-list-comp></opus-list-comp>
 
-        <Page class="pages" :current.sync="current" :total="totalPages" show-sizer :page-size-opts="pageArray" :page-size="limitPages"
+        <Page class="pages" :current="page" :total="total" show-sizer :page-size-opts="pageArray" :page-size="limitPages"
               @on-change="turnPage"
               @on-page-size-change="turnPages"
         ></Page>
@@ -15,43 +15,44 @@
     import opusSearchComp from '@/components/community/opus-search-comp'
 	import opusTitleComp from '@/components/community/opus-title-comp'
 	import opusListComp from '@/components/community/opus-list-comp'
-	import {mapGetters, mapActions} from 'vuex'
+	import {mapGetters, mapActions, mapMutations} from 'vuex'
     
      const _Ok = 200;
 	export default {
 		    data() {
                return {
                	 pageArray:[5,10,20],
-               	 limitPages:10,
-               	 current:1
+               	 limitPages:10
 
                }
 		    },
             computed: {
 	        	...mapGetters('masterpieceData', [
-	                    'totalPages',
-	                    'orderType',
-	                    'title',
-	                    'begin',
-	                    'end',
-	                    'articleType',
-	                    'imageType'
+	                    'total',
+	                    'page',
+	                    'content_type',
+						'begin_published_at',
+						'end_published_at',
 	        		])
             },
 		     methods: {
 		     	...mapActions('masterpieceData', [
                        'getMasterpieceData'
 		     		]),
+
+		     	...mapMutations('masterpieceData', [ 
+		     		   'setPage'
+		     		]),
 		     	turnPage(pageNum){
+		     		this.setPage(pageNum)
 		     		this.getMasterpieceData({
-		     			page: pageNum,
+		     			page: this.page,
 		     			limit: this.limitPages,
                         sort_field: this.orderType,
                         title: this.title,
-                        article_type: this.articleType,
-                        content_type: this.imageType,
-                        begin_pulished_at: this.begin,
-                        end_published_at: this.end
+                        content_type: this.content_type,
+                        begin_published_at: this.begin_published_at,
+                        end_published_at: this.end_published_at
 		     		})
 		     	},
 		     	turnPages(pagesNum) {
@@ -60,10 +61,9 @@
 		     	    	limit: this.limitPages,
 		     	    	sort_field: this.orderType,
 		     	    	title: this.title,
-		     	    	article_type: this.articleType,
-		     	    	content_type: this.imageType,
-		     	    	begin_pulished_at: this.begin,
-		     	    	end_published_at: this.end
+		     	    	content_type: this.content_type,
+		     	    	begin_published_at: this.begin_published_at,
+		     	    	end_published_at: this.end_published_at
 		     	    })
 		     	}
 		     },

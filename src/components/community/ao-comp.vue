@@ -3,7 +3,7 @@
 		<ao-search-comp></ao-search-comp>
         <ao-title-comp></ao-title-comp>
         <ao-list-comp class="tables"></ao-list-comp>
-        <Page class="pages" :current.sync="current" :total="totalPages" show-sizer :page-size="limitPages" :page-size-opts="pageArray"
+        <Page class="pages" :current="page" :total="total" show-sizer :page-size="limitPages" :page-size-opts="pageArray"
               @on-change="turnPage"
               @on-page-size-change="turnPages"
         ></Page>
@@ -15,29 +15,33 @@
 	import aoTitleComp from '@/components/community/ao-title-comp'
 	import aoListComp from '@/components/community/ao-list-comp'
 
-	import {mapGetters, mapActions} from "vuex"
+	import {mapGetters, mapActions, mapMutations} from "vuex"
     const _Ok = 200;
 	export default {
 		    data() {
                return {
                	 pageArray:[5,10,20],
-               	 limitPages:10,
-               	 current:1
+               	 limitPages:10
 
                }
 		    },
             computed: {
 	        	...mapGetters('masterpieceData', [
-	                    'totalPages'
+	                    'total',
+	                    'page'
 	        		])
             },
 		     methods: {
 		     	...mapActions('masterpieceData', [
                        'getAbnormalMasterpiece'
 		     		]),
+		     	...mapMutations('masterpieceData', [
+                       'setPage'
+		     		]),
 		     	turnPage(pageNum){
+		     		this.setPage(pageNum)
 		     		this.getAbnormalMasterpiece({
-		     			page: pageNum,
+		     			page: this.page,
 		     			limit: this.limitPages
 		     		})
 		     	},

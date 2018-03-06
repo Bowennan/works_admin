@@ -5,11 +5,11 @@
         <ash-list-comp></ash-list-comp>
 
         <Page class="pages"
-              :total="totalPages"
+              :total="total"
               show-sizer
               :page-size="limitPages"
               :page-size-opts="pageArray"
-              :current.sync="current"
+              :current="page"
               @on-change = "turnPage"
               @on-page-size-change = "turnPages"
         ></Page>
@@ -21,7 +21,7 @@
 	import ashTitleComp from '@/components/community/ash-title-comp'
 	import ashListComp from '@/components/community/ash-list-comp'
 
-	import {mapActions, mapGetters} from "vuex"
+	import {mapActions, mapGetters, mapMutations} from "vuex"
     
     const _Ok = 200;
 	export default {
@@ -29,14 +29,14 @@
 		     data() {
 		     	return {
 		     		pageArray:[5,10,20],
-		     		limitPages:10,
-		     		current:1
+		     		limitPages:10
 		     	}
 		     },
 
 		     computed: {
 		     	...mapGetters('idlesData', [
-                       'totalPages'
+                       'total',
+                       'page'
 		     		])
 		     },
 
@@ -47,7 +47,12 @@
                         'getIdleAbnormalData'
 		     		]),
 
+		     	...mapMutations('idlesData', [
+                        'setPage'
+		     		]),
+
 		     	turnPage(pageNum) {
+		     		this.setPage(pageNum)
 		     		this.getIdleAbnormalData({
 		     			page:pageNum,
 		     			limit:this.limitPages

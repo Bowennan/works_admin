@@ -1,35 +1,45 @@
 <template>
 	<div class="title-box">
-		<h3 class="titulo">异常爆料列表</h3>
+		<h3 class="titulo">隐藏爆料列表</h3>
 		<div class="btns-container">
-			<Button class="re-btn" type="primary" shape="circle" icon="ios-loop">刷新</Button>
+			<Button class="re-btn" type="primary" shape="circle" icon="ios-loop" @click="refresh">刷新</Button>
 		</div>
 		
 		<div class="result-container">
 			<span class="c-gris total-result">全部爆料：
-	          <span class="c-naranja">{{totalPages}}</span></span>
-			
-			<Select class="order-sel"  v-model="model1">
-		        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
-		    </Select>
+	          <span class="c-naranja">{{total}}</span>
+			</span>
 		</div>
 	</div>
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
+    import {mapMutations, mapGetters, mapActions} from 'vuex'
 	export default {
        data() {
        	return {
-       		model1:''
+       		
        	}
        },
 
        computed: {
        	...mapGetters('disclosesData', [
-
-               'totalPages'
+               'total'
        		])
+       },
+
+       methods: {
+
+        ...mapActions('disclosesData',[
+             "abnormalCommunityDisclose",
+             "refreshPage"
+          ]),
+
+        refresh() {
+            this.refreshPage()
+            this.abnormalCommunityDisclose()
+            console.log(this.datas)
+         }
        }
 	}
 </script>
