@@ -5,12 +5,13 @@
 			<Icon type="close-round" class="pop-close" @click.native="closePop"></Icon>
 		</div>
 
-		<!-- <div class="pop-sub-container">
+		<div class="pop-sub-container">
 			<span class="pop-sub-title">已首推</span>
-			<p class="pop-items">
-				<span class="c-carbon pop-item-title-l">121</span> <span class="c-azul pointer" @click="removed(index)">删除</span>
+			<p class="pop-items" v-for='(item, index) in haveRecommend' :key="index">
+				<span class="c-carbon pop-item-title-l">{{item.name}}</span> <span  class="c-azul pointer" @click="remove(index)">删除</span>
 			</p>
-		</div> -->
+			<p v-if="!haveRecommend.length" class="pop-items">暂无推首</p>
+		</div>
 
 		<div class="pop-sub-container">
 			<span class="pop-sub-title">推荐地方选择（可全选）</span>
@@ -19,9 +20,9 @@
 			</p>
 			<p class="pop-items">
 				<span class="c-gris">社区推首</span>
-				<span>{{choiceArr}}</span>
+				<!-- <span>{{choiceArr}}</span> -->
 				<Select v-model="choiceArr" multiple style="width:260px">
-			        <Option v-for="item in communities" :value="item.id" :key="item.id">{{ item.name }}</Option>
+			        <Option v-for="item in allCommunity" :value="item.id" :key="item.id">{{ item.name }}</Option>
 			    </Select>
 			</p>
 		</div>
@@ -51,7 +52,7 @@
 
 	    <div class="pop-bottom-box">
 			<Button  class="pop-confirm-btn" type="ghost" @click="closePop">取消</Button>
-			<Button  class="pop-confirm-btn" type="primary" @click="sendComm">确认</Button>
+			<Button  class="pop-confirm-btn" type="primary" @click="submit">确认</Button>
             
 		</div>
 	</div>
@@ -59,43 +60,51 @@
 
 <script>
     import {updateArticleChoice} from '@/axios/api'
-    import {mapMutations, mapGetters} from 'vuex'
+    import {mapMutations, mapActions} from 'vuex'
 	export default {
+		props: {
+			haveRecommend: {
+				type:Array
+			},
+			id: {
+				type:Number
+			},
+			allCommunity: {
+				type:Array 
+			}
+		},
 		data() {
 			return {
 				infos:true,
 				choiceArr:[]
 			}
 		},
-		computed: {
-			...mapGetters([
-                       'communities',
-                       'articleId'
-      				])
-		},
 		methods: {
 			...mapMutations([
                    'setPopStatus'
 				]),
+			...mapActions([
+                   'updateArticleChoice'
+				]),
 			closePop () {
 				this.setPopStatus()
 			},
-			addComm() {
-				this.choiceArr.length = 0
-				this.communities.forEach(item => {
-	           	 if(item.is_choice ===1) {
-	           	 	this.choiceArr.push(item.id)
-	           	 }
-	           })
+			remove(index) {
+				this.$nextTick(() => {
+					this.haveRecommend.splice(index, 1)
+				})
 			},
-			sendComm() {
-               this.setPopStatus()
-               updateArticleChoice({
-                 community_ids: this.choiceArr,
-                 id: this.articleId
-               }).then(res => {
-               	this.choiceArr.length = 0
-               })
+			submit() {
+				let haveRecommendId = []
+				this.haveRecommend.forEach((item) => {
+					haveRecommendId.push(item.id)
+				})
+				this.updateArticleChoice({
+					id: this.id,
+					community_ids: (this.choiceArr).concat(haveRecommendId)
+				})
+				// this.choiceArr.length = 0
+				this.$emit('reload')
 			}
 		}
 	}

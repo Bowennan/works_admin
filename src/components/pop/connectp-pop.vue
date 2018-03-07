@@ -8,7 +8,7 @@
 		</div>
 
 		<div class="pop-sub-container pop-scroll-bar" style="overflow-x:hidden; overflow-y:scroll; height:400px; border:none">
-			<div class="pop-sub-container" v-if="connectionArr.length" v-for="(item, index) in connectionArr">
+			<div class="pop-sub-container" v-if="connectionPro.length" v-for="(item, index) in connectionPro">
 				<span class="pop-sub-title c-carbon">关联{{index + 1}}：</span>
 				<p class="pop-items pop-two-cols">
 					<span class="pop-flex-one">ID： <span>{{item.id}}</span></span> 
@@ -36,31 +36,45 @@
 
 		<div class="pop-bottom-box">
 			<Button  class="pop-confirm-btn" type="ghost" @click="closePop">取消</Button>
-			<Button  class="pop-confirm-btn" type="primary">确认</Button>
+			<Button  class="pop-confirm-btn" type="primary" @click="submit">确认</Button>
             
 		</div>
 	</div>
 </template>
 
 <script>
-    import {mapGetters, mapMutations} from 'vuex'
+    import {mapActions, mapMutations} from 'vuex'
 	export default {
-		data() {
-			return {
-				value:''
+		props: {
+			connectionPro: {
+				type:Array
+			},
+			id: {
+				type: Number
 			}
 		},
-		computed: {
-			...mapGetters([
-				   "connectionArr"
-				])
+		data() {
+			return {
+				value:'',
+				productIds: []
+			}
 		},
 		methods: {
+			...mapActions([
+                   "updateConPro"
+				]),
 			...mapMutations([
                    "setPopStatus"
 				]),
 			closePop() {
 				this.setPopStatus()
+			},
+			submit() {
+				this.updateConPro({
+                    id: this.id,
+                    product_ids: this.productIds
+				})
+				this.$emit('reload')
 			}
 		}
 	}

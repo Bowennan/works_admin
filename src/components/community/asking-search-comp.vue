@@ -2,12 +2,12 @@
 	<div class="search-box">
 		<Input class="id-search" v-model="searchVal">
 	        <Select v-model="questions_id" slot="prepend" style="width: 80px">
-	            <Option value="id">提问ID</Option>
+	            <Option value="id">问题ID</Option>
 	        </Select>
 	        <Button slot="append" icon="search" @click="search"></Button>
 	    </Input>
 
-	    <span v-show="status" class="c-naranja" style='position: absolute; bottom: 5px; left: 106px;'>输入正确的提问ID号</span>
+	    <span v-show="status" class="c-naranja" style='position: absolute; bottom: 5px; left: 106px;'>输入正确的问题ID号</span>
 
 		 <div class="range-search">
 
@@ -58,7 +58,7 @@
 				],
 				types: [
                       {
-                      	label:"问答类型",
+                      	label:"问题类型",
                       	value:0
                       },
                       {
@@ -72,7 +72,7 @@
                      ],
                 model:[
                       {
-                      	label:"问答所属模块",
+                      	label:"问题所属模块",
                       	value:0
                       },
                       {

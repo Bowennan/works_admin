@@ -19,7 +19,7 @@ export function forbiddenUser(paramsObj) {
 	})
 }
 
-//以下为社区接口
+//以下为社区通用内容接口
 //通用帖子和隐藏帖子 status = 1 为正常显示  status = 0 为隐藏
 let normal = {status: 1}
 let abnormal = {status: 0}
@@ -263,7 +263,7 @@ export function getCommunityNameId() {
 //更新文章(关联社区)
 export function updateCommunity(paramsObj) {
 	return fetch({
-		url:api.Bestkit + `admin/community/communities/${paramsObj.id}`,
+		url:api.Bestkit + `/admin/community/articles/${paramsObj.id}/communities`,
 		method: 'put',
 		data: paramsObj
 	})
@@ -278,11 +278,41 @@ export function updateArticleChoice(paramsObj) {
 	})
 }
 
-//更新文章(关联社区)
-export function updatePro(paramsObj) {
+//更新文章(关联产品)
+export function updateConPro(paramsObj) {
 	return fetch({
-		url:api.Bestkit + `admin/community/articles/${paramsObj.id}/products`,
+		url:api.Bestkit + `/admin/community/articles/${paramsObj.id}/products`,
 		method: 'put',
+		data: paramsObj
+	})
+}
+
+
+
+
+
+//以下为社区通用模块接口
+//banner列表
+export function bannersList(paramsObj) {
+    return fetch({
+    	url:api.Bestkit + `/admin/community/banners`,
+    	method: 'get',
+    	data: paramsObj
+    })
+}
+//id查询单个banner
+export function singleBanner(id) {
+	return fetch({
+		url: api.Bestkit + `/admin/community/banners/${id}`,
+		method: 'get'
+	})
+}
+
+//产品榜
+export function hotProduct(paramsObj) {
+	return fetch({
+		url: api.Bestkit + `/admin/community/heat_products`,
+		method: 'get',
 		data: paramsObj
 	})
 }

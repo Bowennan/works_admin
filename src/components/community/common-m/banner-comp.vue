@@ -1,8 +1,13 @@
 <template>
-	<div class="um">
+	<div class="tables">
 		<banner-search-comp></banner-search-comp>
-        <banner-title-comp @open="changeCover"></banner-title-comp>
-        <banner-list-comp :cover = "coverStatus" @close="changeCover" class="tables"></banner-list-comp>
+        <banner-title-comp></banner-title-comp>
+        <banner-list-comp></banner-list-comp>
+
+        <Page class="pages" :current="page" :total="total" show-sizer :page-size="limitPages" :page-size-opts="pageArray"
+              @on-change="turnPage"
+              @on-page-size-change="turnPages"
+        ></Page>
 	</div>
 </template>
 
@@ -10,16 +15,38 @@
     import bannerSearchComp from '@/components/community/common-m/banner-search-comp'
 	import bannerTitleComp from '@/components/community/common-m/banner-title-comp'
 	import bannerListComp from '@/components/community/common-m/banner-list-comp'
-
+    import {mapActions, mapMutations, mapGetters} from 'vuex'
 	export default {
 		     data() {
                 return {
-                	coverStatus:false
+                	pageArray:[5,10,20],
+               	    limitPages:10
                 }
 		     },
+
+		     computed: {
+		     	...mapGetters('bannerListsData', [
+                        'page',
+                        'total'
+		     		])
+		     },
 		     methods: {
-		     	changeCover() {
-		     		this.coverStatus = !this.coverStatus
+		     	...mapActions('bannerListsData', [
+                        'getBannersListData'
+		     		]),
+
+		     	turnPage(num) {
+		     		this.getBannersListData({
+		     			page: num,
+		     			limit: this.limitPages
+		     		})
+		     	},
+
+		     	turnPages(nums) {
+		     		this.limitPages = nums
+		     		this.getBannersListData({
+		     			limit: this.limitPages
+		     		})
 		     	}
 		     },
              components: {
@@ -29,12 +56,3 @@
 			  }
 	}
 </script>
-
-<style scoped>
-	  .tables {
-	  	height: 100%;
-	    width:96%;
-	    min-width:1052px;
-	    margin:0 10px;
-	  }
-</style>

@@ -11,9 +11,9 @@
 			</span>
 
 			<p class="pop-items">
-				<span class='c-carbon'>权重值：620 - </span>
-				 <Input size='small' v-model="value" placeholder="Enter something..." style="width: 100px"></Input>
-				 <span class="c-carbon">= 设置后的偏移量</span>
+				<span class='c-carbon'>权重值：{{weight}} - </span>
+				 <Input size='small' :number='true' v-model="value" placeholder="偏移值" style="width: 100px"></Input>
+				 <span class="c-carbon">= {{result || "暂无结果"}}</span>
 			</p>
 
 			<p class='pop-items'>
@@ -27,27 +27,50 @@
       
          
             <Button class="pop-confirm-btn" style="background: #fff" type="ghost" @click="closePop">取消</Button>
-              <Button class="pop-confirm-btn" type="primary">确认</Button>
+              <Button class="pop-confirm-btn" type="primary" @click="submit">确认</Button>
     
 	   </div>
 	</div>
 </template>
 
 <script>
-    import {mapMutations} from 'vuex'
+    import {mapMutations, mapActions} from 'vuex'
 	export default {
-	  
+	    props: {
+	    	id: {
+	    		type:Number
+	    	},
+	    	weight: {
+	    		type:Number
+	    	}
+	    },
 	  	data() {
           return {
             value:''
           }
 	  	},
+	  	computed: {
+	  		result() {
+               return this.weight - this.value 
+	  		}
+	  	},
 	  	methods: {
 	  		...mapMutations([
                     'setPopStatus'
 	  			]),
+	  		...mapActions([
+                   'updateArticle'
+	  			]),
 	  		closePop() {
 	  			this.setPopStatus()
+	  		},
+	  		submit() {
+	  			this.updateArticle({
+	  				id: this.id,
+	  				weight: this.result
+	  			})
+
+	  			this.$emit('reload')
 	  		}
 	  	}
 	  

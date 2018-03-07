@@ -59,26 +59,26 @@
 						<p class="h-block01">
 							<span class="items">
 								<span class="c-gris">文章归类 | </span>
-								<span class="c-carbon pointer" @click="setCatalog(item.id)">设置</span>
+								<span class="c-carbon pointer" @click="setCatalog(item)">设置</span>
 							</span>
 							
 							<span class="items">
 								<span class="c-gris">文章状态 | </span>
-								<span class="c-carbon pointer" @click="setStatus(item.id)">{{item.status===0? "隐藏" : item.status===1? "正常" : "草稿"}}</span>
+								<span class="c-carbon pointer" @click="setStatus(item)">{{item.status===0? "隐藏" : item.status===1? "正常" : "草稿"}}</span>
 							</span>
 							<span class="items">
 								<span class="c-gris">产品关联 | </span>
-								<span class="c-carbon pointer" @click="setConnect(item.id)">设置</span>
+								<span class="c-carbon pointer" @click="setConnect(item)">设置</span>
 							</span>
 						</p>
 						<p class="h-block02">
 							<span class="items">
 								<span class="c-gris">推首 | </span>
-								<span class="c-carbon pointer">设置</span>
+								<span class="c-carbon pointer" @click="setPull(item)">设置</span>
 							</span>
 							<span class="items">
 								<span class="c-gris">评分 | </span>
-								<span class="c-carbon pointer">{{item.level===0? "无等级" : item.level===1? "等级A" : item.level===2? "等级B" : item.level===3? "等级C" : "等级D" }}</span>
+								<span class="c-carbon pointer" @click="setLevel(item)">{{item.level===0? "无等级" : item.level===1? "等级A" : item.level===2? "等级B" : item.level===3? "等级C" : "等级D" }}</span>
 							</span>
 							<span class="items">
 								<span class="c-gris">TAG | </span>
@@ -88,27 +88,29 @@
 						<p class="h-block03">
 							<span class="items">
 								<span class="c-gris">权重 | </span>
-								<span class="c-carbon pointer">{{item.weight}}</span>
+								<span class="c-carbon pointer" @click="setWeight(item)">{{item.weight}}</span>
 							</span>
 						</p>
 					</li>
 				</ul>
 			</li>
 		</ul>
+		<transition name="slide-fade">
 		<div class="cover-style"
-             v-show="popStatus"
+             v-if="popStatus"
              :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
 		>
-			<div class="pop-wrapper">
-				<class :id="id_num" v-if="1 === popNum"></class>
-				<status :id="id_num" @reload="getPostingData" v-if="2 === popNum"></status>
-				<connection v-if="3 === popNum"></connection>
-				<recommend ref="rec" v-if="4 === popNum"></recommend>
-				<level v-if="5 === popNum"></level>
-				<weight v-if="7 === popNum"></weight>
+				<div class="pop-wrapper">
+					<class :id="itemData.id" v-if="1 === popNum"></class>
+					<status :id="itemData.id" @reload="getPostingData" v-if="2 === popNum"></status>
+					<connection :id="itemData.id" :connectionPro="itemData.products" @reload="getPostingData" v-if="3 === popNum"></connection>
+					<recommend ref="recommend" :id="itemData.id" :haveRecommend="havePulled" :allCommunity="itemData.communities" @reload="getPostingData" v-if="4 === popNum"></recommend>
+					<level :id="itemData.id" @reload="getPostingData" v-if="5 === popNum"></level>
+					<weight :weight="itemData.weight" :id="itemData.id" @reload="getPostingData" v-if="7 === popNum"></weight>
 
-			</div>
+				</div>
 		</div>
+		</transition>
 	</div>
 </template>
 
@@ -126,7 +128,8 @@
        	  return {
        	  	coverWidth:0,
        	  	coverHeight:0,
-       	  	id_num:null
+       	  	itemData:null,
+       	  	havePulled:[]
        	  }
        },
        created() {
@@ -149,22 +152,46 @@
                'setPop'
           	]),
 
-          setCatalog(id) {
+          postingData(item) {
           	this.getWindowsSize()
+          	this.itemData = item
+          },
+
+          setCatalog(item) {
+          	this.postingData(item)
           	this.setPop(1)
-          	this.id_num = id
           },
 
-          setStatus(id) {
-          	this.getWindowsSize()
+          setStatus(item) {
+          	this.postingData(item)
           	this.setPop(2)
-          	this.id_num = id
           },
 
-          setConnect(id) {
-          	this.getWindowsSize()
+          setConnect(item) {
+          	this.postingData(item)
           	this.setPop(3)
-          	this.id_num = id
+          },
+
+          setPull(item) {
+          	this.postingData(item)
+          	this.setPop(4)
+          	this.havePulled.length=[]
+          	item.communities.forEach((ele) => {
+                if(ele.is_choice) {
+                	this.havePulled.push(ele)
+                }
+          	})
+          	
+          },
+
+          setLevel(item) {
+            this.postingData(item)
+            this.setPop(5)
+          },
+
+          setWeight(item) {
+          	this.postingData(item)
+          	this.setPop(7)
           }
        },
        components: {
@@ -234,13 +261,16 @@
 		line-height: 30px;
 		white-space: normal;
 	}
-	.list-enter-active, .list-leave-active {
-	  transition: all 1s;
-	}
-	.list-enter, .list-leave-to
-	/* .list-leave-active for below version 2.1.8 */ {
-	  opacity: 0;
-	  transform: translateY(30px);
-	}
+	   .slide-fade-enter-active {
+		  transition: all .5s ease;
+		}
+		.slide-fade-leave-active {
+		  transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+		}
+		.slide-fade-enter, .slide-fade-leave-to
+		/* .slide-fade-leave-active for below version 2.1.8 */ {
+		  transform: scale(0.2);
+		  opacity: 0;
+		}
 </style>
 

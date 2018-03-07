@@ -11,15 +11,15 @@
 			<li class="pro-ope">操作</li>
 		</ul>
 
-		<ul>
+		<ul v-for="(item, index) in datas" :key="index">
 			<li>
 				<ul class="con-header">
 					<li class="pro-id more-line">
 						<p class="f-col">
 						   <Checkbox class="checkbox" v-model="single"></Checkbox>
-						   <span class="values">12121</span>
-						   <span class="values">直评</span>
-						   <span>2017-12-12</span>
+						   <span class="values">{{item.id}}</span>
+						   <span class="values">{{item.name}}</span>
+						   <span>{{item.updated_at}}</span>
 						</p>
 					</li>
 					<li class="pro-img more-line">
@@ -29,26 +29,26 @@
 					</li>
 					<li class="pro-info more-line">
 					    <p>
-					    	<span>产品ID：<span class="values">121212</span></span>
-					    	<span>产品名字：<span class="values">机器人</span></span>
-					    	<span>上市时间：<span class="values">2017-12-19</span></span>
+					    	<span>产品ID：<span class="values">{{item.product_id}}</span></span>
+					    	<span>产品名字：<span class="values">{{item.name}}</span></span>
+					    	<span>上市时间：<span class="values">{{(item.published_at).slice(0, 10)}}</span></span>
 					    </p>
 					</li>
 					<li class="pro-url more-line">
 						<p>
-							<span>社区链接<span class="values">(可点)</span></span>
-							<span>百科链接<span class="values">(可点)</span></span>
+							<span><a :href="item.community_link">社区链接</a></span>
+							<span><a :href="item.baike_link">百科链接</a></span>
 						</p>
 					</li>
 					<li class="pro-loc">
 						<p>
-							<span>热门新机</span>
+							<span>{{item.type == "product" ? "热门产品" : "热门配件"}}</span>
 						</p>
 					</li>
 					<li class="pro-ope more-line">
 						<p>
 							<span>操作 | <span class="values">编辑</span></span>
-							<span>状态 | <span class="values">正常</span></span>
+							<span>状态 | <span class="values">{{item.status === 1? "正常" : "隐藏"}}</span></span>
 						</p>
 					</li>
 				</ul>
@@ -64,6 +64,7 @@
 </template>
 
 <script>
+    import {mapActions, mapGetters} from 'vuex'
     import ProductStatus from '@/components/pop/product03-pop'
 	export default {
 		props: {
@@ -73,6 +74,7 @@
 			}
 		},
 		created() {
+			this.getHotProduct()
            this.getWindowsSize()
 		},
        data() {
@@ -85,7 +87,15 @@
        	  	show_Status:false
        	  }
        },
+       computed: {
+           ...mapGetters('hotproductsData', [
+                'datas'
+           	])
+       },
        methods: {
+       	...mapActions('hotproductsData', [
+                'getHotProduct'
+       		]),
        	getWindowsSize() {
        		this.coverWidth = window.document.body.offsetWidth;
        		this.coverHeight = window.document.body.offsetHeight;

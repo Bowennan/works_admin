@@ -17,7 +17,6 @@
 	import postingListComp from '@/components/community/posting-list-comp'
 
     import {mapGetters, mapActions} from "vuex"
-    const _Ok = 200;
 	export default {
 		    data() {
                return {

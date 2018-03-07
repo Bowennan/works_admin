@@ -31,7 +31,7 @@
       
          
             <Button class="pop-confirm-btn" style="background:#fff" type="ghost" @click="closePop">取消</Button>
-              <Button class="pop-confirm-btn" type="primary" @click="changeLevel">确认发送</Button>
+              <Button class="pop-confirm-btn" type="primary" @click="submit">确认发送</Button>
     
 	   </div>
 
@@ -39,41 +39,36 @@
 </template>
 
 <script>
-    import {mapMutations, mapGetters} from 'vuex'
-    import {updateArticle} from '@/axios/api'
+    import {mapActions, mapMutations} from 'vuex'
 	export default {
+		props: {
+			id: {
+				type:Number
+			}
+		},
 		data() {
 			return {
 				infos:'',
 				level:null
 			}
 		},
-		computed: {
-          ...mapGetters([
-               "articleId",
-               "datas",
-               "articleIndex"
-          	])
-		},
 		methods: {
 			...mapMutations([
                    'setPopStatus'
 				]),
+			...mapActions([
+                   'updateArticle'
+				]),
 			closePop() {
 				this.setPopStatus()
 			},
-			changeLevel() {
-				this.setPopStatus()
-				updateArticle({
-					id: this.articleId,
-					level: parseInt(this.level)
-				}).then(res => {
-                   
-                    ((this.datas)[this.articleIndex]).level = parseInt(this.level)
-					console.log("修改成功")
-				}).catch(err => {
-					console.log("修改失败")
+			submit() {
+				this.updateArticle({
+					id: this.id,
+					level: this.level
 				})
+
+				this.$emit('reload')
 			}
 		}
 	}

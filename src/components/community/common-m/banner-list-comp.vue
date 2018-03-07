@@ -10,30 +10,30 @@
 			<li class="action-status">操作</li>
 		</ul>
 
-		<ul v-for="item in 20">
+		<ul v-for="(item, index) in datas" :key="index">
 			<li>
 				<ul class="con-header">
 					<li class="id-title more-line">
 						<p class="f-col">
 						   <Checkbox class="checkbox" v-model="single"></Checkbox>
-						   <span class="values">12121</span>
-						   <span class="values">直评</span>
-						   <span>2012-12-12</span>
+						   <span class="values">{{item.id}}</span>
+						   <span class="values">{{item.title}}</span>
+						   <span>{{item.updated_at}}</span>
 						</p>
 					</li>
 					<li class="url-img more-line">
-						<p style="color:#2d8cf0; cursor:pointer">链接 | 图片</p>
+						<p style="color:#2d8cf0; cursor:pointer"><a :href="item.link">链接</a> | <a :href="item.avatar">图片</a></p>
 					</li>
 					<li class="do-or-not more-line">
 					    <p>
-					    	<span>生效时间：<span class="values">2017-12-12</span></span>
-					    	<span>失效时间：<span class="values">2019-12-12</span></span>
+					    	<span>生效时间：<span class="values">{{item.began_at}}</span></span>
+					    	<span>失效时间：<span class="values">{{item.ended_at}}</span></span>
 					    </p>
 					</li>
 					<li class="location-important more-line">
 						<p>
-							<span>权重：<span class="values">12</span></span>
-							<span>位置：<span class="values">轮播图</span></span>
+							<span>权重：<span class="values">{{item.weight}}</span></span>
+							<span>位置：<span class="values">{{item.type == 0 ? "轮播区域" : item.type == 1 ? "左上" : item.type == 2 ? "左下" : item.type == 3 ? "右上" : "右下"}}</span></span>
 						</p>
 					</li>
 					<li class="action-status more-line">
@@ -55,7 +55,7 @@
 </template>
 
 <script>
-
+    import {mapActions, mapGetters, mapMutations} from 'vuex'
     import BannerFirst from '@/components/pop/banner-status-pop'
 	export default {
 		props: {
@@ -65,7 +65,9 @@
 			}
 		},
 		created() {
+		   this.getBannersListData()
            this.getWindowsSize()
+           console.log(this.datas)
 		},
        data() {
        	  return {
@@ -77,7 +79,15 @@
        	  	show_Status:false
        	  }
        },
+       computed: {
+       	...mapGetters('bannerListsData', [
+                'datas'
+       		])
+       },
        methods: {
+       	...mapActions('bannerListsData', [
+                'getBannersListData'
+       		]),
        	getWindowsSize() {
        		this.coverWidth = window.document.body.offsetWidth;
        		this.coverHeight = window.document.body.offsetHeight;

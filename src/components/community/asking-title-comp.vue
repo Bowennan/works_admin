@@ -1,13 +1,13 @@
 <template>
 	<div class="title-box">
-		<h3 class="titulo">通用提问列表</h3>
+		<h3 class="titulo">通用问题列表</h3>
 		<div class="btns-container">
 			<Button class="re-btn" type="primary" shape="circle" icon="ios-loop" @click="refresh">刷新</Button>
 			<Button class="re-btn" type="primary" shape="circle" icon="ios-trash-outline">批量隐藏</Button>
 		</div>
 		
 		<div class="result-container">
-			<span class="c-gris total-result">全部提问：
+			<span class="c-gris total-result">全部问题：
 	          <span class="c-naranja">{{total}}</span>
 			</span>
 			<Select class="order-sel"  v-model="order">

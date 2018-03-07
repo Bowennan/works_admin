@@ -1,7 +1,7 @@
 <template>
 	<div class="pop-container">
 		<div class="pop-header">
-			<span class="pop-title">帖子状态选择</span>
+			<span class="pop-title">评论/回复状态改变</span>
 			<Icon type="close-round" class="pop-close" @click.native="closePop"></Icon>
 		</div>
 
@@ -10,8 +10,7 @@
 
 			<RadioGroup class="pop-single-sel" v-model="status">
 		        <Radio style="display:block; margin:8px 4px" label=1>正常</Radio>
-		        <Radio style="display:block; margin:8px 4px" label=0>隐藏帖子</Radio>
-		        <Radio style="display:block; margin:8px 4px" label=2>退回草稿箱</Radio>
+		        <Radio style="display:block; margin:8px 4px" label=0>隐藏</Radio>
 		    </RadioGroup>
 		</div>
 
@@ -37,7 +36,7 @@
 </template>
 
 <script>
-    import {mapMutations, mapGetters, mapActions} from 'vuex'
+    import {mapMutations, mapActions} from 'vuex'
 	export default {
 		props: {
             id: {
@@ -50,7 +49,7 @@
 				status:null
 			}
 		},
-		
+
 		methods: {
 			...mapMutations([
                    'setPopStatus'

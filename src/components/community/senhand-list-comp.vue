@@ -91,15 +91,15 @@
 						<p class="h-block01">
 							<span class="items">
 								<span class="c-gris">二手状态 | </span>
-								<span class="c-carbon pointer">{{item.status===0? "隐藏" : item.status===1? "正常" : "下架"}}</span>
+								<span class="c-carbon pointer" @click="setStatus(item)">{{item.status===0? "隐藏" : item.status===1? "正常" : "下架"}}</span>
 							</span>
 							<span class="items">
-								<span class="c-gris">社区归类 | </span>
-								<span class="c-carbon pointer">设置</span>
+								<span class="c-gris">二手归类 | </span>
+								<span class="c-carbon pointer" @click="setCatalog(item)">设置</span>
 							</span>
 							<span class="items">
 								<span class="c-gris">产品关联 | </span>
-								<span class="c-carbon pointer">设置</span>
+								<span class="c-carbon pointer" @click="setConnect(item)">设置</span>
 							</span>
 							
 						</p>
@@ -108,38 +108,62 @@
 							
 							<span class="items">
 								<span class="c-gris">权重 | </span>
-								<span class="c-carbon pointer">暂无</span>
+								<span class="c-carbon pointer"  @click="setWeight(item)">暂无</span>
 							</span>
 							<span class="items">
 								<span class="c-gris">推首 | </span>
-								<span class="c-carbon pointer">设置</span>
+								<span class="c-carbon pointer" @click="setPull(item)">设置</span>
 							</span>
 						</p>
 					</li>
 				</ul>
 			</li>
 		</ul>
+		<transition name="slide-fade">
+		<div class="cover-style"
+             v-if="popStatus"
+             :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
+		>
+				<div class="pop-wrapper">
+					<class :id="itemData.id" v-if="1 === popNum"></class>
+					<status :id="itemData.id" @reload="getIdleData" v-if="2 === popNum"></status>
+					<connection :id="itemData.id" :connectionPro="itemData.products" @reload="getIdleData" v-if="3 === popNum"></connection>
+					<recommend ref="recommend" :id="itemData.id" :haveRecommend="havePulled" :allCommunity="itemData.communities" @reload="getIdleData" v-if="4 === popNum"></recommend>
+					<weight :weight="itemData.weight" :id="itemData.id" @reload="getIdleData" v-if="7 === popNum"></weight>
+
+				</div>
+		</div>
+		</transition>
 	</div>
 </template>
 
 <script>
     import Loading from '@/components/base-comp/loading'
+    import Status from "@/components/pop/status-pop"
+    import Connection from "@/components/pop/connectp-pop"
+    import Weight from "@/components/pop/weight-pop"
+    import Class from "@/components/pop/classfy-pop"
+    import Recommend from "@/components/pop/recommend-pop"
     import {mapGetters, mapMutations, mapActions} from 'vuex'
 	export default {
        data() {
        	  return {
-       	  	state: 0,
+       	  	coverWidth:0,
+       	  	coverHeight:0,
+       	  	itemData:null,
+       	  	havePulled:[],
        	  	single:''
        	  }
        },
 
        created() {
-       	this.getIdleData(),
-       	this.getWindowsSize()
+       	this.getIdleData()
        },
        computed: {
        	...mapGetters('idlesData',[
-              "datas"
+              "datas",
+               "popNum",
+               "popStatus"
        		])
        },
 
@@ -149,22 +173,53 @@
             this.coverHeight = window.document.body.offsetHeight;
           },
           ...mapActions('idlesData', [
-               'getIdleData'
+               'getIdleData',
+               'setPop'
           	]),
-       	...mapMutations('idlesData', [
-                'setPopStatus',
-                'setPopNum',
-                'sendId',
-                'sendConnection',
-                'setArticleIndex',
-                'SET_POSTING_SOURCE',
-                'GET_COMMUNITY_ID',
-                'SET_COMMUNITY_CHIOCE',
-                'GET_COMMUNITIES'
-              ])
-       	 },
+
+           postingData(item) {
+          	this.getWindowsSize()
+          	this.itemData = item
+          },
+
+          setCatalog(item) {
+          	this.postingData(item)
+          	this.setPop(1)
+          },
+
+          setStatus(item) {
+          	this.postingData(item)
+          	this.setPop(2)
+          },
+
+          setConnect(item) {
+          	this.postingData(item)
+          	this.setPop(3)
+          },
+
+          setPull(item) {
+          	this.postingData(item)
+          	this.setPop(4)
+          	this.havePulled.length=[]
+          	item.communities.forEach((ele) => {
+                if(ele.is_choice) {
+                	this.havePulled.push(ele)
+                }
+          	})
+          	
+          },
+          setWeight(item) {
+          	this.postingData(item)
+          	this.setPop(7)
+          }
+       },
        components: {
-       	Loading
+       	Loading,
+       	Status,
+       	Connection,
+       	Weight,
+       	Class,
+       	Recommend
        }
    }
 </script>
@@ -218,5 +273,16 @@
 		font-weight: 400;
 		color:#bbbec4;
 	}
+	.slide-fade-enter-active {
+		  transition: all .5s ease;
+		}
+		.slide-fade-leave-active {
+		  transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+		}
+		.slide-fade-enter, .slide-fade-leave-to
+		/* .slide-fade-leave-active for below version 2.1.8 */ {
+		  transform: scale(0.2);
+		  opacity: 0;
+		}
 </style>
 

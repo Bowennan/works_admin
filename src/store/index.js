@@ -13,6 +13,8 @@ import exhibitionsData from './modules/exhibitions-data'
 import disclosesData from './modules/discloses-data'
 import commentsData from './modules/comments-data'
 import replysData from './modules/replys-data'
+import bannerListsData from './modules/bannerLists-data'
+import hotproductsData from './modules/hotproducts-data'
 
 Vue.use(Vuex)
 
@@ -30,6 +32,9 @@ export default new Vuex.Store({
         exhibitionsData,
         disclosesData,
         commentsData,
-        replysData
+        replysData,
+        bannerListsData,
+        hotproductsData
+        
 	}
 })

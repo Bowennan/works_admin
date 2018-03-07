@@ -42,36 +42,49 @@
 					<li class="action-status more-line">
 						<p>
 							<span class="c-gris">热门回答 | <span class="c-carbon">是</span></span>
-							<span class="c-gris">回答状态 | <span class="c-carbon">{{item.deleted_at===null? "正常" : "隐藏"}}</span></span>
+							<span class="c-gris">回答状态 | <span class="c-carbon pointer" @click="setStatus(item.id)">{{item.deleted_at===null? "正常" : "隐藏"}}</span></span>
 						</p>
 					</li>
 				</ul>
 			</li>
 		</ul>
+		<transition name="slide-fade">
+		<div class="cover-style"
+             v-if="popStatus"
+             :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
+		>
+				<div class="pop-wrapper">
+					<status :id="id" @reload="getReplysData" v-if="2 === popNum"></status>
+
+				</div>
+		</div>
+		</transition>
 	</div>
 </template>
 
 <script>
     import Loading from '@/components/base-comp/loading'
+    import Status from "@/components/pop/status-comments-pop"
     import {mapGetters, mapMutations, mapActions} from 'vuex'
 	export default {
        data() {
        	  return {
-       	  	state: 0,
+       	  	coverWidth:0,
+       	  	coverHeight:0,
+       	  	id:null,
        	  	single:''
        	  }
        },
 
        created() {
-       	this.getReplyData({
-       		summary_catalog: this.summary_catalog
-       	}),
-       	this.getWindowsSize()
+       	this.getReplysData()
        },
        computed: {
        	...mapGetters('replysData',[
               "datas",
-              "summary_catalog"
+              "summary_catalog",
+               "popNum",
+               "popStatus"
        		])
        },
 
@@ -81,22 +94,29 @@
             this.coverHeight = window.document.body.offsetHeight;
           },
           ...mapActions('replysData', [
-               'getReplyData'
+               'getReplyData',
+               'setPop'
           	]),
-       	...mapMutations('replysData', [
-                'setPopStatus',
-                'setPopNum',
-                'sendId',
-                'sendConnection',
-                'setArticleIndex',
-                'SET_POSTING_SOURCE',
-                'GET_COMMUNITY_ID',
-                'SET_COMMUNITY_CHIOCE',
-                'GET_COMMUNITIES'
-              ])
+
+       	getReplysData() {
+          	this.getReplyData({
+	       		summary_catalog: this.summary_catalog
+	       	})
+          },
+
+           postingData() {
+          	this.getWindowsSize()
+          },
+
+		  setStatus(id) {
+		  	        this.postingData()
+		          	this.setPop(2)
+		          	this.id = id
+		          },
        	 },
        components: {
-       	Loading
+       	Loading,
+       	Status
        }
    }
 </script>
@@ -116,7 +136,7 @@
 		flex:1;
 	}
 	.action-status {
-		flex:0 0 120px;
+		flex:0 0 150px;
 	}
 	.more-line p > span {
 		display: block;
