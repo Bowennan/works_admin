@@ -1,8 +1,12 @@
 <template>
 	<div class="um">
 		<bulletin-search-comp></bulletin-search-comp>
-        <bulletin-title-comp @open="changeCover"></bulletin-title-comp>
-        <bulletin-list-comp :cover = "coverStatus" @close="changeCover" class="tables"></bulletin-list-comp>
+        <bulletin-title-comp></bulletin-title-comp>
+        <bulletin-list-comp></bulletin-list-comp>
+        <Page class="pages" :current="page" :total="total" show-sizer :page-size="limitPages" :page-size-opts="pageArray"
+              @on-change="turnPage"
+              @on-page-size-change="turnPages"
+        ></Page>
 	</div>
 </template>
 
@@ -11,15 +15,38 @@
 	import bulletinTitleComp from '@/components/community/common-m/bulletin-title-comp'
 	import bulletinListComp from '@/components/community/common-m/bulletin-list-comp'
 
+	import {mapGetters, mapActions} from "vuex"
+
 	export default {
 		     data() {
 		     	return {
-		     		coverStatus:false
+		     		pageArray:[5,10,20],
+               	    limitPages:10
 		     	}
 		     },
+		     computed: {
+		     	...mapGetters('bulletinsData', [
+                       'total',
+                       'page'
+		     		])
+		     },
 		     methods: {
-		     	changeCover() {
-		     		this.coverStatus = !this.coverStatus
+		     	...mapActions('bulletinsData',[
+                       'getBulletinListData'
+		     		]),
+
+		     	turnPage(num) {
+		     		this.getBulletinListData({
+		     			page: num,
+		     			limit: this.limitPages
+		     		})
+		     	},
+
+		     	turnPages(nums) {
+		     		this.limitPages = nums
+		     		this.getBulletinListData({
+		     			limit: this.limitPages
+		     		})
 		     	}
 		     },
              components: {

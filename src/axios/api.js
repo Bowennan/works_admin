@@ -265,7 +265,7 @@ export function updateCommunity(paramsObj) {
 	return fetch({
 		url:api.Bestkit + `/admin/community/articles/${paramsObj.id}/communities`,
 		method: 'put',
-		data: paramsObj
+		params: paramsObj
 	})
 }
 
@@ -274,7 +274,7 @@ export function updateArticleChoice(paramsObj) {
 	return fetch({
 		url:api.Bestkit + 'admin/community/articles/' + paramsObj.id + '/community_choices',
 		method: 'put',
-		data: paramsObj
+		params: paramsObj
 	})
 }
 
@@ -283,7 +283,7 @@ export function updateConPro(paramsObj) {
 	return fetch({
 		url:api.Bestkit + `/admin/community/articles/${paramsObj.id}/products`,
 		method: 'put',
-		data: paramsObj
+		params: paramsObj
 	})
 }
 
@@ -297,15 +297,8 @@ export function bannersList(paramsObj) {
     return fetch({
     	url:api.Bestkit + `/admin/community/banners`,
     	method: 'get',
-    	data: paramsObj
+    	params: paramsObj
     })
-}
-//id查询单个banner
-export function singleBanner(id) {
-	return fetch({
-		url: api.Bestkit + `/admin/community/banners/${id}`,
-		method: 'get'
-	})
 }
 
 //产品榜
@@ -313,7 +306,51 @@ export function hotProduct(paramsObj) {
 	return fetch({
 		url: api.Bestkit + `/admin/community/heat_products`,
 		method: 'get',
-		data: paramsObj
+		params: paramsObj
+	})
+}
+
+//公告
+export function bulletinList(paramsObj) {
+	return fetch({
+		url: api.Bestkit + `/admin/community/notices`,
+		method: 'get',
+		params: paramsObj
+	})
+}
+
+
+//社区首页管理接口（实际上就是精选内容 is_choice = 1）
+//精选帖子
+export function choosePosting(paramsObj) {
+	return fetch({
+		url: api.Bestkit + `/admin/community/articles?is_choice=1`,
+		method: 'get',
+		params: paramsObj
+	})
+}
+//精选问题
+export function chooseQuestion(paramsObj) {
+	return fetch({
+		url: api.Bestkit + `/admin/community/questions?is_choice=1`,
+		method: 'get',
+		params: paramsObj
+	})
+}
+//精选好价
+export function chooseCoupons(paramsObj) {
+	return fetch({
+		url: api.Bestkit + `/admin/community/coupons?is_choice=1`,
+		method: 'get',
+		params: paramsObj
+	})
+}
+//精选二手
+export function chooseIdle(paramsObj) {
+	return fetch({
+		url: api.Bestkit + `/admin/community/idles?is_choice=1`,
+		method: 'get',
+		params: paramsObj
 	})
 }
 

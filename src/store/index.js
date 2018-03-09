@@ -15,6 +15,11 @@ import commentsData from './modules/comments-data'
 import replysData from './modules/replys-data'
 import bannerListsData from './modules/bannerLists-data'
 import hotproductsData from './modules/hotproducts-data'
+import bulletinsData from './modules/bulltins-data'
+import choosePostingData from './modules/choose-posting-data'
+import chooseCouponsData from './modules/choose-coupons-data'
+import chooseQuestionData from './modules/choose-question-data'
+import chooseIdleData from './modules/choose-idle-data'
 
 Vue.use(Vuex)
 
@@ -34,7 +39,12 @@ export default new Vuex.Store({
         commentsData,
         replysData,
         bannerListsData,
-        hotproductsData
+        hotproductsData,
+        bulletinsData,
+        choosePostingData,
+		chooseCouponsData,
+		chooseQuestionData,
+		chooseIdleData
         
 	}
 })

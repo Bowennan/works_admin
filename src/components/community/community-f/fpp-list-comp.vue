@@ -10,77 +10,61 @@
 			<li class="posting-action">帖子状态与操作</li>
 		</ul>
 
-		<ul>
+		<ul v-for="(item, index) in datas">
 			<li>
 				<ul class="con-header">
 					<li class="posting-id more-line">
 						<p style="position:relative; box-sizing:border-box; padding-left:20px"> 
 							<Checkbox style="position:absolute; left:0; top:34px" v-model="single"></Checkbox>
-							<span class="lines values">13232</span>
-							<span class="lines values">你知道你活的比狗惨吗？你知道你活的比狗惨吗？你知道你活的比狗惨吗？你知道你活的比狗惨吗？</span>
-							<span class="lines">2017-12-9</span>
+							<span class="lines values">{{item.id}}</span>
+							<span class="lines values">{{item.title}}</span>
+							<span class="lines">{{item.updated_at | sliceStr}}</span>
 						</p>
 					</li>
 					<li class="posting-author more-line">
 						<p>
-							<span class="lines values">1212</span>
-							<span class="lines values">哈，你不配</span>
+							<span class="lines values">{{(item.user).id}}</span>
+							<span class="lines values">{{(item.user).nickname}}</span>
 							<span>😝</span>
 						</p>
 					</li>
 					<li class="posting-info more-line">
 						<p>
-							<span class="lines">评论: <span class="values">12</span></span> 
-							<span class="lines">类别: <span class="values">攻略 | 图文</span></span> 
+							<span class="lines">评论: <span class="values">{{item.comment_num}}</span></span> 
+							<span class="lines">类别: <span class="values">{{item.article_type == "evaluate"? "测评" : item.article_type == "experience"? "体验" : item.article_type == "strategy"? "攻略" : "资讯"}} | {{item.content_type == "mix"? "图文" : item.content_type == "video"? "视频" : "纯图"}}</span></span> 
 							
-							<Poptip  trigger="hover" placement="bottom" width="300">
-						        <span class="values">社区、浏览、喜欢、其他等</span>
-						        <div class="con-pop" slot="content">
-						           <div style="width:100%; height:130px; white-space:normal" class="poptip-box">
-						           	  <p>
-						           	  	<span>社区归属：</span>
-						           	  	<span class="values">苹果社区、无人机社区</span>
-						           	  </p>
-						           	  <p style="display:flex">
-						           	  	<span style="flex:1">
-						           	  		总浏览量：<span class="values">21212</span>
-						           	  	</span>
-						           	  	<span style="flex:1">
-						           	  		日浏览量：<span class="values">1231</span>
-						           	  	</span>
-						           	  </p>
-						           	  <p style="display:flex">
-						           	  	<span style="flex:1">
-						           	  		举报：<span class="values">1212</span>
-						           	  	</span>
-						           	  	<span style="flex:1">
-						           	  		收藏：<span class="values">122</span>
-						           	  	</span>
-						           	  </p>
-						           	  <p>
-						           	  	<span>
-						           	  		TAG:<span class="values">XXX,XXX,XXX,XXX</span>
-						           	  	</span>
-						           	  </p>
-						           </div>
-						        </div>
-    						</Poptip>
+							<Poptip style="white-space: normal;" trigger='hover' placement="bottom" width="300">
+							        <span class="lines c-gris">其他: <span class="c-carbon">社区、浏览量等</span></span> 
+							        <div class="pop-cons" slot="content">
+							            <p class="posting-pop c-gris">
+								        		<span>社区归属：</span> <span class="c-carbon" style="padding:0 6px"  v-for="(inneritem, innerindex) in item.communities" :key="innerindex">{{inneritem.name}}</span>
+								        		     <span v-if="!(item.communities).length">无</span>
+									        	</p>
+                                        <p class="posting-pop c-gris">
+                                        	浏览：<span class="c-carbon">{{item.read_num}}</span>
+                                        </p>
+                                        <p class="posting-pop c-gris">
+                                        	收藏：<span class="c-carbon">{{item.collect_num}}</span>
+                                        </p>
+							        </div>
+							    </Poptip>
 						</p>
 					</li>
 					<li class="posting-con">
-					    <p>产品ID： <span class="values">12151</span></p>
+					    <p class="c-gris">产品ID： <span class="c-carbon" style="padding:0 3px"  v-for="(inneritem, innerindex) in item.products" :key="innerindex">{{inneritem.id}}</span>
+					<span v-if="!(item.products).length">无</span></p>
 					</li>
 					<li class="posting-action">
 						<p>
 							<span class="items">
 								<span>状态|</span>
-								<span class="values">未生效</span>
+								<span class="values">{{item.status == 0? "隐藏" : "正常"}}</span>
 							</span>
 							<span class="items">
 								<span>权重|</span>
-								<span class="values">123</span>
+								<span class="values">{{item.weight}}</span>
 							</span>
-						</p>>
+						</p>
 					</li>
 				</ul>
 			</li>
@@ -89,12 +73,30 @@
 </template>
 
 <script>
+    import {mapGetters, mapMutations, mapActions} from 'vuex'
 	export default {
        data() {
        	  return {
        	  	state: 0,
        	  	single:''
        	  }
+       },
+
+       created() {
+       	this.getChoosePostingData()
+       },
+
+       computed: {
+       	...mapGetters('choosePostingData', [
+                'datas'
+       		])
+       },
+
+       methods: {
+       	...mapActions('choosePostingData', [
+               'getChoosePostingData'
+       		]),
+
        }
    }
 </script>

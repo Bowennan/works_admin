@@ -8,26 +8,26 @@
 			<li class="bul-ope">操作</li>
 		</ul>
 
-		<ul>
+		<ul v-for="(item, idnex) in datas">
 			<li>
 				<ul class="con-header">
 					<li class="bul-id more-line">
 						<p class="f-col">
 						   <Checkbox class="checkbox" v-model="single"></Checkbox>
-						   <span class="values">12121</span>
-						   <span class="values">直评</span>
-						   <span>2012-12-16</span>
+						   <span class="values">{{item.id}}</span>
+						   <span class="values">{{item.title}}</span>
+						   <span>{{item.updated_at | sliceStr}}</span>
 						</p>
 					</li>
 					<li class="bul-bel more-line">
 						<p>
-							<span>内容模块：<span class="values">好价公告</span></span>
+							<span>内容模块：<span class="values">{{item.type == "idle"? "二手公告" : "好价公告"}}</span></span>
 						</p>
 					</li>
 					<li class="bul-ope more-line">
 						<p>
 							<span>操作 | <span class="values">编辑</span></span>
-							<span>状态 | <span class="values">隐藏</span></span>
+							<span>状态 | <span class="values">{{item.status == 1? "正常" : "隐藏"}}</span></span>
 						</p>
 					</li>
 				</ul>
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+    import {mapActions, mapMutations, mapGetters} from 'vuex'
     import BulletinStatus from '@/components/pop/bulletin-status-pop'
 	export default {
 		props: {
@@ -52,6 +53,7 @@
 			}
 		},
 		created() {
+		   this.getBulletinListData()
            this.getWindowsSize()
 		},
        data() {
@@ -64,7 +66,15 @@
        	  	show_Status:false
        	  }
        },
+       computed: {
+       	...mapGetters('bulletinsData', [
+               'datas'
+       		])
+       },
        methods: {
+       	...mapActions('bulletinsData', [
+               'getBulletinListData'
+       		]),
        	getWindowsSize() {
        		this.coverWidth = window.document.body.offsetWidth;
        		this.coverHeight = window.document.body.offsetHeight;

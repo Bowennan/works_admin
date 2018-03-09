@@ -1,8 +1,12 @@
 <template>
 	<div class="um">
 		<products-search-comp></products-search-comp>
-        <products-title-comp @open="changeCover"></products-title-comp>
-        <products-list-comp :cover = "coverStatus" @close="changeCover" class="tables"></products-list-comp>
+        <products-title-comp></products-title-comp>
+        <products-list-comp></products-list-comp>
+        <Page class="pages" :current="page" :total="total" show-sizer :page-size="limitPages" :page-size-opts="pageArray"
+              @on-change="turnPage"
+              @on-page-size-change="turnPages"
+        ></Page>
 	</div>
 </template>
 
@@ -10,17 +14,37 @@
     import productsSearchComp from '@/components/community/common-m/products-search-comp'
 	import productsTitleComp from '@/components/community/common-m/products-title-comp'
 	import productsListComp from '@/components/community/common-m/products-list-comp'
-
+    import {mapGetters, mapActions} from 'vuex'
 	export default {
 		     data() {
 		     	return {
-		     		coverStatus:false
+		     		pageArray:[5,10,20],
+               	    limitPages:10
 		     	}
 		     },
 		     methods: {
-		     	changeCover() {
-		     		this.coverStatus = !this.coverStatus;
+		     	...mapActions('hotproductsData', [
+                       'getHotProduct'
+		     		]),
+
+		     	turnPage(num) {
+		     		this.getHotProduct({
+		     			page: num,
+		     			limit: this.limitPages
+		     		})
+		     	},
+		     	turnPages(nums) {
+		     		this.limitPages = nums
+		     		this.getHotProduct({
+                         limit: this.limitPages
+		     		})
 		     	}
+		     },
+		     computed: {
+		     	...mapGetters('hotproductsData', [
+                       'total',
+                       'page'
+		     		])
 		     },
              components: {
 			    productsSearchComp,

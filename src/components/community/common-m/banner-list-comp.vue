@@ -18,7 +18,7 @@
 						   <Checkbox class="checkbox" v-model="single"></Checkbox>
 						   <span class="values">{{item.id}}</span>
 						   <span class="values">{{item.title}}</span>
-						   <span>{{item.updated_at}}</span>
+						   <span>{{item.updated_at | sliceStr}}</span>
 						</p>
 					</li>
 					<li class="url-img more-line">

@@ -69,13 +69,15 @@
 
        methods: {
         ...mapActions('bannerListsData', [
-              'getSingleBannerData'
+              'getBannersListData'
           ]),
 
          search() {
             if(this.banner_id == "id" && /^[0-9]*$/.test(this.searchVal) && this.searchVal !== '') {
               this.status = false
-              this.getSingleBannerData(this.searchVal)
+              this.getBannersListData({
+                id: this.searchVal
+              })
             }else {
               this.status = true
               setTimeout(() => {

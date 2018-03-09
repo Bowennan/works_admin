@@ -16,7 +16,7 @@
 </template>
 
 <script>
-    import {mapMutations, mapGetters, mapActions} from 'vuex'
+  import {mapMutations, mapGetters, mapActions} from 'vuex'
 	export default {
        data() {
        	return {

@@ -1,11 +1,13 @@
 <template>
 	<div class="search-box">
-            <Input class="id-search" v-model="result">
-		        <Select v-model="resultz_doing" slot="prepend" style="width: 60px">
-		            <Option value="id">ID</Option>
+            <Input class="id-search" v-model="searchVal" @keyup.enter="search">
+		        <Select v-model="bulletin_id" slot="prepend" style="width: 80px">
+		            <Option value="id">公告ID</Option>
 		        </Select>
-		        <Button slot="append" icon="ios-search"></Button>
+		        <Button slot="append" icon="ios-search" @click="search"></Button>
 		    </Input>
+
+		    <span v-show="status" class="c-naranja" style='position: absolute; bottom: 5px; left: 106px;'>输入正确的公告ID号</span>
 
 		<div class="range-search">
 			  <Select v-model="model1" style="width:200px">
@@ -17,24 +19,37 @@
 </template>
 
 <script>
-   import idSearch from '@/components/base-comp/id-search'
-   import dateToDate from '@/components/base-comp/date-to-date'
-   import confirmBtn from '@/components/base-comp/confirm-btn'
-   import levelSearch from '@/components/base-comp/level-search'
+    import {mapGetters, mapMutations, mapActions} from 'vuex'
 	export default {
        data() {
        	return {
-       		result: '无',
-       		resultz_doing: 'id',
+       		searchVal:"",
+			bulletin_id:"id",
+			status: false,
        		model1: ''
        	}
        },
 
-       components: {
-       	  idSearch,
-       	  dateToDate,
-       	  confirmBtn,
-       	  levelSearch
+       methods: {
+       	...mapActions('bulletinsData', [
+              'getBulletinListData'
+       		]),
+
+       	search() {
+				if(this.bulletin_id == "id" && /^[0-9]*$/.test(this.searchVal) && this.searchVal !== '') {
+					this.status = false
+					this.getBulletinListData({
+						id: this.searchVal
+					})
+				}else {
+					this.status = true
+					setTimeout(() => {
+						this.status = false
+					}, 1500)
+				}
+
+				this.searchVal = ''
+			},
        }
 
 	}

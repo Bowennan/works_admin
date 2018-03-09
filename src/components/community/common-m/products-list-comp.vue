@@ -31,7 +31,7 @@
 					    <p>
 					    	<span>产品ID：<span class="values">{{item.product_id}}</span></span>
 					    	<span>产品名字：<span class="values">{{item.name}}</span></span>
-					    	<span>上市时间：<span class="values">{{(item.published_at).slice(0, 10)}}</span></span>
+					    	<span>上市时间：<span class="values">{{item.published_at | sliceStr}}</span></span>
 					    </p>
 					</li>
 					<li class="pro-url more-line">

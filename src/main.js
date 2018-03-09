@@ -12,6 +12,7 @@ import '@/commoncss/common-aside-style.css'
 import '@/commoncss/common-pop-style.css'
 import 'babel-polyfill'
 import vuelazy from 'vue-lazyload'
+import * as filters from '@/filter/filter'
 
 
 Vue.config.productionTip = false
@@ -20,6 +21,11 @@ Vue.use(vuelazy, {
 	loading: require('./assets/loading.gif')
 })
 Vue.prototype.$http = axios
+
+//把自己定义的过滤器注入到vue实例当中
+Object.keys(filters).forEach(key => {
+	Vue.filter(key, filters[key])
+})
 
 /* eslint-disable no-new */
 new Vue({
