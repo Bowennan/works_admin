@@ -1,6 +1,9 @@
 <template>
 	<div class="aside-box">
-		 <Menu :theme="theme" class="menu-wrapper">
+    <Select v-model="community_id" class="catalog-position">
+        <Option v-for="item in catalog" :value="item.id" :key="item.id">{{ item.name }}</Option>
+    </Select>
+		 <Menu :theme="theme" class="menu-wrapper" style="padding-top:60px">
                 <Submenu name="indexposting">
                     <template slot="title">
                         <div style="height:18px; display:inline-block">
@@ -9,7 +12,7 @@
 						              <span class="right-title">品类社区首页管理</span>
  							            </span>
                         </div>
-                    </template>
+                    </template> 
                     <MenuItem name="1-1" class="submenu">
                       <router-link to="/community_types" class="left-icon submenu-sub">首页帖子列表</router-link>
                     </MenuItem>
@@ -73,13 +76,47 @@
 </template>
 
 <script>
+  import {mapActions, mapGetters, mapMutations} from 'vuex'
 	export default {
        data() {
        	return {
        		theme: "light"
        	}
+       },
+
+       computed: {
+        ...mapGetters('catalogCommunityData', [
+              'catalog',
+              'community_id'
+          ])
+       },
+
+       created() {
+        this.getCatalogs()
+       },
+
+
+
+       methods: {
+        ...mapActions('catalogCommunityData', [
+              'getCatalogs'
+          ]),
+
+        ...mapMutations('catalogCommunityData', [
+             
+          ])
        }
 	}
 </script>
+
+<style scoped>
+   .catalog-position{
+      width:180px;
+      position: absolute;
+      top:20px;
+      left:28px;
+      z-index:1000;
+   }
+</style>
 
 

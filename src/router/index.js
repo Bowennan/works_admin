@@ -117,6 +117,22 @@ import pvmList from '@/components/wiki/pvm-comp'
 import sublmList from '@/components/wiki/sublm-comp'
 import pccList from '@/components/wiki/pcc-comp'
 
+import masterLog from '@/components/master/master-log-comp'
+import masterList from '@/components/master/master-lists-comp'
+import masterOrder from '@/components/master/master-order-comp'
+
+import tagKeyword from '@/components/tag/tag-keyword-comp'
+import tagAbout from '@/components/tag/tag-about-comp'
+import tagSpecail from '@/components/tag/tag-specail-comp'
+
+import operateAuthority from '@/components/operate/operate-authority-comp'
+import operateBackstage from '@/components/operate/operate-backstage-comp'
+
+import contentTipOff from '@/components/abnormal/abnormal-content-comp'
+import commentTipOff from '@/components/abnormal/abnormal-comment-comp'
+import scoreAbnormal from '@/components/abnormal/abnormal-score-comp'
+import actionAbnormal from '@/components/abnormal/abnormal-action-comp'
+
 import asideComp01 from '@/components/aside01-comp'
 import asideComp02 from '@/components/aside02-comp'
 import asideComp03 from '@/components/aside03-comp'
@@ -125,6 +141,10 @@ import asideComp05 from '@/components/aside05-comp'
 import asideComp06 from '@/components/aside06-comp'
 import asideComp07 from '@/components/aside07-comp'
 import asideComp08 from '@/components/aside08-comp'
+import masterAside from '@/components/master-aside-comp'
+import tagAside from '@/components/tag-aside-comp'
+import operateAside from '@/components/operate-aside-comp'
+import abnormalAside from '@/components/abnormal-aside-comp'
 
 import asideComp081 from '@/components/aside081-comp'
 import asideComp082 from '@/components/aside082-comp'
@@ -564,15 +584,75 @@ export default new Router({
      },
      {
         path: '/masters',
-        component: Log7
+        component: masterAside,
+        children: [
+            {
+                path:'',
+                component:masterLog
+            },
+            {
+                path:'masterlist',
+                component: masterList
+            },
+            {
+                path: 'masterorder',
+                component: masterOrder
+            }
+        ]
      },
      {
-        path: '/seoes',
-        component: Log8
+        path: '/tag',
+        component: tagAside,
+        children: [
+             {
+                path: '',
+                component: tagKeyword
+             },
+             {
+                path: 'tagabout',
+                component: tagAbout
+             },
+             {
+                path: 'tagspecail',
+                component: tagSpecail
+             }
+        ]
      },
      {
-        path: '/operators',
-        component: Log9
+        path: '/operate',
+        component: operateAside,
+        children: [
+           {
+            path:'',
+            component: operateAuthority
+           },
+           {
+            path:'backstage',
+            component: operateBackstage
+           }
+        ]
+     },
+     {
+        path: '/abnormal',
+        component: abnormalAside,
+        children: [
+           {
+            path:'',
+            component: contentTipOff
+           },
+           {
+            path:'comment_tipoff',
+            component: commentTipOff
+           },
+           {
+            path:'score_abnormal',
+            component: scoreAbnormal
+           },
+           {
+            path: 'action_abnormal',
+            component: actionAbnormal
+           }
+        ]
      },
      {
         path: '/connect_contents',

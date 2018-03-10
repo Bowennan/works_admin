@@ -20,6 +20,7 @@ import choosePostingData from './modules/choose-posting-data'
 import chooseCouponsData from './modules/choose-coupons-data'
 import chooseQuestionData from './modules/choose-question-data'
 import chooseIdleData from './modules/choose-idle-data'
+import catalogCommunityData from './modules/catalogcommunity-data'
 
 Vue.use(Vuex)
 
@@ -44,7 +45,8 @@ export default new Vuex.Store({
         choosePostingData,
 		chooseCouponsData,
 		chooseQuestionData,
-		chooseIdleData
+		chooseIdleData,
+		catalogCommunityData
         
 	}
 })

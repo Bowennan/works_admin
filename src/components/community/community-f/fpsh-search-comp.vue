@@ -1,48 +1,79 @@
 <template>
 	<div class="search-box">
-		    <Input class="id-search" v-model="result">
-		        <Select v-model="result_doing" slot="prepend" style="width: 60px">
-		            <Option value="id">ID</Option>
+		    <Input class="id-search" v-model="searchVal" @on-enter="search">
+		        <Select v-model="fpsh_id" slot="prepend" style="width: 80px">
+		            <Option value="id">二手ID</Option>
 		        </Select>
-		        <Button slot="append" icon="ios-search"></Button>
+		        <Button slot="append" icon="ios-search" @click="search"></Button>
 		    </Input>
+
+		    <span v-show="status" class="c-naranja" style='position: absolute; bottom: 5px; left: 106px;'>输入正确的二手ID号</span>
 
 		<div class="range-search">
 
 			<div class="lev-search">
-				    <Select class="brand-group" v-model="model1">
-				        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
+				    <Select class="brand-group" v-model="mval">
+				        <Option v-for="item in model" :value="item.value" :key="item.value">{{ item.label }}</Option>
 				    </Select>
 			</div>
 
 			<div class="lev-search">
-				<Button type="primary">确认筛选</Button>
+				<Button type="primary" class="confirm-group">确认筛选</Button>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-   import idSearchPost from '@/components/base-comp/id-search01'
-   import dateToDate from '@/components/base-comp/date-to-date01'
-   import confirmBtn from '@/components/base-comp/confirm-btn'
-   import levelSearch from '@/components/base-comp/level-search'
+    import {mapGetters, mapMutations, mapActions} from 'vuex'
 	export default {
        data() {
        	return {
-       		value13: '',
-       		select3: '0',
-       		model1: '',
-       		result:'无',
-       		result_doing:'id'
+				searchVal:"",
+				fpsh_id:"id",
+				status:false,
+				mval:0,
+				model:[
+                      {
+                      	label:"二手所属模块",
+                      	value:0
+                      },
+                      {
+                      	label:"已有社区",
+                      	value:'1'
+                      },
+                      {
+                      	label:"实验室",
+                      	value:'2'
+                      },
+                      {
+                      	label:"其他",
+                      	value:'3'
+                      }
+       		  ],
        	}
        },
 
-       components: {
-       	  idSearchPost,
-       	  dateToDate,
-       	  confirmBtn,
-       	  levelSearch
+       methods: {
+       	...mapActions('chooseIdleData', [
+                'getChooseIdleData',
+       		]),
+
+       	search() {
+				if(this.fpsh_id == "id" && /^[0-9]*$/.test(this.searchVal) && this.searchVal !== '') {
+					this.status = false
+					this.getChooseIdleData({
+						id: this.searchVal
+					})
+				}else {
+					this.status = true
+					setTimeout(() => {
+						this.status = false
+					}, 1500)
+				}
+
+				this.searchVal = ''
+			},
        }
 
 	}

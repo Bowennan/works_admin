@@ -1,6 +1,6 @@
 <template>
 	<div class="search-box">
-            <Input class="id-search" v-model="searchVal" @keyup.enter="search">
+            <Input class="id-search" v-model="searchVal" @on-enter="search">
 		        <Select v-model="bulletin_id" slot="prepend" style="width: 80px">
 		            <Option value="id">公告ID</Option>
 		        </Select>
@@ -10,8 +10,8 @@
 		    <span v-show="status" class="c-naranja" style='position: absolute; bottom: 5px; left: 106px;'>输入正确的公告ID号</span>
 
 		<div class="range-search">
-			  <Select v-model="model1" style="width:200px">
-			        <Option v-for="item in 8" :value="item" :key="item">{{ item }}</Option>
+			  <Select v-model="sel" style="width:200px" @on-change="filterTypes">
+			        <Option v-for="item in types" :value="item.value" :key="item.value">{{ item.label }}</Option>
 			   </Select>
 
 		</div>
@@ -26,13 +26,26 @@
        		searchVal:"",
 			bulletin_id:"id",
 			status: false,
-       		model1: ''
+       		types: [
+               {
+               	value:'coupons',
+               	label: '好价'
+               },
+               {
+               	value: 'idle',
+               	label: '二手'
+               }
+       		],
+       		sel:''
        	}
        },
 
        methods: {
        	...mapActions('bulletinsData', [
               'getBulletinListData'
+       		]),
+       	...mapMutations('bulletinsData', [
+              'setType'
        		]),
 
        	search() {
@@ -50,6 +63,13 @@
 
 				this.searchVal = ''
 			},
+
+			filterTypes(val) {
+               this.setType(val)
+               this.getBulletinListData({
+               	 type: this.sel
+               })
+			}
        }
 
 	}

@@ -27,7 +27,8 @@
 		     computed: {
 		     	...mapGetters('bannerListsData', [
                         'page',
-                        'total'
+                        'total',
+                        'community_id'
 		     		])
 		     },
 		     methods: {
@@ -38,14 +39,16 @@
 		     	turnPage(num) {
 		     		this.getBannersListData({
 		     			page: num,
-		     			limit: this.limitPages
+		     			limit: this.limitPages,
+		     			community_id: this.community_id
 		     		})
 		     	},
 
 		     	turnPages(nums) {
 		     		this.limitPages = nums
 		     		this.getBannersListData({
-		     			limit: this.limitPages
+		     			limit: this.limitPages,
+		     			community_id: this.community_id
 		     		})
 		     	}
 		     },

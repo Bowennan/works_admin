@@ -27,7 +27,8 @@
 		     computed: {
 		     	...mapGetters('bulletinsData', [
                        'total',
-                       'page'
+                       'page',
+                       'type'
 		     		])
 		     },
 		     methods: {
@@ -38,14 +39,16 @@
 		     	turnPage(num) {
 		     		this.getBulletinListData({
 		     			page: num,
-		     			limit: this.limitPages
+		     			limit: this.limitPages,
+		     			type: this.type
 		     		})
 		     	},
 
 		     	turnPages(nums) {
 		     		this.limitPages = nums
 		     		this.getBulletinListData({
-		     			limit: this.limitPages
+		     			limit: this.limitPages,
+		     			type: this.type
 		     		})
 		     	}
 		     },

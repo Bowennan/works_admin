@@ -1,10 +1,12 @@
 //引入产品榜的api
-import {hotProduct} from "@/axios/api"
+import {hotProduct, communityList} from "@/axios/api"
 
 const state ={
 	datas:[],
 	total:1,
-	page:1
+	page:1,
+    community_id:'',
+    communityList:[]
 }
 
 const actions = {
@@ -14,6 +16,12 @@ const actions = {
     		commit('setTotal', res.data.meta.total)
     		commit('setPage', res.data.meta.current_page)
     	})
+    },
+
+    getCommunityListData({commit}) {
+        communityList().then(res => {
+            commit('setCommunityList', res.data.data)
+        })
     }
 }
 
@@ -26,13 +34,21 @@ const mutations = {
     },
     setPage(state, page) {
     	state.page = page
+    },
+    setCommunityId(state, commid) {
+        state.community_id = commid
+    },
+    setCommunityList(state, data) {
+        state.communityList = data
     }
 }
 
 const getters = {
 	datas: state => state.datas,
 	total: state => state.total,
-	page: stata => state.page
+	page: stata => state.page,
+    community_id: state => state.community_id,
+    communityList: state => state.communityList
 }
 
 

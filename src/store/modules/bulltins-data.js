@@ -4,7 +4,8 @@ import {bulletinList} from "@/axios/api"
 const state ={
 	datas:[],
 	total:1,
-	page:1
+	page:1,
+    type:''
 }
 
 const actions = {
@@ -26,6 +27,9 @@ const mutations = {
     },
     setPage(state, page) {
     	state.page = page
+    },
+    setType(state, type) {
+        state.type = type
     }
     
 }
@@ -33,7 +37,8 @@ const mutations = {
 const getters = {
 	datas: state => state.datas,
 	total: state => state.total,
-	page: stata => state.page
+	page: stata => state.page,
+    type: state => state.type
 }
 
 

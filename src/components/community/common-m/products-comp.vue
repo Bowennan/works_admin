@@ -30,20 +30,23 @@
 		     	turnPage(num) {
 		     		this.getHotProduct({
 		     			page: num,
-		     			limit: this.limitPages
+		     			limit: this.limitPages,
+		     			community_id: this.community_id
 		     		})
 		     	},
 		     	turnPages(nums) {
 		     		this.limitPages = nums
 		     		this.getHotProduct({
-                         limit: this.limitPages
+                         limit: this.limitPages,
+                         community_id: this.community_id
 		     		})
 		     	}
 		     },
 		     computed: {
 		     	...mapGetters('hotproductsData', [
                        'total',
-                       'page'
+                       'page',
+                       'community_id'
 		     		])
 		     },
              components: {

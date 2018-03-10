@@ -300,6 +300,13 @@ export function bannersList(paramsObj) {
     	params: paramsObj
     })
 }
+//banner社区筛选
+export function communityList() {
+	return fetch({
+		url: api.Bestkit + `/admin/community/communities?field=id,name,relation_type&limit=50`,
+		method: 'get'
+	})
+}
 
 //产品榜
 export function hotProduct(paramsObj) {
@@ -351,6 +358,22 @@ export function chooseIdle(paramsObj) {
 		url: api.Bestkit + `/admin/community/idles?is_choice=1`,
 		method: 'get',
 		params: paramsObj
+	})
+}
+
+
+//社区品类管理
+export function catalogCommunity() {
+	return fetch({
+		url: api.Bestkit + `/admin/community/communities?relation_type=catalog&field=id,name&limit=50`,
+		method: 'get'
+	})
+}
+//获取对应社区的内容
+export function catalogToName(id) {
+	return fetch({
+		url: api.Bestkit + `/admin/community/communities/${id}`,
+		method: 'get'
 	})
 }
 

@@ -22,8 +22,6 @@
 	import senhandListComp from '@/components/community/senhand-list-comp'
 
 	import {mapActions, mapGetters, mapMutations} from "vuex"
-    
-    const _Ok = 200;
 	export default {
 
 		     data() {

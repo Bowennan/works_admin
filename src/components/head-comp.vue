@@ -6,8 +6,9 @@
 
        <ul class="main-menu">
        	<li><router-link class="main-links"  to="/datas">数据</router-link></li>
+       	<li><router-link class="main-links"  to="/datas">网站首页</router-link></li>
        	<li><router-link class="main-links"  to="/users">用户管理</router-link></li>
-       	<li class="main-links">社区
+       	<li class="main-links">社区 <Icon type="chevron-down"></Icon>
            <ul>
            	<li class="sub-menu">
            		<router-link class="sub-menu-list" to="/communities">通用内容管理</router-link>
@@ -35,8 +36,9 @@
        	<li><router-link class="main-links"  to="/wiki">百科</router-link></li>
        	<li><router-link class="main-links"  to="/labs">实验室</router-link></li>
         <li><router-link class="main-links"  to="/masters">达人志</router-link></li>
-       	<li><router-link class="main-links"  to="/seoes">SEO</router-link></li>
-       	<li><router-link class="main-links"  to="/operators">运营管理</router-link></li>
+       	<li><router-link class="main-links"  to="/tag">TAG/专题</router-link></li>
+       	<li><router-link class="main-links"  to="/abnormal">异常监控</router-link></li>
+       	<li><router-link class="main-links"  to="/operate">运营管理</router-link></li>
        </ul>
 	   <div class="infos">
 	   	 <Badge class="tip">

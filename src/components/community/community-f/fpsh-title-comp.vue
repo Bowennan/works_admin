@@ -1,21 +1,43 @@
 <template>
 	<div class="title-box">
 		<h3 class="title">首页二手列表</h3>
-		<Button type="primary" class="refresh" shape="circle" icon="ios-loop">刷新</Button>
+		<Button type="primary" class="refresh" shape="circle" icon="ios-loop" @click="refresh">刷新</Button>
 		<Button type="primary" class="disappeared" shape="circle" icon="ios-trash-outline">批量不通</Button>
 		<div class="search-and-result">
 			<span class="result">首页全部二手：
-	          <span class="res-num">353216</span>
+	          <span class="res-num">{{total}}</span>
 			</span>
 		</div>
 	</div>
 </template>
 
 <script>
+    import {mapMutations, mapGetters, mapActions} from 'vuex'
 	export default {
        data() {
        	return {
        		model1:''
+       	}
+       },
+
+       computed: {
+       	...mapGetters('chooseIdleData', [
+                "total"
+       		])
+       },
+
+       methods: {
+       	...mapActions('chooseIdleData', [
+               'getChooseIdleData'
+       		]) ,
+
+       	...mapMutations('chooseIdleData', [
+               'setPage'
+       		]),
+
+       	refresh() {
+       		this.setPage(1)
+       		this.getChooseIdleData()
        	}
        }
 	}

@@ -22,9 +22,7 @@
 	import priceTitleComp from '@/components/community/price-title-comp'
 	import priceListComp from '@/components/community/price-list-comp'
 
-	import {mapActions, mapGetters, mapMutations} from "vuex"
-    
-    const _Ok = 200;
+	import {mapActions, mapGetters, mapMutations} from "vuex";
 	export default {
 
 		     data() {
