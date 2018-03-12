@@ -18,11 +18,11 @@
                     </MenuItem>
                 </Submenu>
                 <MenuItem name="8-3" class="submenu">
-                      <router-link to="/tag/tagspecail" class="left-icon">
-                        <Icon type="ios-list" size=16 class="iconfont"></Icon>
-                        <span class="right-title">专题管理</span>
-                      </router-link>
-                    </MenuItem>
+                  <router-link to="/tag/tagspecail" class="left-icon">
+                    <Icon type="ios-list" size=16 class="iconfont"></Icon>
+                    <span class="right-title">专题管理</span>
+                  </router-link>
+                </MenuItem>
             </Menu>
 
             <div class="viewer">

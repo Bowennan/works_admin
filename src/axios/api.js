@@ -248,7 +248,7 @@ export function updateArticle(paramsObj) {
 	return fetch({
 		url:api.Bestkit + 'admin/community/articles/' + paramsObj.id,
 		method: 'put',
-		params: paramsObj
+		data: paramsObj
 	})
 }
 
@@ -265,7 +265,7 @@ export function updateCommunity(paramsObj) {
 	return fetch({
 		url:api.Bestkit + `/admin/community/articles/${paramsObj.id}/communities`,
 		method: 'put',
-		params: paramsObj
+		data: paramsObj
 	})
 }
 
@@ -274,7 +274,7 @@ export function updateArticleChoice(paramsObj) {
 	return fetch({
 		url:api.Bestkit + 'admin/community/articles/' + paramsObj.id + '/community_choices',
 		method: 'put',
-		params: paramsObj
+		data: paramsObj
 	})
 }
 
@@ -283,7 +283,16 @@ export function updateConPro(paramsObj) {
 	return fetch({
 		url:api.Bestkit + `/admin/community/articles/${paramsObj.id}/products`,
 		method: 'put',
-		params: paramsObj
+		data: paramsObj
+	})
+}
+
+//更新TAG（关联标签）
+export function updateTag(paramsObj) {
+	return fetch({
+		url: api.Bestkit + `/admin/community/articles/${paramsObj.id}/tags`,
+		method: 'put',
+		data: paramsObj
 	})
 }
 

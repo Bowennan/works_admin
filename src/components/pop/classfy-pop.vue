@@ -100,7 +100,7 @@
 			sendComm() {
                this.updateCommunity({
                	id: this.id,
-               	summary_catalog_ids: this.checkAllGroup
+               	community_ids: this.checkAllGroup
                })
 			}
 		}

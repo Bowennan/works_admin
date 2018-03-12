@@ -6,7 +6,7 @@
 
        <ul class="main-menu">
        	<li><router-link class="main-links"  to="/datas">数据</router-link></li>
-       	<li><router-link class="main-links"  to="/datas">网站首页</router-link></li>
+       	<li><router-link class="main-links"  to="/webpage">网站首页</router-link></li>
        	<li><router-link class="main-links"  to="/users">用户管理</router-link></li>
        	<li class="main-links">社区 <Icon type="chevron-down"></Icon>
            <ul>

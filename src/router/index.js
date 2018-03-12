@@ -133,6 +133,22 @@ import commentTipOff from '@/components/abnormal/abnormal-comment-comp'
 import scoreAbnormal from '@/components/abnormal/abnormal-score-comp'
 import actionAbnormal from '@/components/abnormal/abnormal-action-comp'
 
+import pageBanner from '@/components/webpage/pageBanner-comp'
+import shearShow from '@/components/webpage/shearShow-comp'
+import wikiNew from '@/components/webpage/wikiNew-comp'
+import couponsPro from '@/components/webpage/couponsPro-comp'
+import productComm from '@/components/webpage/productComm-comp'
+import pagePosting from '@/components/webpage/pagePosting-comp'
+import pageMasterpiece from '@/components/webpage/pageMasterpiece-comp'
+import pageVideo from '@/components/webpage/pageVideo-comp'
+import pageOfficer from '@/components/webpage/pageOfficer-comp'
+import masterLogShow from '@/components/webpage/masterLogShow-comp'
+import masterShow from '@/components/webpage/masterShow-comp'
+import pageCommShow from '@/components/webpage/pageCommShow-comp'
+import pageAD from '@/components/webpage/pageAD-comp'
+
+import dataBoard from '@/components/datas/datas-board-comp'
+
 import asideComp01 from '@/components/aside01-comp'
 import asideComp02 from '@/components/aside02-comp'
 import asideComp03 from '@/components/aside03-comp'
@@ -145,6 +161,8 @@ import masterAside from '@/components/master-aside-comp'
 import tagAside from '@/components/tag-aside-comp'
 import operateAside from '@/components/operate-aside-comp'
 import abnormalAside from '@/components/abnormal-aside-comp'
+import webpageAside from '@/components/webpage-aside-comp'
+import datasAside from '@/components/datas-aside-comp'
 
 import asideComp081 from '@/components/aside081-comp'
 import asideComp082 from '@/components/aside082-comp'
@@ -164,7 +182,33 @@ export default new Router({
   routes: [
      {
      	path: '/datas',
-     	component: Log1
+     	component: datasAside,
+        children: [
+             {
+                path:'',
+                component: dataBoard
+             },
+             {
+                path:'content_data',
+                component: dataBoard
+             },
+             {
+                path:'community_data',
+                component: dataBoard
+             },
+             {
+                path:'wiki_data',
+                component: dataBoard
+             },
+             {
+                path:'lab_data',
+                component: dataBoard
+             },
+             {
+                path:'abnormal_data',
+                component: dataBoard
+             }
+        ]
      },
      {
      	path: '/users',
@@ -630,6 +674,65 @@ export default new Router({
             path:'backstage',
             component: operateBackstage
            }
+        ]
+     },
+     {
+        path: '/webpage',
+        component: webpageAside,
+        children: [
+
+               {
+                path:'',
+                component: pageBanner
+               },
+               {
+                path:'shearShow',
+                component: shearShow
+               },
+               {
+                path:'wikiNew',
+                component: wikiNew
+               },
+               {
+                path:'couponsPro',
+                component: couponsPro
+               },
+               {
+                path:'productComm',
+                component: productComm
+               },
+               {
+                path:'pagePosting',
+                component: pagePosting
+               },
+               {
+                path:'pageMasterpiece',
+                component: pageMasterpiece
+               },
+               {
+                path:'pageVideo',
+                component: pageVideo
+               },
+               {
+                path:'pageOfficer',
+                component: pageOfficer
+               },
+               {
+                path:'masterLogShow',
+                component: masterLogShow
+               },
+               {
+                path:'masterShow',
+                component: masterShow
+               },
+               {
+                path: 'pageCommShow',
+                component: pageCommShow
+               },
+               {
+                path:'pageAD',
+                component: pageAD
+               }
         ]
      },
      {

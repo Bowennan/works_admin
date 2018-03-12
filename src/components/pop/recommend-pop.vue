@@ -64,7 +64,8 @@
 	export default {
 		props: {
 			haveRecommend: {
-				type:Array
+				type:Array,
+				default: []
 			},
 			id: {
 				type:Number
@@ -99,7 +100,9 @@
 				this.haveRecommend.forEach((item) => {
 					haveRecommendId.push(item.id)
 				})
+                console.log((this.choiceArr).concat(haveRecommendId))
 				this.updateArticleChoice({
+
 					id: this.id,
 					community_ids: (this.choiceArr).concat(haveRecommendId)
 				})

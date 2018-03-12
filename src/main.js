@@ -13,6 +13,10 @@ import '@/commoncss/common-pop-style.css'
 import 'babel-polyfill'
 import vuelazy from 'vue-lazyload'
 import * as filters from '@/filter/filter'
+import echarts from 'echarts'
+
+
+
 
 
 Vue.config.productionTip = false
@@ -20,6 +24,7 @@ Vue.use(iView)
 Vue.use(vuelazy, {
 	loading: require('./assets/loading.gif')
 })
+Vue.prototype.$echarts = echarts 
 Vue.prototype.$http = axios
 
 //把自己定义的过滤器注入到vue实例当中

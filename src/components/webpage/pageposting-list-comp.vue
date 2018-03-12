@@ -55,38 +55,13 @@
 					    <p class="c-gris">产品ID： <span class="c-carbon" style="padding:0 3px"  v-for="(inneritem, innerindex) in item.products" :key="innerindex">{{inneritem.id}}</span>
 					<span v-if="!(item.products).length">无</span></p>
 					</li>
-					<li class="posting-action">
-						<p class="h-block01">
-							<span class="items">
-								<span class="c-gris">文章归类 | </span>
-								<span class="c-carbon pointer" @click="setCatalog(item)">设置</span>
-							</span>
-							
-							<span class="items">
-								<span class="c-gris">文章状态 | </span>
+					<li class="posting-action more-line">
+						<p>
+							<span class="lines">
+								<span class="c-gris">帖子状态 | </span>
 								<span class="c-carbon pointer" @click="setStatus(item)">{{item.status===0? "隐藏" : item.status===1? "正常" : "草稿"}}</span>
 							</span>
-							<span class="items">
-								<span class="c-gris">产品关联 | </span>
-								<span class="c-carbon pointer" @click="setConnect(item)">设置</span>
-							</span>
-						</p>
-						<p class="h-block02">
-							<span class="items">
-								<span class="c-gris">推首 | </span>
-								<span class="c-carbon pointer" @click="setPull(item)">设置</span>
-							</span>
-							<span class="items">
-								<span class="c-gris">评分 | </span>
-								<span class="c-carbon pointer" @click="setLevel(item)">{{item.level===0? "无等级" : item.level===1? "等级A" : item.level===2? "等级B" : item.level===3? "等级C" : "等级D" }}</span>
-							</span>
-							<span class="items">
-								<span class="c-gris">TAG | </span>
-								<span class="c-carbon pointer" @click="setTag(item)">设置</span>
-							</span>
-						</p>
-						<p class="h-block03">
-							<span class="items">
+							<span class="lines">
 								<span class="c-gris">权重 | </span>
 								<span class="c-carbon pointer" @click="setWeight(item)">{{item.weight}}</span>
 							</span>
@@ -228,19 +203,6 @@
 	}
 	.posting-action {
 		flex:0 0 310px;
-		display: flex;
-	}
-	.posting-action p {
-       padding-top:16px;
-	}
-	.posting-action .h-block01 {
-		flex:0 0 120px;
-	}
-	.posting-action .h-block02 {
-		flex:0 0 86px;
-	}
-	.posting-action .h-block03 {
-		flex:0 0 100px;
 	}
 	.items {
 		display: block;
