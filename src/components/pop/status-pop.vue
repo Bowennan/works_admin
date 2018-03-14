@@ -1,7 +1,7 @@
 <template>
 	<div class="pop-container">
 		<div class="pop-header">
-			<span class="pop-title">帖子状态选择</span>
+			<span class="pop-title">状态设置</span>
 			<Icon type="close-round" class="pop-close" @click.native="closePop"></Icon>
 		</div>
 
@@ -47,7 +47,8 @@
 		data() {
 			return {
 				infos:'',
-				status:null
+				status:null,
+				path:null
 			}
 		},
 		
@@ -63,6 +64,7 @@
 			},
 			changeStatus() {
 				this.updateArticle({
+					path: this.$route.params.path,
                     id: this.id,
                     status: this.status
 				})

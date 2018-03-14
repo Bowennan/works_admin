@@ -1,7 +1,7 @@
 <template>
 	<div class="pop-container">
 		<div class="pop-header">
-			<span class="pop-title">帖子评分</span>
+			<span class="pop-title">等级评定</span>
 			<Icon type="close-round" class="pop-close" @click.native="closePop"></Icon>
 		</div>
 
@@ -64,6 +64,7 @@
 			},
 			submit() {
 				this.updateArticle({
+					path: this.$route.params.path,
 					id: this.id,
 					level: this.level
 				})

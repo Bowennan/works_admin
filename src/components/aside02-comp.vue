@@ -11,14 +11,24 @@
                         </div>
                     </template>
                     <MenuItem name="1-1" class="submenu">
-                      <router-link to="/communities" class="left-icon submenu-sub">帖子列表</router-link>
+                      <router-link :to="{
+                                           name:'posting',
+                                           params: {
+                                                  path: 'articles'
+                                           } }"
+                                           class="left-icon submenu-sub">帖子列表</router-link>
                     </MenuItem>
                     <MenuItem name="1-2" class="submenu">
                       <router-link to="/communities/tbcp" class="left-icon submenu-sub">待审核帖子</router-link>
                       <Badge :count="postingCount" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-3" class="submenu">
-                      <router-link to="/communities/ap" class="left-icon submenu-sub">异常帖子</router-link>
+                      <router-link :to="{
+                                           name:'aposting',
+                                           params: {
+                                                  path: 'articles'
+                                           } }" 
+                                           class="left-icon submenu-sub">异常帖子</router-link>
                     </MenuItem>
                 </Submenu>
                 <Submenu name="opus">
@@ -30,15 +40,27 @@
  							            </span>
                         </div>
                     </template>
-                    <MenuItem name="1-11" class="submenu">
-                      <router-link to="/communities/opus" class="left-icon submenu-sub">作品列表</router-link>
+                    <MenuItem name="coupons" class="submenu">
+                      <router-link :to="{
+                                           name:'coupons',
+                                           params: {
+                                                  path: 'masterpieces'
+                                           }
+
+                      }"  class="left-icon submenu-sub">作品列表</router-link>
                     </MenuItem>
                     <MenuItem name="1-22" class="submenu">
                       <router-link to="/communities/tbco" class="left-icon submenu-sub">待审核作品</router-link>
                       <Badge :count="masterPieceCount" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-33" class="submenu">
-                      <router-link to="/communities/ao" class="left-icon submenu-sub">异常作品</router-link>
+                      <router-link  :to="{
+                                           name:'acoupons',
+                                           params: {
+                                                  path: 'masterpieces'
+                                           }
+
+                      }" class="left-icon submenu-sub">异常作品</router-link>
                     </MenuItem>
                 </Submenu>
                 <Submenu name="comment">

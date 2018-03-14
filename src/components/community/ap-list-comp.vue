@@ -58,10 +58,7 @@
 						<p>
 							
 								<span class="c-gris">文章状态 | </span>
-								<span @click="setStatus({
-									id: item.id,
-									index: index
-								})" class="pointer">{{item.status===0? "隐藏" : item.status===1? "正常" : "草稿"}}</span>
+								<span @click="setStatus(item.id)" class="pointer">{{item.status===0? "隐藏" : item.status===1? "正常" : "草稿"}}</span>
 						
 						</p>
 					</li>
@@ -69,32 +66,42 @@
 			</li>
 		</ul>
   
-        <div v-show="popStatus" :style="{width:coverWidth+'px', height:coverHeight+'px'}" class="cover-style">
-			<div class="pop-wrapper">
-				<status-window></status-window>
-			</div>
+        <transition name="slide-fade">
+		<div class="cover-style"
+             v-if="popStatus"
+             :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
+		>
+				<div class="pop-wrapper">
+					
+					<status :id="id" @reload="getPostingAbnormalData" v-if="2 === popNum"></status>
+					
+					
+				</div>
 		</div>
+		</transition>
 	</div>
 </template>
 
 <script>
     import Loading from '@/components/base-comp/loading'
-    import statusWindow from '@/components/pop/status-pop'
+    import Status from "@/components/pop/status-pop"
     import {mapGetters, mapMutations, mapActions} from 'vuex'
 	export default {
        data() {
        	  return {
        	  	coverWidth:0,
-    		coverHeight:0
+    		coverHeight:0,
+    		id:null
        	  }
        },
        created() {
        	   this.getPostingAbnormalData()
-           this.getWindowsSize()
         },
         computed: {
        	...mapGetters('postingsData', [
-               "datas"
+               "datas",
+               "popNum",
+               "popStatus"
        		])
        },
        methods: {
@@ -107,21 +114,27 @@
                 'SET_POSTING_SOURCE'
        		]),
        	...mapActions('postingsData', [
-              'getPostingAbnormalData'
+              'getPostingAbnormalData',
+              'setPop'
        		]),
        	getWindowsSize() {
 	       		this.coverWidth = window.document.body.offsetWidth;
 	       		this.coverHeight = window.document.body.offsetHeight;
 	       	},
-          setStatus(obj){
-          	this.setPopStatus()
-          	this.SET_POSTING_SOURCE('ap')
-          	this.sendId(obj.id)
-          	this.setArticleIndex(obj.index)
+
+	       	postingData(id) {
+          	this.getWindowsSize()
+          	this.id = id
+          },
+
+
+          setStatus(id){
+          	this.postingData(id)
+          	this.setPop(2)
           }
        },
        components: {
-        	statusWindow,
+        	Status,
         	Loading
         }
    }
@@ -168,5 +181,17 @@
 		line-height: 30px;
 		white-space: normal;
 	}
+
+	.slide-fade-enter-active {
+		  transition: all .5s ease;
+		}
+		.slide-fade-leave-active {
+		  transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+		}
+		.slide-fade-enter, .slide-fade-leave-to
+		/* .slide-fade-leave-active for below version 2.1.8 */ {
+		  transform: scale(0.2);
+		  opacity: 0;
+		}
 </style>
 

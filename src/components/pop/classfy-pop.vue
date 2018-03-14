@@ -1,7 +1,7 @@
 <template>
 	<div class="pop-container">
 		<div class="pop-header">
-			<span class="pop-title">帖子归类社区</span>
+			<span class="pop-title">社区归类</span>
 			<Icon type="close-round" class="pop-close" @click.native="closePop"></Icon>
 		</div>
 
@@ -99,6 +99,7 @@
 		//貌似后数据有问题
 			sendComm() {
                this.updateCommunity({
+               	path: this.$route.params.path,
                	id: this.id,
                	community_ids: this.checkAllGroup
                })

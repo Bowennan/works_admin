@@ -1,6 +1,6 @@
 <template>
 	<div class="search-box">
-		<Input class="id-search" v-model="searchVal">
+		<Input class="id-search" v-model="searchVal" @on-enter="search">
 	        <Select v-model="opus_id" slot="prepend" style="width: 80px">
 	            <Option value="id">作品ID</Option>
 	        </Select>
@@ -22,11 +22,11 @@
 			    </Select>
 		    </div>
 
-		    <div class="conditions-box">
+		   <!--  <div class="conditions-box">
 		    	<Select class="conditions-width" v-model="mval">
 			        <Option v-for="item in model" :value="item.value" :key="item.value">{{ item.label }}</Option>
 			    </Select>
-		    </div>
+		    </div> -->
 		 	<div class="conditions-box">
 		 		<DatePicker type="daterange" placement="bottom-end" placeholder="用户注册时间区间选择" style="width: 200px" @on-change="setTimeRange"></DatePicker>
 		 	</div>
@@ -58,7 +58,7 @@
 				],
 				types: [
                       {
-                      	label:"作品类型",
+                      	label:"所有作品类型",
                       	value:0
                       },
                       {

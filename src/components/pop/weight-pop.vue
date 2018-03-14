@@ -66,6 +66,7 @@
 	  		},
 	  		submit() {
 	  			this.updateArticle({
+	  				path: this.$route.params.path,
 	  				id: this.id,
 	  				weight: this.result
 	  			})

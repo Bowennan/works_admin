@@ -246,7 +246,7 @@ export function disclosesCount(){
 //更新文章(状态 等级 权重)
 export function updateArticle(paramsObj) {
 	return fetch({
-		url:api.Bestkit + 'admin/community/articles/' + paramsObj.id,
+		url:api.Bestkit + `/admin/community/${paramsObj.path}/${paramsObj.id}`,
 		method: 'put',
 		data: paramsObj
 	})
@@ -263,7 +263,7 @@ export function getCommunityNameId() {
 //更新文章(关联社区)
 export function updateCommunity(paramsObj) {
 	return fetch({
-		url:api.Bestkit + `/admin/community/articles/${paramsObj.id}/communities`,
+		url:api.Bestkit + `/admin/community/${paramsObj.path}/${paramsObj.id}/communities`,
 		method: 'put',
 		data: paramsObj
 	})
@@ -272,7 +272,7 @@ export function updateCommunity(paramsObj) {
 //更新文章(推首)
 export function updateArticleChoice(paramsObj) {
 	return fetch({
-		url:api.Bestkit + 'admin/community/articles/' + paramsObj.id + '/community_choices',
+		url:api.Bestkit + `/admin/community/${paramsObj.path}/${paramsObj.id}/community_choices`,
 		method: 'put',
 		data: paramsObj
 	})

@@ -278,6 +278,7 @@ export default new Router({
          children: [
              {
                 path: '',
+                name:'posting',
                 component: PostingList
              },
              {
@@ -286,6 +287,7 @@ export default new Router({
              },
              {
                 path:'ap',
+                name:'aposting',
                 component: AbnormalPostings
              },
              {
@@ -314,6 +316,7 @@ export default new Router({
              },
              {
                 path:'opus',
+                name: 'coupons',
                 component: OpusList
              },
              {
@@ -322,6 +325,7 @@ export default new Router({
              },
              {
                 path:'ao',
+                name:'acoupons',
                 component: AbnormalOpus
              },
              {

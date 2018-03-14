@@ -26,6 +26,7 @@
 
                }
 		    },
+
             computed: {
 	        	...mapGetters('masterpieceData', [
 	                    'total',
@@ -33,6 +34,7 @@
 	                    'content_type',
 						'begin_published_at',
 						'end_published_at',
+						'sort_field'
 	        		])
             },
 		     methods: {
@@ -48,7 +50,7 @@
 		     		this.getMasterpieceData({
 		     			page: this.page,
 		     			limit: this.limitPages,
-                        sort_field: this.orderType,
+                        sort_field: this.sort_field,
                         title: this.title,
                         content_type: this.content_type,
                         begin_published_at: this.begin_published_at,
@@ -59,7 +61,7 @@
                     this.limitPages = pagesNum
 		     	    this.getMasterpieceData({
 		     	    	limit: this.limitPages,
-		     	    	sort_field: this.orderType,
+		     	    	sort_field: this.sort_field,
 		     	    	title: this.title,
 		     	    	content_type: this.content_type,
 		     	    	begin_published_at: this.begin_published_at,

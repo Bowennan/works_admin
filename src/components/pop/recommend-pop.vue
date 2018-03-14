@@ -1,7 +1,7 @@
 <template>
 	<div class="pop-container">
 		<div class="pop-header">
-			<span class="pop-title">帖子首推</span>
+			<span class="pop-title">推首设置</span>
 			<Icon type="close-round" class="pop-close" @click.native="closePop"></Icon>
 		</div>
 
@@ -19,7 +19,7 @@
 				 <Checkbox class="c-carbon" v-model="infos">网站首页推首</Checkbox>
 			</p>
 			<p class="pop-items">
-				<span class="c-gris">社区推首</span>
+				<span class="c-gris">社区推首</span>f
 				<!-- <span>{{choiceArr}}</span> -->
 				<Select v-model="choiceArr" multiple style="width:260px">
 			        <Option v-for="item in allCommunity" :value="item.id" :key="item.id">{{ item.name }}</Option>
@@ -102,7 +102,7 @@
 				})
                 console.log((this.choiceArr).concat(haveRecommendId))
 				this.updateArticleChoice({
-
+                    path: this.$route.params.path,
 					id: this.id,
 					community_ids: (this.choiceArr).concat(haveRecommendId)
 				})

@@ -25,11 +25,11 @@
 				    </Select>
 			</div>
 
-			<div class="conditions-box">
+			<!-- <div class="conditions-box">
 				    <Select class="conditions-width" v-model="mval">
 				        <Option v-for="item in model" :value="item.value" :key="item.value">{{ item.label }}</Option>
 				    </Select>
-			</div>
+			</div> -->
 
 			<div class="conditions-box">
 				 <DatePicker type="daterange" placement="bottom-end" placeholder="用户注册时间区间选择" style="width: 200px" @on-change="setTimeRange"></DatePicker>
