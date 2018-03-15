@@ -1,47 +1,55 @@
 <template>
 	<div class="search-box">
-		<!-- <Input class="id-search" v-model="result">
-	        <Select v-model="result_doing" slot="prepend" style="width: 60px">
-	            <Option value="id">ID</Option>
+		<Input class="id-search" v-model="searchVal" @on-enter="search">
+	        <Select v-model="abnormal_piece_id" slot="prepend" style="width: 80px">
+	            <Option value="id">作品ID</Option>
 	        </Select>
-	        <Button slot="append" icon="search"></Button>
+	        <Button slot="append" icon="search" @click="search"></Button>
 	    </Input>
 
-		 <div class="range-search">
-		 	<div class="conditions-box">
-		    	<Select class="conditions-width" v-model="model1">
-			        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
-			    </Select>
-		    </div>
-	
-		    <div class="conditions-box">
-		    	<Select class="conditions-width" v-model="model1">
-			        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
-			    </Select>
-		    </div>
-
-		    <div class="conditions-box">
-		    	<Select class="conditions-width" v-model="model1">
-			        <Option v-for="item in 5" :value="item" :key="item">{{ item }}</Option>
-			    </Select>
-		    </div>
-		 	<div class="conditions-box">
-		 		<DatePicker type="daterange" placement="bottom-end" placeholder="用户注册时间区间选择" style="width: 200px"></DatePicker>
-		 	</div>
-		 	<div class="conditions-box">
-		    	<Button type="primary" class="confirm-group">确认筛选</Button>
-		    </div>
-		 </div> -->
+	    <span v-show="status" class="c-naranja" style='position: absolute; bottom: 5px; left: 106px;'>输入正确作品ID号</span>
 	 </div>
 </template>
 
 <script>
+    import {mapMutations, mapGetters, mapActions} from "vuex"
 	export default {
 		data() {
 			return {
-				result:"无",
-				result_doing:"id"
+				searchVal: '',
+				abnormal_piece_id: 'id',
+				status:false
 			}
-		}
+		},
+
+
+		 methods: {
+
+         	...mapActions('masterpieceData', [
+                     'getAbnormalMasterpiece'
+         		]),
+
+
+
+         	search() {
+       	 	  if(this.abnormal_piece_id == "id" && /^[0-9]*$/.test(this.searchVal) && this.searchVal !== '' ){
+              this.status = false
+              this.getAbnormalMasterpiece({
+                 id: this.searchVal
+               })
+            }else {
+              this.status = true
+              setTimeout(()=>{
+                this.status = false
+              },1500)
+            }
+
+             this.searchVal=''
+
+             
+       	  }
+
+
+         }
 	}
 </script>

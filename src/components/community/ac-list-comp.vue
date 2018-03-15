@@ -42,36 +42,49 @@
 					</li>
 					<li class="action-status more-line">
 						<p>
-							<span class="c-gris">评论状态 | <span class="c-carbon">{{item.deleted_at===null? "正常" : "隐藏"}}</span></span>
+							<span class="c-gris">评论状态 | <span class="c-carbon pointer" @click="setStatus(item.id)">{{item.deleted_at===null? "正常" : "隐藏"}}</span></span>
 						</p>
 					</li>
 				</ul>
 			</li>
 		</ul>
+
+		<transition name="slide-fade">
+		<div class="cover-style"
+             v-if="popStatus"
+             :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
+		>
+				<div class="pop-wrapper">
+					<status :id="id" @reload="getCommentsData" v-if="2 === popNum"></status>
+
+				</div>
+		</div>
+		</transition>
 	</div>
 </template>
 
 <script>
+    import Status from "@/components/pop/status-comments-pop"
     import Loading from '@/components/base-comp/loading'
     import {mapGetters, mapMutations, mapActions} from 'vuex'
 	export default {
        data() {
        	  return {
        	  	state: 0,
-       	  	single:''
+       	  	single:'',
+       	  	id:null
        	  }
        },
 
        created() {
-       	this.abnormalCommunityComment({
-       		summary_catalog: this.summary_catalog
-       	}),
-       	this.getWindowsSize()
+       	this.getCommentsData()
        },
        computed: {
        	...mapGetters('commentsData',[
               "datas",
-              "summary_catalog"
+              "summary_catalog",
+              "popNum",
+              "popStatus"
        		])
        },
 
@@ -81,22 +94,30 @@
             this.coverHeight = window.document.body.offsetHeight;
           },
           ...mapActions('commentsData', [
-               'abnormalCommunityComment'
+               'abnormalCommunityComment',
+               'setPop'
           	]),
-       	...mapMutations('commentsData', [
-                'setPopStatus',
-                'setPopNum',
-                'sendId',
-                'sendConnection',
-                'setArticleIndex',
-                'SET_POSTING_SOURCE',
-                'GET_COMMUNITY_ID',
-                'SET_COMMUNITY_CHIOCE',
-                'GET_COMMUNITIES'
-              ])
+
+          getCommentsData() {
+          	this.abnormalCommunityComment({
+	       		summary_catalog: this.summary_catalog
+	       	})
+          },
+
+           postingData() {
+          	this.getWindowsSize()
+          },
+
+		  setStatus(id) {
+		  	        this.postingData()
+		          	this.setPop(2)
+		          	this.id = id
+		          },
+
        	 },
        components: {
-       	Loading
+       	Loading,
+       	Status
        }
    }
 </script>
@@ -112,11 +133,11 @@
 		flex:0 0 156px;
 	}
 	.works {
-		min-width: 398px;
+		min-width: 350px;
 		flex:1;
 	}
 	.action-status {
-		flex:0 0 120px;
+		flex:0 0 180px;
 	}
 	.more-line p > span {
 		display: block;

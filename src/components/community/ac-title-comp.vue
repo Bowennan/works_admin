@@ -6,7 +6,7 @@
 		</div>
 		
 		<div class="result-container">
-			<span class="c-gris">全部：
+			<span class="c-gris">异常评论数量：
 	          <span class="c-naranja">{{total}}</span>
 			</span>
 		</div>
@@ -25,7 +25,6 @@
        computed: {
        	...mapGetters('commentsData', [
                  'total',
-                 'page',
                  'summary_catalog'
        		])
        },
@@ -37,9 +36,8 @@
        		]),
        	
        	refresh() {
-       		this.refreshPage()
+       		 this.refreshPage()
             this.abnormalCommunityComment({
-            	page: this.page,
             	summary_catalog: this.summary_catalog
             })
        	}

@@ -1,13 +1,12 @@
 <template>
 	<div class="title-box">
-		<h3 class="titulo">异常回答列表</h3>
+		<span class="titulo">产品社区管理</span>
 		<div class="btns-container">
 			<Button class="re-btn" type="primary" shape="circle" icon="ios-loop" @click="refresh">刷新</Button>
-
+			<Button class="re-btn" type="primary" shape="circle" icon="plus-round" @click="openPop">新增社区</Button>
 		</div>
-		
 		<div class="result-container">
-			<span class="c-gris">异常回答数量：
+			<span class="c-gris total-result">总共社区
 	          <span class="c-naranja">{{total}}</span>
 			</span>
 		</div>
@@ -19,28 +18,25 @@
 	export default {
        data() {
        	return {
+       		model1:''
        	}
        },
 
        computed: {
-       	...mapGetters('replysData', [
-               'total',
-               'summary_catalog',
-               'page'
+       	...mapGetters('communitymanagerData', [
+                 'total'
        		])
        },
 
        methods: {
-        ...mapActions('replysData', [
-              'refreshPage',
-              'abnormalCommunityReply'
-          ]),
-
-       	refresh() {
-       	  this.refreshPage()
-          this.abnormalCommunityReply({
-              summary_catalog: this.summary_catalog
-          });
+        ...mapActions('communitymanagerData', [
+               'communityManager'
+        	]),
+       	refresh(){
+       		this.communityManager({
+       			relation_type: 'product',
+       			page: 1
+       		})
        	}
        }
 	}

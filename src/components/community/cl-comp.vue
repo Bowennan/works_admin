@@ -35,7 +35,9 @@
 		     	...mapGetters('commentsData', [
                        'total',
                        'page',
-                       'summary_catalog'
+                       'summary_catalog',
+                       'begin_created_at',
+                       'end_created_at'
 		     		])
 		     },
 
@@ -50,7 +52,9 @@
 		     		this.getCommentData({
 		     			page:pageNum,
 		     			limit:this.limitPages,
-		     			summary_catalog: this.summary_catalog
+		     			summary_catalog: this.summary_catalog,
+		     			begin_created_at: this.begin_created_at,
+		     			end_created_at: this.end_created_at
 		     		})
 		     	},
 
@@ -58,7 +62,9 @@
 		     		this.limitPages = pagesNum;
 		     		this.getCommentData({
 		     			limit: this.limitPages,
-		     			summary_catalog: this.summary_catalog
+		     			summary_catalog: this.summary_catalog,
+		     			begin_created_at: this.begin_created_at,
+		     			end_created_at: this.end_created_at
 		     		})
 		     	}
 		     },

@@ -1,7 +1,7 @@
 <template>
 	<div class="pop-container">
 		<div class="pop-header">
-			<span class="pop-title">评论/回复状态改变</span>
+			<span class="pop-title">评论/回复状态设置</span>
 			<Icon type="close-round" class="pop-close" @click.native="closePop"></Icon>
 		</div>
 
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-    import {mapMutations, mapActions} from 'vuex'
+    import {mapMutations, mapGetters, mapActions} from 'vuex'
 	export default {
 		props: {
             id: {
@@ -50,20 +50,28 @@
 			}
 		},
 
+		computed: {
+			...mapGetters('commentsData', [
+                    'summary_catalog'
+				])
+		},
+
 		methods: {
 			...mapMutations([
                    'setPopStatus'
 				]),
 			...mapActions([
-                   'updateArticle'
+                   'updateCommentStatus'
 				]),
 			closePop() {
 				this.setPopStatus()
 			},
 			changeStatus() {
-				this.updateArticle({
+				this.updateCommentStatus({
                     id: this.id,
-                    status: this.status
+                    status: parseInt(this.status),
+                    summary_catalog: this.summary_catalog,
+                    comment_type: this.$route.params.path
 				})
 
 				this.$emit('reload')

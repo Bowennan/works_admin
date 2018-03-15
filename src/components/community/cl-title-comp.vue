@@ -6,7 +6,7 @@
 			<Button class="re-btn" type="primary" shape="circle" icon="ios-trash-outline">批量隐藏</Button>
 		</div>
 		<div class="result-container">
-			<span class="total-result c-gris">全部评论：
+			<span class="total-result c-gris">评论数量：
 	          <span class="c-naranja">{{total}}</span>
 			</span>
 		</div>
@@ -18,14 +18,12 @@
 	export default {
        data() {
        	return {
-       		model1:''
        	}
        },
        computed: {
        	...mapGetters('commentsData', [
                'total',
-               'summary_catalog',
-               'page'
+               'summary_catalog'
        		])
        },
        methods: {
@@ -37,7 +35,6 @@
        	refresh() {
        		this.refreshPage()
           this.getCommentData({
-              page: this.page,
               summary_catalog: this.summary_catalog
           });
        	}

@@ -8,7 +8,9 @@ const state = {
     datas:[],
     page:1,
     id: null,
-    summary_catalog: 'article'
+    summary_catalog: 'article',
+    begin_created_at: '',
+    end_created_at: ''
 
 }
 
@@ -46,6 +48,8 @@ const actions = {
 		commit('setPage', 1)
 		commit('setSummarycatalog', 'article')
 		commit('setId', null)
+		commit('setBegin', '')
+		commit('setEnd', '')
 	},
 	//显示对应的弹窗
 	setPop({ dispatch, commit, getters, rootGetters }, num ) {
@@ -64,6 +68,8 @@ const getters = {
 	page: state => state.page,
 	summary_catalog: state => state.summary_catalog,
 	id: state => state.id,
+	begin_created_at: state => state.begin_created_at,
+	end_created_at: state => state.end_created_at,
     popStatus: (state, getters, rootState, rootGetters) => rootGetters.popStatus,
 	popNum: (state, getters, rootState, rootGetters) => rootGetters.popNum
 }
@@ -86,6 +92,12 @@ const mutations = {
 	},
 	setSummarycatalog(state, catalog) {
 		state.summary_catalog = catalog
+	},
+	setBegin(state, begin) {
+		state.begin_created_at = begin
+	},
+	setEnd(state, end) {
+		state.end_created_at = end
 	}
 }
 

@@ -243,6 +243,16 @@ export function disclosesCount(){
 	})
 }
 
+
+//评论状态更新
+export function updateCommentStatus(paramsObj) {
+	return fetch({
+		url: api.Bestkit + `/admin/community/comments/${paramsObj.id}`,
+		method: 'put',
+		data: paramsObj
+	})
+}
+
 //更新文章(状态 等级 权重)
 export function updateArticle(paramsObj) {
 	return fetch({
@@ -385,6 +395,20 @@ export function catalogToName(id) {
 		method: 'get'
 	})
 }
+
+
+
+//社区下的社区新建和管理
+export function communityManager(paramsObj) {
+	return fetch({
+		url: api.Bestkit + `/admin/community/communities`,
+		method: 'get',
+		params: paramsObj
+	})
+}
+
+
+
 
 
 

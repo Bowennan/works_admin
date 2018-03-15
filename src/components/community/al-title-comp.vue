@@ -7,7 +7,7 @@
 		</div>
 		
 		<div class="result-container">
-			<span class="total-result c-gris">全部回答：
+			<span class="total-result c-gris">回答数量：
 	          <span class="c-naranja">{{total}}</span>
 			</span>
 			<!-- <Select class="order-sel" v-model="model1">
@@ -28,8 +28,7 @@
        computed: {
        	...mapGetters('replysData', [
                'total',
-               'summary_catalog',
-               'page'
+               'summary_catalog'
        		])
        },
 
@@ -42,7 +41,6 @@
        	refresh() {
        	  this.refreshPage()
           this.getReplyData({
-              page: this.page,
               summary_catalog: this.summary_catalog
           });
        	}

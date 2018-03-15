@@ -5,7 +5,7 @@
 			<Button class="re-btn" type="primary" shape="circle" icon="ios-loop" @click="refresh">刷新</Button>
 		</div>
 		<div class="result-container">
-			<span class="total-result c-gris">总共文章：
+			<span class="total-result c-gris">帖子数量：
 	          <span class="c-naranja">{{total}}</span>
 			</span>
 			<Select class="order-sel" v-model="order">

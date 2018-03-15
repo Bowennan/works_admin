@@ -29,7 +29,7 @@
                 <router-link class="sub-menu-list" to="/community_products">产品社区管理</router-link>
            	</li>
            	<li class="sub-menu">
-                <router-link class="sub-menu-list" to="/communities" target="_blank">社区新建与管理</router-link>
+                <router-link class="sub-menu-list" to="/communities_manager">社区新建与管理</router-link>
            	</li>
            </ul>
        	</li>

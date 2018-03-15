@@ -1,4 +1,4 @@
-import {getCommunityNameId, updateCommunity, updateArticle, updateConPro, updateArticleChoice, updateTag} from "@/axios/api"
+import {getCommunityNameId, updateCommunity, updateArticle, updateConPro, updateArticleChoice, updateTag, updateCommentStatus} from "@/axios/api"
 
 const actions = {
 	 getAllCommunity({commit}) {
@@ -33,6 +33,13 @@ const actions = {
 
      updateTag({commit}, paras) {
         updateTag(paras).then(res => {
+            commit('setPopStatus')
+        })
+     },
+
+
+     updateCommentStatus({commit}, paras) {
+        updateCommentStatus(paras).then(res => {
             commit('setPopStatus')
         })
      }

@@ -149,6 +149,10 @@ import pageAD from '@/components/webpage/pageAD-comp'
 
 import dataBoard from '@/components/datas/datas-board-comp'
 
+import catalogCommunity from  '@/components/communitymanager/catalog-comp'
+import brandCommunity  from '@/components/communitymanager/brand-comp'
+import productCommunity from  '@/components/communitymanager/product-comp'
+
 import asideComp01 from '@/components/aside01-comp'
 import asideComp02 from '@/components/aside02-comp'
 import asideComp03 from '@/components/aside03-comp'
@@ -163,6 +167,7 @@ import operateAside from '@/components/operate-aside-comp'
 import abnormalAside from '@/components/abnormal-aside-comp'
 import webpageAside from '@/components/webpage-aside-comp'
 import datasAside from '@/components/datas-aside-comp'
+import communityAside from '@/components/community-aside-comp'
 
 import asideComp081 from '@/components/aside081-comp'
 import asideComp082 from '@/components/aside082-comp'
@@ -292,6 +297,7 @@ export default new Router({
              },
              {
                 path:'cl',
+                name:'comment',
                 component: CommentsList
              },
              {
@@ -300,10 +306,12 @@ export default new Router({
              },
              {
                 path:'ac',
+                name:'acomment',
                 component: AbnormalComment
              },
              {
                 path:'al',
+                name: 'reply',
                 component: AnswerList
              },
              {
@@ -312,6 +320,7 @@ export default new Router({
              },
              {
                 path:'aa',
+                name: 'areply',
                 component: AbnormalAnswer
              },
              {
@@ -541,6 +550,24 @@ export default new Router({
                 component: discloseTypesb
              }
       ]
+     },
+     {
+        path:'/communities_manager',
+        component: communityAside,
+        children: [
+              {
+                path:'',
+                component:catalogCommunity
+              },
+              {
+                path:'brand',
+                component: brandCommunity
+              },
+              {
+                path:'product',
+                component:productCommunity
+              }
+        ]
      },
      {
         path: '/community_products',

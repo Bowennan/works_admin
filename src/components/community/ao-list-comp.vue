@@ -76,42 +76,51 @@
 					<li class="posting-action">
 						<p>
 							
-								<span class="c-gris">文章状态 | </span>
-								<span @click="setStatus({
-									id: item.id,
-									index: index
-								})" class="pointer">{{item.status===0? "隐藏" : item.status===1? "正常" : "草稿"}}</span>
+								<span class="c-gris">作品状态 | </span>
+								<span @click="setStatus(item.id)" class="pointer">{{item.status===0? "隐藏" : item.status===1? "正常" : "草稿"}}</span>
 						
 						</p>
 					</li>
 				</ul>
 			</li>
 		</ul>
+
+		<transition name="slide-fade">
+		<div class="cover-style"
+             v-if="popStatus"
+             :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
+		>
+				<div class="pop-wrapper">
+					
+					<status :id="id" @reload="getAbnormalMasterpiece" v-if="2 === popNum"></status>
+					
+					
+				</div>
+		</div>
+		</transition>
 	</div>
 </template>
 
 <script>
+    import Status from "@/components/pop/status-pop"
     import Loading from '@/components/base-comp/loading'
     import {mapGetters, mapMutations, mapActions} from 'vuex'
 	export default {
        data() {
        	  return {
        	  	coverWidth:0,
-       	  	coverHeight:0
+       	  	coverHeight:0,
+       	  	id:null
        	  }
        },
        created() {
        	  this.getAbnormalMasterpiece()
-          this.getWindowsSize()
          },
        computed: {
        	...mapGetters('masterpieceData', [
                "datas",
                "popStatus",
-               "popNum",
-               "commid",
-               "choice",
-               "communities"
+               "popNum"
        		])
        },
 
@@ -122,7 +131,8 @@
           },
 
            ...mapActions('masterpieceData', [
-               'getAbnormalMasterpiece'
+               'getAbnormalMasterpiece',
+               'setPop'
           	]),
        	...mapMutations('masterpieceData', [
                 'setPopStatus',
@@ -135,9 +145,22 @@
                 'SET_COMMUNITY_CHIOCE',
                 'GET_COMMUNITIES'
        		]),
+
+
+       	postingData(id) {
+          	this.getWindowsSize()
+          	this.id = id
+          },
+
+
+          setStatus(id){
+          	this.postingData(id)
+          	this.setPop(2)
+          }
        },
        components: {
-       	Loading
+       	Loading,
+       	Status
        }
    }
 </script>
@@ -182,5 +205,17 @@
 		line-height: 24px;
 		white-space: normal;
 	}
+
+	.slide-fade-enter-active {
+		  transition: all .5s ease;
+		}
+		.slide-fade-leave-active {
+		  transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+		}
+		.slide-fade-enter, .slide-fade-leave-to
+		/* .slide-fade-leave-active for below version 2.1.8 */ {
+		  transform: scale(0.2);
+		  opacity: 0;
+		}
 </style>
 

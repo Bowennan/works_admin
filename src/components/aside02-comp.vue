@@ -73,14 +73,26 @@
                         </div>
                     </template>
 	                    <MenuItem name="2-1" class="submenu">
-	                      <router-link to="/communities/cl" class="left-icon submenu-sub">评论列表</router-link>
+	                      <router-link   :to="{
+                                           name:'comment',
+                                           params: {
+                                                  path: 'comment'
+                                           }
+
+                      }" class="left-icon submenu-sub">评论列表</router-link>
 	                    </MenuItem>
 	                    <MenuItem name="2-2" class="submenu">
 	                      <router-link to="/communities/tbcc" class="left-icon submenu-sub">待审核评论</router-link>
                           <Badge :count="commentsCount" class="badge-scale"></Badge>
 	                    </MenuItem>
 	                    <MenuItem name="2-3" class="submenu">
-	                      <router-link to="/communities/ac" class="left-icon submenu-sub">异常评论</router-link>
+	                      <router-link  :to="{
+                                           name:'acomment',
+                                           params: {
+                                                  path: 'comment'
+                                           }
+
+                      }" class="left-icon submenu-sub">异常评论</router-link>
 	                    </MenuItem>
                 </Submenu>
                 <Submenu name="answer">
@@ -94,14 +106,26 @@
                         </div>
                     </template>
 	                    <MenuItem name="3-1" class="submenu">
-	                      <router-link to="/communities/al" class="left-icon submenu-sub">回答列表</router-link>
+	                      <router-link  :to="{
+                                           name:'reply',
+                                           params: {
+                                                  path: 'reply'
+                                           }
+
+                      }" class="left-icon submenu-sub">回答列表</router-link>
 	                    </MenuItem>
 	                    <MenuItem name="3-2" class="submenu">
 	                      <router-link to="/communities/tbca" class="left-icon submenu-sub">待审核回答</router-link>
                           <Badge :count="replyCount" class="badge-scale"></Badge>
 	                    </MenuItem>
 	                    <MenuItem name="3-3" class="submenu">
-	                      <router-link to="/communities/aa" class="left-icon submenu-sub">异常回答</router-link>
+	                      <router-link  :to="{
+                                           name:'areply',
+                                           params: {
+                                                  path: 'reply'
+                                           }
+
+                      }" class="left-icon submenu-sub">异常回答</router-link>
 	                    </MenuItem>
                 </Submenu>
                 <Submenu name="ask">
