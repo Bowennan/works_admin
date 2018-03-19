@@ -22,6 +22,12 @@ const actions = {
         communityList().then(res => {
             commit('setCommunityList', res.data.data)
         })
+    },
+
+    //显示对应的弹窗
+    setPop({ dispatch, commit, getters, rootGetters }, num ) {
+        commit('setPopNum', num, { root: true })
+        commit('setPopStatus', null, { root: true })
     }
 }
 
@@ -49,7 +55,9 @@ const getters = {
 	total: state => state.total,
 	page: stata => state.page,
 	community_id: state => state.community_id,
-    communityList: state => state.communityList
+    communityList: state => state.communityList,
+    popStatus: (state, getters, rootState, rootGetters) => rootGetters.popStatus,
+    popNum: (state, getters, rootState, rootGetters) => rootGetters.popNum
 }
 
 

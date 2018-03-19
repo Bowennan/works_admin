@@ -11,13 +11,13 @@
              </router-link> 
           </MenuItem>
           <MenuItem name="send" class="submenu">
-             <router-link to="/masters/masterlist" class="left-icon send" >
+             <router-link to="/masters/master_list" class="left-icon send" >
               <Icon type="ios-people" size=16 class="iconfont"></Icon>
               <span class="right-title">达人列表</span>
              </router-link>
           </MenuItem>
           <MenuItem name="editor" class="submenu">
-            <router-link to="/masters/masterorder" class="left-icon editor" >
+            <router-link to="/masters/master_order" class="left-icon editor" >
               <Icon type="person-add" size=16 class="iconfont"></Icon>
               <span class="right-title">想邀约达人列表</span>
             </router-link>

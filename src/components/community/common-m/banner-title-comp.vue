@@ -3,7 +3,7 @@
 		<h3 class="title">社区Banner管理</h3>
 		<Button class="refresh" type="primary" shape="circle" icon="ios-loop" @click="refresh">刷新</Button>
 		<Button class="re-btn" type="primary" shape="circle" icon="ios-trash-outline">批量隐藏</Button>
-		<Button class="re-btn01" type="primary" shape="circle" icon="plus">新增</Button>
+		<Button class="re-btn01" type="primary" shape="circle" icon="plus" @click="newBanner">新增</Button>
 		<div class="search-and-result">
 			<span class="result">全部：
 	          <span class="res-num">{{total}}</span>
@@ -28,12 +28,18 @@
        },
        methods: {
        	...mapActions('bannerListsData', [
-               'getBannersListData'
+               'getBannersListData',
+               'setPop'
        		]),
 
        	...mapMutations('bannerListsData', [
                'setPage'
        		]),
+
+       	newBanner() {
+       		this.$bus.$emit('openCover')
+       		this.setPop(2)
+       	},
 
        	refresh() {
        	   this.setPage(1)

@@ -14,11 +14,11 @@
                       <router-link to="/tag" class="left-icon submenu-sub">TAG关键词库</router-link>
                     </MenuItem>
                     <MenuItem name="8-2" class="submenu">
-                      <router-link to="/tag/tagabout" class="left-icon submenu-sub">TAG关联</router-link>
+                      <router-link to="/tag/tag_about" class="left-icon submenu-sub">TAG关联</router-link>
                     </MenuItem>
                 </Submenu>
                 <MenuItem name="8-3" class="submenu">
-                  <router-link to="/tag/tagspecail" class="left-icon">
+                  <router-link to="/tag/tag_special" class="left-icon">
                     <Icon type="ios-list" size=16 class="iconfont"></Icon>
                     <span class="right-title">专题管理</span>
                   </router-link>

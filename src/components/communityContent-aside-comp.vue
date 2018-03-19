@@ -19,7 +19,7 @@
                                            class="left-icon submenu-sub">帖子列表</router-link>
                     </MenuItem>
                     <MenuItem name="1-2" class="submenu">
-                      <router-link to="/communities/tbcp" class="left-icon submenu-sub">待审核帖子</router-link>
+                      <router-link to="/community_common/tbcp" class="left-icon submenu-sub">待审核帖子</router-link>
                       <Badge :count="postingCount" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-3" class="submenu">
@@ -50,7 +50,7 @@
                       }"  class="left-icon submenu-sub">作品列表</router-link>
                     </MenuItem>
                     <MenuItem name="1-22" class="submenu">
-                      <router-link to="/communities/tbco" class="left-icon submenu-sub">待审核作品</router-link>
+                      <router-link to="/community_common/tbco" class="left-icon submenu-sub">待审核作品</router-link>
                       <Badge :count="masterPieceCount" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-33" class="submenu">
@@ -82,7 +82,7 @@
                       }" class="left-icon submenu-sub">评论列表</router-link>
 	                    </MenuItem>
 	                    <MenuItem name="2-2" class="submenu">
-	                      <router-link to="/communities/tbcc" class="left-icon submenu-sub">待审核评论</router-link>
+	                      <router-link to="/community_common/tbcc" class="left-icon submenu-sub">待审核评论</router-link>
                           <Badge :count="commentsCount" class="badge-scale"></Badge>
 	                    </MenuItem>
 	                    <MenuItem name="2-3" class="submenu">
@@ -115,7 +115,7 @@
                       }" class="left-icon submenu-sub">回答列表</router-link>
 	                    </MenuItem>
 	                    <MenuItem name="3-2" class="submenu">
-	                      <router-link to="/communities/tbca" class="left-icon submenu-sub">待审核回答</router-link>
+	                      <router-link to="/community_common/tbca" class="left-icon submenu-sub">待审核回答</router-link>
                           <Badge :count="replyCount" class="badge-scale"></Badge>
 	                    </MenuItem>
 	                    <MenuItem name="3-3" class="submenu">
@@ -138,14 +138,14 @@
                         </div>
                     </template>
                     <MenuItem name="1-111" class="submenu">
-                      <router-link to="/communities/ask" class="left-icon submenu-sub">提问列表</router-link>
+                      <router-link to="/community_common/ask" class="left-icon submenu-sub">提问列表</router-link>
                     </MenuItem>
                     <MenuItem name="1-222" class="submenu">
-                      <router-link to="/communities/tbcask" class="left-icon submenu-sub">待审核提问</router-link>
+                      <router-link to="/community_common/tbcask" class="left-icon submenu-sub">待审核提问</router-link>
                       <Badge :count="questionsCount" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-333" class="submenu">
-                      <router-link to="/communities/aask" class="left-icon submenu-sub">异常提问</router-link>
+                      <router-link to="/community_common/aask" class="left-icon submenu-sub">异常提问</router-link>
                     </MenuItem>
                 </Submenu>
                 <Submenu name="price">
@@ -158,14 +158,14 @@
                         </div>
                     </template>
                     <MenuItem name="1-110" class="submenu">
-                      <router-link to="/communities/price" class="left-icon submenu-sub">好价列表</router-link>
+                      <router-link to="/community_common/price" class="left-icon submenu-sub">好价列表</router-link>
                     </MenuItem>
                     <MenuItem name="1-220" class="submenu">
-                      <router-link to="/communities/tbcgp" class="left-icon submenu-sub">待审核好价</router-link>
+                      <router-link to="/community_common/tbcgp" class="left-icon submenu-sub">待审核好价</router-link>
                       <Badge :count="couponsCount" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-330" class="submenu">
-                      <router-link to="/communities/agp" class="left-icon submenu-sub">异常好价</router-link>
+                      <router-link to="/community_common/agp" class="left-icon submenu-sub">异常好价</router-link>
                     </MenuItem>
                 </Submenu>
                 <Submenu name="senhand">
@@ -178,14 +178,14 @@
                         </div>
                     </template>
                     <MenuItem name="1-451" class="submenu">
-                      <router-link to="/communities/senhand" class="left-icon submenu-sub">二手列表</router-link>
+                      <router-link to="/community_common/senhand" class="left-icon submenu-sub">二手列表</router-link>
                     </MenuItem>
                     <MenuItem name="1-452" class="submenu">
-                      <router-link to="/communities/tbcsh" class="left-icon submenu-sub">待审核二手</router-link>
+                      <router-link to="/community_common/tbcsh" class="left-icon submenu-sub">待审核二手</router-link>
                       <Badge :count="idlesCount" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-453" class="submenu">
-                      <router-link to="/communities/ash" class="left-icon submenu-sub">异常二手</router-link>
+                      <router-link to="/community_common/ash" class="left-icon submenu-sub">异常二手</router-link>
                     </MenuItem>
                 </Submenu>
                 <Submenu name="qs">
@@ -198,14 +198,14 @@
                         </div>
                     </template>
                     <MenuItem name="1-145" class="submenu">
-                      <router-link to="/communities/qs" class="left-icon submenu-sub">装备秀列表</router-link>
+                      <router-link to="/community_common/qs" class="left-icon submenu-sub">装备秀列表</router-link>
                     </MenuItem>
                     <MenuItem name="1-256" class="submenu">
-                      <router-link to="/communities/tbcqs" class="left-icon submenu-sub">待审核装备秀</router-link>
+                      <router-link to="/community_common/tbcqs" class="left-icon submenu-sub">待审核装备秀</router-link>
                       <Badge :count="exhibitionsCount" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-367" class="submenu">
-                      <router-link to="/communities/aqs" class="left-icon submenu-sub">异常装备秀</router-link>
+                      <router-link to="/community_common/aqs" class="left-icon submenu-sub">异常装备秀</router-link>
                     </MenuItem>
                 </Submenu>
                 <Submenu name="disclo">
@@ -218,14 +218,14 @@
                         </div>
                     </template>
                     <MenuItem name="1-189" class="submenu">
-                      <router-link to="/communities/disclo" class="left-icon submenu-sub">爆料列表</router-link>
+                      <router-link to="/community_common/disclo" class="left-icon submenu-sub">爆料列表</router-link>
                     </MenuItem>
                     <MenuItem name="1-299" class="submenu">
-                      <router-link to="/communities/tbcdisclo" class="left-icon submenu-sub">待审核爆料</router-link>
+                      <router-link to="/community_common/tbcdisclo" class="left-icon submenu-sub">待审核爆料</router-link>
                       <Badge :count="disclosesCount" class="badge-scale"></Badge>
                     </MenuItem>
                     <MenuItem name="1-392" class="submenu">
-                      <router-link to="/communities/adisclo" class="left-icon submenu-sub">异常爆料</router-link>
+                      <router-link to="/community_common/adisclo" class="left-icon submenu-sub">异常爆料</router-link>
                     </MenuItem>
                 </Submenu>
             </Menu>

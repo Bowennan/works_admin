@@ -2,7 +2,7 @@
 	<div class="pop-container">
 		<div class="pop-header">
 			<span class="pop-title">Banner状态改变</span>
-			<Icon class="pop-close" type="close-round" @click.native="closeWindos"></Icon>
+			<Icon class="pop-close" type="close-round" @click.native="closePop"></Icon>
 		</div>
 
 
@@ -20,13 +20,14 @@
 		</div>
 
 		<div class="pop-bottom-box">
-			<Button class="pop-confirm-btn" type="ghost" @click="closeWindos">取消</Button>
+			<Button class="pop-confirm-btn" type="ghost" @click="closePop">取消</Button>
 			<Button class="pop-confirm-btn" type="primary">确认</Button>
 		</div>
 	</div>
 </template>
 
 <script>
+    import {mapMutations, mapGetters, mapActions} from 'vuex'
 	export default {
         data() {
         	return {
@@ -36,8 +37,11 @@
         	}
         },
         methods: {
-        	closeWindos (){
-        		this.$emit('close')
+        	...mapMutations([
+                   'setPopStatus'
+        		]),
+        	closePop() {
+        		this.setPopStatus()
         	}
         }
 	}

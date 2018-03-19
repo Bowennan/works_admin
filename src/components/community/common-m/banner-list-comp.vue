@@ -38,66 +38,79 @@
 					</li>
 					<li class="action-status more-line">
 						<p>
-							<span>操作 | <span class="values">编辑</span></span>
-							<span>状态 | <span class="values">隐藏</span></span>
+							<span>操作 | <span class="values pointer" @click="setEditor">编辑</span></span>
+							<span>状态 | <span class="values pointer" @click="setStatus">隐藏</span></span>
 						</p>
 					</li>
 				</ul>
 			</li>
 		</ul>
 
-		<div v-show="cover" :style="{width:coverWidth+'px', height:coverHeight+'px'}" class="cover-style">
-			<div class="pop-wrapper">
-				<banner-first @close="closeWindos"></banner-first>
-			</div>
+		<transition name="slide-fade">
+		<div class="cover-style"
+             v-if="popStatus"
+             :style="{width:coverWidth + 'px', height:coverHeight + 'px'}"
+		>
+				<div class="pop-wrapper">
+					<banner-status v-if="1 === popNum"></banner-status>
+					<new-banner :item="itemObj" v-if="2 === popNum"></new-banner>
+				</div>
 		</div>
+		</transition>
 	</div>
 </template>
 
 <script>
     import {mapActions, mapGetters, mapMutations} from 'vuex'
-    import BannerFirst from '@/components/pop/banner-status-pop'
+    import bannerStatus from '@/components/pop/banner-status-pop'
+    import newBanner from '@/components/pop/newbanner-pop'
 	export default {
-		props: {
-			cover: {
-				type:Boolean,
-				default: false
-			}
-		},
 		created() {
 		   this.getBannersListData()
-           this.getWindowsSize()
-           console.log(this.datas)
+		   this.$bus.$on('openCover', this.getWindowsSize)
 		},
        data() {
        	  return {
-       	  	state: 0,
        	  	single:'',
-       	  	opacityNum:1,
        	  	coverHeight:0,
        	  	coverWidth:0,
-       	  	show_Status:false
+       	  	itemObj:null
        	  }
        },
        computed: {
        	...mapGetters('bannerListsData', [
-                'datas'
+                'datas',
+                 'popNum',
+                 'popStatus'
        		])
        },
        methods: {
        	...mapActions('bannerListsData', [
-                'getBannersListData'
+                'getBannersListData',
+                'setPop'
        		]),
        	getWindowsSize() {
        		this.coverWidth = window.document.body.offsetWidth;
        		this.coverHeight = window.document.body.offsetHeight;
        	},
-       	closeWindos() {
-           this.$emit('close')
-       	}
+       	postingData(item) {
+          	this.getWindowsSize()
+          	this.itemObj = item
+          },
+
+          setStatus() {
+          	this.postingData()
+          	this.setPop(1)
+          },
+
+          setEditor(item) {
+          	this.postingData(item)
+          	this.setPop(2)
+          }
        },
        components: {
-       	BannerFirst
+       	bannerStatus,
+       	newBanner
        }
    }
 </script>

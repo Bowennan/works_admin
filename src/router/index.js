@@ -153,14 +153,14 @@ import catalogCommunity from  '@/components/communitymanager/catalog-comp'
 import brandCommunity  from '@/components/communitymanager/brand-comp'
 import productCommunity from  '@/components/communitymanager/product-comp'
 
-import asideComp01 from '@/components/aside01-comp'
-import asideComp02 from '@/components/aside02-comp'
-import asideComp03 from '@/components/aside03-comp'
-import asideComp04 from '@/components/aside04-comp'
-import asideComp05 from '@/components/aside05-comp'
-import asideComp06 from '@/components/aside06-comp'
-import asideComp07 from '@/components/aside07-comp'
-import asideComp08 from '@/components/aside08-comp'
+import userAside from '@/components/user-aside-comp'
+import communityContentAside from '@/components/communityContent-aside-comp'
+import communityModuleAside from '@/components/communityModule-aside-comp'
+import communityFrontpageAside from '@/components/communityFrontpage-aside-comp'
+import communityCatalogAside from '@/components/communityCatalog-aside-comp'
+import communityBrandAside from '@/components/communityBrand-aside-comp'
+import communityProduct from '@/components/communityProduct-aside-comp'
+import wikiProductLists from '@/components/wikiProductLists-aside-comp'
 import masterAside from '@/components/master-aside-comp'
 import tagAside from '@/components/tag-aside-comp'
 import operateAside from '@/components/operate-aside-comp'
@@ -172,13 +172,6 @@ import communityAside from '@/components/community-aside-comp'
 import asideComp081 from '@/components/aside081-comp'
 import asideComp082 from '@/components/aside082-comp'
 import asideComp083 from '@/components/aside083-comp'
-import Log4 from '@/components/test03-comp'
-import Log5 from '@/components/test04-comp'
-import Log6 from '@/components/test05-comp'
-import Log7 from '@/components/test06-comp'
-import Log8 from '@/components/test07-comp'
-import Log9 from '@/components/test08-comp'
-import Log1 from '@/components/test01-comp'
 
 
 Vue.use(Router)
@@ -216,8 +209,8 @@ export default new Router({
         ]
      },
      {
-     	path: '/users',
-     	component: asideComp01,
+     	path: '/user_manager',
+     	component: userAside,
         children: [
              {
                 path: '',
@@ -278,8 +271,8 @@ export default new Router({
       ]
      },
      {
-        path: '/communities',
-        component: asideComp02,
+        path: '/community_common',
+        component: communityContentAside,
          children: [
              {
                 path: '',
@@ -400,8 +393,8 @@ export default new Router({
       ]
      },
      {
-        path: '/community_common_m',
-        component: asideComp03,
+        path: '/community_module',
+        component: communityModuleAside,
          children: [
              {
                 path: '',
@@ -422,8 +415,8 @@ export default new Router({
       ]
      },
           {
-        path: '/community_front_p',
-        component: asideComp04,
+        path: '/community_frontPage',
+        component: communityFrontpageAside,
          children: [
              {
                 path: '',
@@ -444,8 +437,8 @@ export default new Router({
       ]
      },
      {
-        path: '/community_types',
-        component: asideComp05,
+        path: '/community_catalog',
+        component: communityCatalogAside,
          children: [
              {
                 path: '',
@@ -506,8 +499,8 @@ export default new Router({
       ]
      },
      {
-        path: '/community_brands',
-        component: asideComp06,
+        path: '/community_brand',
+        component: communityBrandAside,
          children: [
              {
                 path: '',
@@ -552,7 +545,7 @@ export default new Router({
       ]
      },
      {
-        path:'/communities_manager',
+        path:'/community_build',
         component: communityAside,
         children: [
               {
@@ -570,8 +563,8 @@ export default new Router({
         ]
      },
      {
-        path: '/community_products',
-        component: asideComp07,
+        path: '/community_product',
+        component: communityProduct,
          children: [
              {
                 path:'',
@@ -601,61 +594,57 @@ export default new Router({
      },
      {
         path: '/wiki',
-        component: asideComp08,
+        component: wikiProductLists,
         children: [
              {
                 path: '',
                 component: wikiProductList
              },
              {
-                path:'ptm',
+                path:'product_module',
                 component:ptmList
              },
              {
-                path:'hlps',
+                path:'params_choice',
                 component: hlpsList
              },
              {
-                path:'lpm',
+                path:'list_params',
                 component: lpmList
              },
              {
-                path:'pim',
+                path:'catalog_price',
                 component: pimList
              },
              {
-                path:'hpvm',
+                path:'front_video',
                 component: hpvmList
              },
              {
-                path:'hpcm',
+                path:'front_recommend',
                 component: hpcmList
              },
              {
-                path: 'wktm',
+                path: 'catalog',
                 component: wktmList
              },
              {
-                path: 'wkbm',
+                path: 'brand',
                 component: wkbmList
              },
              {
-                path:'pvm',
+                path:'product_video',
                 component: pvmList
              },
              {
-                path: 'sublm',
+                path: 'sub_line',
                 component: sublmList
              },
              {
-                path: 'pcc',
+                path: 'product_recommend',
                 component: pccList
              } 
       ]
-     },
-     {
-        path: '/labs',
-        component: Log6
      },
      {
         path: '/masters',
@@ -666,11 +655,11 @@ export default new Router({
                 component:masterLog
             },
             {
-                path:'masterlist',
+                path:'master_list',
                 component: masterList
             },
             {
-                path: 'masterorder',
+                path: 'master_order',
                 component: masterOrder
             }
         ]
@@ -684,11 +673,11 @@ export default new Router({
                 component: tagKeyword
              },
              {
-                path: 'tagabout',
+                path: 'tag_about',
                 component: tagAbout
              },
              {
-                path: 'tagspecail',
+                path: 'tag_special',
                 component: tagSpecail
              }
         ]

@@ -7,29 +7,29 @@
        <ul class="main-menu">
        	<li><router-link class="main-links"  to="/datas">数据</router-link></li>
        	<li><router-link class="main-links"  to="/webpage">网站首页</router-link></li>
-       	<li><router-link class="main-links"  to="/users">用户管理</router-link></li>
+       	<li><router-link class="main-links"  to="/user_manager">用户管理</router-link></li>
        	<li class="main-links">社区 <Icon type="chevron-down"></Icon>
            <ul>
            	<li class="sub-menu">
-           		<router-link class="sub-menu-list" to="/communities">通用内容管理</router-link>
+           		<router-link class="sub-menu-list" to="/community_common">通用内容管理</router-link>
            	</li>
            	<li class="sub-menu">
-                <router-link class="sub-menu-list" to="/community_common_m">通用模块管理</router-link>
+                <router-link class="sub-menu-list" to="/community_module">通用模块管理</router-link>
            	</li>
            	<li class="sub-menu">
-                <router-link class="sub-menu-list" to="/community_front_p">社区首页管理</router-link>
+                <router-link class="sub-menu-list" to="/community_frontPage">社区首页管理</router-link>
            	</li>
            	<li class="sub-menu">
-                <router-link class="sub-menu-list" to="/community_types">品类社区管理</router-link>
+                <router-link class="sub-menu-list" to="/community_catalog">品类社区管理</router-link>
            	</li>
            	<li class="sub-menu">
-                <router-link class="sub-menu-list" to="/community_brands">品牌社区管理</router-link>
+                <router-link class="sub-menu-list" to="/community_brand">品牌社区管理</router-link>
            	</li>
            	<li class="sub-menu">
-                <router-link class="sub-menu-list" to="/community_products">产品社区管理</router-link>
+                <router-link class="sub-menu-list" to="/community_product">产品社区管理</router-link>
            	</li>
            	<li class="sub-menu">
-                <router-link class="sub-menu-list" to="/communities_manager">社区新建与管理</router-link>
+                <router-link class="sub-menu-list" to="/community_build">社区新建与管理</router-link>
            	</li>
            </ul>
        	</li>

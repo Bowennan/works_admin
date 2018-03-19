@@ -15,6 +15,14 @@ import vuelazy from 'vue-lazyload'
 import * as filters from '@/filter/filter'
 import echarts from 'echarts'
 
+const eventBus = {}
+
+eventBus.install = (Vue) => {
+  Vue.prototype.$bus = new Vue()
+}
+
+Vue.use(eventBus)
+
 
 
 
